@@ -1,0 +1,31 @@
+# Maven
+target/
+*.class
+*.jar
+!**/src/main/**/*.jar
+
+# IDE
+.idea/
+*.iml
+.vscode/
+*.swp
+.DS_Store
+
+# Allure results (generated — don't commit raw results)
+**/allure-results/
+**/allure-report/
+
+# Logs
+**/logs/
+*.log
+
+# Environment / secrets — NEVER commit these
+.env
+*.properties.local
+secrets.properties
+
+# AI-generated tests (committed separately via CI bot)
+**/aigenerated/
+
+# OS
+Thumbs.db

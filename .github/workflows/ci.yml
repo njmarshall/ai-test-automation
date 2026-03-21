@@ -1,0 +1,111 @@
+name: AI Test Automation CI
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:   # allow manual trigger from GitHub UI
+
+jobs:
+  build-and-test:
+    name: Build & Run API Tests
+    runs-on: ubuntu-latest
+
+    steps:
+      # ── Checkout ────────────────────────────────────────────────────────────
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # ── Java setup ──────────────────────────────────────────────────────────
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+          cache: 'maven'
+
+      # ── Build shared library first ──────────────────────────────────────────
+      - name: Build shared module
+        run: mvn install -pl shared -am -DskipTests
+
+      # ── Run API tests ────────────────────────────────────────────────────────
+      - name: Run PetStore API tests
+        env:
+          BASE_URL:              ${{ vars.BASE_URL || 'https://petstore.swagger.io/v2' }}
+          REQUEST_TIMEOUT_MS:    "10000"
+          RESPONSE_TIME_SLA_MS:  "3000"
+          LOG_ALL_REQUESTS:      "false"
+          ALLURE_ATTACH_ALWAYS:  "true"
+          API_KEY:               ${{ secrets.API_KEY }}
+          BEARER_TOKEN:          ${{ secrets.BEARER_TOKEN }}
+        run: mvn test -pl api -am
+
+      # ── Allure report ────────────────────────────────────────────────────────
+      - name: Generate Allure report
+        if: always()   # generate even when tests fail
+        run: mvn allure:report -pl api
+
+      - name: Upload Allure results (raw)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: allure-results
+          path: api/target/allure-results/
+          retention-days: 30
+
+      - name: Upload Allure HTML report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: allure-report
+          path: api/target/site/allure-maven-plugin/
+          retention-days: 30
+
+      # ── Publish Allure report to GitHub Pages (main branch only) ─────────────
+      - name: Deploy Allure report to GitHub Pages
+        if: github.ref == 'refs/heads/main' && always()
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir:  api/target/site/allure-maven-plugin/
+          destination_dir: allure-report
+
+  # ── Optional: AI test generation job (runs on demand) ─────────────────────
+  generate-tests:
+    name: AI Test Generation
+    runs-on: ubuntu-latest
+    if: github.event_name == 'workflow_dispatch'
+    needs: build-and-test
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+          cache: 'maven'
+
+      - name: Build shared module
+        run: mvn install -pl shared -am -DskipTests
+
+      - name: Run AI Test Generator
+        env:
+          LLM_API_KEY:   ${{ secrets.LLM_API_KEY }}
+          LLM_MODEL:     "claude-sonnet-4-20250514"
+          AI_OUTPUT_DIR: "api/src/test/java/com/aitesting/api/aigenerated"
+        run: |
+          mvn exec:java \
+            -pl shared \
+            -Dexec.mainClass="com.aitesting.shared.ai.TestGeneratorRunner" \
+            -Dexec.args="api/src/test/resources/petstore-openapi.json petstore"
+
+      - name: Commit generated tests
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add api/src/test/java/com/aitesting/api/aigenerated/
+          git diff --cached --quiet || git commit -m "chore: AI-generated tests [skip ci]"
+          git push
