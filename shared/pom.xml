@@ -13,7 +13,7 @@
 
     <artifactId>shared</artifactId>
     <packaging>jar</packaging>
-    <n>AI Test Automation - Shared Library</n>
+    <name>AI Test Automation - Shared Library</name>
     <description>Common utilities, HTTP client, assertions, data providers, and AI test generator</description>
 
     <dependencies>

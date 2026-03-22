@@ -12,7 +12,7 @@
     </parent>
 
     <artifactId>api</artifactId>
-    <n>AI Test Automation - API Tests</n>
+    <name>AI Test Automation - API Tests</name>
     <description>API test suites: PetStore, Insurance, Healthcare and other capstones</description>
 
     <dependencies>
