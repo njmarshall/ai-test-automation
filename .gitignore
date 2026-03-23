@@ -29,3 +29,4 @@ secrets.properties
 
 # OS
 Thumbs.db
+api/.allure/
