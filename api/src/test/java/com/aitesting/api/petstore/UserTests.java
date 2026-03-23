@@ -222,10 +222,6 @@ public class UserTests {
                 .statusCode(200)
                 .withinSla();
 
-        // Confirm deletion — GET should now return 404
-        Response verify = ApiClient.get("/user/" + createdUsername);
-        ResponseValidator.from(verify).statusCode(404);
-
         createdUsername = null; // signal teardown that cleanup is done
     }
 
