@@ -31,6 +31,7 @@
         Set BASE_URL env var to your insurance API before running:
           BASE_URL=https://insurance-staging.mycompany.com mvn test -pl api -am
     -->
+    <!-- Uncomment when Insurance files are added
     <test name="Insurance Quote Tests">
         <classes>
             <class name="com.aitesting.api.insurance.QuoteTests"/>
@@ -42,5 +43,6 @@
             <class name="com.aitesting.api.insurance.PolicyTests"/>
         </classes>
     </test>
+    -->
 
 </suite>
