@@ -1,6 +1,7 @@
 package com.aitesting.api.petstore;
 
 import com.aitesting.shared.assertions.ResponseValidator;
+import com.aitesting.api.petstore.PetTestDataFactory;
 import com.aitesting.shared.dataprovider.TestDataFactory;
 import com.aitesting.shared.http.ApiClient;
 import com.aitesting.shared.reporting.AllureHelper;
@@ -54,7 +55,7 @@ public class StoreTests {
     @Description("POST /store/order with a valid payload should return 200 and the order ID.")
     public void placeOrder_happyPath() {
         long petId = TestDataFactory.randomId();
-        Map<String, Object> payload = TestDataFactory.orderPayload(petId);
+        Map<String, Object> payload = PetTestDataFactory.orderPayload(petId);
         AllureHelper.parameter("Pet ID", petId);
 
         Response response = ApiClient.post("/store/order", payload);

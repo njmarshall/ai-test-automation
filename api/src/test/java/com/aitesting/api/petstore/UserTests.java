@@ -1,6 +1,7 @@
 package com.aitesting.api.petstore;
 
 import com.aitesting.shared.assertions.ResponseValidator;
+import com.aitesting.api.petstore.PetTestDataFactory;
 import com.aitesting.shared.dataprovider.TestDataFactory;
 import com.aitesting.shared.http.ApiClient;
 import com.aitesting.shared.reporting.AllureHelper;
@@ -48,7 +49,7 @@ public class UserTests {
     @Severity(SeverityLevel.BLOCKER)
     @Description("POST /user with a valid payload should return 200 and the created user ID.")
     public void createUser_happyPath() {
-        Map<String, Object> payload = TestDataFactory.userPayload();
+        Map<String, Object> payload = PetTestDataFactory.userPayload();
         createdUsername = (String) payload.get("username");
         AllureHelper.parameter("Username", createdUsername);
 
@@ -69,8 +70,8 @@ public class UserTests {
     @Description("POST /user/createWithArray with a list of users should return 200.")
     public void createUsersWithArray_happyPath() {
         List<Map<String, Object>> users = List.of(
-                TestDataFactory.userPayload(),
-                TestDataFactory.userPayload()
+                PetTestDataFactory.userPayload(),
+                PetTestDataFactory.userPayload()
         );
 
         Response response = ApiClient.post("/user/createWithArray", users);
@@ -87,9 +88,9 @@ public class UserTests {
     @Description("POST /user/createWithList with a list of users should return 200.")
     public void createUsersWithList_happyPath() {
         List<Map<String, Object>> users = List.of(
-                TestDataFactory.userPayload(),
-                TestDataFactory.userPayload(),
-                TestDataFactory.userPayload()
+                PetTestDataFactory.userPayload(),
+                PetTestDataFactory.userPayload(),
+                PetTestDataFactory.userPayload()
         );
 
         Response response = ApiClient.post("/user/createWithList", users);
@@ -144,7 +145,7 @@ public class UserTests {
     @Severity(SeverityLevel.CRITICAL)
     @Description("PUT /user/{username} with updated fields should return 200.")
     public void updateUser_happyPath() {
-        Map<String, Object> updatedPayload = TestDataFactory.userPayload();
+        Map<String, Object> updatedPayload = PetTestDataFactory.userPayload();
         // Keep same username so the server can locate the record
         updatedPayload = new java.util.HashMap<>(updatedPayload);
         ((java.util.HashMap<String, Object>) updatedPayload).put("username", createdUsername);
@@ -221,6 +222,10 @@ public class UserTests {
         ResponseValidator.from(response)
                 .statusCode(200)
                 .withinSla();
+
+        // Confirm deletion — GET should now return 404
+        Response verify = ApiClient.get("/user/" + createdUsername);
+        ResponseValidator.from(verify).statusCode(404);
 
         createdUsername = null; // signal teardown that cleanup is done
     }

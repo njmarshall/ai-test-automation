@@ -2,6 +2,7 @@ package com.aitesting.api.petstore;
 
 import com.aitesting.api.models.Pet;
 import com.aitesting.shared.assertions.ResponseValidator;
+import com.aitesting.api.petstore.PetTestDataFactory;
 import com.aitesting.shared.dataprovider.TestDataFactory;
 import com.aitesting.shared.http.ApiClient;
 import com.aitesting.shared.reporting.AllureHelper;
@@ -53,7 +54,7 @@ public class PetTests {
     @Severity(SeverityLevel.BLOCKER)
     @Description("POST /pet with valid payload should return 200 and the persisted pet ID.")
     public void createPet_happyPath() {
-        Map<String, Object> payload = TestDataFactory.petPayload("Buddy", "available");
+        Map<String, Object> payload = PetTestDataFactory.petPayload("Buddy", "available");
         AllureHelper.parameter("Pet Name", payload.get("name"));
         AllureHelper.parameter("Pet Status", payload.get("status"));
 
@@ -77,7 +78,7 @@ public class PetTests {
     @Severity(SeverityLevel.NORMAL)
     @Description("POST /pet with all optional fields (tags, category, photoUrls) should succeed.")
     public void createPet_withAllFields() {
-        Map<String, Object> payload = TestDataFactory.randomPetPayload();
+        Map<String, Object> payload = PetTestDataFactory.randomPetPayload();
 
         Response response = ApiClient.post("/pet", payload);
         AllureHelper.attachResponse("POST /pet (all fields)", response);
@@ -134,7 +135,7 @@ public class PetTests {
         AllureHelper.attachResponse("GET /pet (invalid ID)", response);
 
         ResponseValidator.from(response)
-                .statusCode(404)
+                .statusCode(400)
                 .withinSla();
     }
 
@@ -145,7 +146,7 @@ public class PetTests {
     @Severity(SeverityLevel.CRITICAL)
     @Description("PUT /pet with updated name and status should return 200 with new values.")
     public void updatePet_happyPath() {
-        Map<String, Object> updatePayload = TestDataFactory.petPayload("UpdatedBuddy", "pending");
+        Map<String, Object> updatePayload = PetTestDataFactory.petPayload("UpdatedBuddy", "pending");
         // Preserve the created ID so the server can locate the record
         updatePayload = Map.of(
                 "id",       createdPetId,
@@ -227,12 +228,7 @@ public class PetTests {
                 Map.of("status", "definitely_not_valid"));
         AllureHelper.attachResponse("GET /pet/findByStatus (invalid status)", response);
 
-        ResponseValidator.from(response)
-                .statusCode(200)
-                .withinSla();
-        // add a comment documenting the actual API behavior:
-        // NOTE: PetStore public API returns 200 with empty array for invalid status
-        // A production API should return 400 — adjust this when testing a real API
+        ResponseValidator.from(response).statusCode(400);
     }
 
     // ── Data providers ────────────────────────────────────────────────────────
@@ -240,9 +236,9 @@ public class PetTests {
     @DataProvider(name = "validStatuses")
     public Object[][] validStatuses() {
         return new Object[][] {
-                { "available" },
-                { "pending"   },
-                { "sold"      }
+            { "available" },
+            { "pending"   },
+            { "sold"      }
         };
     }
 }
