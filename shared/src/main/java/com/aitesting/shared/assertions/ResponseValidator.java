@@ -12,151 +12,156 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
 
 /**
- * ResponseValidator provides a fluent, chainable assertion API for REST responses.
+ * ResponseValidator — CRTP base class for all industry assertion validators.
  *
- * Every method returns `this` so assertions can be chained naturally:
+ * ═══════════════════════════════════════════════════════════════════════
+ * DESIGN: Curiously Recurring Template Pattern (CRTP)
+ * ═══════════════════════════════════════════════════════════════════════
  *
- *   ResponseValidator.from(response)
- *       .statusCode(200)
- *       .withinSla()
- *       .hasField("id")
- *       .fieldEquals("name", "Buddy")
- *       .listIsNotEmpty("tags")
- *       .matchesSchema("schemas/pet-schema.json");
+ * Problem solved:
+ *   Without CRTP, base class methods return ResponseValidator (base).
+ *   After calling a base method, subclass methods are invisible:
  *
- * Design goals:
- *   - One import, zero RestAssured boilerplate in test classes
- *   - SLA check built in via BaseConfig.RESPONSE_TIME_SLA_MS
- *   - JSON schema validation in one call
- *   - Readable failure messages for Allure reports
+ *   BROKEN (without CRTP):
+ *     PetResponseValidator.from(response)
+ *         .statusCode(200)        // returns ResponseValidator ← base!
+ *         .hasValidPetStatus()    // compile error — not on base type
+ *
+ *   FIXED (with CRTP):
+ *     PetResponseValidator.from(response)
+ *         .statusCode(200)        // returns PetResponseValidator ← T
+ *         .hasValidPetStatus()    // compiles — chain stayed at subtype
+ *
+ * Hierarchy:
+ *   ResponseValidator<T>
+ *     PetResponseValidator
+ *     InsuranceResponseValidator  (planned)
+ *     HealthResponseValidator     (planned)
+ *     PaymentResponseValidator    (planned)
  */
-public class ResponseValidator {
+public class ResponseValidator<T extends ResponseValidator<T>> {
 
-    private static final Logger log = LoggerFactory.getLogger(ResponseValidator.class);
+    private static final Logger log =
+        LoggerFactory.getLogger(ResponseValidator.class);
 
-    private final Response response;
+    protected final Response response;
 
-    private ResponseValidator(Response response) {
+    protected ResponseValidator(Response response) {
         this.response = response;
     }
 
-    /** Factory — start a validator chain from a RestAssured Response. */
-    public static ResponseValidator from(Response response) {
-        return new ResponseValidator(response);
+    /**
+     * Returns 'this' cast to T.
+     * Safe by CRTP construction — T is always the concrete subclass.
+     * @SuppressWarnings: compiler cannot verify due to type erasure.
+     */
+    @SuppressWarnings("unchecked")
+    protected final T self() {
+        return (T) this;
+    }
+
+    /** Generic factory — use subclass from() for domain assertions. */
+    public static ResponseValidator<?> from(Response response) {
+        return new ResponseValidator<>(response);
     }
 
     // ── Status ────────────────────────────────────────────────────────────────
 
-    /** Assert exact HTTP status code. */
-    public ResponseValidator statusCode(int expected) {
+    public T statusCode(int expected) {
         assertThat("Expected HTTP status " + expected,
                 response.getStatusCode(), equalTo(expected));
-        return this;
+        return self();
     }
 
-    /** Assert status code is in the 2xx range. */
-    public ResponseValidator is2xx() {
+    public T is2xx() {
         int code = response.getStatusCode();
-        assertThat("Expected 2xx status, got " + code, code, allOf(greaterThanOrEqualTo(200), lessThan(300)));
-        return this;
+        assertThat("Expected 2xx, got " + code,
+                code, allOf(greaterThanOrEqualTo(200), lessThan(300)));
+        return self();
     }
 
-    /** Assert status code is in the 4xx range. */
-    public ResponseValidator is4xx() {
+    public T is4xx() {
         int code = response.getStatusCode();
-        assertThat("Expected 4xx status, got " + code, code, allOf(greaterThanOrEqualTo(400), lessThan(500)));
-        return this;
+        assertThat("Expected 4xx, got " + code,
+                code, allOf(greaterThanOrEqualTo(400), lessThan(500)));
+        return self();
     }
 
     // ── Performance ───────────────────────────────────────────────────────────
 
-    /** Assert response arrived within the SLA defined in BaseConfig. */
-    public ResponseValidator withinSla() {
+    public T withinSla() {
         long elapsed = response.getTime();
-        assertThat("Response time " + elapsed + "ms exceeded SLA of "
-                        + BaseConfig.RESPONSE_TIME_SLA_MS + "ms",
-                elapsed, lessThanOrEqualTo(BaseConfig.RESPONSE_TIME_SLA_MS));
-        return this;
+        assertThat("Response time " + elapsed + "ms exceeded SLA "
+                + BaseConfig.RESPONSE_TIME_SLA_MS + "ms",
+                elapsed,
+                lessThanOrEqualTo(BaseConfig.RESPONSE_TIME_SLA_MS));
+        return self();
     }
 
-    /** Assert response arrived within a custom millisecond threshold. */
-    public ResponseValidator withinMs(long maxMs) {
+    public T withinMs(long maxMs) {
         long elapsed = response.getTime();
         assertThat("Response time " + elapsed + "ms exceeded " + maxMs + "ms",
                 elapsed, lessThanOrEqualTo(maxMs));
-        return this;
+        return self();
     }
 
     // ── Content type ──────────────────────────────────────────────────────────
 
-    /** Assert Content-Type header contains the given value (e.g. "application/json"). */
-    public ResponseValidator contentType(String expected) {
+    public T contentType(String expected) {
         assertThat("Content-Type mismatch",
                 response.getContentType(), containsString(expected));
-        return this;
+        return self();
     }
 
     // ── JSON field checks ─────────────────────────────────────────────────────
 
-    /** Assert a JSON path exists and is not null. */
-    public ResponseValidator hasField(String jsonPath) {
-        Object value = response.jsonPath().get(jsonPath);
-        assertThat("Expected JSON field '" + jsonPath + "' to exist", value, notNullValue());
-        return this;
+    public T hasField(String jsonPath) {
+        assertThat("Expected field '" + jsonPath + "' to exist",
+                response.jsonPath().get(jsonPath), notNullValue());
+        return self();
     }
 
-    /** Assert a JSON path equals the expected value. */
-    public ResponseValidator fieldEquals(String jsonPath, Object expected) {
-        Object actual = response.jsonPath().get(jsonPath);
-        assertThat("Field '" + jsonPath + "'", actual, equalTo(expected));
-        return this;
+    public T fieldEquals(String jsonPath, Object expected) {
+        assertThat("Field '" + jsonPath + "'",
+                response.jsonPath().get(jsonPath), equalTo(expected));
+        return self();
     }
 
-    /** Assert a JSON path string contains the given substring. */
-    public ResponseValidator fieldContains(String jsonPath, String substring) {
-        String actual = response.jsonPath().getString(jsonPath);
+    public T fieldContains(String jsonPath, String substring) {
         assertThat("Field '" + jsonPath + "' should contain '" + substring + "'",
-                actual, containsString(substring));
-        return this;
+                response.jsonPath().getString(jsonPath),
+                containsString(substring));
+        return self();
     }
 
-    /** Assert a JSON array path is not empty. */
-    public ResponseValidator listIsNotEmpty(String jsonPath) {
-        List<?> list = response.jsonPath().getList(jsonPath);
-        assertThat("Expected non-empty list at '" + jsonPath + "'", list, not(empty()));
-        return this;
+    public T listIsNotEmpty(String jsonPath) {
+        assertThat("Expected non-empty list at '" + jsonPath + "'",
+                response.jsonPath().getList(jsonPath), not(empty()));
+        return self();
     }
 
-    /** Assert a JSON array path has exactly the expected size. */
-    public ResponseValidator listSize(String jsonPath, int expectedSize) {
-        List<?> list = response.jsonPath().getList(jsonPath);
-        assertThat("List size at '" + jsonPath + "'", list, hasSize(expectedSize));
-        return this;
+    public T listSize(String jsonPath, int expectedSize) {
+        assertThat("List size at '" + jsonPath + "'",
+                response.jsonPath().getList(jsonPath), hasSize(expectedSize));
+        return self();
     }
 
-    // ── Schema validation ─────────────────────────────────────────────────────
+    // ── Schema ────────────────────────────────────────────────────────────────
 
-    /**
-     * Validate response body against a JSON Schema file on the classpath.
-     * Place schema files under src/test/resources/schemas/.
-     *
-     * Example: .matchesSchema("schemas/pet-schema.json")
-     */
-    public ResponseValidator matchesSchema(String schemaClasspathPath) {
+    public T matchesSchema(String schemaClasspathPath) {
         response.then().assertThat()
-                .body(JsonSchemaValidator.matchesJsonSchemaInClasspath(schemaClasspathPath));
+                .body(JsonSchemaValidator
+                    .matchesJsonSchemaInClasspath(schemaClasspathPath));
         log.debug("Schema validation passed: {}", schemaClasspathPath);
-        return this;
+        return self();
     }
 
     // ── Raw access ────────────────────────────────────────────────────────────
 
-    /** Extract a typed value from a JSON path for use in later assertions. */
-    public <T> T extract(String jsonPath) {
+    public <V> V extract(String jsonPath) {
         return response.jsonPath().get(jsonPath);
     }
 
-    /** Returns the raw RestAssured Response for cases not covered by this API. */
     public Response raw() {
         return response;
     }
