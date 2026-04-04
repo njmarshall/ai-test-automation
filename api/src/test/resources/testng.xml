@@ -1,12 +1,14 @@
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
-<suite name="PetStore API Test Suite"
+<suite name="AI Test Automation Suite"
        verbose="1"
        parallel="classes"
        thread-count="3">
 
     <listeners>
-        <listener class-name="io.qameta.allure.testng.AllureTestNg"/>
+        <!-- Allure listener registered via surefire-testng provider -->
     </listeners>
+
+    <!-- ── PetStore Capstone ─────────────────────────────────────── -->
 
     <test name="Pet Endpoint Tests">
         <classes>
@@ -26,12 +28,15 @@
         </classes>
     </test>
 
+    <!-- ── Insurance Capstone ────────────────────────────────────── -->
     <!--
-        Insurance suite — runs against a mock or staging environment.
-        Set BASE_URL env var to your insurance API before running:
-          BASE_URL=https://insurance-staging.mycompany.com mvn test -pl api -am
+        Insurance tests run against WireMock mock server.
+        WireMockHelper.start() is called in @BeforeClass of each suite.
+        No real API server required.
     -->
-    <!-- Uncomment when Insurance files are added
+
+    <!--
+
     <test name="Insurance Quote Tests">
         <classes>
             <class name="com.aitesting.api.insurance.QuoteTests"/>
@@ -44,5 +49,11 @@
         </classes>
     </test>
     -->
+
+    <test name="Insurance Claims Tests">
+        <classes>
+            <class name="com.aitesting.api.insurance.ClaimsTests"/>
+        </classes>
+    </test>
 
 </suite>
