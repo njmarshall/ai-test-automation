@@ -43,7 +43,7 @@ public class PetTests {
     public void suiteTeardown() {
         // Best-effort cleanup: delete the pet created in createPet_happyPath
         if (createdPetId != 0) {
-            ApiClient.delete("/pet/" + createdPetId);
+            ApiClient.DEFAULT.delete("/pet/" + createdPetId);
         }
     }
 
@@ -59,7 +59,7 @@ public class PetTests {
         AllureHelper.parameter("Pet Status", payload.get("status"));
 
         AllureHelper.step("Send POST /pet", () -> {
-            Response response = ApiClient.post("/pet", payload);
+            Response response = ApiClient.DEFAULT.post("/pet", payload);
             AllureHelper.attachResponse("POST /pet", response);
 
             ResponseValidator.from(response)
@@ -80,7 +80,7 @@ public class PetTests {
     public void createPet_withAllFields() {
         Map<String, Object> payload = PetTestDataFactory.randomPetPayload();
 
-        Response response = ApiClient.post("/pet", payload);
+        Response response = ApiClient.DEFAULT.post("/pet", payload);
         AllureHelper.attachResponse("POST /pet (all fields)", response);
 
         ResponseValidator.from(response)
@@ -99,7 +99,7 @@ public class PetTests {
     public void getPetById_found() {
         AllureHelper.parameter("Pet ID", createdPetId);
 
-        Response response = ApiClient.get("/pet/" + createdPetId);
+        Response response = ApiClient.DEFAULT.get("/pet/" + createdPetId);
         AllureHelper.attachResponse("GET /pet/" + createdPetId, response);
 
         ResponseValidator.from(response)
@@ -118,7 +118,7 @@ public class PetTests {
         long nonExistentId = TestDataFactory.nonExistentId();
         AllureHelper.parameter("Non-existent Pet ID", nonExistentId);
 
-        Response response = ApiClient.get("/pet/" + nonExistentId);
+        Response response = ApiClient.DEFAULT.get("/pet/" + nonExistentId);
         AllureHelper.attachResponse("GET /pet (not found)", response);
 
         int status = response.getStatusCode();
@@ -132,7 +132,7 @@ public class PetTests {
     @Severity(SeverityLevel.NORMAL)
     @Description("GET /pet/{id} with a non-numeric ID should return 400.")
     public void getPetById_invalidId() {
-        Response response = ApiClient.get("/pet/not-a-number");
+        Response response = ApiClient.DEFAULT.get("/pet/not-a-number");
         AllureHelper.attachResponse("GET /pet (invalid ID)", response);
 
         ResponseValidator.from(response)
@@ -157,7 +157,7 @@ public class PetTests {
         );
         AllureHelper.parameter("Updated Pet ID", createdPetId);
 
-        Response response = ApiClient.put("/pet", updatePayload);
+        Response response = ApiClient.DEFAULT.put("/pet", updatePayload);
         AllureHelper.attachResponse("PUT /pet", response);
 
         ResponseValidator.from(response)
@@ -175,7 +175,7 @@ public class PetTests {
     public void deletePet_happyPath() {
         AllureHelper.parameter("Pet ID to delete", createdPetId);
 
-        Response response = ApiClient.delete("/pet/" + createdPetId);
+        Response response = ApiClient.DEFAULT.delete("/pet/" + createdPetId);
         AllureHelper.attachResponse("DELETE /pet/" + createdPetId, response);
 
         ResponseValidator.from(response)
@@ -183,7 +183,7 @@ public class PetTests {
                 .withinSla();
 
         // Confirm deletion — subsequent GET should 404
-        Response verifyResponse = ApiClient.get("/pet/" + createdPetId);
+        Response verifyResponse = ApiClient.DEFAULT.get("/pet/" + createdPetId);
         ResponseValidator.from(verifyResponse).statusCode(404);
 
         createdPetId = 0; // Signal teardown that cleanup is done
@@ -196,7 +196,7 @@ public class PetTests {
     public void deletePet_notFound() {
         long nonExistentId = TestDataFactory.nonExistentId();
 
-        Response response = ApiClient.delete("/pet/" + nonExistentId);
+        Response response = ApiClient.DEFAULT.delete("/pet/" + nonExistentId);
         AllureHelper.attachResponse("DELETE /pet (not found)", response);
 
         int status = response.getStatusCode();
@@ -214,7 +214,7 @@ public class PetTests {
     public void findByStatus_validStatus(String status) {
         AllureHelper.parameter("Status", status);
 
-        Response response = ApiClient.get("/pet/findByStatus", Map.of("status", status));
+        Response response = ApiClient.DEFAULT.get("/pet/findByStatus", Map.of("status", status));
         AllureHelper.attachResponse("GET /pet/findByStatus?status=" + status, response);
 
         ResponseValidator.from(response)
@@ -228,7 +228,7 @@ public class PetTests {
     @Severity(SeverityLevel.NORMAL)
     @Description("GET /pet/findByStatus with an invalid status value should return 400.")
     public void findByStatus_invalidStatus() {
-        Response response = ApiClient.get("/pet/findByStatus",
+        Response response = ApiClient.DEFAULT.get("/pet/findByStatus",
                 Map.of("status", "definitely_not_valid"));
         AllureHelper.attachResponse("GET /pet/findByStatus (invalid status)", response);
 

@@ -1,14 +1,11 @@
 package com.aitesting.api.insurance;
 
-import com.aitesting.shared.http.ApiClient;
 import com.aitesting.api.util.WireMockHelper;
+import com.aitesting.shared.http.ApiClient;
+import com.aitesting.shared.http.ApiClientFactory;
 import com.aitesting.shared.reporting.AllureHelper;
 import io.qameta.allure.*;
-import io.restassured.RestAssured;
-import io.restassured.builder.RequestSpecBuilder;
-import io.restassured.http.ContentType;
 import io.restassured.response.Response;
-import io.restassured.specification.RequestSpecification;
 import org.testng.annotations.*;
 
 import java.util.Map;
@@ -116,20 +113,12 @@ public class ClaimsTests {
         }
         """;
 
-    private static RequestSpecification wireMockSpec;
-
     // ── Lifecycle ─────────────────────────────────────────────────────────────
-
+    private static ApiClient api;
     @BeforeClass(alwaysRun = true)
     public void suiteSetup() {
         WireMockHelper.start();
-
-        // Build a separate spec pointing at WireMock
-        wireMockSpec = new RequestSpecBuilder()
-                .setBaseUri(WireMockHelper.BASE_URL)
-                .setContentType(ContentType.JSON)
-                .setAccept(ContentType.JSON)
-                .build();
+        api = ApiClientFactory.forWireMock();
 
         AllureHelper.description(
                 "Insurance Claims API — FNOL, status tracking, " +
@@ -165,8 +154,7 @@ public class ClaimsTests {
         );
         AllureHelper.parameter("Policy ID", POLICY_ID);
 
-        Response response = RestAssured.given()
-                .spec(wireMockSpec).body(payload).post("/claims");
+        Response response = api.post("/claims", payload);
         AllureHelper.attachResponse("POST /claims", response);
 
         InsuranceResponseValidator.from(response)
@@ -191,8 +179,7 @@ public class ClaimsTests {
             // policyId intentionally omitted
         );
 
-        Response response = RestAssured.given()
-                .spec(wireMockSpec).body(payload).post("/claims");
+        Response response = api.post("/claims", payload);
         AllureHelper.attachResponse("POST /claims (missing policyId)", response);
 
         InsuranceResponseValidator.from(response)
@@ -215,8 +202,7 @@ public class ClaimsTests {
         );
         AllureHelper.parameter("Invalid Policy ID", "POL-DOES-NOT-EXIST");
 
-        Response response = RestAssured.given()
-                .spec(wireMockSpec).body(payload).post("/claims");
+        Response response = api.post("/claims", payload);
         AllureHelper.attachResponse("POST /claims (invalid policy)", response);
 
         InsuranceResponseValidator.from(response)
@@ -234,8 +220,7 @@ public class ClaimsTests {
         WireMockHelper.stubGet("/claims/" + CLAIM_ID, 200, CLAIM_FOUND);
         AllureHelper.parameter("Claim ID", CLAIM_ID);
 
-        Response response = RestAssured.given()
-                .spec(wireMockSpec).get("/claims/" + CLAIM_ID);
+        Response response = api.get("/claims/" + CLAIM_ID);
         AllureHelper.attachResponse("GET /claims/" + CLAIM_ID, response);
 
         InsuranceResponseValidator.from(response)
@@ -254,8 +239,7 @@ public class ClaimsTests {
         WireMockHelper.stubGet("/claims/" + GHOST_ID, 404, NOT_FOUND);
         AllureHelper.parameter("Ghost Claim ID", GHOST_ID);
 
-        Response response = RestAssured.given()
-                .spec(wireMockSpec).get("/claims/" + GHOST_ID);
+        Response response = api.get("/claims/" + GHOST_ID);
         AllureHelper.attachResponse("GET /claims (not found)", response);
 
         InsuranceResponseValidator.from(response)
@@ -306,8 +290,7 @@ public class ClaimsTests {
             200, CLAIM_CLOSED);
         AllureHelper.parameter("Claim ID", CLAIM_ID);
 
-        Response response = RestAssured.given()
-                .spec(wireMockSpec).body("{}").patch("/claims/" + CLAIM_ID + "/close");
+        Response response = api.patch("/claims/" + CLAIM_ID + "/close", "{}");
         AllureHelper.attachResponse("PATCH /claims/close", response);
 
         InsuranceResponseValidator.from(response)
@@ -325,8 +308,7 @@ public class ClaimsTests {
             409, CONFLICT);
         AllureHelper.parameter("Claim ID", CLAIM_ID);
 
-        Response response = RestAssured.given()
-                .spec(wireMockSpec).body("{}").patch("/claims/" + CLAIM_ID + "/close");
+        Response response = api.patch("/claims/" + CLAIM_ID + "/close", "{}");
         AllureHelper.attachResponse("PATCH /claims/close (conflict)", response);
 
         InsuranceResponseValidator.from(response)
@@ -348,8 +330,7 @@ public class ClaimsTests {
                       + (maxWaitSeconds * 1000L);
 
         while (System.currentTimeMillis() < deadline) {
-            Response response = RestAssured.given()
-                    .spec(wireMockSpec).get(path);
+            Response response = api.get(path);
             String current = response.jsonPath().getString("status");
 
             AllureHelper.step("Polling " + path + " — status: " + current,

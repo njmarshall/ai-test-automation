@@ -38,7 +38,7 @@ public class UserTests {
     @AfterClass(alwaysRun = true)
     public void suiteTeardown() {
         if (createdUsername != null) {
-            ApiClient.delete("/user/" + createdUsername);
+            ApiClient.DEFAULT.delete("/user/" + createdUsername);
         }
     }
 
@@ -54,7 +54,7 @@ public class UserTests {
         AllureHelper.parameter("Username", createdUsername);
 
         AllureHelper.step("POST /user with valid payload", () -> {
-            Response response = ApiClient.post("/user", payload);
+            Response response = ApiClient.DEFAULT.post("/user", payload);
             AllureHelper.attachResponse("POST /user", response);
 
             ResponseValidator.from(response)
@@ -74,7 +74,7 @@ public class UserTests {
                 PetTestDataFactory.userPayload()
         );
 
-        Response response = ApiClient.post("/user/createWithArray", users);
+        Response response = ApiClient.DEFAULT.post("/user/createWithArray", users);
         AllureHelper.attachResponse("POST /user/createWithArray", response);
 
         ResponseValidator.from(response)
@@ -93,7 +93,7 @@ public class UserTests {
                 PetTestDataFactory.userPayload()
         );
 
-        Response response = ApiClient.post("/user/createWithList", users);
+        Response response = ApiClient.DEFAULT.post("/user/createWithList", users);
         AllureHelper.attachResponse("POST /user/createWithList", response);
 
         ResponseValidator.from(response)
@@ -110,7 +110,7 @@ public class UserTests {
     public void getUserByUsername_found() {
         AllureHelper.parameter("Username", createdUsername);
 
-        Response response = ApiClient.get("/user/" + createdUsername);
+        Response response = ApiClient.DEFAULT.get("/user/" + createdUsername);
         AllureHelper.attachResponse("GET /user/" + createdUsername, response);
 
         ResponseValidator.from(response)
@@ -130,7 +130,7 @@ public class UserTests {
         String ghost = "user_does_not_exist_" + TestDataFactory.randomId();
         AllureHelper.parameter("Ghost Username", ghost);
 
-        Response response = ApiClient.get("/user/" + ghost);
+        Response response = ApiClient.DEFAULT.get("/user/" + ghost);
         AllureHelper.attachResponse("GET /user (not found)", response);
 
         ResponseValidator.from(response)
@@ -152,7 +152,7 @@ public class UserTests {
         ((java.util.HashMap<String, Object>) updatedPayload).put("firstName", "UpdatedFirst");
         AllureHelper.parameter("Username", createdUsername);
 
-        Response response = ApiClient.put("/user/" + createdUsername, updatedPayload);
+        Response response = ApiClient.DEFAULT.put("/user/" + createdUsername, updatedPayload);
         AllureHelper.attachResponse("PUT /user/" + createdUsername, response);
 
         ResponseValidator.from(response)
@@ -168,7 +168,7 @@ public class UserTests {
     @Description("GET /user/login with valid credentials should return 200 and a session token.")
     public void login_validCredentials() {
         // PetStore accepts any non-blank username/password
-        Response response = ApiClient.get("/user/login",
+        Response response = ApiClient.DEFAULT.get("/user/login",
                 Map.of("username", "testuser", "password", "password123"));
         AllureHelper.attachResponse("GET /user/login", response);
 
@@ -184,7 +184,7 @@ public class UserTests {
     @Description("GET /user/login with missing credentials should return 400.")
     public void login_missingCredentials() {
         // No username or password params
-        Response response = ApiClient.get("/user/login");
+        Response response = ApiClient.DEFAULT.get("/user/login");
         AllureHelper.attachResponse("GET /user/login (missing creds)", response);
 
         // PetStore public API returns 200 even without creds — document actual behavior
@@ -199,7 +199,7 @@ public class UserTests {
     @Severity(SeverityLevel.NORMAL)
     @Description("GET /user/logout should always return 200.")
     public void logout_happyPath() {
-        Response response = ApiClient.get("/user/logout");
+        Response response = ApiClient.DEFAULT.get("/user/logout");
         AllureHelper.attachResponse("GET /user/logout", response);
 
         ResponseValidator.from(response)
@@ -216,7 +216,7 @@ public class UserTests {
     public void deleteUser_happyPath() {
         AllureHelper.parameter("Username to delete", createdUsername);
 
-        Response response = ApiClient.delete("/user/" + createdUsername);
+        Response response = ApiClient.DEFAULT.delete("/user/" + createdUsername);
         AllureHelper.attachResponse("DELETE /user/" + createdUsername, response);
 
         ResponseValidator.from(response)
@@ -224,7 +224,7 @@ public class UserTests {
                 .withinSla();
 
         // Confirm deletion — GET should now return 404
-        Response verify = ApiClient.get("/user/" + createdUsername);
+        Response verify = ApiClient.DEFAULT.get("/user/" + createdUsername);
         ResponseValidator.from(response)
                 .statusCode(200)
                 .withinSla();
@@ -241,7 +241,7 @@ public class UserTests {
     public void deleteUser_notFound() {
         String ghost = "ghost_user_" + TestDataFactory.randomId();
 
-        Response response = ApiClient.delete("/user/" + ghost);
+        Response response = ApiClient.DEFAULT.delete("/user/" + ghost);
         AllureHelper.attachResponse("DELETE /user (not found)", response);
 
         ResponseValidator.from(response).statusCode(404);

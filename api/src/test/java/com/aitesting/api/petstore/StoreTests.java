@@ -27,7 +27,7 @@ public class StoreTests {
     @AfterClass(alwaysRun = true)
     public void cleanup() {
         if (createdOrderId != 0) {
-            ApiClient.delete("/store/order/" + createdOrderId);
+            ApiClient.DEFAULT.delete("/store/order/" + createdOrderId);
         }
     }
 
@@ -38,7 +38,7 @@ public class StoreTests {
     @Severity(SeverityLevel.CRITICAL)
     @Description("GET /store/inventory should return 200 with a non-null inventory map.")
     public void getInventory_happyPath() {
-        Response response = ApiClient.get("/store/inventory");
+        Response response = ApiClient.DEFAULT.get("/store/inventory");
         AllureHelper.attachResponse("GET /store/inventory", response);
 
         ResponseValidator.from(response)
@@ -58,7 +58,7 @@ public class StoreTests {
         Map<String, Object> payload = PetTestDataFactory.orderPayload(petId);
         AllureHelper.parameter("Pet ID", petId);
 
-        Response response = ApiClient.post("/store/order", payload);
+        Response response = ApiClient.DEFAULT.post("/store/order", payload);
         AllureHelper.attachResponse("POST /store/order", response);
 
         ResponseValidator.from(response)
@@ -83,7 +83,7 @@ public class StoreTests {
                 "complete", false
         );
 
-        Response response = ApiClient.post("/store/order", payload);
+        Response response = ApiClient.DEFAULT.post("/store/order", payload);
         AllureHelper.attachResponse("POST /store/order (qty=0)", response);
 
         // PetStore API accepts 0 — document actual behaviour here
@@ -100,7 +100,7 @@ public class StoreTests {
     public void getOrder_found() {
         AllureHelper.parameter("Order ID", createdOrderId);
 
-        Response response = ApiClient.get("/store/order/" + createdOrderId);
+        Response response = ApiClient.DEFAULT.get("/store/order/" + createdOrderId);
         AllureHelper.attachResponse("GET /store/order/" + createdOrderId, response);
 
         ResponseValidator.from(response)
@@ -118,7 +118,7 @@ public class StoreTests {
     public void getOrder_notFound() {
         long nonExistentId = TestDataFactory.nonExistentId();
 
-        Response response = ApiClient.get("/store/order/" + nonExistentId);
+        Response response = ApiClient.DEFAULT.get("/store/order/" + nonExistentId);
         AllureHelper.attachResponse("GET /store/order (not found)", response);
 
         ResponseValidator.from(response).statusCode(404);
@@ -133,7 +133,7 @@ public class StoreTests {
     public void deleteOrder_happyPath() {
         AllureHelper.parameter("Order ID to delete", createdOrderId);
 
-        Response response = ApiClient.delete("/store/order/" + createdOrderId);
+        Response response = ApiClient.DEFAULT.delete("/store/order/" + createdOrderId);
         AllureHelper.attachResponse("DELETE /store/order/" + createdOrderId, response);
 
         ResponseValidator.from(response)
@@ -141,7 +141,7 @@ public class StoreTests {
                 .withinSla();
 
         // Confirm deletion
-        Response verify = ApiClient.get("/store/order/" + createdOrderId);
+        Response verify = ApiClient.DEFAULT.get("/store/order/" + createdOrderId);
         ResponseValidator.from(verify).statusCode(404);
         createdOrderId = 0;
     }

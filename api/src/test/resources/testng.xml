@@ -4,12 +4,7 @@
        parallel="classes"
        thread-count="3">
 
-    <listeners>
-        <!-- Allure listener registered via surefire-testng provider -->
-    </listeners>
-
-    <!-- ── PetStore Capstone ─────────────────────────────────────── -->
-
+    <!-- PetStore Capstone -->
     <test name="Pet Endpoint Tests">
         <classes>
             <class name="com.aitesting.api.petstore.PetTests"/>
@@ -28,15 +23,7 @@
         </classes>
     </test>
 
-    <!-- ── Insurance Capstone ────────────────────────────────────── -->
-    <!--
-        Insurance tests run against WireMock mock server.
-        WireMockHelper.start() is called in @BeforeClass of each suite.
-        No real API server required.
-    -->
-
-    <!--
-
+    <!-- Insurance Capstone - all run against WireMock port 8089 -->
     <test name="Insurance Quote Tests">
         <classes>
             <class name="com.aitesting.api.insurance.QuoteTests"/>
@@ -48,7 +35,6 @@
             <class name="com.aitesting.api.insurance.PolicyTests"/>
         </classes>
     </test>
-    -->
 
     <test name="Insurance Claims Tests">
         <classes>

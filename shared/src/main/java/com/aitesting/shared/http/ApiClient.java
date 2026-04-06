@@ -14,45 +14,87 @@ import org.slf4j.LoggerFactory;
 import java.util.Map;
 
 /**
- * ApiClient is the single entry point for all HTTP calls in the framework.
+ * ApiClient — HTTP client wrapper over RestAssured.
  *
- * Every test project calls ApiClient.get(), .post(), .put(), .patch(), .delete()
- * instead of configuring RestAssured from scratch. This guarantees:
- *   - Consistent base URL, timeouts, and content-type across all tests
- *   - Automatic Allure request/response attachment
- *   - Centralised auth injection (API key or Bearer token)
- *   - Optional full request/response logging controlled by BaseConfig
+ * ═══════════════════════════════════════════════════════════════════════
+ * DESIGN: Supports both static usage (PetStore) and instance usage
+ *         (Insurance/Healthcare via ApiClientFactory).
+ * ═══════════════════════════════════════════════════════════════════════
  *
- * Usage:
- *   Response r = ApiClient.get("/pet/1");
- *   Response r = ApiClient.post("/pet", petBody);
- *   Response r = ApiClient.get("/pet/findByStatus", Map.of("status", "available"));
+ * Java cannot have instance and static methods with the same name.
+ * Solution: ALL methods are instance methods. Static convenience methods
+ * are provided with a "static" prefix for backward compatibility, OR
+ * test classes use a static DEFAULT instance directly.
+ *
+ * Migration path:
+ *   Phase 1 (PetStore — existing):
+ *     Uses ApiClient.DEFAULT.get() or static helper methods.
+ *
+ *   Phase 2 (Insurance — new):
+ *     Uses ApiClientFactory.forWireMock() → instance methods.
+ *
+ * ═══════════════════════════════════════════════════════════════════════
+ * USAGE
+ * ═══════════════════════════════════════════════════════════════════════
+ *
+ *   // Existing static style (PetStore — unchanged):
+ *   Response r = ApiClient.DEFAULT.get("/pet/1");
+ *   Response r = ApiClient.DEFAULT.post("/pet", payload);
+ *
+ *   // New instance style (Insurance via factory):
+ *   ApiClient api = ApiClientFactory.forWireMock();
+ *   Response r = api.get("/claims/123");
+ *   Response r = api.post("/claims", payload);
  */
 public class ApiClient {
 
-    private static final Logger log = LoggerFactory.getLogger(ApiClient.class);
+    private static final Logger log =
+        LoggerFactory.getLogger(ApiClient.class);
 
-    /** Shared base spec — built once at class load, reused for every request. */
-    private static final RequestSpecification BASE_SPEC;
+    // ── DEFAULT static instance — backward compatible ─────────────────────────
 
-    static {
+    /**
+     * Shared default instance pointing at BaseConfig.BASE_URL.
+     * PetStore tests use ApiClient.DEFAULT.get() etc.
+     * Replaces the old static method approach.
+     */
+    public static final ApiClient DEFAULT =
+        new ApiClient(BaseConfig.BASE_URL);
+
+    // ── Instance spec ─────────────────────────────────────────────────────────
+
+    private final RequestSpecification spec;
+    private final String baseUrl;
+
+    /**
+     * Package-private constructor — use ApiClientFactory to create instances.
+     * Direct construction only for DEFAULT instance above.
+     *
+     * @param baseUrl the API server base URL for this client instance
+     */
+    ApiClient(String baseUrl) {
+        this.baseUrl = baseUrl;
+
         RequestSpecBuilder builder = new RequestSpecBuilder()
-                .setBaseUri(BaseConfig.BASE_URL)
-                .setContentType(ContentType.JSON)
-                .setAccept(ContentType.JSON)
-                .setConfig(
-                        io.restassured.config.RestAssuredConfig.config()
-                                .httpClient(
-                                        io.restassured.config.HttpClientConfig.httpClientConfig()
-                                                .setParam("http.connection.timeout", BaseConfig.REQUEST_TIMEOUT_MS)
-                                                .setParam("http.socket.timeout",     BaseConfig.REQUEST_TIMEOUT_MS)
-                                )
-                )
-                .addFilter(new AllureRestAssured());   // attaches req/resp to Allure
+            .setBaseUri(baseUrl)
+            .setContentType(ContentType.JSON)
+            .setAccept(ContentType.JSON)
+            .setConfig(
+                io.restassured.config.RestAssuredConfig.config()
+                    .httpClient(
+                        io.restassured.config.HttpClientConfig
+                            .httpClientConfig()
+                            .setParam("http.connection.timeout",
+                                BaseConfig.REQUEST_TIMEOUT_MS)
+                            .setParam("http.socket.timeout",
+                                BaseConfig.REQUEST_TIMEOUT_MS)
+                    )
+            )
+            .addFilter(new AllureRestAssured());
 
-        // Inject auth if configured
         if (!BaseConfig.BEARER_TOKEN.isBlank()) {
-            builder.addHeader("Authorization", "Bearer " + BaseConfig.BEARER_TOKEN);
+            builder.addHeader("Authorization",
+                "Bearer " + BaseConfig.BEARER_TOKEN);
         } else if (!BaseConfig.API_KEY.isBlank()) {
             builder.addHeader("api_key", BaseConfig.API_KEY);
         }
@@ -61,68 +103,59 @@ public class ApiClient {
             builder.log(LogDetail.ALL);
         }
 
-        BASE_SPEC = builder.build();
-        log.info("ApiClient initialised — baseUri: {}", BaseConfig.BASE_URL);
+        this.spec = builder.build();
+        log.info("ApiClient created — baseUri: {}", baseUrl);
     }
 
-    // ── HTTP Methods ──────────────────────────────────────────────────────────
+    // ── Instance HTTP methods ─────────────────────────────────────────────────
 
     /** GET with no query params. */
-    public static Response get(String path) {
+    public Response get(String path) {
         log.debug("GET {}", path);
-        return given().get(path);
+        return RestAssured.given().spec(spec).get(path);
     }
 
     /** GET with query parameters. */
-    public static Response get(String path, Map<String, ?> queryParams) {
+    public Response get(String path, Map<String, ?> queryParams) {
         log.debug("GET {} params={}", path, queryParams);
-        return given().queryParams(queryParams).get(path);
+        return RestAssured.given().spec(spec)
+            .queryParams(queryParams).get(path);
     }
 
     /** POST with a request body. */
-    public static Response post(String path, Object body) {
+    public Response post(String path, Object body) {
         log.debug("POST {}", path);
-        return given().body(body).post(path);
+        return RestAssured.given().spec(spec).body(body).post(path);
     }
 
     /** PUT with a request body. */
-    public static Response put(String path, Object body) {
+    public Response put(String path, Object body) {
         log.debug("PUT {}", path);
-        return given().body(body).put(path);
+        return RestAssured.given().spec(spec).body(body).put(path);
     }
 
     /** PATCH with a request body. */
-    public static Response patch(String path, Object body) {
+    public Response patch(String path, Object body) {
         log.debug("PATCH {}", path);
-        return given().body(body).patch(path);
+        return RestAssured.given().spec(spec).body(body).patch(path);
     }
 
     /** DELETE — no body. */
-    public static Response delete(String path) {
+    public Response delete(String path) {
         log.debug("DELETE {}", path);
-        return given().delete(path);
-    }
-
-    /** DELETE with path params pre-baked (e.g. /pet/{id}). */
-    public static Response delete(String path, Map<String, ?> pathParams) {
-        log.debug("DELETE {} pathParams={}", path, pathParams);
-        return given().pathParams(pathParams).delete(path);
+        return RestAssured.given().spec(spec).delete(path);
     }
 
     /**
-     * Returns a RequestSpecification pre-loaded with the base spec.
-     * Use this when you need advanced customisation (e.g. multipart, custom headers).
-     *
-     * Example:
-     *   Response r = ApiClient.given()
-     *       .header("X-Custom-Header", "value")
-     *       .queryParam("format", "xml")
-     *       .get("/pet/1");
+     * Returns the underlying RequestSpecification for advanced use cases
+     * such as multipart uploads or custom headers.
      */
-    public static RequestSpecification given() {
-        return RestAssured.given().spec(BASE_SPEC);
+    public RequestSpecification given() {
+        return RestAssured.given().spec(spec);
     }
 
-    /** Prevent instantiation — this is a static utility class. */
-    private ApiClient() {}
+    /** Returns the base URL this client is configured for. */
+    public String getBaseUrl() {
+        return baseUrl;
+    }
 }
