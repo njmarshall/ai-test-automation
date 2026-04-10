@@ -42,4 +42,29 @@
         </classes>
     </test>
 
+    <!-- Healthcare Capstone -->
+    <test name="Healthcare Patient Tests">
+        <classes>
+            <class name="com.aitesting.api.healthcare.PatientTests"/>
+        </classes>
+    </test>
+
+    <test name="Healthcare Encounter Tests">
+        <classes>
+            <class name="com.aitesting.api.healthcare.EncounterTests"/>
+        </classes>
+    </test>
+
+    <test name="Healthcare Claim Tests">
+        <classes>
+            <class name="com.aitesting.api.healthcare.ClaimTests"/>
+        </classes>
+    </test>
+
+    <test name="Healthcare Prior Auth Tests">
+        <classes>
+            <class name="com.aitesting.api.healthcare.PriorAuthTests"/>
+        </classes>
+    </test>
+
 </suite>
