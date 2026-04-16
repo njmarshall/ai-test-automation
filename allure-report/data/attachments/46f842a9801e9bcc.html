@@ -1,0 +1,71 @@
+<div>POST to http://localhost:8089/quotes</div>
+
+    <h4>Body</h4>
+    <div>
+    <pre class="preformated-text">
+{
+    &quot;applicant&quot;: {
+        &quot;firstName&quot;: &quot;Brock&quot;,
+        &quot;lastName&quot;: &quot;Toy&quot;,
+        &quot;dateOfBirth&quot;: &quot;1991-04-16&quot;,
+        &quot;licenseNumber&quot;: &quot;V1690855&quot;,
+        &quot;yearsLicensed&quot;: 19,
+        &quot;accidentsLast3Years&quot;: 0,
+        &quot;zipCode&quot;: &quot;30301&quot;
+    },
+    &quot;vehicle&quot;: {
+        &quot;year&quot;: 2021,
+        &quot;make&quot;: &quot;BMW&quot;,
+        &quot;model&quot;: &quot;3 Series&quot;,
+        &quot;vin&quot;: &quot;8KH9SBEUD8GMPP164&quot;,
+        &quot;annualMileage&quot;: 12000,
+        &quot;primaryUse&quot;: &quot;commute&quot;,
+        &quot;antiTheft&quot;: true,
+        &quot;safetyFeatures&quot;: true
+    },
+    &quot;coverageType&quot;: &quot;liability&quot;,
+    &quot;deductible&quot;: 2000,
+    &quot;addOns&quot;: [
+        &quot;roadside&quot;
+    ]
+}    </pre>
+    </div>
+
+    <h4>Headers</h4>
+    <div>
+            <div>Accept: application/json, application/javascript, text/javascript, text/json</div>
+            <div>Content-Type: application/json</div>
+    </div>
+
+
+
+    <h4>Curl</h4>
+    <div>
+        curl -v -X POST &#39;http://localhost:8089/quotes&#39; -H &#39;Accept: application/json, application/javascript, text/javascript, text/json&#39; -H &#39;Content-Type: application/json&#39; -d &#39;{
+    &quot;applicant&quot;: {
+        &quot;firstName&quot;: &quot;Brock&quot;,
+        &quot;lastName&quot;: &quot;Toy&quot;,
+        &quot;dateOfBirth&quot;: &quot;1991-04-16&quot;,
+        &quot;licenseNumber&quot;: &quot;V1690855&quot;,
+        &quot;yearsLicensed&quot;: 19,
+        &quot;accidentsLast3Years&quot;: 0,
+        &quot;zipCode&quot;: &quot;30301&quot;
+    },
+    &quot;vehicle&quot;: {
+        &quot;year&quot;: 2021,
+        &quot;make&quot;: &quot;BMW&quot;,
+        &quot;model&quot;: &quot;3 Series&quot;,
+        &quot;vin&quot;: &quot;8KH9SBEUD8GMPP164&quot;,
+        &quot;annualMileage&quot;: 12000,
+        &quot;primaryUse&quot;: &quot;commute&quot;,
+        &quot;antiTheft&quot;: true,
+        &quot;safetyFeatures&quot;: true
+    },
+    &quot;coverageType&quot;: &quot;liability&quot;,
+    &quot;deductible&quot;: 2000,
+    &quot;addOns&quot;: [
+        &quot;roadside&quot;
+    ]
+}&#39;
+    </div>
+

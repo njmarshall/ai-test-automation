@@ -1,0 +1,51 @@
+=== POST /Patient (newborn) ===
+Status: 201
+Time: 954ms
+Content-Type: application/fhir+json;charset=utf-8
+
+Body:
+{
+    "resourceType": "Patient",
+    "id": "131933313",
+    "meta": {
+        "versionId": "1",
+        "lastUpdated": "2026-04-16T07:42:51.836+00:00",
+        "source": "#kg1KXavtt2nnTAhy"
+    },
+    "text": {
+        "status": "generated",
+        "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><div class=\"hapiHeaderText\">Major <b>WUCKERT </b></div><table class=\"hapiPropertyTable\"><tbody><tr><td>Identifier</td><td>TEST-00149057</td></tr><tr><td>Address</td><td><span>Littleland </span><span>MI </span><span>US </span></td></tr><tr><td>Date of birth</td><td><span>16 April 2026</span></td></tr></tbody></table></div>"
+    },
+    "identifier": [
+        {
+            "system": "http://hospital.example.org/mrn",
+            "value": "TEST-00149057"
+        }
+    ],
+    "name": [
+        {
+            "use": "official",
+            "family": "Wuckert",
+            "given": [
+                "Major"
+            ]
+        }
+    ],
+    "telecom": [
+        {
+            "system": "phone",
+            "value": "(223) 339-3529 x77159",
+            "use": "home"
+        }
+    ],
+    "gender": "male",
+    "birthDate": "2026-04-16",
+    "address": [
+        {
+            "city": "Littleland",
+            "state": "MI",
+            "postalCode": "89597",
+            "country": "US"
+        }
+    ]
+}

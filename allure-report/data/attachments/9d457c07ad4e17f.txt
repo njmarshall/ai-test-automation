@@ -1,0 +1,9 @@
+=== GET /pet/findByStatus (invalid status) ===
+Status: 200
+Time: 778ms
+Content-Type: application/json
+
+Body:
+[
+    
+]

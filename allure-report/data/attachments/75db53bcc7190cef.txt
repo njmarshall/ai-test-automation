@@ -1,0 +1,51 @@
+=== POST /Patient (senior) ===
+Status: 201
+Time: 994ms
+Content-Type: application/fhir+json;charset=utf-8
+
+Body:
+{
+    "resourceType": "Patient",
+    "id": "131933312",
+    "meta": {
+        "versionId": "1",
+        "lastUpdated": "2026-04-16T07:42:50.836+00:00",
+        "source": "#CHSsQMXSpOKtqes0"
+    },
+    "text": {
+        "status": "generated",
+        "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><div class=\"hapiHeaderText\">Courtney <b>WISOZK </b></div><table class=\"hapiPropertyTable\"><tbody><tr><td>Identifier</td><td>TEST-00695245</td></tr><tr><td>Address</td><td><span>Donteside </span><span>MD </span><span>US </span></td></tr><tr><td>Date of birth</td><td><span>16 April 1954</span></td></tr></tbody></table></div>"
+    },
+    "identifier": [
+        {
+            "system": "http://hospital.example.org/mrn",
+            "value": "TEST-00695245"
+        }
+    ],
+    "name": [
+        {
+            "use": "official",
+            "family": "Wisozk",
+            "given": [
+                "Courtney"
+            ]
+        }
+    ],
+    "telecom": [
+        {
+            "system": "phone",
+            "value": "099.323.5153 x5480",
+            "use": "home"
+        }
+    ],
+    "gender": "female",
+    "birthDate": "1954-04-16",
+    "address": [
+        {
+            "city": "Donteside",
+            "state": "MD",
+            "postalCode": "66515",
+            "country": "US"
+        }
+    ]
+}

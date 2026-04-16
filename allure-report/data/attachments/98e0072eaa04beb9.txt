@@ -1,0 +1,51 @@
+=== GET /Patient/131933310 ===
+Status: 200
+Time: 928ms
+Content-Type: application/fhir+json;charset=utf-8
+
+Body:
+{
+    "resourceType": "Patient",
+    "id": "131933310",
+    "meta": {
+        "versionId": "1",
+        "lastUpdated": "2026-04-16T07:42:48.836+00:00",
+        "source": "#nMmFYL8AaftboUnz"
+    },
+    "text": {
+        "status": "generated",
+        "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><div class=\"hapiHeaderText\">Franklin <b>HELLER </b></div><table class=\"hapiPropertyTable\"><tbody><tr><td>Identifier</td><td>TEST-00460437</td></tr><tr><td>Address</td><td><span>Rohanhaven </span><span>SC </span><span>US </span></td></tr><tr><td>Date of birth</td><td><span>16 April 1991</span></td></tr></tbody></table></div>"
+    },
+    "identifier": [
+        {
+            "system": "http://hospital.example.org/mrn",
+            "value": "TEST-00460437"
+        }
+    ],
+    "name": [
+        {
+            "use": "official",
+            "family": "Heller",
+            "given": [
+                "Franklin"
+            ]
+        }
+    ],
+    "telecom": [
+        {
+            "system": "phone",
+            "value": "1-979-374-8969 x71039",
+            "use": "home"
+        }
+    ],
+    "gender": "female",
+    "birthDate": "1991-04-16",
+    "address": [
+        {
+            "city": "Rohanhaven",
+            "state": "SC",
+            "postalCode": "52451",
+            "country": "US"
+        }
+    ]
+}

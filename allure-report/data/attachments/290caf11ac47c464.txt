@@ -1,0 +1,51 @@
+=== PUT /Patient/131933310 ===
+Status: 200
+Time: 1030ms
+Content-Type: application/fhir+json;charset=utf-8
+
+Body:
+{
+    "resourceType": "Patient",
+    "id": "131933310",
+    "meta": {
+        "versionId": "2",
+        "lastUpdated": "2026-04-16T07:42:56.837+00:00",
+        "source": "#RYpIytXgCJdI7Lhp"
+    },
+    "text": {
+        "status": "generated",
+        "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><div class=\"hapiHeaderText\">Jonah <b>KUNZE </b></div><table class=\"hapiPropertyTable\"><tbody><tr><td>Identifier</td><td>TEST-00738597</td></tr><tr><td>Address</td><td><span>West Bobby </span><span>KY </span><span>US </span></td></tr><tr><td>Date of birth</td><td><span>16 April 1991</span></td></tr></tbody></table></div>"
+    },
+    "identifier": [
+        {
+            "system": "http://hospital.example.org/mrn",
+            "value": "TEST-00738597"
+        }
+    ],
+    "name": [
+        {
+            "use": "official",
+            "family": "Kunze",
+            "given": [
+                "Jonah"
+            ]
+        }
+    ],
+    "telecom": [
+        {
+            "system": "phone",
+            "value": "245.021.8426 x50594",
+            "use": "home"
+        }
+    ],
+    "gender": "female",
+    "birthDate": "1991-04-16",
+    "address": [
+        {
+            "city": "West Bobby",
+            "state": "KY",
+            "postalCode": "78315",
+            "country": "US"
+        }
+    ]
+}
