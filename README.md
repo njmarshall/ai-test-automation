@@ -236,8 +236,8 @@ Every push to `main` or `develop` automatically:
 ### Near Term
 - [x] Insurance Quote + Policy capstone (complete)
 - [x] Healthcare FHIR capstone (complete)
-- [ ] `AsyncApiClient` — polling + webhook patterns
-- [ ] WireMock integration for third-party API mocking
+- [x] `AsyncApiClient` — polling + webhook patterns
+- [x] WireMock integration for third-party API mocking
 
 ### Medium Term
 - [ ] Payment API capstone
