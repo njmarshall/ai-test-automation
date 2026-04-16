@@ -71,10 +71,16 @@ ai-test-automation/
 ├── api/                             ← Industry capstone test suites
 │   └── src/
 │       ├── main/java/com/aitesting/api/
-│       │   └── models/              ← Domain POJOs (Pet, Order, InsuranceModels)
+│       │   └── models/              ← Domain POJOs (Pet, Order, InsuranceModels, FhirModels)
 │       └── test/java/com/aitesting/api/
 │           ├── petstore/            ← PetTests · StoreTests · UserTests
-│           └── insurance/           ← QuoteTests · PolicyTests (coming soon)
+│           │                           PetTestDataFactory · PetResponseValidator
+│           ├── insurance/           ← QuoteTests · PolicyTests · ClaimsTests
+│           │                           InsuranceTestDataFactory · InsuranceResponseValidator
+│           ├── healthcare/          ← PatientTests · ClaimTests · EncounterTests · PriorAuthTests
+│           │                           FhirTestDataFactory · HealthResponseValidator
+│           └── util/
+│               └── WireMockHelper.java ← WireMock stub helpers
 │
 ├── .github/workflows/
 │   └── ci.yml                       ← GitHub Actions CI/CD pipeline
