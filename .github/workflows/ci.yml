@@ -11,6 +11,8 @@ jobs:
   build-and-test:
     name: Build & Run API Tests
     runs-on: ubuntu-latest
+    permissions:
+      contents: write   # ← Required: allows peaceiris/actions-gh-pages to push to gh-pages branch
 
     steps:
       # ── Checkout ────────────────────────────────────────────────────────────
@@ -77,6 +79,8 @@ jobs:
     runs-on: ubuntu-latest
     if: github.event_name == 'workflow_dispatch'
     needs: build-and-test
+    permissions:
+      contents: write   # ← Required: allows git push of AI-generated tests
 
     steps:
       - uses: actions/checkout@v4
