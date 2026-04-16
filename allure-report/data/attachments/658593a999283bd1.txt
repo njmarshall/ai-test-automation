@@ -1,0 +1,51 @@
+=== POST /Patient (pediatric) ===
+Status: 201
+Time: 958ms
+Content-Type: application/fhir+json;charset=utf-8
+
+Body:
+{
+    "resourceType": "Patient",
+    "id": "131933234",
+    "meta": {
+        "versionId": "1",
+        "lastUpdated": "2026-04-16T07:27:08.628+00:00",
+        "source": "#B4pVT4FoL3ogiB3u"
+    },
+    "text": {
+        "status": "generated",
+        "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><div class=\"hapiHeaderText\">Prudence <b>LEANNON </b></div><table class=\"hapiPropertyTable\"><tbody><tr><td>Identifier</td><td>TEST-00826939</td></tr><tr><td>Address</td><td><span>New Lessieshire </span><span>NC </span><span>US </span></td></tr><tr><td>Date of birth</td><td><span>16 April 2018</span></td></tr></tbody></table></div>"
+    },
+    "identifier": [
+        {
+            "system": "http://hospital.example.org/mrn",
+            "value": "TEST-00826939"
+        }
+    ],
+    "name": [
+        {
+            "use": "official",
+            "family": "Leannon",
+            "given": [
+                "Prudence"
+            ]
+        }
+    ],
+    "telecom": [
+        {
+            "system": "phone",
+            "value": "1-174-443-9181 x11173",
+            "use": "home"
+        }
+    ],
+    "gender": "male",
+    "birthDate": "2018-04-16",
+    "address": [
+        {
+            "city": "New Lessieshire",
+            "state": "NC",
+            "postalCode": "43876",
+            "country": "US"
+        }
+    ]
+}

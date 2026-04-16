@@ -1,0 +1,51 @@
+=== PUT /Patient/131933231 ===
+Status: 200
+Time: 1041ms
+Content-Type: application/fhir+json;charset=utf-8
+
+Body:
+{
+    "resourceType": "Patient",
+    "id": "131933231",
+    "meta": {
+        "versionId": "2",
+        "lastUpdated": "2026-04-16T07:27:15.627+00:00",
+        "source": "#FD8vrlby1KQpOhfV"
+    },
+    "text": {
+        "status": "generated",
+        "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><div class=\"hapiHeaderText\">Kaci <b>JAST </b></div><table class=\"hapiPropertyTable\"><tbody><tr><td>Identifier</td><td>TEST-00477370</td></tr><tr><td>Address</td><td><span>Deckowhaven </span><span>KY </span><span>US </span></td></tr><tr><td>Date of birth</td><td><span>16 April 1991</span></td></tr></tbody></table></div>"
+    },
+    "identifier": [
+        {
+            "system": "http://hospital.example.org/mrn",
+            "value": "TEST-00477370"
+        }
+    ],
+    "name": [
+        {
+            "use": "official",
+            "family": "Jast",
+            "given": [
+                "Kaci"
+            ]
+        }
+    ],
+    "telecom": [
+        {
+            "system": "phone",
+            "value": "(288) 895-8822 x428",
+            "use": "home"
+        }
+    ],
+    "gender": "female",
+    "birthDate": "1991-04-16",
+    "address": [
+        {
+            "city": "Deckowhaven",
+            "state": "KY",
+            "postalCode": "09949-6736",
+            "country": "US"
+        }
+    ]
+}

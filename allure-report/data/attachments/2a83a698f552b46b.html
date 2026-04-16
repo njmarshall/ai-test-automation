@@ -1,0 +1,71 @@
+<div>POST to http://localhost:8089/quotes</div>
+
+    <h4>Body</h4>
+    <div>
+    <pre class="preformated-text">
+{
+    &quot;applicant&quot;: {
+        &quot;firstName&quot;: &quot;Sandee&quot;,
+        &quot;lastName&quot;: &quot;Ferry&quot;,
+        &quot;dateOfBirth&quot;: &quot;1991-04-16&quot;,
+        &quot;licenseNumber&quot;: &quot;K8317300&quot;,
+        &quot;yearsLicensed&quot;: 19,
+        &quot;accidentsLast3Years&quot;: 0,
+        &quot;zipCode&quot;: &quot;10001&quot;
+    },
+    &quot;vehicle&quot;: {
+        &quot;year&quot;: 2020,
+        &quot;make&quot;: &quot;Ford&quot;,
+        &quot;model&quot;: &quot;F-150&quot;,
+        &quot;vin&quot;: &quot;BPR6XCPKPPPPPAJCY&quot;,
+        &quot;annualMileage&quot;: 12000,
+        &quot;primaryUse&quot;: &quot;commute&quot;,
+        &quot;antiTheft&quot;: true,
+        &quot;safetyFeatures&quot;: true
+    },
+    &quot;coverageType&quot;: &quot;comprehensive&quot;,
+    &quot;deductible&quot;: 500,
+    &quot;addOns&quot;: [
+        &quot;roadside&quot;
+    ]
+}    </pre>
+    </div>
+
+    <h4>Headers</h4>
+    <div>
+            <div>Accept: application/json, application/javascript, text/javascript, text/json</div>
+            <div>Content-Type: application/json</div>
+    </div>
+
+
+
+    <h4>Curl</h4>
+    <div>
+        curl -v -X POST &#39;http://localhost:8089/quotes&#39; -H &#39;Accept: application/json, application/javascript, text/javascript, text/json&#39; -H &#39;Content-Type: application/json&#39; -d &#39;{
+    &quot;applicant&quot;: {
+        &quot;firstName&quot;: &quot;Sandee&quot;,
+        &quot;lastName&quot;: &quot;Ferry&quot;,
+        &quot;dateOfBirth&quot;: &quot;1991-04-16&quot;,
+        &quot;licenseNumber&quot;: &quot;K8317300&quot;,
+        &quot;yearsLicensed&quot;: 19,
+        &quot;accidentsLast3Years&quot;: 0,
+        &quot;zipCode&quot;: &quot;10001&quot;
+    },
+    &quot;vehicle&quot;: {
+        &quot;year&quot;: 2020,
+        &quot;make&quot;: &quot;Ford&quot;,
+        &quot;model&quot;: &quot;F-150&quot;,
+        &quot;vin&quot;: &quot;BPR6XCPKPPPPPAJCY&quot;,
+        &quot;annualMileage&quot;: 12000,
+        &quot;primaryUse&quot;: &quot;commute&quot;,
+        &quot;antiTheft&quot;: true,
+        &quot;safetyFeatures&quot;: true
+    },
+    &quot;coverageType&quot;: &quot;comprehensive&quot;,
+    &quot;deductible&quot;: 500,
+    &quot;addOns&quot;: [
+        &quot;roadside&quot;
+    ]
+}&#39;
+    </div>
+
