@@ -1,0 +1,91 @@
+<div>PUT to https://hapi.fhir.org/baseR4/Patient/131933329</div>
+
+    <h4>Body</h4>
+    <div>
+    <pre class="preformated-text">
+{
+    &quot;id&quot;: &quot;131933329&quot;,
+    &quot;resourceType&quot;: &quot;Patient&quot;,
+    &quot;name&quot;: [
+        {
+            &quot;use&quot;: &quot;official&quot;,
+            &quot;family&quot;: &quot;Fisher&quot;,
+            &quot;given&quot;: [
+                &quot;Cherlyn&quot;
+            ]
+        }
+    ],
+    &quot;birthDate&quot;: &quot;1991-04-16&quot;,
+    &quot;gender&quot;: &quot;female&quot;,
+    &quot;identifier&quot;: [
+        {
+            &quot;system&quot;: &quot;http://hospital.example.org/mrn&quot;,
+            &quot;value&quot;: &quot;TEST-00926829&quot;
+        }
+    ],
+    &quot;address&quot;: [
+        {
+            &quot;city&quot;: &quot;West Pinkiemouth&quot;,
+            &quot;state&quot;: &quot;CA&quot;,
+            &quot;postalCode&quot;: &quot;46792-6924&quot;,
+            &quot;country&quot;: &quot;US&quot;
+        }
+    ],
+    &quot;telecom&quot;: [
+        {
+            &quot;system&quot;: &quot;phone&quot;,
+            &quot;value&quot;: &quot;1-477-096-6214&quot;,
+            &quot;use&quot;: &quot;home&quot;
+        }
+    ]
+}    </pre>
+    </div>
+
+    <h4>Headers</h4>
+    <div>
+            <div>Accept: application/json, application/javascript, text/javascript, text/json</div>
+            <div>Content-Type: application/json</div>
+    </div>
+
+
+
+    <h4>Curl</h4>
+    <div>
+        curl -v -X PUT &#39;https://hapi.fhir.org/baseR4/Patient/131933329&#39; -H &#39;Accept: application/json, application/javascript, text/javascript, text/json&#39; -H &#39;Content-Type: application/json&#39; -d &#39;{
+    &quot;id&quot;: &quot;131933329&quot;,
+    &quot;resourceType&quot;: &quot;Patient&quot;,
+    &quot;name&quot;: [
+        {
+            &quot;use&quot;: &quot;official&quot;,
+            &quot;family&quot;: &quot;Fisher&quot;,
+            &quot;given&quot;: [
+                &quot;Cherlyn&quot;
+            ]
+        }
+    ],
+    &quot;birthDate&quot;: &quot;1991-04-16&quot;,
+    &quot;gender&quot;: &quot;female&quot;,
+    &quot;identifier&quot;: [
+        {
+            &quot;system&quot;: &quot;http://hospital.example.org/mrn&quot;,
+            &quot;value&quot;: &quot;TEST-00926829&quot;
+        }
+    ],
+    &quot;address&quot;: [
+        {
+            &quot;city&quot;: &quot;West Pinkiemouth&quot;,
+            &quot;state&quot;: &quot;CA&quot;,
+            &quot;postalCode&quot;: &quot;46792-6924&quot;,
+            &quot;country&quot;: &quot;US&quot;
+        }
+    ],
+    &quot;telecom&quot;: [
+        {
+            &quot;system&quot;: &quot;phone&quot;,
+            &quot;value&quot;: &quot;1-477-096-6214&quot;,
+            &quot;use&quot;: &quot;home&quot;
+        }
+    ]
+}&#39;
+    </div>
+
