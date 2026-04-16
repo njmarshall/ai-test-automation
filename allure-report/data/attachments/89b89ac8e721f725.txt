@@ -1,6 +1,0 @@
-=== DELETE /user (not found) ===
-Status: 404
-Time: 40ms
-Content-Type: 
-
-Body:

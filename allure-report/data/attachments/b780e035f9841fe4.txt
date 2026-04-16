@@ -1,0 +1,1538 @@
+=== GET /pet/findByStatus?status=sold ===
+Status: 200
+Time: 429ms
+Content-Type: application/json
+
+Body:
+[
+    {
+        "id": 1776322033911,
+        "category": {
+            "id": 1,
+            "name": "Dogs"
+        },
+        "name": "BuddyUpdated",
+        "photoUrls": [
+            "https://example.com/photo.jpg"
+        ],
+        "tags": [
+            {
+                "id": 1,
+                "name": "tag1"
+            }
+        ],
+        "status": "sold"
+    },
+    {
+        "id": 1776322038305,
+        "category": {
+            "id": 1,
+            "name": "Dogs"
+        },
+        "name": "FormPetUpdated",
+        "photoUrls": [
+            "https://example.com/photo.jpg"
+        ],
+        "tags": [
+            {
+                "id": 1,
+                "name": "tag1"
+            }
+        ],
+        "status": "sold"
+    },
+    {
+        "id": 9223372036854775214,
+        "category": {
+            "id": 1,
+            "name": "Dogs"
+        },
+        "name": "Max",
+        "photoUrls": [
+            "https://example.com/photo.jpg"
+        ],
+        "tags": [
+            {
+                "id": 1,
+                "name": "tag1"
+            }
+        ],
+        "status": "sold"
+    },
+    {
+        "id": 9223372036854775217,
+        "category": {
+            "id": 1,
+            "name": "Dogs"
+        },
+        "name": "Rex",
+        "photoUrls": [
+            "https://example.com/photo.jpg"
+        ],
+        "tags": [
+            {
+                "id": 1,
+                "name": "tag1"
+            }
+        ],
+        "status": "sold"
+    },
+    {
+        "id": 1776322087,
+        "category": {
+            "id": 1776322087,
+            "name": "dog"
+        },
+        "name": "hello kity",
+        "photoUrls": [
+            "http://foo.bar.com/1",
+            "http://foo.bar.com/2"
+        ],
+        "tags": [
+            {
+                "id": 1776322087,
+                "name": "swagger-codegen-python-pet-tag"
+            }
+        ],
+        "status": "sold"
+    },
+    {
+        "id": 9223372036854775227,
+        "category": {
+            "id": 1,
+            "name": "Dogs"
+        },
+        "name": "Max",
+        "photoUrls": [
+            "https://example.com/photo.jpg"
+        ],
+        "tags": [
+            {
+                "id": 1,
+                "name": "tag1"
+            }
+        ],
+        "status": "sold"
+    },
+    {
+        "id": 9223372036854775230,
+        "category": {
+            "id": 1,
+            "name": "Dogs"
+        },
+        "name": "Rex",
+        "photoUrls": [
+            "https://example.com/photo.jpg"
+        ],
+        "tags": [
+            {
+                "id": 1,
+                "name": "tag1"
+            }
+        ],
+        "status": "sold"
+    },
+    {
+        "id": 1776322139286,
+        "category": {
+            "id": 1776322139286,
+            "name": "HighValue-Bulldog"
+        },
+        "name": "Dog_1776322139286",
+        "photoUrls": [
+            
+        ],
+        "tags": [
+            
+        ],
+        "status": "sold"
+    },
+    {
+        "id": 9223372036854775238,
+        "category": {
+            "id": 1,
+            "name": "Dogs"
+        },
+        "name": "Max",
+        "photoUrls": [
+            "https://example.com/photo.jpg"
+        ],
+        "tags": [
+            {
+                "id": 1,
+                "name": "tag1"
+            }
+        ],
+        "status": "sold"
+    },
+    {
+        "id": 9223372036854775242,
+        "category": {
+            "id": 1,
+            "name": "Dogs"
+        },
+        "name": "Rex",
+        "photoUrls": [
+            "https://example.com/photo.jpg"
+        ],
+        "tags": [
+            {
+                "id": 1,
+                "name": "tag1"
+            }
+        ],
+        "status": "sold"
+    },
+    {
+        "id": 353224915,
+        "category": {
+            "id": 353232834,
+            "name": "dogs"
+        },
+        "name": "Max",
+        "photoUrls": [
+            "http://example.com/max.jpg"
+        ],
+        "tags": [
+            
+        ],
+        "status": "sold"
+    },
+    {
+        "id": 9223372036854775247,
+        "category": {
+            "id": 1,
+            "name": "Dogs"
+        },
+        "name": "Max",
+        "photoUrls": [
+            "https://example.com/photo.jpg"
+        ],
+        "tags": [
+            {
+                "id": 1,
+                "name": "tag1"
+            }
+        ],
+        "status": "sold"
+    },
+    {
+        "id": 9223372036854775249,
+        "category": {
+            "id": 1,
+            "name": "Dogs"
+        },
+        "name": "Rex",
+        "photoUrls": [
+            "https://example.com/photo.jpg"
+        ],
+        "tags": [
+            {
+                "id": 1,
+                "name": "tag1"
+            }
+        ],
+        "status": "sold"
+    },
+    {
+        "id": 9223372036854775256,
+        "category": {
+            "id": 1,
+            "name": "Dogs"
+        },
+        "name": "Max",
+        "photoUrls": [
+            "https://example.com/photo.jpg"
+        ],
+        "tags": [
+            {
+                "id": 1,
+                "name": "tag1"
+            }
+        ],
+        "status": "sold"
+    },
+    {
+        "id": 9223372036854775258,
+        "category": {
+            "id": 1,
+            "name": "Dogs"
+        },
+        "name": "Rex",
+        "photoUrls": [
+            "https://example.com/photo.jpg"
+        ],
+        "tags": [
+            {
+                "id": 1,
+                "name": "tag1"
+            }
+        ],
+        "status": "sold"
+    },
+    {
+        "id": 9223372036854775266,
+        "category": {
+            "id": 1,
+            "name": "Dogs"
+        },
+        "name": "Max",
+        "photoUrls": [
+            "https://example.com/photo.jpg"
+        ],
+        "tags": [
+            {
+                "id": 1,
+                "name": "tag1"
+            }
+        ],
+        "status": "sold"
+    },
+    {
+        "id": 9223372036854775269,
+        "category": {
+            "id": 1,
+            "name": "Dogs"
+        },
+        "name": "Rex",
+        "photoUrls": [
+            "https://example.com/photo.jpg"
+        ],
+        "tags": [
+            {
+                "id": 1,
+                "name": "tag1"
+            }
+        ],
+        "status": "sold"
+    },
+    {
+        "id": 9223372036854775274,
+        "category": {
+            "id": 1,
+            "name": "Dogs"
+        },
+        "name": "Max",
+        "photoUrls": [
+            "https://example.com/photo.jpg"
+        ],
+        "tags": [
+            {
+                "id": 1,
+                "name": "tag1"
+            }
+        ],
+        "status": "sold"
+    },
+    {
+        "id": 9223372036854775277,
+        "category": {
+            "id": 1,
+            "name": "Dogs"
+        },
+        "name": "Rex",
+        "photoUrls": [
+            "https://example.com/photo.jpg"
+        ],
+        "tags": [
+            {
+                "id": 1,
+                "name": "tag1"
+            }
+        ],
+        "status": "sold"
+    },
+    {
+        "id": 9223372036854775284,
+        "category": {
+            "id": 1,
+            "name": "Dogs"
+        },
+        "name": "Max",
+        "photoUrls": [
+            "https://example.com/photo.jpg"
+        ],
+        "tags": [
+            {
+                "id": 1,
+                "name": "tag1"
+            }
+        ],
+        "status": "sold"
+    },
+    {
+        "id": 9223372036854775286,
+        "category": {
+            "id": 1,
+            "name": "Dogs"
+        },
+        "name": "Rex",
+        "photoUrls": [
+            "https://example.com/photo.jpg"
+        ],
+        "tags": [
+            {
+                "id": 1,
+                "name": "tag1"
+            }
+        ],
+        "status": "sold"
+    },
+    {
+        "id": 353456568,
+        "category": {
+            "id": 353464487,
+            "name": "dogs"
+        },
+        "name": "Max",
+        "photoUrls": [
+            "http://example.com/max.jpg"
+        ],
+        "tags": [
+            
+        ],
+        "status": "sold"
+    },
+    {
+        "id": 9223372036854775308,
+        "category": {
+            "id": 1,
+            "name": "Dogs"
+        },
+        "name": "Max",
+        "photoUrls": [
+            "https://example.com/photo.jpg"
+        ],
+        "tags": [
+            {
+                "id": 1,
+                "name": "tag1"
+            }
+        ],
+        "status": "sold"
+    },
+    {
+        "id": 9223372036854775313,
+        "category": {
+            "id": 1,
+            "name": "Dogs"
+        },
+        "name": "Rex",
+        "photoUrls": [
+            "https://example.com/photo.jpg"
+        ],
+        "tags": [
+            {
+                "id": 1,
+                "name": "tag1"
+            }
+        ],
+        "status": "sold"
+    },
+    {
+        "id": 9223372036854775322,
+        "category": {
+            "id": 1,
+            "name": "Dogs"
+        },
+        "name": "Max",
+        "photoUrls": [
+            "https://example.com/photo.jpg"
+        ],
+        "tags": [
+            {
+                "id": 1,
+                "name": "tag1"
+            }
+        ],
+        "status": "sold"
+    },
+    {
+        "id": 9223372036854775324,
+        "category": {
+            "id": 1,
+            "name": "Dogs"
+        },
+        "name": "Rex",
+        "photoUrls": [
+            "https://example.com/photo.jpg"
+        ],
+        "tags": [
+            {
+                "id": 1,
+                "name": "tag1"
+            }
+        ],
+        "status": "sold"
+    },
+    {
+        "id": 9223372036854775333,
+        "category": {
+            "id": 1,
+            "name": "Dogs"
+        },
+        "name": "Max",
+        "photoUrls": [
+            "https://example.com/photo.jpg"
+        ],
+        "tags": [
+            {
+                "id": 1,
+                "name": "tag1"
+            }
+        ],
+        "status": "sold"
+    },
+    {
+        "id": 9223372036854775337,
+        "category": {
+            "id": 1,
+            "name": "Dogs"
+        },
+        "name": "Rex",
+        "photoUrls": [
+            "https://example.com/photo.jpg"
+        ],
+        "tags": [
+            {
+                "id": 1,
+                "name": "tag1"
+            }
+        ],
+        "status": "sold"
+    },
+    {
+        "id": 9223372036854775341,
+        "category": {
+            "id": 1,
+            "name": "Dogs"
+        },
+        "name": "Max",
+        "photoUrls": [
+            "https://example.com/photo.jpg"
+        ],
+        "tags": [
+            {
+                "id": 1,
+                "name": "tag1"
+            }
+        ],
+        "status": "sold"
+    },
+    {
+        "id": 9223372036854775343,
+        "category": {
+            "id": 1,
+            "name": "Dogs"
+        },
+        "name": "Rex",
+        "photoUrls": [
+            "https://example.com/photo.jpg"
+        ],
+        "tags": [
+            {
+                "id": 1,
+                "name": "tag1"
+            }
+        ],
+        "status": "sold"
+    },
+    {
+        "id": 9223372036854775352,
+        "category": {
+            "id": 1,
+            "name": "Dogs"
+        },
+        "name": "Max",
+        "photoUrls": [
+            "https://example.com/photo.jpg"
+        ],
+        "tags": [
+            {
+                "id": 1,
+                "name": "tag1"
+            }
+        ],
+        "status": "sold"
+    },
+    {
+        "id": 9223372036854775356,
+        "category": {
+            "id": 1,
+            "name": "Dogs"
+        },
+        "name": "Rex",
+        "photoUrls": [
+            "https://example.com/photo.jpg"
+        ],
+        "tags": [
+            {
+                "id": 1,
+                "name": "tag1"
+            }
+        ],
+        "status": "sold"
+    },
+    {
+        "id": 1776322553,
+        "category": {
+            "id": 1776322553,
+            "name": "dog"
+        },
+        "name": "hello kity",
+        "photoUrls": [
+            "http://foo.bar.com/1",
+            "http://foo.bar.com/2"
+        ],
+        "tags": [
+            {
+                "id": 1776322553,
+                "name": "blank"
+            }
+        ],
+        "status": "sold"
+    },
+    {
+        "id": 9223372036854775361,
+        "category": {
+            "id": 1,
+            "name": "Dogs"
+        },
+        "name": "Max",
+        "photoUrls": [
+            "https://example.com/photo.jpg"
+        ],
+        "tags": [
+            {
+                "id": 1,
+                "name": "tag1"
+            }
+        ],
+        "status": "sold"
+    },
+    {
+        "id": 9223372036854775363,
+        "category": {
+            "id": 1,
+            "name": "Dogs"
+        },
+        "name": "Rex",
+        "photoUrls": [
+            "https://example.com/photo.jpg"
+        ],
+        "tags": [
+            {
+                "id": 1,
+                "name": "tag1"
+            }
+        ],
+        "status": "sold"
+    },
+    {
+        "id": 9223372036854775367,
+        "category": {
+            "id": 1,
+            "name": "Dogs"
+        },
+        "name": "Max",
+        "photoUrls": [
+            "https://example.com/photo.jpg"
+        ],
+        "tags": [
+            {
+                "id": 1,
+                "name": "tag1"
+            }
+        ],
+        "status": "sold"
+    },
+    {
+        "id": 9223372036854775369,
+        "category": {
+            "id": 1,
+            "name": "Dogs"
+        },
+        "name": "Rex",
+        "photoUrls": [
+            "https://example.com/photo.jpg"
+        ],
+        "tags": [
+            {
+                "id": 1,
+                "name": "tag1"
+            }
+        ],
+        "status": "sold"
+    },
+    {
+        "id": 9223372036854775373,
+        "category": {
+            "id": 1,
+            "name": "Dogs"
+        },
+        "name": "Max",
+        "photoUrls": [
+            "https://example.com/photo.jpg"
+        ],
+        "tags": [
+            {
+                "id": 1,
+                "name": "tag1"
+            }
+        ],
+        "status": "sold"
+    },
+    {
+        "id": 9223372036854775376,
+        "category": {
+            "id": 1,
+            "name": "Dogs"
+        },
+        "name": "Rex",
+        "photoUrls": [
+            "https://example.com/photo.jpg"
+        ],
+        "tags": [
+            {
+                "id": 1,
+                "name": "tag1"
+            }
+        ],
+        "status": "sold"
+    },
+    {
+        "id": 9223372036854775379,
+        "category": {
+            "id": 1,
+            "name": "Dogs"
+        },
+        "name": "Max",
+        "photoUrls": [
+            "https://example.com/photo.jpg"
+        ],
+        "tags": [
+            {
+                "id": 1,
+                "name": "tag1"
+            }
+        ],
+        "status": "sold"
+    },
+    {
+        "id": 9223372036854775381,
+        "category": {
+            "id": 1,
+            "name": "Dogs"
+        },
+        "name": "Rex",
+        "photoUrls": [
+            "https://example.com/photo.jpg"
+        ],
+        "tags": [
+            {
+                "id": 1,
+                "name": "tag1"
+            }
+        ],
+        "status": "sold"
+    },
+    {
+        "id": 9223372036854775386,
+        "category": {
+            "id": 1,
+            "name": "Dogs"
+        },
+        "name": "Max",
+        "photoUrls": [
+            "https://example.com/photo.jpg"
+        ],
+        "tags": [
+            {
+                "id": 1,
+                "name": "tag1"
+            }
+        ],
+        "status": "sold"
+    },
+    {
+        "id": 9223372036854775390,
+        "category": {
+            "id": 1,
+            "name": "Dogs"
+        },
+        "name": "Rex",
+        "photoUrls": [
+            "https://example.com/photo.jpg"
+        ],
+        "tags": [
+            {
+                "id": 1,
+                "name": "tag1"
+            }
+        ],
+        "status": "sold"
+    },
+    {
+        "id": 9223372036854775393,
+        "category": {
+            "id": 1,
+            "name": "Dogs"
+        },
+        "name": "Max",
+        "photoUrls": [
+            "https://example.com/photo.jpg"
+        ],
+        "tags": [
+            {
+                "id": 1,
+                "name": "tag1"
+            }
+        ],
+        "status": "sold"
+    },
+    {
+        "id": 9223372036854775395,
+        "category": {
+            "id": 1,
+            "name": "Dogs"
+        },
+        "name": "Rex",
+        "photoUrls": [
+            "https://example.com/photo.jpg"
+        ],
+        "tags": [
+            {
+                "id": 1,
+                "name": "tag1"
+            }
+        ],
+        "status": "sold"
+    },
+    {
+        "id": 9223372036854775404,
+        "category": {
+            "id": 1,
+            "name": "Dogs"
+        },
+        "name": "Max",
+        "photoUrls": [
+            "https://example.com/photo.jpg"
+        ],
+        "tags": [
+            {
+                "id": 1,
+                "name": "tag1"
+            }
+        ],
+        "status": "sold"
+    },
+    {
+        "id": 9223372036854775408,
+        "category": {
+            "id": 1,
+            "name": "Dogs"
+        },
+        "name": "Rex",
+        "photoUrls": [
+            "https://example.com/photo.jpg"
+        ],
+        "tags": [
+            {
+                "id": 1,
+                "name": "tag1"
+            }
+        ],
+        "status": "sold"
+    },
+    {
+        "id": 9223372036854775413,
+        "category": {
+            "id": 1,
+            "name": "Dogs"
+        },
+        "name": "Max",
+        "photoUrls": [
+            "https://example.com/photo.jpg"
+        ],
+        "tags": [
+            {
+                "id": 1,
+                "name": "tag1"
+            }
+        ],
+        "status": "sold"
+    },
+    {
+        "id": 9223372036854775415,
+        "category": {
+            "id": 1,
+            "name": "Dogs"
+        },
+        "name": "Rex",
+        "photoUrls": [
+            "https://example.com/photo.jpg"
+        ],
+        "tags": [
+            {
+                "id": 1,
+                "name": "tag1"
+            }
+        ],
+        "status": "sold"
+    },
+    {
+        "id": 9223372036854775426,
+        "category": {
+            "id": 1,
+            "name": "Dogs"
+        },
+        "name": "Max",
+        "photoUrls": [
+            "https://example.com/photo.jpg"
+        ],
+        "tags": [
+            {
+                "id": 1,
+                "name": "tag1"
+            }
+        ],
+        "status": "sold"
+    },
+    {
+        "id": 9223372036854775430,
+        "category": {
+            "id": 1,
+            "name": "Dogs"
+        },
+        "name": "Rex",
+        "photoUrls": [
+            "https://example.com/photo.jpg"
+        ],
+        "tags": [
+            {
+                "id": 1,
+                "name": "tag1"
+            }
+        ],
+        "status": "sold"
+    },
+    {
+        "id": 9,
+        "category": {
+            "id": 0,
+            "name": "cats"
+        },
+        "name": "King Kong",
+        "photoUrls": [
+            "string"
+        ],
+        "tags": [
+            {
+                "id": 0,
+                "name": "string"
+            }
+        ],
+        "status": "sold"
+    },
+    {
+        "id": 9223372036854775438,
+        "category": {
+            "id": 1,
+            "name": "Dogs"
+        },
+        "name": "Max",
+        "photoUrls": [
+            "https://example.com/photo.jpg"
+        ],
+        "tags": [
+            {
+                "id": 1,
+                "name": "tag1"
+            }
+        ],
+        "status": "sold"
+    },
+    {
+        "id": 9223372036854775440,
+        "category": {
+            "id": 1,
+            "name": "Dogs"
+        },
+        "name": "Rex",
+        "photoUrls": [
+            "https://example.com/photo.jpg"
+        ],
+        "tags": [
+            {
+                "id": 1,
+                "name": "tag1"
+            }
+        ],
+        "status": "sold"
+    },
+    {
+        "id": 9223372036854775524,
+        "category": {
+            "id": 1,
+            "name": "Dogs"
+        },
+        "name": "Max",
+        "photoUrls": [
+            "https://example.com/photo.jpg"
+        ],
+        "tags": [
+            {
+                "id": 1,
+                "name": "tag1"
+            }
+        ],
+        "status": "sold"
+    },
+    {
+        "id": 9223372036854775527,
+        "category": {
+            "id": 1,
+            "name": "Dogs"
+        },
+        "name": "Rex",
+        "photoUrls": [
+            "https://example.com/photo.jpg"
+        ],
+        "tags": [
+            {
+                "id": 1,
+                "name": "tag1"
+            }
+        ],
+        "status": "sold"
+    },
+    {
+        "id": 9223372036854775574,
+        "category": {
+            "id": 1,
+            "name": "Dogs"
+        },
+        "name": "Max",
+        "photoUrls": [
+            "https://example.com/photo.jpg"
+        ],
+        "tags": [
+            {
+                "id": 1,
+                "name": "tag1"
+            }
+        ],
+        "status": "sold"
+    },
+    {
+        "id": 9223372036854775576,
+        "category": {
+            "id": 1,
+            "name": "Dogs"
+        },
+        "name": "Rex",
+        "photoUrls": [
+            "https://example.com/photo.jpg"
+        ],
+        "tags": [
+            {
+                "id": 1,
+                "name": "tag1"
+            }
+        ],
+        "status": "sold"
+    },
+    {
+        "id": 9223372036854775579,
+        "category": {
+            "id": 1,
+            "name": "Dogs"
+        },
+        "name": "Max",
+        "photoUrls": [
+            "https://example.com/photo.jpg"
+        ],
+        "tags": [
+            {
+                "id": 1,
+                "name": "tag1"
+            }
+        ],
+        "status": "sold"
+    },
+    {
+        "id": 9223372036854775582,
+        "category": {
+            "id": 1,
+            "name": "Dogs"
+        },
+        "name": "Rex",
+        "photoUrls": [
+            "https://example.com/photo.jpg"
+        ],
+        "tags": [
+            {
+                "id": 1,
+                "name": "tag1"
+            }
+        ],
+        "status": "sold"
+    },
+    {
+        "id": 9223372036854775587,
+        "category": {
+            "id": 1,
+            "name": "Dogs"
+        },
+        "name": "Max",
+        "photoUrls": [
+            "https://example.com/photo.jpg"
+        ],
+        "tags": [
+            {
+                "id": 1,
+                "name": "tag1"
+            }
+        ],
+        "status": "sold"
+    },
+    {
+        "id": 9223372036854775589,
+        "category": {
+            "id": 1,
+            "name": "Dogs"
+        },
+        "name": "Rex",
+        "photoUrls": [
+            "https://example.com/photo.jpg"
+        ],
+        "tags": [
+            {
+                "id": 1,
+                "name": "tag1"
+            }
+        ],
+        "status": "sold"
+    },
+    {
+        "id": 9223372036854775595,
+        "category": {
+            "id": 1,
+            "name": "Dogs"
+        },
+        "name": "Max",
+        "photoUrls": [
+            "https://example.com/photo.jpg"
+        ],
+        "tags": [
+            {
+                "id": 1,
+                "name": "tag1"
+            }
+        ],
+        "status": "sold"
+    },
+    {
+        "id": 9223372036854775597,
+        "category": {
+            "id": 1,
+            "name": "Dogs"
+        },
+        "name": "Rex",
+        "photoUrls": [
+            "https://example.com/photo.jpg"
+        ],
+        "tags": [
+            {
+                "id": 1,
+                "name": "tag1"
+            }
+        ],
+        "status": "sold"
+    },
+    {
+        "id": 9223372036854775605,
+        "category": {
+            "id": 1,
+            "name": "Dogs"
+        },
+        "name": "Max",
+        "photoUrls": [
+            "https://example.com/photo.jpg"
+        ],
+        "tags": [
+            {
+                "id": 1,
+                "name": "tag1"
+            }
+        ],
+        "status": "sold"
+    },
+    {
+        "id": 9223372036854775607,
+        "category": {
+            "id": 1,
+            "name": "Dogs"
+        },
+        "name": "Rex",
+        "photoUrls": [
+            "https://example.com/photo.jpg"
+        ],
+        "tags": [
+            {
+                "id": 1,
+                "name": "tag1"
+            }
+        ],
+        "status": "sold"
+    },
+    {
+        "id": 29302,
+        "name": "Update_29302",
+        "photoUrls": [
+            
+        ],
+        "tags": [
+            
+        ],
+        "status": "sold"
+    },
+    {
+        "id": 1776323150011,
+        "name": "pet_1776323150011",
+        "photoUrls": [
+            
+        ],
+        "tags": [
+            
+        ],
+        "status": "sold"
+    },
+    {
+        "id": 1776323175147,
+        "name": "pet_1776323175147",
+        "photoUrls": [
+            
+        ],
+        "tags": [
+            
+        ],
+        "status": "sold"
+    },
+    {
+        "id": 13,
+        "category": {
+            "id": 0,
+            "name": "cats"
+        },
+        "photoUrls": [
+            "string"
+        ],
+        "tags": [
+            {
+                "id": 0,
+                "name": "string"
+            }
+        ],
+        "status": "sold"
+    },
+    {
+        "id": 1776323419175,
+        "name": "pet_1776323419175",
+        "photoUrls": [
+            
+        ],
+        "tags": [
+            
+        ],
+        "status": "sold"
+    },
+    {
+        "id": 1776323440724,
+        "name": "pet_1776323440724",
+        "photoUrls": [
+            
+        ],
+        "tags": [
+            
+        ],
+        "status": "sold"
+    },
+    {
+        "id": 1776324012659,
+        "name": "Bella",
+        "photoUrls": [
+            "https://example.com/photo.jpg"
+        ],
+        "tags": [
+            
+        ],
+        "status": "sold"
+    },
+    {
+        "id": 355125838,
+        "category": {
+            "id": 355133757,
+            "name": "dogs"
+        },
+        "name": "Max",
+        "photoUrls": [
+            "http://example.com/max.jpg"
+        ],
+        "tags": [
+            
+        ],
+        "status": "sold"
+    },
+    {
+        "id": 2001,
+        "name": "doggie_updated",
+        "photoUrls": [
+            
+        ],
+        "tags": [
+            
+        ],
+        "status": "sold"
+    },
+    {
+        "id": 1776324415,
+        "category": {
+            "id": 1776324415,
+            "name": "dog"
+        },
+        "name": "hello kity",
+        "photoUrls": [
+            "http://foo.bar.com/1",
+            "http://foo.bar.com/2"
+        ],
+        "tags": [
+            {
+                "id": 1776324415,
+                "name": "blank"
+            }
+        ],
+        "status": "sold"
+    },
+    {
+        "id": 672032,
+        "category": {
+            "id": 132880,
+            "name": "Fish"
+        },
+        "name": "Milo",
+        "photoUrls": [
+            "https://example.com/photos/e1729d9d-f3ef-4b54-860b-d38f5f520600"
+        ],
+        "tags": [
+            {
+                "id": 303460,
+                "name": "fuga"
+            }
+        ],
+        "status": "sold"
+    },
+    {
+        "id": 1776325176965,
+        "name": "pet_1776325176965",
+        "photoUrls": [
+            
+        ],
+        "tags": [
+            
+        ],
+        "status": "sold"
+    },
+    {
+        "id": 1776325196061,
+        "name": "pet_1776325196061",
+        "photoUrls": [
+            
+        ],
+        "tags": [
+            
+        ],
+        "status": "sold"
+    },
+    {
+        "id": 232322,
+        "category": {
+            "id": 125865,
+            "name": "Cat"
+        },
+        "name": "Chloe",
+        "photoUrls": [
+            "https://example.com/photos/8f410587-b4a7-4425-90ed-31c9d3b085a2"
+        ],
+        "tags": [
+            {
+                "id": 934234,
+                "name": "nobis"
+            }
+        ],
+        "status": "sold"
+    },
+    {
+        "id": 1776325517,
+        "category": {
+            "id": 1776325517,
+            "name": "dog"
+        },
+        "name": "hello kity",
+        "photoUrls": [
+            "http://foo.bar.com/1",
+            "http://foo.bar.com/2"
+        ],
+        "tags": [
+            {
+                "id": 1776325517,
+                "name": "swagger-codegen-python-pet-tag"
+            }
+        ],
+        "status": "sold"
+    },
+    {
+        "id": 1776325565631,
+        "name": "pet_1776325565631",
+        "photoUrls": [
+            
+        ],
+        "tags": [
+            
+        ],
+        "status": "sold"
+    },
+    {
+        "id": 1776325589903,
+        "name": "pet_1776325589903",
+        "photoUrls": [
+            
+        ],
+        "tags": [
+            
+        ],
+        "status": "sold"
+    },
+    {
+        "id": 837379,
+        "category": {
+            "id": 813260,
+            "name": "Fish"
+        },
+        "name": "Molly",
+        "photoUrls": [
+            "https://example.com/photos/c67538ee-6aa0-445f-b7cb-5f6010d644a7"
+        ],
+        "tags": [
+            {
+                "id": 768162,
+                "name": "inventore"
+            }
+        ],
+        "status": "sold"
+    },
+    {
+        "id": 1776325665,
+        "category": {
+            "id": 1776325665,
+            "name": "dog"
+        },
+        "name": "hello kity",
+        "photoUrls": [
+            "http://foo.bar.com/1",
+            "http://foo.bar.com/2"
+        ],
+        "tags": [
+            {
+                "id": 1776325665,
+                "name": "blank"
+            }
+        ],
+        "status": "sold"
+    },
+    {
+        "id": 1776325669,
+        "category": {
+            "id": 1776325669,
+            "name": "dog"
+        },
+        "name": "hello kity",
+        "photoUrls": [
+            "http://foo.bar.com/1",
+            "http://foo.bar.com/2"
+        ],
+        "tags": [
+            {
+                "id": 1776325669,
+                "name": "swagger-codegen-python-pet-tag"
+            }
+        ],
+        "status": "sold"
+    },
+    {
+        "id": 1776325673,
+        "category": {
+            "id": 1776325673,
+            "name": "dog"
+        },
+        "name": "hello kity",
+        "photoUrls": [
+            "http://foo.bar.com/1",
+            "http://foo.bar.com/2"
+        ],
+        "tags": [
+            {
+                "id": 1776325673,
+                "name": "swagger-codegen-python-pet-tag"
+            }
+        ],
+        "status": "sold"
+    },
+    {
+        "id": 6957,
+        "name": "Bulldog",
+        "photoUrls": [
+            
+        ],
+        "tags": [
+            
+        ],
+        "status": "sold"
+    },
+    {
+        "id": 284885,
+        "category": {
+            "id": 1,
+            "name": "Dogs"
+        },
+        "name": "UpdatedDog-284885",
+        "photoUrls": [
+            "https://example.com/photo1.jpg"
+        ],
+        "tags": [
+            {
+                "id": 1,
+                "name": "test-tag"
+            }
+        ],
+        "status": "sold"
+    },
+    {
+        "id": 605065,
+        "category": {
+            "id": 1,
+            "name": "Dogs"
+        },
+        "name": "UpdatedDog-605065",
+        "photoUrls": [
+            "https://example.com/photo1.jpg"
+        ],
+        "tags": [
+            {
+                "id": 1,
+                "name": "test-tag"
+            }
+        ],
+        "status": "sold"
+    }
+]

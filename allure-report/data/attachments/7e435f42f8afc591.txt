@@ -1,0 +1,51 @@
+=== POST /Patient (pediatric) ===
+Status: 201
+Time: 908ms
+Content-Type: application/fhir+json;charset=utf-8
+
+Body:
+{
+    "resourceType": "Patient",
+    "id": "131933398",
+    "meta": {
+        "versionId": "1",
+        "lastUpdated": "2026-04-16T07:58:41.769+00:00",
+        "source": "#u8swwGksqazYzwzg"
+    },
+    "text": {
+        "status": "generated",
+        "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><div class=\"hapiHeaderText\">Hai <b>WIEGAND </b></div><table class=\"hapiPropertyTable\"><tbody><tr><td>Identifier</td><td>TEST-00492746</td></tr><tr><td>Address</td><td><span>Priscillamouth </span><span>NJ </span><span>US </span></td></tr><tr><td>Date of birth</td><td><span>16 April 2018</span></td></tr></tbody></table></div>"
+    },
+    "identifier": [
+        {
+            "system": "http://hospital.example.org/mrn",
+            "value": "TEST-00492746"
+        }
+    ],
+    "name": [
+        {
+            "use": "official",
+            "family": "Wiegand",
+            "given": [
+                "Hai"
+            ]
+        }
+    ],
+    "telecom": [
+        {
+            "system": "phone",
+            "value": "828-823-4056",
+            "use": "home"
+        }
+    ],
+    "gender": "male",
+    "birthDate": "2018-04-16",
+    "address": [
+        {
+            "city": "Priscillamouth",
+            "state": "NJ",
+            "postalCode": "77677-4876",
+            "country": "US"
+        }
+    ]
+}

@@ -1,0 +1,14 @@
+=== GET /claims/CLM-2025-001234 ===
+Status: 200
+Time: 6ms
+Content-Type: application/json
+
+Body:
+{
+    "claimId": "CLM-2025-001234",
+    "policyId": "POL-2025-056789",
+    "status": "investigating",
+    "incidentDate": "2025-03-20",
+    "claimAmount": 8500.00,
+    "paidAmount": 0.00
+}
