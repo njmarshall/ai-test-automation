@@ -38,7 +38,7 @@ using large language models, and executes them with full observability and CI/CD
 | **Tests passing** | 29 / 29 ✅ |
 | **Test execution time** | ~15 seconds |
 | **Parallel threads** | 3 (classes level) |
-| **Industries covered** | PetStore · Insurance · Healthcare (planned) |
+| **Industries covered** | PetStore · Insurance · Healthcare FHIR |
 | **CI/CD** | GitHub Actions — build, test, report on every push |
 | **Reporting** | Allure HTML published to GitHub Pages |
 | **AI generation** | Claude API — generates tests from OpenAPI spec |
@@ -165,8 +165,8 @@ BASE_URL=https://staging.yourapi.com mvn test -pl api -am
 | # | Project | Status | Industry | Key Test Scenarios |
 |---|---|---|---|---|
 | 1 | **PetStore API** | ✅ Complete | Reference / Demo | Full CRUD, boundary values, parallel execution |
-| 2 | **Insurance Quote** | 🔄 In Progress | Insurance | Quote generation, risk profiles, policy binding |
-| 3 | **Healthcare FHIR** | 🔜 Planned | Medical / Health | Patient records, claims, prior authorization |
+| 2 | **Insurance Quote** | ✅ Complete | Insurance | Quote generation, risk profiles, policy binding |
+| 3 | **Healthcare FHIR** | ✅ Complete | Medical / Health | Patient records, claims, prior authorization |
 | 4 | **Payment API** | 🔜 Planned | Fintech | Charges, refunds, disputes, async callbacks |
 
 > Each capstone reuses the shared library with zero framework code — only domain models and test logic.
@@ -228,8 +228,8 @@ Every push to `main` or `develop` automatically:
 ## Roadmap
 
 ### Near Term
-- [ ] Insurance Quote + Policy capstone (complete)
-- [ ] Healthcare FHIR capstone
+- [x] Insurance Quote + Policy capstone (complete)
+- [x] Healthcare FHIR capstone (complete)
 - [ ] `AsyncApiClient` — polling + webhook patterns
 - [ ] WireMock integration for third-party API mocking
 
