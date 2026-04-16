@@ -35,7 +35,7 @@ using large language models, and executes them with full observability and CI/CD
 
 | Metric | Value |
 |---|---|
-| **Tests passing** | 29 / 29 ✅ |
+| **Tests passing** | 82 / 82 ✅ |
 | **Test execution time** | ~15 seconds |
 | **Parallel threads** | 3 (classes level) |
 | **Industries covered** | PetStore · Insurance · Healthcare FHIR |
