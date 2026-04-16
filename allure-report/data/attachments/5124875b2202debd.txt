@@ -1,0 +1,51 @@
+=== PUT /Patient/131933362 ===
+Status: 200
+Time: 1035ms
+Content-Type: application/fhir+json;charset=utf-8
+
+Body:
+{
+    "resourceType": "Patient",
+    "id": "131933362",
+    "meta": {
+        "versionId": "2",
+        "lastUpdated": "2026-04-16T07:52:33.833+00:00",
+        "source": "#X1ARQ5ShDSqw0Ywr"
+    },
+    "text": {
+        "status": "generated",
+        "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><div class=\"hapiHeaderText\">Sueann <b>CASSIN </b></div><table class=\"hapiPropertyTable\"><tbody><tr><td>Identifier</td><td>TEST-00180060</td></tr><tr><td>Address</td><td><span>Deidreberg </span><span>MO </span><span>US </span></td></tr><tr><td>Date of birth</td><td><span>16 April 1991</span></td></tr></tbody></table></div>"
+    },
+    "identifier": [
+        {
+            "system": "http://hospital.example.org/mrn",
+            "value": "TEST-00180060"
+        }
+    ],
+    "name": [
+        {
+            "use": "official",
+            "family": "Cassin",
+            "given": [
+                "Sueann"
+            ]
+        }
+    ],
+    "telecom": [
+        {
+            "system": "phone",
+            "value": "441-067-4839",
+            "use": "home"
+        }
+    ],
+    "gender": "female",
+    "birthDate": "1991-04-16",
+    "address": [
+        {
+            "city": "Deidreberg",
+            "state": "MO",
+            "postalCode": "37987-3064",
+            "country": "US"
+        }
+    ]
+}

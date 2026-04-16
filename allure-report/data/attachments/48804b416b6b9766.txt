@@ -1,0 +1,10 @@
+=== POST /quotes (underage) ===
+Status: 422
+Time: 4ms
+Content-Type: application/json
+
+Body:
+{
+    "code": 422,
+    "message": "Applicant must be at least 16 years old"
+}

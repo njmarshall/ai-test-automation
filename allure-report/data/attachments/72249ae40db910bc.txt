@@ -1,0 +1,14 @@
+=== POST /store/order ===
+Status: 200
+Time: 40ms
+Content-Type: application/json
+
+Body:
+{
+    "id": 991302,
+    "petId": 596484,
+    "quantity": 2,
+    "shipDate": "2025-01-01T00:00:00.000+0000",
+    "status": "placed",
+    "complete": false
+}
