@@ -60,11 +60,14 @@ ai-test-automation/
 │
 ├── api/                                 # Industry capstone test suites
 │   └── src/
-│       ├── main/java/com/aitesting/api/models/
-│       │   ├── Pet.java
-│       │   ├── Order.java
-│       │   ├── InsuranceModels.java     # QuoteRequest, PolicyRequest, Applicant, Vehicle
-│       │   └── FhirModels.java          # Patient, Encounter, Claim, PriorAuth (FHIR R4)
+│       ├── main/java/com/aitesting/
+│       │   ├── petstore/model/          # PetStore domain models
+│       │   │   ├── Pet.java
+│       │   │   └── Order.java
+│       │   ├── insurance/model/         # Insurance domain models
+│       │   │   └── InsuranceModels.java # QuoteRequest, PolicyRequest, Applicant, Vehicle
+│       │   └── healthcare/model/        # Healthcare domain models
+│       │       └── FhirModels.java      # Patient, Encounter, Claim, PriorAuth (FHIR R4)
 │       │
 │       └── test/java/com/aitesting/
 │           ├── petstore/api/            # PetStore capstone (29 tests)
@@ -89,7 +92,7 @@ ai-test-automation/
 │           │   ├── FhirTestDataFactory.java   # CRTP subclass — HIPAA-safe synthetic data
 │           │   └── HealthResponseValidator.java # CRTP subclass
 │           │
-│           └── util/
+│           └── util/api/
 │               └── WireMockHelper.java  # Mock server lifecycle + stubbing
 │
 ├── .github/workflows/
@@ -127,7 +130,7 @@ open api/target/site/allure-maven-plugin/index.html
 # PetStore only
 mvn test -pl api -am -Dtest="com.aitesting.petstore.api.*"
 
-# insurance only
+# Insurance only
 mvn test -pl api -am -Dtest="com.aitesting.insurance.api.*"
 
 # Healthcare only
@@ -215,7 +218,7 @@ use a client configured for another server.
 // PetStore — primary API
 ApiClient api = ApiClientFactory.forPrimaryApi();
 
-// insurance / Healthcare claims — WireMock mock server
+// Insurance / Healthcare claims — WireMock mock server
 ApiClient api = ApiClientFactory.forWireMock();
 
 // Healthcare Patient / Encounter — real FHIR server
