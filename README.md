@@ -1,280 +1,319 @@
-# AI Test Automation Framework
+# ai-test-automation
 
-> **AI-powered API test automation built to FAANG-grade standards.**
-> Designed for scalability, maintainability, and real-world industry coverage.
+> AI-powered API test automation framework in Java — built to FAANG-grade standards.
+> Three industry capstones · 87 tests · 0 failures · CRTP · SOLID · AsyncApiClient
 
 [![CI](https://github.com/njmarshall/ai-test-automation/actions/workflows/ci.yml/badge.svg)](https://github.com/njmarshall/ai-test-automation/actions/workflows/ci.yml)
-[![Java](https://img.shields.io/badge/Java-17-orange.svg)](https://openjdk.org/projects/jdk/17/)
-[![Maven](https://img.shields.io/badge/Maven-3.9-blue.svg)](https://maven.apache.org/)
-[![TestNG](https://img.shields.io/badge/TestNG-7.9-green.svg)](https://testng.org/)
-[![RestAssured](https://img.shields.io/badge/RestAssured-5.4-yellow.svg)](https://rest-assured.io/)
-[![Allure](https://img.shields.io/badge/Allure-2.27-red.svg)](https://allurereport.org/)
-[![License: MIT](https://img.shields.io/badge/License-MIT-lightgrey.svg)](LICENSE)
 
 ---
 
-## What This Framework Does
+## Overview
 
-This is not just a test framework — it is an **AI-powered test engineering platform**
-that automatically scans API specifications, generates comprehensive Java test suites
-using large language models, and executes them with full observability and CI/CD integration.
+Production-grade, multi-industry API test automation framework demonstrating
+architect-level design patterns used at Google and Meta.
 
-**Four core capabilities:**
+**Key capabilities:**
 
-- **AI Test Generation** — reads OpenAPI specs and writes Java test classes automatically
-  using Claude/GPT, covering happy paths, boundary values, and negative cases
-- **Shared Library Architecture** — one reusable framework serves all API capstone projects
-  with zero duplication across industries
-- **Self-Healing Tests** — detects API changes and regenerates affected tests automatically
-- **Full Observability** — Allure HTML reports with request/response attachments published
-  to GitHub Pages on every push to main
-
----
-
-## Project Highlights
-
-| Metric | Value |
-|---|---|
-| **Tests passing** | 82 / 82 ✅ |
-| **Test execution time** | ~15 seconds |
-| **Parallel threads** | 3 (classes level) |
-| **Industries covered** | PetStore · Insurance · Healthcare FHIR |
-| **CI/CD** | GitHub Actions — build, test, report on every push |
-| **Reporting** | Allure HTML published to GitHub Pages |
-| **AI generation** | Claude API — generates tests from OpenAPI spec |
+- AI-powered test generation from OpenAPI specs via `TestGenerator`
+- **CRTP** (Curiously Recurring Template Pattern) for type-safe factory and validator hierarchies
+- **ApiClientFactory** implementing SOLID Interface Segregation — supports multiple API servers per test run
+- **AsyncApiClient** with `pollUntil()`, `pollUntilTerminal()`, and `pollWithBackoff()` — models real healthcare prior authorization and insurance claims adjudication workflows
+- **WireMock** mock server for deterministic industry API testing (Insurance, Healthcare)
+- Healthcare **FHIR R4** integration against real `hapi.fhir.org` server — HIPAA-safe synthetic data
+- Parallel execution via TestNG · Allure HTML reports · GitHub Actions CI/CD
 
 ---
 
-## Framework Architecture
+## Test Results
+
+| Capstone | Tests | Status | Server |
+|---|---|---|---|
+| **PetStore** | 29 | ✅ Passing | Live Swagger API |
+| **Insurance** | 28 | ✅ Passing | WireMock |
+| **Healthcare FHIR R4** | 30 | ✅ Passing | HAPI FHIR + WireMock |
+| **Total** | **87** | **✅ 0 failures** | |
+
+---
+
+## Project Structure
 
 ```
 ai-test-automation/
-│
-├── shared/                          ← Reusable framework library
+├── shared/                              # Reusable framework library
 │   └── src/main/java/com/aitesting/shared/
 │       ├── config/
-│       │   ├── EnvConfig.java       ← Environment variable + .properties loader
-│       │   └── BaseConfig.java      ← Typed constants (URLs, timeouts, keys)
+│       │   ├── EnvConfig.java           # Env var + .properties loader
+│       │   └── BaseConfig.java          # Typed constants (URLs, timeouts, keys)
 │       ├── http/
-│       │   ├── ApiClient.java       ← Central RestAssured wrapper (Facade pattern)
-│       │   └── AuthHelper.java      ← Bearer / API key / Basic / OAuth auth
+│       │   ├── ApiClient.java           # RestAssured wrapper — instantiable
+│       │   ├── ApiClientFactory.java    # SOLID ISP — forPrimaryApi(), forWireMock(), forFhirApi()
+│       │   ├── AsyncApiClient.java      # Async polling — pollUntil, pollUntilTerminal, pollWithBackoff
+│       │   └── AuthHelper.java          # Bearer / API key / Basic auth
 │       ├── assertions/
-│       │   └── ResponseValidator.java ← Fluent chainable assertions
+│       │   └── ResponseValidator.java   # CRTP base — fluent chainable assertions
 │       ├── dataprovider/
-│       │   └── TestDataFactory.java   ← Java Faker random realistic data
+│       │   └── TestDataFactory.java     # CRTP base — Java Faker random data
 │       ├── reporting/
-│       │   └── AllureHelper.java      ← Allure attachment + step helpers
+│       │   └── AllureHelper.java        # Allure attachment helpers
 │       └── ai/
-│           ├── TestGenerator.java     ← LLM-powered test writer
-│           └── TestGeneratorRunner.java ← CLI entry point
+│           └── TestGenerator.java       # LLM-powered test writer
 │
-├── api/                             ← Industry capstone test suites
+├── api/                                 # Industry capstone test suites
 │   └── src/
-│       ├── main/java/com/aitesting/api/
-│       │   └── models/              ← Domain POJOs (Pet, Order, InsuranceModels, FhirModels)
-│       └── test/java/com/aitesting/api/
-│           ├── petstore/            ← PetTests · StoreTests · UserTests
-│           │                           PetTestDataFactory · PetResponseValidator
-│           ├── insurance/           ← QuoteTests · PolicyTests · ClaimsTests
-│           │                           InsuranceTestDataFactory · InsuranceResponseValidator
-│           ├── healthcare/          ← PatientTests · ClaimTests · EncounterTests · PriorAuthTests
-│           │                           FhirTestDataFactory · HealthResponseValidator
+│       ├── main/java/com/aitesting/api/models/
+│       │   ├── Pet.java
+│       │   ├── Order.java
+│       │   ├── InsuranceModels.java     # QuoteRequest, PolicyRequest, Applicant, Vehicle
+│       │   └── FhirModels.java          # Patient, Encounter, Claim, PriorAuth (FHIR R4)
+│       │
+│       └── test/java/com/aitesting/
+│           ├── petstore/api/            # PetStore capstone (29 tests)
+│           │   ├── PetTests.java        # CRUD: POST/GET/PUT/DELETE /pet
+│           │   ├── StoreTests.java      # Orders: POST/GET/DELETE /store/order
+│           │   ├── UserTests.java       # Users: POST/GET/PUT/DELETE /user
+│           │   ├── PetTestDataFactory.java    # CRTP subclass
+│           │   └── PetResponseValidator.java  # CRTP subclass
+│           │
+│           ├── insurance/api/           # Insurance capstone (28 tests)
+│           │   ├── QuoteTests.java      # POST/GET /quotes — standard, teen, high-risk
+│           │   ├── PolicyTests.java     # POST/GET/PATCH /policies — bind, cancel
+│           │   ├── ClaimsTests.java     # POST/GET/PATCH /claims — FNOL, async polling
+│           │   ├── InsuranceTestDataFactory.java  # CRTP subclass
+│           │   └── InsuranceResponseValidator.java # CRTP subclass
+│           │
+│           ├── healthcare/api/          # Healthcare FHIR R4 capstone (30 tests)
+│           │   ├── PatientTests.java    # CRUD /Patient — real HAPI FHIR server
+│           │   ├── EncounterTests.java  # CRUD /Encounter — real HAPI FHIR server
+│           │   ├── ClaimTests.java      # POST/GET /Claim — WireMock
+│           │   ├── PriorAuthTests.java  # Async polling — WireMock scenarios
+│           │   ├── FhirTestDataFactory.java   # CRTP subclass — HIPAA-safe synthetic data
+│           │   └── HealthResponseValidator.java # CRTP subclass
+│           │
 │           └── util/
-│               └── WireMockHelper.java ← WireMock stub helpers
+│               └── WireMockHelper.java  # Mock server lifecycle + stubbing
 │
 ├── .github/workflows/
-│   └── ci.yml                       ← GitHub Actions CI/CD pipeline
-└── pom.xml                          ← Maven multi-module root
+│   └── ci.yml                           # GitHub Actions CI/CD pipeline
+└── pom.xml                              # Maven multi-module root
 ```
-
----
-
-## Design Patterns
-
-| Pattern | Where Used | Why |
-|---|---|---|
-| **Facade** | `ApiClient.java` | Hides RestAssured complexity behind 4 simple methods |
-| **Fluent Interface** | `ResponseValidator.java` | Chainable assertions read like English |
-| **Factory** | `TestDataFactory.java` | Centralised test data creation |
-| **Singleton** | `EnvConfig`, `BaseConfig` | Config loaded once, shared everywhere |
-| **Template Method** | `@BeforeClass` / `@AfterClass` | Consistent setup/teardown contract |
-| **Strategy** | `TestGenerator.java` | Swappable LLM backend via config |
-| **API Object Model** | `shared/` vs `api/` | Separates HTTP layer from test logic |
-
----
-
-## Technology Stack
-
-| Layer | Technology | Version |
-|---|---|---|
-| Language | Java | 17 |
-| Build | Maven (multi-module) | 3.9 |
-| HTTP / API testing | RestAssured | 5.4 |
-| Test framework | TestNG | 7.9 |
-| Mocking | Mockito | 5.11 |
-| Reporting | Allure | 2.27 |
-| Test data | Java Faker | 1.0.2 |
-| AI generation | Anthropic Claude API | claude-sonnet-4 |
-| HTTP client (AI) | OkHttp | 4.12 |
-| JSON | Jackson | 2.17 |
-| Logging | SLF4J + Logback | 2.0 |
-| CI/CD | GitHub Actions | — |
 
 ---
 
 ## Quick Start
 
 ### Prerequisites
+
 - Java 17+
 - Maven 3.9+
-- Allure CLI (`brew install allure`)
 
-### Run PetStore Tests
+### Run all tests
+
 ```bash
-# Clone
+# Clone the repo
 git clone https://github.com/njmarshall/ai-test-automation.git
 cd ai-test-automation
 
-# Build shared library
-mvn install -pl shared -am -DskipTests
+# Run all 87 tests
+mvn clean test -pl api -am
 
-# Run all tests
-mvn test -pl api -am
-
-# View Allure report
-allure serve api/target/allure-results
+# Generate Allure HTML report
+mvn allure:report -pl api
+open api/target/site/allure-maven-plugin/index.html
 ```
 
-### Run AI Test Generator
+### Run a single capstone
+
 ```bash
-export LLM_API_KEY=your_anthropic_key
+# PetStore only
+mvn test -pl api -am -Dtest="com.aitesting.petstore.api.*"
 
-# Auto-generate tests from live PetStore spec
-mvn exec:java -pl shared \
-  -Dexec.mainClass="com.aitesting.shared.ai.TestGeneratorRunner"
+# Insurance only
+mvn test -pl api -am -Dtest="com.aitesting.insurance.api.*"
 
-# Generate from any OpenAPI spec URL
-mvn exec:java -pl shared \
-  -Dexec.mainClass="com.aitesting.shared.ai.TestGeneratorRunner" \
-  -Dexec.args="https://your-api.com/openapi.json projectname"
+# Healthcare only
+mvn test -pl api -am -Dtest="com.aitesting.healthcare.api.*"
 ```
 
-### Run Against Different Environment
+### Run against a different environment
+
 ```bash
-BASE_URL=https://staging.yourapi.com mvn test -pl api -am
+BASE_URL=https://staging.myapi.com mvn test -pl api -am
 ```
-
----
-
-## Industry Capstone Projects
-
-| # | Project | Status | Industry | Key Test Scenarios |
-|---|---|---|---|---|
-| 1 | **PetStore API** | ✅ Complete | Reference / Demo | Full CRUD, boundary values, parallel execution |
-| 2 | **Insurance Quote** | ✅ Complete | Insurance | Quote generation, risk profiles, policy binding |
-| 3 | **Healthcare FHIR** | ✅ Complete | Medical / Health | Patient records, claims, prior authorization |
-| 4 | **Payment API** | 🔜 Planned | Fintech | Charges, refunds, disputes, async callbacks |
-
-> Each capstone reuses the shared library with zero framework code — only domain models and test logic.
-
----
-
-## Adding a New Industry Project
-
-Adding a new capstone takes **less than a day** following the playbook:
-
-```
-1. Add domain models    → api/src/main/java/.../models/
-2. Add test data factory → api/src/test/java/.../projectname/
-3. Add test classes     → api/src/test/java/.../projectname/
-4. Register in testng.xml
-5. (Optional) Run AI generator to auto-write tests
-```
-
-See the [Wiki](../../wiki) for industry-specific guides.
 
 ---
 
 ## Configuration
 
-All settings controlled by environment variables — no hard-coded values:
+All settings are controlled by environment variables (highest priority) or
+`config/default.properties` (fallback). Never hard-code secrets.
 
 | Variable | Default | Description |
 |---|---|---|
-| `BASE_URL` | `https://petstore.swagger.io/v2` | API under test |
-| `REQUEST_TIMEOUT_MS` | `5000` | HTTP timeout |
-| `RESPONSE_TIME_SLA_MS` | `5000` | Max response time SLA |
+| `BASE_URL` | `https://petstore.swagger.io/v2` | Primary API base URL |
+| `REQUEST_TIMEOUT_MS` | `10000` | HTTP timeout in ms |
+| `RESPONSE_TIME_SLA_MS` | `3000` | Max acceptable response time |
 | `MAX_RETRIES` | `2` | Retries on 5xx |
-| `API_KEY` | _(blank)_ | API key header |
-| `BEARER_TOKEN` | _(blank)_ | OAuth bearer token |
-| `LLM_API_KEY` | _(blank)_ | AI generator key |
+| `API_KEY` | *(blank)* | API key header value |
+| `BEARER_TOKEN` | *(blank)* | OAuth bearer token |
+| `LOG_ALL_REQUESTS` | `false` | Log full req/resp to console |
+| `LLM_API_KEY` | *(blank)* | Key for AI test generator |
 | `LLM_MODEL` | `claude-sonnet-4-20250514` | LLM model |
-| `ENV_NAME` | `default` | Environment profile |
+| `FHIR_BASE_URL` | `https://hapi.fhir.org/baseR4` | FHIR R4 server URL |
 
 ---
 
-## CI/CD Pipeline
+## Architecture — Design Patterns
 
-Every push to `main` or `develop` automatically:
+### CRTP — Curiously Recurring Template Pattern
 
+Both `TestDataFactory` and `ResponseValidator` use CRTP for type-safe
+inheritance — the same pattern used at Google and Meta. Every method returns
+the concrete subclass type, enabling full fluent chaining across the hierarchy.
+
+Adding a method to the base class instantly propagates to ALL capstone
+subclasses with zero code changes — eliminating the N-file delegation
+maintenance burden.
+
+```java
+// Base — CRTP
+public abstract class TestDataFactory<T extends TestDataFactory<T>> {
+    @SuppressWarnings("unchecked")
+    protected final T self() { return (T) this; }
+
+    public T withNonExistentId() {
+        this.id = 999_999_999L;
+        return self();   // returns PetTestDataFactory, InsuranceTestDataFactory, etc.
+    }
+}
+
+// Subclass — type-safe chain preserved
+public final class PetTestDataFactory
+        extends TestDataFactory<PetTestDataFactory> {
+
+    public PetTestDataFactory withName(String name) {
+        this.name = name;
+        return this;
+    }
+}
+
+// Usage — one import, full chain, compile-time safe
+Map<String, Object> pet = PetTestDataFactory.create()
+    .withNonExistentId()    // inherited from base ← returns PetTestDataFactory
+    .withName("Buddy")      // PetStore native
+    .withStatus("available")
+    .build();
 ```
-1. Builds shared library
-2. Compiles all test modules
-3. Runs full test suite in parallel (3 threads)
-4. Generates Allure HTML report
-5. Publishes report to GitHub Pages
-6. Uploads artifacts for 30 days
+
+---
+
+### ApiClientFactory — SOLID Interface Segregation
+
+Each test class gets exactly the client it needs. No test is forced to
+use a client configured for another server.
+
+```java
+// PetStore — primary API
+ApiClient api = ApiClientFactory.forPrimaryApi();
+
+// Insurance / Healthcare claims — WireMock mock server
+ApiClient api = ApiClientFactory.forWireMock();
+
+// Healthcare Patient / Encounter — real FHIR server
+ApiClient api = ApiClientFactory.forFhirApi();
+
+// Any custom URL (staging, etc.)
+ApiClient api = ApiClientFactory.forUrl("https://staging.myapi.com/v1");
+
+// Usage — identical regardless of server
+Response r = api.get("/Patient/TEST-12345678");
+Response r = api.post("/claims", claimPayload);
 ```
 
-**Live Allure Report:**
-`https://njmarshall.github.io/ai-test-automation/allure-report`
+---
+
+### AsyncApiClient — Async Polling Patterns
+
+Models real-world async workflows in healthcare and insurance:
+
+```java
+// Poll until prior auth decision arrives
+Response decision = AsyncApiClient.pollUntilTerminal(
+    api,
+    "/Claim/" + priorAuthId,
+    "status",
+    List.of("approved", "denied", "pended"),
+    300,   // 5 minute timeout
+    10     // poll every 10 seconds
+);
+
+// Exponential backoff for long-running underwriting
+Response result = AsyncApiClient.pollWithBackoff(
+    api, path, "status", "complete",
+    300,  // max 5 minutes
+    2,    // start at 2 seconds
+    30    // cap at 30 seconds
+);
+// polls at: 2s → 4s → 8s → 16s → 30s → 30s...
+```
 
 ---
 
-## Roadmap
+## AI Test Generation
 
-### Near Term
-- [x] Insurance Quote + Policy capstone (complete)
-- [x] Healthcare FHIR capstone (complete)
-- [x] `AsyncApiClient` — polling + webhook patterns
-- [x] WireMock integration for third-party API mocking
+The `TestGenerator` class reads an OpenAPI spec and writes Java test classes automatically.
 
-### Medium Term
-- [ ] Payment API capstone
-- [ ] Schema registry validation
-- [ ] Contract testing with Pact
-- [ ] Performance testing with `PerformanceHelper`
+```bash
+# Set your LLM API key
+export LLM_API_KEY=your_key_here
 
-### Long Term
-- [ ] Self-healing tests via spec diff detection
-- [ ] AI-powered root cause analysis on failures
-- [ ] Natural language test authoring
+# Run the generator against the PetStore spec
+mvn exec:java \
+  -pl shared \
+  -Dexec.mainClass="com.aitesting.shared.ai.TestGeneratorRunner" \
+  -Dexec.args="api/src/test/resources/petstore-openapi.json petstore"
+```
+
+Generated files land in `api/src/test/java/com/aitesting/petstore/api/aigenerated/`.
 
 ---
 
-## About the Author
+## CI/CD
 
-**NJ Marshall** — Senior SET / AI Test Automation Engineer
+Every push to `main` or `develop`:
 
-15 years of test engineering expertise across industry leaders:
+1. Builds the `shared` library
+2. Runs all 87 tests in parallel (3 threads)
+3. Generates an Allure HTML report
+4. Publishes the report to GitHub Pages
+5. Uploads artifacts for 30 days
 
-| Company | Role | Highlights |
-|---|---|---|
-| **Microsoft** | SDET | Enterprise-scale test automation |
-| **Salesforce** | Senior SET | API automation at cloud scale |
-| **Indeed** | Senior SET | High-volume job platform testing |
-| **Ooyala** | SET | Video platform, ex-Googler founding team |
-| **TripIt** | SET | Travel API automation |
-| **Finix** | SET | Payment processing, async API patterns |
-
-**Certifications:** AWS Professional · Algorithms & System Design (Scaler)
-
-**Philosophy:**
-> *"AI doesn't replace the engineer — it amplifies them.
-> The best test framework is one that lets engineers focus
-> on domain knowledge while AI handles the boilerplate."*
+Allure report: `https://njmarshall.github.io/ai-test-automation/allure-report/`
 
 ---
 
-[![GitHub](https://img.shields.io/badge/GitHub-njmarshall-black.svg)](https://github.com/njmarshall)
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-blue.svg)](https://linkedin.com/in/njmarshall)
+## Wiki
+
+Nine pages of architecture documentation:
+
+| Page | Description |
+|---|---|
+| [Framework Architecture](../../wiki/Framework-Architecture) | Design patterns, CRTP mechanics, debug walkthrough |
+| [ApiClientFactory](../../wiki/ApiClientFactory) | SOLID ISP — multi-server support, WireMock integration |
+| [AsyncApiClient](../../wiki/AsyncApiClient) | Polling strategies, timeout guidance, industry use cases |
+| [Alternative Design Patterns](../../wiki/Alternative-Design-Patterns) | CRTP vs Delegation — full comparison |
+| [Healthcare Industry Guide](../../wiki/Healthcare-Industry) | FHIR R4, HIPAA, async prior auth, 30 tests |
+| [Insurance Industry Guide](../../wiki/Insurance-Industry) | Quote, policy, claims, async adjudication, 28 tests |
+| [How to Add a New Industry](../../wiki/How-To-Add-New-Industry) | Step-by-step playbook for any new capstone |
+| [IntelliJ Setup](../../wiki/IntelliJ-Setup-and-Debugging) | Open project, run tests, debug walkthrough |
+
+---
+
+## Author
+
+**NJ Marshall** — Senior Software Engineer in Test | AI-Powered Test Automation
+
+15+ years: Microsoft · Salesforce · TripIt (Concur) · Dalet (Ooyala) · Indeed · Finix
+
+AWS Professional Certified · Healthcare FHIR R4 · Insurance Lifecycle · Async API Patterns
+
+[github.com/njmarshall](https://github.com/njmarshall)
