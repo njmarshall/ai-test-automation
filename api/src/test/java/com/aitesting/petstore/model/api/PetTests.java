@@ -1,4 +1,4 @@
-package com.aitesting.petstore.api;
+package com.aitesting.petstore.model.api;
 
 import com.aitesting.shared.assertions.ResponseValidator;
 import com.aitesting.shared.dataprovider.TestDataFactory;

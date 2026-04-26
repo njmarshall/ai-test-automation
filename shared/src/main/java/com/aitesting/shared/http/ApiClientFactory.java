@@ -19,8 +19,8 @@ import org.slf4j.LoggerFactory;
  *
  *   Before (violation):
  *     ApiClient was static — ONE URL for ALL tests.
- *     Insurance tests created their own wireMockSpec — duplication.
- *     Three Insurance test classes each duplicated the same 6-line spec.
+ *     insurance tests created their own wireMockSpec — duplication.
+ *     Three insurance test classes each duplicated the same 6-line spec.
  *
  *   After (ISP compliant):
  *     Each test class requests exactly the client it needs.
@@ -34,7 +34,7 @@ import org.slf4j.LoggerFactory;
  *   // PetStore tests — primary API:
  *   private ApiClient api = ApiClientFactory.forPrimaryApi();
  *
- *   // Insurance tests — WireMock mock server:
+ *   // insurance tests — WireMock mock server:
  *   private ApiClient api = ApiClientFactory.forWireMock();
  *
  *   // Staging environment:
@@ -89,7 +89,7 @@ public final class ApiClientFactory {
      * Creates a client pointing at the local WireMock mock server.
      * Always uses http://localhost:8089.
      *
-     * Use for: Insurance, Healthcare, Payment tests that need
+     * Use for: insurance, Healthcare, Payment tests that need
      * a mock server because no public API exists.
      *
      * Call WireMockHelper.start() in @BeforeClass before using this.

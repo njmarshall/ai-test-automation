@@ -1,4 +1,4 @@
-package com.aitesting.petstore.api;
+package com.aitesting.petstore.model.api;
 
 import com.aitesting.shared.dataprovider.TestDataFactory;
 
@@ -29,7 +29,7 @@ import java.util.Map;
  * USAGE — test classes import ONLY this class
  * ═══════════════════════════════════════════════════════════════════════
  *
- *   import com.aitesting.petstore.api.PetTestDataFactory;
+ *   import api.com.aitesting.petstore.model.PetTestDataFactory;
  *
  *   // Builder chain — generic + domain, type-safe:
  *   Map<String, Object> pet = PetTestDataFactory.create()

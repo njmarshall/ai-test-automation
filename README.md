@@ -127,7 +127,7 @@ open api/target/site/allure-maven-plugin/index.html
 # PetStore only
 mvn test -pl api -am -Dtest="com.aitesting.petstore.api.*"
 
-# Insurance only
+# insurance only
 mvn test -pl api -am -Dtest="com.aitesting.insurance.api.*"
 
 # Healthcare only
@@ -215,7 +215,7 @@ use a client configured for another server.
 // PetStore — primary API
 ApiClient api = ApiClientFactory.forPrimaryApi();
 
-// Insurance / Healthcare claims — WireMock mock server
+// insurance / Healthcare claims — WireMock mock server
 ApiClient api = ApiClientFactory.forWireMock();
 
 // Healthcare Patient / Encounter — real FHIR server

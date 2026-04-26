@@ -10,7 +10,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
 
 /**
- * InsuranceResponseValidator — Insurance domain assertion validator.
+ * InsuranceResponseValidator — insurance domain assertion validator.
  *
  * Extends ResponseValidator<InsuranceResponseValidator> so T = this class.
  * Every inherited base method returns InsuranceResponseValidator keeping
@@ -20,11 +20,11 @@ import static org.hamcrest.Matchers.*;
  *
  * Usage:
  *   InsuranceResponseValidator.from(response)
- *       .statusCode(200)           // inherited — returns Insurance type
- *       .withinSla()               // inherited — returns Insurance type
- *       .hasQuoteId()              // Insurance native
- *       .hasApprovedStatus()       // Insurance native
- *       .premiumIsPositive()       // Insurance native
+ *       .statusCode(200)           // inherited — returns insurance type
+ *       .withinSla()               // inherited — returns insurance type
+ *       .hasQuoteId()              // insurance native
+ *       .hasApprovedStatus()       // insurance native
+ *       .premiumIsPositive()       // insurance native
  *       .hasCompleteQuoteStructure(); // composite
  */
 public class InsuranceResponseValidator

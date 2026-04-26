@@ -10,9 +10,9 @@ import org.testng.Assert;
 import org.testng.annotations.*;
 
 /**
- * PolicyTests — Insurance /policies endpoint test suite.
+ * PolicyTests — insurance /policies endpoint test suite.
  *
- * Uses WireMock to simulate the Insurance Policy API.
+ * Uses WireMock to simulate the insurance Policy API.
  *
  * Test coverage:
  *   POST /policies               — bind approved quote (201 active)
@@ -24,7 +24,7 @@ import org.testng.annotations.*;
  *   PATCH /policies/{id}/cancel  — cancel active policy (200)
  *   PATCH /policies/{id}/cancel  — cancel already-cancelled (409)
  */
-@Epic("Insurance API")
+@Epic("insurance API")
 @Feature("Policy Endpoint")
 public class PolicyTests {
 
@@ -124,7 +124,7 @@ public class PolicyTests {
         api = ApiClientFactory.forWireMock();
 
         AllureHelper.description(
-            "Insurance Policy API — bind, retrieve and cancel " +
+            "insurance Policy API — bind, retrieve and cancel " +
             "policies. Uses WireMock mock server."
         );
     }

@@ -1,7 +1,7 @@
 package com.aitesting.healthcare.api;
 
-import com.aitesting.api.models.FhirModels.Encounter;
-import com.aitesting.api.models.FhirModels.Patient;
+import com.aitesting.healthcare.model.FhirModels.Encounter;
+import com.aitesting.healthcare.model.FhirModels.Patient;
 import com.aitesting.shared.http.ApiClient;
 import com.aitesting.shared.http.ApiClientFactory;
 import com.aitesting.shared.reporting.AllureHelper;

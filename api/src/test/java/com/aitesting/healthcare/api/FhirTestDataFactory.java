@@ -1,6 +1,6 @@
 package com.aitesting.healthcare.api;
 
-import com.aitesting.api.models.FhirModels.*;
+import com.aitesting.healthcare.model.FhirModels.*;
 import com.aitesting.shared.dataprovider.TestDataFactory;
 
 import java.time.LocalDate;

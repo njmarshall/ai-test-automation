@@ -16,7 +16,7 @@ import static com.github.tomakehurst.wiremock.client.WireMock.*;
  * ═══════════════════════════════════════════════════════════════════════
  *
  * WireMock is a test-scoped dependency used only by industry capstones
- * (Insurance, Healthcare, Payment) that don't have public APIs.
+ * (insurance, Healthcare, Payment) that don't have public APIs.
  * It belongs in api/ not shared/ because:
  *   → shared/ compiles to a jar used by all projects
  *   → WireMock is test-only — no place in production shared library
@@ -26,7 +26,7 @@ import static com.github.tomakehurst.wiremock.client.WireMock.*;
  * PURPOSE
  * ═══════════════════════════════════════════════════════════════════════
  *
- * Industry APIs (Insurance, Healthcare, Payment) are not publicly
+ * Industry APIs (insurance, Healthcare, Payment) are not publicly
  * available like PetStore. WireMock provides a local HTTP server that
  * simulates real API responses, enabling:
  *

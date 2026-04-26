@@ -1,13 +1,13 @@
 package com.aitesting.insurance.api;
 
-import com.aitesting.api.models.InsuranceModels.*;
+import com.aitesting.insurance.model.InsuranceModels.*;
 import com.aitesting.shared.dataprovider.TestDataFactory;
 
 import java.time.LocalDate;
 import java.util.List;
 
 /**
- * InsuranceTestDataFactory — Insurance-specific test data factory.
+ * InsuranceTestDataFactory — insurance-specific test data factory.
  *
  * ═══════════════════════════════════════════════════════════════════════
  * DESIGN: CRTP Subclass of TestDataFactory
@@ -32,8 +32,8 @@ import java.util.List;
  *   // Builder chain:
  *   QuoteRequest quote = InsuranceTestDataFactory.createQuote()
  *       .withRandomId()                  // inherited from TestDataFactory<T>
- *       .withCoverageType("comprehensive") // Insurance native
- *       .withDeductible(500)              // Insurance native
+ *       .withCoverageType("comprehensive") // insurance native
+ *       .withDeductible(500)              // insurance native
  *       .buildQuoteRequest();
  *
  *   // Static convenience:

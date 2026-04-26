@@ -1,4 +1,4 @@
-package com.aitesting.api.models;
+package com.aitesting.insurance.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 import java.util.List;
 
 /**
- * InsuranceModels groups all POJOs for the Insurance Quote capstone.
+ * InsuranceModels groups all POJOs for the insurance Quote capstone.
  *
  * Mirrors a realistic insurance REST API:
  *   POST /quotes          → QuoteRequest  → QuoteResponse

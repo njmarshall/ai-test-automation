@@ -11,9 +11,9 @@ import org.testng.annotations.*;
 import java.util.Map;
 
 /**
- * ClaimsTests — Insurance /claims endpoint test suite.
+ * ClaimsTests — insurance /claims endpoint test suite.
  *
- * Uses WireMock to simulate the Insurance API server.
+ * Uses WireMock to simulate the insurance API server.
  * This is the industry-standard approach for testing against
  * APIs that are not publicly available.
  *
@@ -27,7 +27,7 @@ import java.util.Map;
  *   PATCH /claims/{id}/close — close resolved claim (200)
  *   PATCH /claims/{id}/close — close already-closed claim (409)
  */
-@Epic("Insurance API")
+@Epic("insurance API")
 @Feature("Claims Endpoint")
 public class ClaimsTests {
 
@@ -121,7 +121,7 @@ public class ClaimsTests {
         api = ApiClientFactory.forWireMock();
 
         AllureHelper.description(
-                "Insurance Claims API — FNOL, status tracking, " +
+                "insurance Claims API — FNOL, status tracking, " +
                         "async polling and claim closure. Uses WireMock mock server."
         );
     }
@@ -320,7 +320,7 @@ public class ClaimsTests {
 
     /**
      * Polls an endpoint until the expected status field value is reached.
-     * Insurance-specific polling for claim adjudication workflows.
+     * insurance-specific polling for claim adjudication workflows.
      */
     private Response pollUntilStatus(
             String path, String expectedStatus,

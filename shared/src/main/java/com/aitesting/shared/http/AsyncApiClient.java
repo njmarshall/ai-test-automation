@@ -21,7 +21,7 @@ import java.util.List;
  *     → Lab result processing
  *     → Claims adjudication
  *
- *   Insurance:
+ *   insurance:
  *     → MVR (Motor Vehicle Record) checks
  *     → Credit bureau checks
  *     → Fraud screening

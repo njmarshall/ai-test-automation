@@ -41,7 +41,7 @@ import java.util.Random;
  *
  *   TestDataFactory<T>                    ← this class (generic)
  *     ├── PetTestDataFactory              ← PetStore capstone
- *     ├── InsuranceTestDataFactory        ← Insurance capstone
+ *     ├── InsuranceTestDataFactory        ← insurance capstone
  *     ├── FhirTestDataFactory             ← Healthcare capstone (planned)
  *     └── PaymentTestDataFactory          ← Payment capstone (planned)
  *

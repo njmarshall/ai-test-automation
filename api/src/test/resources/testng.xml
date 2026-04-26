@@ -7,23 +7,23 @@
     <!-- PetStore Capstone -->
     <test name="Pet Endpoint Tests">
         <classes>
-            <class name="com.aitesting.petstore.api.PetTests"/>
+            <class name="com.aitesting.petstore.model.api.PetTests"/>
         </classes>
     </test>
 
     <test name="Store Endpoint Tests">
         <classes>
-            <class name="com.aitesting.petstore.api.StoreTests"/>
+            <class name="com.aitesting.petstore.model.api.StoreTests"/>
         </classes>
     </test>
 
     <test name="User Endpoint Tests">
         <classes>
-            <class name="com.aitesting.petstore.api.UserTests"/>
+            <class name="com.aitesting.petstore.model.api.UserTests"/>
         </classes>
     </test>
 
-    <!-- Insurance Capstone - all run against WireMock port 8089 -->
+    <!-- insurance Capstone - all run against WireMock port 8089 -->
     <test name="Insurance Quote Tests">
         <classes>
             <class name="com.aitesting.insurance.api.QuoteTests"/>

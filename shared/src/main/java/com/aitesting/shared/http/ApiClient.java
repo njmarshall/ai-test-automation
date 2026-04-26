@@ -18,7 +18,7 @@ import java.util.Map;
  *
  * ═══════════════════════════════════════════════════════════════════════
  * DESIGN: Supports both static usage (PetStore) and instance usage
- *         (Insurance/Healthcare via ApiClientFactory).
+ *         (insurance/Healthcare via ApiClientFactory).
  * ═══════════════════════════════════════════════════════════════════════
  *
  * Java cannot have instance and static methods with the same name.
@@ -30,7 +30,7 @@ import java.util.Map;
  *   Phase 1 (PetStore — existing):
  *     Uses ApiClient.DEFAULT.get() or static helper methods.
  *
- *   Phase 2 (Insurance — new):
+ *   Phase 2 (insurance — new):
  *     Uses ApiClientFactory.forWireMock() → instance methods.
  *
  * ═══════════════════════════════════════════════════════════════════════
@@ -41,7 +41,7 @@ import java.util.Map;
  *   Response r = ApiClient.DEFAULT.get("/pet/1");
  *   Response r = ApiClient.DEFAULT.post("/pet", payload);
  *
- *   // New instance style (Insurance via factory):
+ *   // New instance style (insurance via factory):
  *   ApiClient api = ApiClientFactory.forWireMock();
  *   Response r = api.get("/claims/123");
  *   Response r = api.post("/claims", payload);

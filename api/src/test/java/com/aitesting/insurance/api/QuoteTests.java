@@ -10,16 +10,16 @@ import org.testng.Assert;
 import org.testng.annotations.*;
 
 /**
- * QuoteTests — Insurance /quotes endpoint test suite.
+ * QuoteTests — insurance /quotes endpoint test suite.
  *
- * Uses WireMock to simulate the Insurance Quote API.
+ * Uses WireMock to simulate the insurance Quote API.
  *
  * NOTE: ApiClient is intentionally NOT used here because ApiClient
  * initialises BASE_URL once at JVM startup (static block). WireMock
  * runs on a different port (8089) requiring its own RequestSpecification.
  *
  * Future refactor: ApiClientFactory (SOLID — Interface Segregation)
- * will eliminate this wireMockSpec duplication across Insurance tests.
+ * will eliminate this wireMockSpec duplication across insurance tests.
  * See Wiki: Alternative-Design-Patterns.md
  *
  * Test coverage:
@@ -33,7 +33,7 @@ import org.testng.annotations.*;
  *   GET  /quotes/{id} — found (200)
  *   GET  /quotes/{id} — not found (404)
  */
-@Epic("Insurance API")
+@Epic("insurance API")
 @Feature("Quote Endpoint")
 public class QuoteTests {
 
@@ -129,7 +129,7 @@ public class QuoteTests {
         api = ApiClientFactory.forWireMock();
 
         AllureHelper.description(
-            "Insurance Quote API — standard, boundary, and " +
+            "insurance Quote API — standard, boundary, and " +
             "negative test scenarios using WireMock."
         );
     }

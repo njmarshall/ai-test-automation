@@ -1,4 +1,4 @@
-package com.aitesting.api.models;
+package com.aitesting.petstore.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;

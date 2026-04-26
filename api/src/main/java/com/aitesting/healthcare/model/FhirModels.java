@@ -1,4 +1,4 @@
-package com.aitesting.api.models;
+package com.aitesting.healthcare.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
@@ -137,7 +137,7 @@ public class FhirModels {
     /**
      * FHIR R4 Claim resource.
      * Maps to: POST /Claim
-     * Insurance billing submission.
+     * insurance billing submission.
      */
     @Data
     @Builder

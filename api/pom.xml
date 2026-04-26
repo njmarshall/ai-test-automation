@@ -23,7 +23,7 @@
             <version>${project.version}</version>
         </dependency>
 
-        <!-- WireMock — mock server for Insurance/Healthcare APIs -->
+        <!-- WireMock — mock server for insurance/Healthcare APIs -->
         <dependency>
             <groupId>com.github.tomakehurst</groupId>
             <artifactId>wiremock-jre8-standalone</artifactId>
