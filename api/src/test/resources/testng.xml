@@ -7,63 +7,63 @@
     <!-- PetStore Capstone -->
     <test name="Pet Endpoint Tests">
         <classes>
-            <class name="com.aitesting.api.petstore.PetTests"/>
+            <class name="com.aitesting.petstore.api.PetTests"/>
         </classes>
     </test>
 
     <test name="Store Endpoint Tests">
         <classes>
-            <class name="com.aitesting.api.petstore.StoreTests"/>
+            <class name="com.aitesting.petstore.api.StoreTests"/>
         </classes>
     </test>
 
     <test name="User Endpoint Tests">
         <classes>
-            <class name="com.aitesting.api.petstore.UserTests"/>
+            <class name="com.aitesting.petstore.api.UserTests"/>
         </classes>
     </test>
 
     <!-- Insurance Capstone - all run against WireMock port 8089 -->
     <test name="Insurance Quote Tests">
         <classes>
-            <class name="com.aitesting.api.insurance.QuoteTests"/>
+            <class name="com.aitesting.insurance.api.QuoteTests"/>
         </classes>
     </test>
 
     <test name="Insurance Policy Tests">
         <classes>
-            <class name="com.aitesting.api.insurance.PolicyTests"/>
+            <class name="com.aitesting.insurance.api.PolicyTests"/>
         </classes>
     </test>
 
     <test name="Insurance Claims Tests">
         <classes>
-            <class name="com.aitesting.api.insurance.ClaimsTests"/>
+            <class name="com.aitesting.insurance.api.ClaimsTests"/>
         </classes>
     </test>
 
     <!-- Healthcare Capstone -->
     <test name="Healthcare Patient Tests">
         <classes>
-            <class name="com.aitesting.api.healthcare.PatientTests"/>
+            <class name="com.aitesting.healthcare.api.PatientTests"/>
         </classes>
     </test>
 
     <test name="Healthcare Encounter Tests">
         <classes>
-            <class name="com.aitesting.api.healthcare.EncounterTests"/>
+            <class name="com.aitesting.healthcare.api.EncounterTests"/>
         </classes>
     </test>
 
     <test name="Healthcare Claim Tests">
         <classes>
-            <class name="com.aitesting.api.healthcare.ClaimTests"/>
+            <class name="com.aitesting.healthcare.api.ClaimTests"/>
         </classes>
     </test>
 
     <test name="Healthcare Prior Auth Tests">
         <classes>
-            <class name="com.aitesting.api.healthcare.PriorAuthTests"/>
+            <class name="com.aitesting.healthcare.api.PriorAuthTests"/>
         </classes>
     </test>
 

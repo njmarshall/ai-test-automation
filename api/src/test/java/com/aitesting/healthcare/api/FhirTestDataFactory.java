@@ -1,4 +1,4 @@
-package com.aitesting.api.healthcare;
+package com.aitesting.healthcare.api;
 
 import com.aitesting.api.models.FhirModels.*;
 import com.aitesting.shared.dataprovider.TestDataFactory;

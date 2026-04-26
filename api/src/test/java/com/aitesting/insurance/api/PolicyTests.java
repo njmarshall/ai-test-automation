@@ -1,6 +1,6 @@
-package com.aitesting.api.insurance;
+package com.aitesting.insurance.api;
 
-import com.aitesting.api.util.WireMockHelper;
+import com.aitesting.util.api.WireMockHelper;
 import com.aitesting.shared.http.ApiClient;
 import com.aitesting.shared.http.ApiClientFactory;
 import com.aitesting.shared.reporting.AllureHelper;

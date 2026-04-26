@@ -1,4 +1,4 @@
-package com.aitesting.api.insurance;
+package com.aitesting.insurance.api;
 
 import com.aitesting.api.models.InsuranceModels.*;
 import com.aitesting.shared.dataprovider.TestDataFactory;
@@ -27,7 +27,7 @@ import java.util.List;
  * USAGE
  * ═══════════════════════════════════════════════════════════════════════
  *
- *   import com.aitesting.api.insurance.InsuranceTestDataFactory;
+ *   import com.aitesting.insurance.api.InsuranceTestDataFactory;
  *
  *   // Builder chain:
  *   QuoteRequest quote = InsuranceTestDataFactory.createQuote()

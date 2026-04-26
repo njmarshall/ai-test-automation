@@ -1,4 +1,4 @@
-package com.aitesting.api.healthcare;
+package com.aitesting.healthcare.api;
 
 import com.aitesting.shared.assertions.ResponseValidator;
 import io.restassured.response.Response;

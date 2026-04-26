@@ -1,7 +1,7 @@
-package com.aitesting.api.healthcare;
+package com.aitesting.healthcare.api;
 
 import com.aitesting.api.models.FhirModels.PriorAuth;
-import com.aitesting.api.util.WireMockHelper;
+import com.aitesting.util.api.WireMockHelper;
 import com.aitesting.shared.http.ApiClient;
 import com.aitesting.shared.http.ApiClientFactory;
 import com.aitesting.shared.http.AsyncApiClient;

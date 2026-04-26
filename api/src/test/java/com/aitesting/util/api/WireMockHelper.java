@@ -1,4 +1,4 @@
-package com.aitesting.api.util;
+package com.aitesting.util.api;
 
 import com.github.tomakehurst.wiremock.WireMockServer;
 import com.github.tomakehurst.wiremock.client.WireMock;

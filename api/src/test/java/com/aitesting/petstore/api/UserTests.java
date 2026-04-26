@@ -1,7 +1,6 @@
-package com.aitesting.api.petstore;
+package com.aitesting.petstore.api;
 
 import com.aitesting.shared.assertions.ResponseValidator;
-import com.aitesting.api.petstore.PetTestDataFactory;
 import com.aitesting.shared.dataprovider.TestDataFactory;
 import com.aitesting.shared.http.ApiClient;
 import com.aitesting.shared.reporting.AllureHelper;

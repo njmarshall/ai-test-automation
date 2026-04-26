@@ -1,4 +1,4 @@
-package com.aitesting.api.insurance;
+package com.aitesting.insurance.api;
 
 import com.aitesting.shared.assertions.ResponseValidator;
 import io.restassured.response.Response;

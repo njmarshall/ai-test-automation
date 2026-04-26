@@ -1,4 +1,4 @@
-package com.aitesting.api.healthcare;
+package com.aitesting.healthcare.api;
 
 import com.aitesting.api.models.FhirModels.Encounter;
 import com.aitesting.api.models.FhirModels.Patient;
