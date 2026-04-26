@@ -1,0 +1,51 @@
+=== POST /Patient (newborn) ===
+Status: 201
+Time: 992ms
+Content-Type: application/fhir+json;charset=utf-8
+
+Body:
+{
+    "resourceType": "Patient",
+    "id": "131984731",
+    "meta": {
+        "versionId": "1",
+        "lastUpdated": "2026-04-26T00:38:35.677+00:00",
+        "source": "#IvVrHjPV6BstWSo8"
+    },
+    "text": {
+        "status": "generated",
+        "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><div class=\"hapiHeaderText\">Tristan <b>LUETTGEN </b></div><table class=\"hapiPropertyTable\"><tbody><tr><td>Identifier</td><td>TEST-00234274</td></tr><tr><td>Address</td><td><span>North Lincolnchester </span><span>CA </span><span>US </span></td></tr><tr><td>Date of birth</td><td><span>26 April 2026</span></td></tr></tbody></table></div>"
+    },
+    "identifier": [
+        {
+            "system": "http://hospital.example.org/mrn",
+            "value": "TEST-00234274"
+        }
+    ],
+    "name": [
+        {
+            "use": "official",
+            "family": "Luettgen",
+            "given": [
+                "Tristan"
+            ]
+        }
+    ],
+    "telecom": [
+        {
+            "system": "phone",
+            "value": "(369) 365-0374 x10071",
+            "use": "home"
+        }
+    ],
+    "gender": "male",
+    "birthDate": "2026-04-26",
+    "address": [
+        {
+            "city": "North Lincolnchester",
+            "state": "CA",
+            "postalCode": "66689-9870",
+            "country": "US"
+        }
+    ]
+}

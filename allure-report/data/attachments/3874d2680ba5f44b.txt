@@ -1,0 +1,10 @@
+=== POST /claims (missing policyId) ===
+Status: 400
+Time: 5ms
+Content-Type: application/json
+
+Body:
+{
+    "code": 400,
+    "message": "Missing required field: policyId"
+}

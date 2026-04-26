@@ -1,0 +1,11 @@
+=== GET /pet (invalid ID) ===
+Status: 404
+Time: 41ms
+Content-Type: application/json
+
+Body:
+{
+    "code": 404,
+    "type": "unknown",
+    "message": "java.lang.NumberFormatException: For input string: \"not-a-number\""
+}

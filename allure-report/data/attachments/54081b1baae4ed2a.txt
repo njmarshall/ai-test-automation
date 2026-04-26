@@ -1,0 +1,51 @@
+=== GET /Patient/131984728 ===
+Status: 200
+Time: 919ms
+Content-Type: application/fhir+json;charset=utf-8
+
+Body:
+{
+    "resourceType": "Patient",
+    "id": "131984728",
+    "meta": {
+        "versionId": "1",
+        "lastUpdated": "2026-04-26T00:38:32.677+00:00",
+        "source": "#KRNiM9opSf6F3itC"
+    },
+    "text": {
+        "status": "generated",
+        "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><div class=\"hapiHeaderText\">Loriann <b>HUDSON </b></div><table class=\"hapiPropertyTable\"><tbody><tr><td>Identifier</td><td>TEST-00150392</td></tr><tr><td>Address</td><td><span>Earnestfurt </span><span>DE </span><span>US </span></td></tr><tr><td>Date of birth</td><td><span>26 April 1991</span></td></tr></tbody></table></div>"
+    },
+    "identifier": [
+        {
+            "system": "http://hospital.example.org/mrn",
+            "value": "TEST-00150392"
+        }
+    ],
+    "name": [
+        {
+            "use": "official",
+            "family": "Hudson",
+            "given": [
+                "Loriann"
+            ]
+        }
+    ],
+    "telecom": [
+        {
+            "system": "phone",
+            "value": "263.161.0961",
+            "use": "home"
+        }
+    ],
+    "gender": "female",
+    "birthDate": "1991-04-26",
+    "address": [
+        {
+            "city": "Earnestfurt",
+            "state": "DE",
+            "postalCode": "23346",
+            "country": "US"
+        }
+    ]
+}

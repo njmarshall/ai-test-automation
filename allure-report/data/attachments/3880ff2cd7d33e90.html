@@ -1,0 +1,55 @@
+<div>POST to https://petstore.swagger.io/v2/pet</div>
+
+    <h4>Body</h4>
+    <div>
+    <pre class="preformated-text">
+{
+    &quot;tags&quot;: [
+        {
+            &quot;id&quot;: 624650,
+            &quot;name&quot;: &quot;doloribus&quot;
+        }
+    ],
+    &quot;status&quot;: &quot;available&quot;,
+    &quot;id&quot;: 330815,
+    &quot;category&quot;: {
+        &quot;id&quot;: 204692,
+        &quot;name&quot;: &quot;Bird&quot;
+    },
+    &quot;photoUrls&quot;: [
+        &quot;https://example.com/photos/7c0301c7-fdfd-4c2d-8367-f4d060682e95&quot;
+    ],
+    &quot;name&quot;: &quot;Buddy&quot;
+}    </pre>
+    </div>
+
+    <h4>Headers</h4>
+    <div>
+            <div>Accept: application/json, application/javascript, text/javascript, text/json</div>
+            <div>Content-Type: application/json</div>
+    </div>
+
+
+
+    <h4>Curl</h4>
+    <div>
+        curl -v -X POST &#39;https://petstore.swagger.io/v2/pet&#39; -H &#39;Accept: application/json, application/javascript, text/javascript, text/json&#39; -H &#39;Content-Type: application/json&#39; -d &#39;{
+    &quot;tags&quot;: [
+        {
+            &quot;id&quot;: 624650,
+            &quot;name&quot;: &quot;doloribus&quot;
+        }
+    ],
+    &quot;status&quot;: &quot;available&quot;,
+    &quot;id&quot;: 330815,
+    &quot;category&quot;: {
+        &quot;id&quot;: 204692,
+        &quot;name&quot;: &quot;Bird&quot;
+    },
+    &quot;photoUrls&quot;: [
+        &quot;https://example.com/photos/7c0301c7-fdfd-4c2d-8367-f4d060682e95&quot;
+    ],
+    &quot;name&quot;: &quot;Buddy&quot;
+}&#39;
+    </div>
+

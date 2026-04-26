@@ -1,0 +1,51 @@
+=== POST /Patient (pediatric) ===
+Status: 201
+Time: 841ms
+Content-Type: application/fhir+json;charset=utf-8
+
+Body:
+{
+    "resourceType": "Patient",
+    "id": "131984729",
+    "meta": {
+        "versionId": "1",
+        "lastUpdated": "2026-04-26T00:38:33.677+00:00",
+        "source": "#4AXnmZOW9WGIdGaB"
+    },
+    "text": {
+        "status": "generated",
+        "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><div class=\"hapiHeaderText\">Mack <b>HESSEL </b></div><table class=\"hapiPropertyTable\"><tbody><tr><td>Identifier</td><td>TEST-00417900</td></tr><tr><td>Address</td><td><span>Schuppehaven </span><span>OK </span><span>US </span></td></tr><tr><td>Date of birth</td><td><span>26 April 2018</span></td></tr></tbody></table></div>"
+    },
+    "identifier": [
+        {
+            "system": "http://hospital.example.org/mrn",
+            "value": "TEST-00417900"
+        }
+    ],
+    "name": [
+        {
+            "use": "official",
+            "family": "Hessel",
+            "given": [
+                "Mack"
+            ]
+        }
+    ],
+    "telecom": [
+        {
+            "system": "phone",
+            "value": "1-931-889-9267",
+            "use": "home"
+        }
+    ],
+    "gender": "male",
+    "birthDate": "2018-04-26",
+    "address": [
+        {
+            "city": "Schuppehaven",
+            "state": "OK",
+            "postalCode": "97609",
+            "country": "US"
+        }
+    ]
+}
