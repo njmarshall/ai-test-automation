@@ -1,0 +1,16 @@
+=== GET /user/xavierpollich ===
+Status: 200
+Time: 275ms
+Content-Type: application/json
+
+Body:
+{
+    "id": 647134,
+    "username": "xavierpollich",
+    "firstName": "Xavier",
+    "lastName": "Pollich",
+    "email": "brynn.anderson@gmail.com",
+    "password": "ykhgsbi3dvvy",
+    "phone": "(198) 502-0374",
+    "userStatus": 1
+}

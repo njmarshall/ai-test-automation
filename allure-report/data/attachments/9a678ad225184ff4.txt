@@ -1,0 +1,11 @@
+=== GET /user/login (missing creds) ===
+Status: 200
+Time: 306ms
+Content-Type: application/json
+
+Body:
+{
+    "code": 200,
+    "type": "unknown",
+    "message": "logged in user session:1777163222918"
+}

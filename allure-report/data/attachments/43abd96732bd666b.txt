@@ -1,0 +1,10 @@
+=== PATCH /claims/close ===
+Status: 200
+Time: 10ms
+Content-Type: application/json
+
+Body:
+{
+    "claimId": "CLM-2025-001234",
+    "status": "closed"
+}

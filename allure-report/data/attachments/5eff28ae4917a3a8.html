@@ -1,0 +1,29 @@
+<div>POST to http://localhost:8089/policies</div>
+
+    <h4>Body</h4>
+    <div>
+    <pre class="preformated-text">
+{
+    &quot;quoteId&quot;: &quot;QT-2025-001234&quot;,
+    &quot;paymentMethod&quot;: &quot;annual&quot;,
+    &quot;effectiveDate&quot;: &quot;2026-03-27&quot;
+}    </pre>
+    </div>
+
+    <h4>Headers</h4>
+    <div>
+            <div>Accept: application/json, application/javascript, text/javascript, text/json</div>
+            <div>Content-Type: application/json</div>
+    </div>
+
+
+
+    <h4>Curl</h4>
+    <div>
+        curl -v -X POST &#39;http://localhost:8089/policies&#39; -H &#39;Accept: application/json, application/javascript, text/javascript, text/json&#39; -H &#39;Content-Type: application/json&#39; -d &#39;{
+    &quot;quoteId&quot;: &quot;QT-2025-001234&quot;,
+    &quot;paymentMethod&quot;: &quot;annual&quot;,
+    &quot;effectiveDate&quot;: &quot;2026-03-27&quot;
+}&#39;
+    </div>
+

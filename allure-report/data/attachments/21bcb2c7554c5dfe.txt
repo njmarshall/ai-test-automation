@@ -1,0 +1,51 @@
+=== PUT /Patient/131984707 ===
+Status: 200
+Time: 1004ms
+Content-Type: application/fhir+json;charset=utf-8
+
+Body:
+{
+    "resourceType": "Patient",
+    "id": "131984707",
+    "meta": {
+        "versionId": "2",
+        "lastUpdated": "2026-04-26T00:27:16.916+00:00",
+        "source": "#ZOTNkA3vIesZ87k2"
+    },
+    "text": {
+        "status": "generated",
+        "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><div class=\"hapiHeaderText\">Elmira <b>KUTCH </b></div><table class=\"hapiPropertyTable\"><tbody><tr><td>Identifier</td><td>TEST-00348125</td></tr><tr><td>Address</td><td><span>New Ashaton </span><span>TN </span><span>US </span></td></tr><tr><td>Date of birth</td><td><span>26 April 1991</span></td></tr></tbody></table></div>"
+    },
+    "identifier": [
+        {
+            "system": "http://hospital.example.org/mrn",
+            "value": "TEST-00348125"
+        }
+    ],
+    "name": [
+        {
+            "use": "official",
+            "family": "Kutch",
+            "given": [
+                "Elmira"
+            ]
+        }
+    ],
+    "telecom": [
+        {
+            "system": "phone",
+            "value": "110-262-1429 x5054",
+            "use": "home"
+        }
+    ],
+    "gender": "female",
+    "birthDate": "1991-04-26",
+    "address": [
+        {
+            "city": "New Ashaton",
+            "state": "TN",
+            "postalCode": "05634-9910",
+            "country": "US"
+        }
+    ]
+}

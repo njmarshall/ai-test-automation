@@ -1,0 +1,11 @@
+=== GET /user/login ===
+Status: 200
+Time: 304ms
+Content-Type: application/json
+
+Body:
+{
+    "code": 200,
+    "type": "unknown",
+    "message": "logged in user session:1777163222595"
+}
