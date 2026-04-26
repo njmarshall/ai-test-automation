@@ -1,0 +1,11 @@
+=== GET /user/logout ===
+Status: 200
+Time: 97ms
+Content-Type: application/json
+
+Body:
+{
+    "code": 200,
+    "type": "unknown",
+    "message": "ok"
+}

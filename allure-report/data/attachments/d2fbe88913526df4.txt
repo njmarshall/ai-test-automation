@@ -1,0 +1,21 @@
+=== GET /Encounter?patient=131984758 ===
+Status: 200
+Time: 987ms
+Content-Type: application/fhir+json;charset=utf-8
+
+Body:
+{
+    "resourceType": "Bundle",
+    "id": "96b5a6f7-9592-468d-81e3-8345e7471226",
+    "meta": {
+        "lastUpdated": "2026-04-26T02:15:16.221+00:00"
+    },
+    "type": "searchset",
+    "total": 0,
+    "link": [
+        {
+            "relation": "self",
+            "url": "https://hapi.fhir.org/baseR4/Encounter?patient=131984758"
+        }
+    ]
+}

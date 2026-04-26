@@ -1,0 +1,153 @@
+<div>POST to http://localhost:8089/Claim</div>
+
+    <h4>Body</h4>
+    <div>
+    <pre class="preformated-text">
+{
+    &quot;id&quot;: &quot;TEST-CLM-00945665&quot;,
+    &quot;resourceType&quot;: &quot;Claim&quot;,
+    &quot;status&quot;: &quot;active&quot;,
+    &quot;type&quot;: {
+        &quot;coding&quot;: [
+            {
+                &quot;system&quot;: &quot;http://terminology.hl7.org/CodeSystem/claim-type&quot;,
+                &quot;code&quot;: &quot;professional&quot;,
+                &quot;display&quot;: &quot;Professional&quot;
+            }
+        ],
+        &quot;text&quot;: null
+    },
+    &quot;use&quot;: &quot;claim&quot;,
+    &quot;patient&quot;: {
+        &quot;reference&quot;: &quot;Patient/TEST-12345678&quot;,
+        &quot;display&quot;: null
+    },
+    &quot;provider&quot;: {
+        &quot;reference&quot;: &quot;Practitioner/TEST-NPI-1234567890&quot;,
+        &quot;display&quot;: null
+    },
+    &quot;insurer&quot;: {
+        &quot;reference&quot;: &quot;Organization/TEST-INSURER-001&quot;,
+        &quot;display&quot;: null
+    },
+    &quot;diagnosis&quot;: [
+        {
+            &quot;sequence&quot;: 1,
+            &quot;diagnosisCodeableConcept&quot;: {
+                &quot;coding&quot;: [
+                    {
+                        &quot;system&quot;: &quot;http://hl7.org/fhir/sid/icd-10-cm&quot;,
+                        &quot;code&quot;: &quot;INVALID-CODE&quot;,
+                        &quot;display&quot;: null
+                    }
+                ],
+                &quot;text&quot;: null
+            }
+        }
+    ],
+    &quot;item&quot;: [
+        {
+            &quot;sequence&quot;: 1,
+            &quot;productOrService&quot;: {
+                &quot;coding&quot;: [
+                    {
+                        &quot;system&quot;: &quot;http://www.ama-assn.org/go/cpt&quot;,
+                        &quot;code&quot;: &quot;99213&quot;,
+                        &quot;display&quot;: &quot;Office visit&quot;
+                    }
+                ],
+                &quot;text&quot;: null
+            },
+            &quot;unitPrice&quot;: {
+                &quot;value&quot;: 150.0,
+                &quot;currency&quot;: &quot;USD&quot;
+            },
+            &quot;quantity&quot;: 1.0
+        }
+    ],
+    &quot;total&quot;: {
+        &quot;value&quot;: 150.0,
+        &quot;currency&quot;: &quot;USD&quot;
+    }
+}    </pre>
+    </div>
+
+    <h4>Headers</h4>
+    <div>
+            <div>Accept: application/json, application/javascript, text/javascript, text/json</div>
+            <div>Content-Type: application/json</div>
+    </div>
+
+
+
+    <h4>Curl</h4>
+    <div>
+        curl -v -X POST &#39;http://localhost:8089/Claim&#39; -H &#39;Accept: application/json, application/javascript, text/javascript, text/json&#39; -H &#39;Content-Type: application/json&#39; -d &#39;{
+    &quot;id&quot;: &quot;TEST-CLM-00945665&quot;,
+    &quot;resourceType&quot;: &quot;Claim&quot;,
+    &quot;status&quot;: &quot;active&quot;,
+    &quot;type&quot;: {
+        &quot;coding&quot;: [
+            {
+                &quot;system&quot;: &quot;http://terminology.hl7.org/CodeSystem/claim-type&quot;,
+                &quot;code&quot;: &quot;professional&quot;,
+                &quot;display&quot;: &quot;Professional&quot;
+            }
+        ],
+        &quot;text&quot;: null
+    },
+    &quot;use&quot;: &quot;claim&quot;,
+    &quot;patient&quot;: {
+        &quot;reference&quot;: &quot;Patient/TEST-12345678&quot;,
+        &quot;display&quot;: null
+    },
+    &quot;provider&quot;: {
+        &quot;reference&quot;: &quot;Practitioner/TEST-NPI-1234567890&quot;,
+        &quot;display&quot;: null
+    },
+    &quot;insurer&quot;: {
+        &quot;reference&quot;: &quot;Organization/TEST-INSURER-001&quot;,
+        &quot;display&quot;: null
+    },
+    &quot;diagnosis&quot;: [
+        {
+            &quot;sequence&quot;: 1,
+            &quot;diagnosisCodeableConcept&quot;: {
+                &quot;coding&quot;: [
+                    {
+                        &quot;system&quot;: &quot;http://hl7.org/fhir/sid/icd-10-cm&quot;,
+                        &quot;code&quot;: &quot;INVALID-CODE&quot;,
+                        &quot;display&quot;: null
+                    }
+                ],
+                &quot;text&quot;: null
+            }
+        }
+    ],
+    &quot;item&quot;: [
+        {
+            &quot;sequence&quot;: 1,
+            &quot;productOrService&quot;: {
+                &quot;coding&quot;: [
+                    {
+                        &quot;system&quot;: &quot;http://www.ama-assn.org/go/cpt&quot;,
+                        &quot;code&quot;: &quot;99213&quot;,
+                        &quot;display&quot;: &quot;Office visit&quot;
+                    }
+                ],
+                &quot;text&quot;: null
+            },
+            &quot;unitPrice&quot;: {
+                &quot;value&quot;: 150.0,
+                &quot;currency&quot;: &quot;USD&quot;
+            },
+            &quot;quantity&quot;: 1.0
+        }
+    ],
+    &quot;total&quot;: {
+        &quot;value&quot;: 150.0,
+        &quot;currency&quot;: &quot;USD&quot;
+    }
+}&#39;
+    </div>
+

@@ -1,0 +1,51 @@
+=== PUT /Patient/131984753 ===
+Status: 200
+Time: 1021ms
+Content-Type: application/fhir+json;charset=utf-8
+
+Body:
+{
+    "resourceType": "Patient",
+    "id": "131984753",
+    "meta": {
+        "versionId": "2",
+        "lastUpdated": "2026-04-26T02:15:09.221+00:00",
+        "source": "#tQNVE0bDrZrhZ44A"
+    },
+    "text": {
+        "status": "generated",
+        "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><div class=\"hapiHeaderText\">Emelina <b>BODE </b></div><table class=\"hapiPropertyTable\"><tbody><tr><td>Identifier</td><td>TEST-00595208</td></tr><tr><td>Address</td><td><span>Herberthaven </span><span>ME </span><span>US </span></td></tr><tr><td>Date of birth</td><td><span>26 April 1991</span></td></tr></tbody></table></div>"
+    },
+    "identifier": [
+        {
+            "system": "http://hospital.example.org/mrn",
+            "value": "TEST-00595208"
+        }
+    ],
+    "name": [
+        {
+            "use": "official",
+            "family": "Bode",
+            "given": [
+                "Emelina"
+            ]
+        }
+    ],
+    "telecom": [
+        {
+            "system": "phone",
+            "value": "1-975-892-4670 x18108",
+            "use": "home"
+        }
+    ],
+    "gender": "female",
+    "birthDate": "1991-04-26",
+    "address": [
+        {
+            "city": "Herberthaven",
+            "state": "ME",
+            "postalCode": "21658-2281",
+            "country": "US"
+        }
+    ]
+}
