@@ -1,0 +1,91 @@
+<div>PUT to https://hapi.fhir.org/baseR4/Patient/131984759</div>
+
+    <h4>Body</h4>
+    <div>
+    <pre class="preformated-text">
+{
+    &quot;id&quot;: &quot;131984759&quot;,
+    &quot;resourceType&quot;: &quot;Patient&quot;,
+    &quot;name&quot;: [
+        {
+            &quot;use&quot;: &quot;official&quot;,
+            &quot;family&quot;: &quot;Rippin&quot;,
+            &quot;given&quot;: [
+                &quot;Wm&quot;
+            ]
+        }
+    ],
+    &quot;birthDate&quot;: &quot;1991-04-26&quot;,
+    &quot;gender&quot;: &quot;female&quot;,
+    &quot;identifier&quot;: [
+        {
+            &quot;system&quot;: &quot;http://hospital.example.org/mrn&quot;,
+            &quot;value&quot;: &quot;TEST-00852344&quot;
+        }
+    ],
+    &quot;address&quot;: [
+        {
+            &quot;city&quot;: &quot;Shondratown&quot;,
+            &quot;state&quot;: &quot;VT&quot;,
+            &quot;postalCode&quot;: &quot;93298-6803&quot;,
+            &quot;country&quot;: &quot;US&quot;
+        }
+    ],
+    &quot;telecom&quot;: [
+        {
+            &quot;system&quot;: &quot;phone&quot;,
+            &quot;value&quot;: &quot;(657) 241-5155 x000&quot;,
+            &quot;use&quot;: &quot;home&quot;
+        }
+    ]
+}    </pre>
+    </div>
+
+    <h4>Headers</h4>
+    <div>
+            <div>Accept: application/json, application/javascript, text/javascript, text/json</div>
+            <div>Content-Type: application/json</div>
+    </div>
+
+
+
+    <h4>Curl</h4>
+    <div>
+        curl -v -X PUT &#39;https://hapi.fhir.org/baseR4/Patient/131984759&#39; -H &#39;Accept: application/json, application/javascript, text/javascript, text/json&#39; -H &#39;Content-Type: application/json&#39; -d &#39;{
+    &quot;id&quot;: &quot;131984759&quot;,
+    &quot;resourceType&quot;: &quot;Patient&quot;,
+    &quot;name&quot;: [
+        {
+            &quot;use&quot;: &quot;official&quot;,
+            &quot;family&quot;: &quot;Rippin&quot;,
+            &quot;given&quot;: [
+                &quot;Wm&quot;
+            ]
+        }
+    ],
+    &quot;birthDate&quot;: &quot;1991-04-26&quot;,
+    &quot;gender&quot;: &quot;female&quot;,
+    &quot;identifier&quot;: [
+        {
+            &quot;system&quot;: &quot;http://hospital.example.org/mrn&quot;,
+            &quot;value&quot;: &quot;TEST-00852344&quot;
+        }
+    ],
+    &quot;address&quot;: [
+        {
+            &quot;city&quot;: &quot;Shondratown&quot;,
+            &quot;state&quot;: &quot;VT&quot;,
+            &quot;postalCode&quot;: &quot;93298-6803&quot;,
+            &quot;country&quot;: &quot;US&quot;
+        }
+    ],
+    &quot;telecom&quot;: [
+        {
+            &quot;system&quot;: &quot;phone&quot;,
+            &quot;value&quot;: &quot;(657) 241-5155 x000&quot;,
+            &quot;use&quot;: &quot;home&quot;
+        }
+    ]
+}&#39;
+    </div>
+

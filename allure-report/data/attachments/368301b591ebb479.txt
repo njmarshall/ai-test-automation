@@ -1,0 +1,51 @@
+=== POST /Patient (pediatric) ===
+Status: 201
+Time: 890ms
+Content-Type: application/fhir+json;charset=utf-8
+
+Body:
+{
+    "resourceType": "Patient",
+    "id": "131984760",
+    "meta": {
+        "versionId": "1",
+        "lastUpdated": "2026-04-26T02:22:31.954+00:00",
+        "source": "#RfBW67NK0aXU5BBr"
+    },
+    "text": {
+        "status": "generated",
+        "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><div class=\"hapiHeaderText\">Stephan <b>BAUMBACH </b></div><table class=\"hapiPropertyTable\"><tbody><tr><td>Identifier</td><td>TEST-00756754</td></tr><tr><td>Address</td><td><span>South Garretstad </span><span>LA </span><span>US </span></td></tr><tr><td>Date of birth</td><td><span>26 April 2018</span></td></tr></tbody></table></div>"
+    },
+    "identifier": [
+        {
+            "system": "http://hospital.example.org/mrn",
+            "value": "TEST-00756754"
+        }
+    ],
+    "name": [
+        {
+            "use": "official",
+            "family": "Baumbach",
+            "given": [
+                "Stephan"
+            ]
+        }
+    ],
+    "telecom": [
+        {
+            "system": "phone",
+            "value": "1-973-621-6290",
+            "use": "home"
+        }
+    ],
+    "gender": "male",
+    "birthDate": "2018-04-26",
+    "address": [
+        {
+            "city": "South Garretstad",
+            "state": "LA",
+            "postalCode": "07262",
+            "country": "US"
+        }
+    ]
+}

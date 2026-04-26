@@ -1,0 +1,10 @@
+=== GET /quotes (not found) ===
+Status: 404
+Time: 4ms
+Content-Type: application/json
+
+Body:
+{
+    "code": 404,
+    "message": "Quote not found"
+}
