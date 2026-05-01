@@ -1,0 +1,10 @@
+=== POST /policies (backdated) ===
+Status: 400
+Time: 6ms
+Content-Type: application/json
+
+Body:
+{
+    "code": 400,
+    "message": "effectiveDate cannot be in the past"
+}

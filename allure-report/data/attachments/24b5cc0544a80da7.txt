@@ -1,0 +1,966 @@
+=== GET /pet/findByStatus?status=pending ===
+Status: 200
+Time: 37ms
+Content-Type: application/json
+
+Body:
+[
+    {
+        "id": 8169848,
+        "category": {
+            "id": 40819581,
+            "name": "fishs"
+        },
+        "name": "namo fish",
+        "photoUrls": [
+            "sed eiusmod esse",
+            "https://blog.tetra.net/ru/ru/wp-content/uploads/2021/02/zolotaya-rybka-zvezdochet.jpg"
+        ],
+        "tags": [
+            {
+                "id": 3989180,
+                "name": "sit dolore"
+            },
+            {
+                "id": -52224736,
+                "name": "Ut"
+            }
+        ],
+        "status": "pending"
+    },
+    {
+        "id": 2799412,
+        "category": {
+            "id": 19475553,
+            "name": "nostrud cupidatat labore"
+        },
+        "name": "doggie",
+        "photoUrls": [
+            "culpa occaecat",
+            "ad incididunt"
+        ],
+        "tags": [
+            {
+                "id": 47291519,
+                "name": "consequat aute pariatur"
+            },
+            {
+                "id": -53726990,
+                "name": "Lorem enim consectetur"
+            }
+        ],
+        "status": "pending"
+    },
+    {
+        "id": 7311,
+        "category": {
+            "id": 5992,
+            "name": "string"
+        },
+        "name": "doggie",
+        "photoUrls": [
+            "string",
+            "string"
+        ],
+        "tags": [
+            {
+                "id": 3432,
+                "name": "string"
+            },
+            {
+                "id": 5215,
+                "name": "string"
+            }
+        ],
+        "status": "pending"
+    },
+    {
+        "id": 731111,
+        "category": {
+            "id": 5992,
+            "name": "fishs"
+        },
+        "name": "Nemotest",
+        "photoUrls": [
+            "string",
+            "https://www.google.com/imgres?q=fish&imgurl=https%3A%2F%2Fcdn.britannica.com%2F14%2F162014-050-45C1FD13%2Fwarm-bloodedness-opah-results-heat-exchange-system-gills.jpg&imgrefurl=https%3A%2F%2Fwww.britannica.com%2Fanimal%2Ffish&docid=YPTjX0r3OE7wEM&tbnid=QTSm8cHUqoGNkM&vet=12ahUKEwioi_-smeOQAxXiywIHHQj8GF8QM3oECBYQAA..i&w=1600&h=1256&hcb=2&ved=2ahUKEwioi_-smeOQAxXiywIHHQj8GF8QM3oECBYQAA"
+        ],
+        "tags": [
+            {
+                "id": 3432,
+                "name": "string"
+            },
+            {
+                "id": 5215,
+                "name": "string"
+            }
+        ],
+        "status": "pending"
+    },
+    {
+        "id": 53,
+        "category": {
+            "id": 2,
+            "name": "dog_category53"
+        },
+        "name": "dognamesold",
+        "photoUrls": [
+            "string"
+        ],
+        "tags": [
+            {
+                "id": 0,
+                "name": "animalnamechanged"
+            }
+        ],
+        "status": "pending"
+    },
+    {
+        "id": 89539,
+        "category": {
+            "id": 1,
+            "name": "Dogs"
+        },
+        "name": "Pet with pending status",
+        "photoUrls": [
+            "https://example.com/photo1.jpg",
+            "https://example.com/photo2.jpg"
+        ],
+        "tags": [
+            {
+                "id": 1,
+                "name": "friendly"
+            },
+            {
+                "id": 2,
+                "name": "trained"
+            }
+        ],
+        "status": "pending"
+    },
+    {
+        "id": 1777587613,
+        "category": {
+            "id": 1777587613,
+            "name": "dog"
+        },
+        "name": "hello kity with form updated",
+        "photoUrls": [
+            "http://foo.bar.com/1",
+            "http://foo.bar.com/2"
+        ],
+        "tags": [
+            {
+                "id": 1777587613,
+                "name": "swagger-codegen-python-pet-tag"
+            }
+        ],
+        "status": "pending"
+    },
+    {
+        "id": 16222945,
+        "category": {
+            "id": -78746072,
+            "name": "eiusmod"
+        },
+        "name": "doggie",
+        "photoUrls": [
+            "pariatur culpa do ex",
+            "cupidatat reprehenderit"
+        ],
+        "tags": [
+            {
+                "id": -20700751,
+                "name": "fugiat sint Excepteur"
+            },
+            {
+                "id": -66098870,
+                "name": "consectetur amet fugiat"
+            }
+        ],
+        "status": "pending"
+    },
+    {
+        "id": 1010,
+        "category": {
+            "id": 0,
+            "name": "sheep"
+        },
+        "name": "lamb",
+        "photoUrls": [
+            "kid"
+        ],
+        "tags": [
+            {
+                "id": 0,
+                "name": "string"
+            }
+        ],
+        "status": "pending"
+    },
+    {
+        "id": 760,
+        "category": {
+            "id": 0,
+            "name": "<categoryname>"
+        },
+        "name": "man",
+        "photoUrls": [
+            "woman"
+        ],
+        "tags": [
+            {
+                "id": 0,
+                "name": "<tag>"
+            }
+        ],
+        "status": "pending"
+    },
+    {
+        "id": 829169789,
+        "name": "",
+        "photoUrls": [
+            "é1p"
+        ],
+        "tags": [
+            
+        ],
+        "status": "pending"
+    },
+    {
+        "id": 1777593151577,
+        "category": {
+            "id": 1,
+            "name": "dogs"
+        },
+        "name": "perfdog-stg-pending-1777593151842",
+        "photoUrls": [
+            "https://example.com/perfdog.jpg"
+        ],
+        "tags": [
+            {
+                "id": 1,
+                "name": "automation"
+            }
+        ],
+        "status": "pending"
+    },
+    {
+        "id": 1777593158276,
+        "category": {
+            "id": 1,
+            "name": "dogs"
+        },
+        "name": "perfdog-stg-pending-1777593155306",
+        "photoUrls": [
+            "https://example.com/perfdog.jpg"
+        ],
+        "tags": [
+            {
+                "id": 1,
+                "name": "automation"
+            }
+        ],
+        "status": "pending"
+    },
+    {
+        "id": 1777593152939,
+        "category": {
+            "id": 1,
+            "name": "dogs"
+        },
+        "name": "perfdog-stg-pending-1777593153546",
+        "photoUrls": [
+            "https://example.com/perfdog.jpg"
+        ],
+        "tags": [
+            {
+                "id": 1,
+                "name": "automation"
+            }
+        ],
+        "status": "pending"
+    },
+    {
+        "id": 1777593154497,
+        "category": {
+            "id": 1,
+            "name": "dogs"
+        },
+        "name": "perfdog-stg-pending-1777593150419",
+        "photoUrls": [
+            "https://example.com/perfdog.jpg"
+        ],
+        "tags": [
+            {
+                "id": 1,
+                "name": "automation"
+            }
+        ],
+        "status": "pending"
+    },
+    {
+        "id": 1777593169853,
+        "category": {
+            "id": 1,
+            "name": "dogs"
+        },
+        "name": "perfdog-prd-pending-1777593170373",
+        "photoUrls": [
+            "https://example.com/perfdog.jpg"
+        ],
+        "tags": [
+            {
+                "id": 1,
+                "name": "automation"
+            }
+        ],
+        "status": "pending"
+    },
+    {
+        "id": 1777593172360,
+        "category": {
+            "id": 1,
+            "name": "dogs"
+        },
+        "name": "perfdog-prd-pending-1777593174644",
+        "photoUrls": [
+            "https://example.com/perfdog.jpg"
+        ],
+        "tags": [
+            {
+                "id": 1,
+                "name": "automation"
+            }
+        ],
+        "status": "pending"
+    },
+    {
+        "id": 1777593170392,
+        "category": {
+            "id": 1,
+            "name": "dogs"
+        },
+        "name": "perfdog-prd-pending-1777593171570",
+        "photoUrls": [
+            "https://example.com/perfdog.jpg"
+        ],
+        "tags": [
+            {
+                "id": 1,
+                "name": "automation"
+            }
+        ],
+        "status": "pending"
+    },
+    {
+        "id": 1777593171074,
+        "category": {
+            "id": 1,
+            "name": "dogs"
+        },
+        "name": "perfdog-prd-pending-1777593169214",
+        "photoUrls": [
+            "https://example.com/perfdog.jpg"
+        ],
+        "tags": [
+            {
+                "id": 1,
+                "name": "automation"
+            }
+        ],
+        "status": "pending"
+    },
+    {
+        "id": 1777594208054,
+        "category": {
+            "id": 1,
+            "name": "dogs"
+        },
+        "name": "perfdog-stg-pending-1777594206964",
+        "photoUrls": [
+            "https://example.com/perfdog.jpg"
+        ],
+        "tags": [
+            {
+                "id": 1,
+                "name": "automation"
+            }
+        ],
+        "status": "pending"
+    },
+    {
+        "id": 1777594208241,
+        "category": {
+            "id": 1,
+            "name": "dogs"
+        },
+        "name": "perfdog-stg-pending-1777594202355",
+        "photoUrls": [
+            "https://example.com/perfdog.jpg"
+        ],
+        "tags": [
+            {
+                "id": 1,
+                "name": "automation"
+            }
+        ],
+        "status": "pending"
+    },
+    {
+        "id": 1777594201917,
+        "category": {
+            "id": 1,
+            "name": "dogs"
+        },
+        "name": "perfdog-stg-pending-1777594199943",
+        "photoUrls": [
+            "https://example.com/perfdog.jpg"
+        ],
+        "tags": [
+            {
+                "id": 1,
+                "name": "automation"
+            }
+        ],
+        "status": "pending"
+    },
+    {
+        "id": 1777594208297,
+        "category": {
+            "id": 1,
+            "name": "dogs"
+        },
+        "name": "perfdog-stg-pending-1777594205141",
+        "photoUrls": [
+            "https://example.com/perfdog.jpg"
+        ],
+        "tags": [
+            {
+                "id": 1,
+                "name": "automation"
+            }
+        ],
+        "status": "pending"
+    },
+    {
+        "id": 1777594208741,
+        "category": {
+            "id": 1,
+            "name": "dogs"
+        },
+        "name": "perfdog-prd-pending-1777594209529",
+        "photoUrls": [
+            "https://example.com/perfdog.jpg"
+        ],
+        "tags": [
+            {
+                "id": 1,
+                "name": "automation"
+            }
+        ],
+        "status": "pending"
+    },
+    {
+        "id": 1777594214553,
+        "category": {
+            "id": 1,
+            "name": "dogs"
+        },
+        "name": "perfdog-prd-pending-1777594213540",
+        "photoUrls": [
+            "https://example.com/perfdog.jpg"
+        ],
+        "tags": [
+            {
+                "id": 1,
+                "name": "automation"
+            }
+        ],
+        "status": "pending"
+    },
+    {
+        "id": 1777594213989,
+        "category": {
+            "id": 1,
+            "name": "dogs"
+        },
+        "name": "perfdog-prd-pending-1777594211421",
+        "photoUrls": [
+            "https://example.com/perfdog.jpg"
+        ],
+        "tags": [
+            {
+                "id": 1,
+                "name": "automation"
+            }
+        ],
+        "status": "pending"
+    },
+    {
+        "id": 1777594210928,
+        "category": {
+            "id": 1,
+            "name": "dogs"
+        },
+        "name": "perfdog-prd-pending-1777594215703",
+        "photoUrls": [
+            "https://example.com/perfdog.jpg"
+        ],
+        "tags": [
+            {
+                "id": 1,
+                "name": "automation"
+            }
+        ],
+        "status": "pending"
+    },
+    {
+        "id": 1777594574414,
+        "category": {
+            "id": 1,
+            "name": "dogs"
+        },
+        "name": "perfdog-stg-pending-1777594570860",
+        "photoUrls": [
+            "https://example.com/perfdog.jpg"
+        ],
+        "tags": [
+            {
+                "id": 1,
+                "name": "automation"
+            }
+        ],
+        "status": "pending"
+    },
+    {
+        "id": 1777594568320,
+        "category": {
+            "id": 1,
+            "name": "dogs"
+        },
+        "name": "perfdog-stg-pending-1777594573861",
+        "photoUrls": [
+            "https://example.com/perfdog.jpg"
+        ],
+        "tags": [
+            {
+                "id": 1,
+                "name": "automation"
+            }
+        ],
+        "status": "pending"
+    },
+    {
+        "id": 1777594571575,
+        "category": {
+            "id": 1,
+            "name": "dogs"
+        },
+        "name": "perfdog-stg-pending-1777594575224",
+        "photoUrls": [
+            "https://example.com/perfdog.jpg"
+        ],
+        "tags": [
+            {
+                "id": 1,
+                "name": "automation"
+            }
+        ],
+        "status": "pending"
+    },
+    {
+        "id": 1777594569216,
+        "category": {
+            "id": 1,
+            "name": "dogs"
+        },
+        "name": "perfdog-stg-pending-1777594569137",
+        "photoUrls": [
+            "https://example.com/perfdog.jpg"
+        ],
+        "tags": [
+            {
+                "id": 1,
+                "name": "automation"
+            }
+        ],
+        "status": "pending"
+    },
+    {
+        "id": 1777594583089,
+        "category": {
+            "id": 1,
+            "name": "dogs"
+        },
+        "name": "perfdog-stg-pending-1777594579248",
+        "photoUrls": [
+            "https://example.com/perfdog.jpg"
+        ],
+        "tags": [
+            {
+                "id": 1,
+                "name": "automation"
+            }
+        ],
+        "status": "pending"
+    },
+    {
+        "id": 1777594578351,
+        "category": {
+            "id": 1,
+            "name": "dogs"
+        },
+        "name": "perfdog-prd-pending-1777594579593",
+        "photoUrls": [
+            "https://example.com/perfdog.jpg"
+        ],
+        "tags": [
+            {
+                "id": 1,
+                "name": "automation"
+            }
+        ],
+        "status": "pending"
+    },
+    {
+        "id": 1777594580954,
+        "category": {
+            "id": 1,
+            "name": "dogs"
+        },
+        "name": "perfdog-stg-pending-1777594582230",
+        "photoUrls": [
+            "https://example.com/perfdog.jpg"
+        ],
+        "tags": [
+            {
+                "id": 1,
+                "name": "automation"
+            }
+        ],
+        "status": "pending"
+    },
+    {
+        "id": 1777594584661,
+        "category": {
+            "id": 1,
+            "name": "dogs"
+        },
+        "name": "perfdog-prd-pending-1777594585283",
+        "photoUrls": [
+            "https://example.com/perfdog.jpg"
+        ],
+        "tags": [
+            {
+                "id": 1,
+                "name": "automation"
+            }
+        ],
+        "status": "pending"
+    },
+    {
+        "id": 1777594584907,
+        "category": {
+            "id": 1,
+            "name": "dogs"
+        },
+        "name": "perfdog-stg-pending-1777594583223",
+        "photoUrls": [
+            "https://example.com/perfdog.jpg"
+        ],
+        "tags": [
+            {
+                "id": 1,
+                "name": "automation"
+            }
+        ],
+        "status": "pending"
+    },
+    {
+        "id": 1777594585538,
+        "category": {
+            "id": 1,
+            "name": "dogs"
+        },
+        "name": "perfdog-prd-pending-1777594577409",
+        "photoUrls": [
+            "https://example.com/perfdog.jpg"
+        ],
+        "tags": [
+            {
+                "id": 1,
+                "name": "automation"
+            }
+        ],
+        "status": "pending"
+    },
+    {
+        "id": 1777594583513,
+        "category": {
+            "id": 1,
+            "name": "dogs"
+        },
+        "name": "perfdog-stg-pending-1777594586171",
+        "photoUrls": [
+            "https://example.com/perfdog.jpg"
+        ],
+        "tags": [
+            {
+                "id": 1,
+                "name": "automation"
+            }
+        ],
+        "status": "pending"
+    },
+    {
+        "id": 1777594584179,
+        "category": {
+            "id": 1,
+            "name": "dogs"
+        },
+        "name": "perfdog-prd-pending-1777594586242",
+        "photoUrls": [
+            "https://example.com/perfdog.jpg"
+        ],
+        "tags": [
+            {
+                "id": 1,
+                "name": "automation"
+            }
+        ],
+        "status": "pending"
+    },
+    {
+        "id": 5753,
+        "category": {
+            "id": 160,
+            "name": "string"
+        },
+        "name": "doggie",
+        "photoUrls": [
+            "string",
+            "string"
+        ],
+        "tags": [
+            {
+                "id": 9375,
+                "name": "string"
+            },
+            {
+                "id": 5039,
+                "name": "string"
+            }
+        ],
+        "status": "pending"
+    },
+    {
+        "id": 2495052355,
+        "category": {
+            "id": 3321070895,
+            "name": "dog"
+        },
+        "name": "hello kity with form updated abc",
+        "photoUrls": [
+            "http://foo.bar.com/1",
+            "http://foo.bar.com/2"
+        ],
+        "tags": [
+            {
+                "id": 3623811823,
+                "name": "python-pet-tag"
+            }
+        ],
+        "status": "pending"
+    },
+    {
+        "id": 1353318237,
+        "category": {
+            "id": 1088865614,
+            "name": "dog"
+        },
+        "name": "hello kity with form updated abc",
+        "photoUrls": [
+            "http://foo.bar.com/1",
+            "http://foo.bar.com/2"
+        ],
+        "tags": [
+            {
+                "id": 119977388,
+                "name": "python-pet-tag"
+            }
+        ],
+        "status": "pending"
+    },
+    {
+        "id": 3836129339,
+        "category": {
+            "id": 333662366,
+            "name": "dog"
+        },
+        "name": "hello kity with form updated abc",
+        "photoUrls": [
+            "http://foo.bar.com/1",
+            "http://foo.bar.com/2"
+        ],
+        "tags": [
+            {
+                "id": 3286052563,
+                "name": "python-pet-tag"
+            }
+        ],
+        "status": "pending"
+    },
+    {
+        "id": 1852100540,
+        "category": {
+            "id": 1252093599,
+            "name": "dog"
+        },
+        "name": "hello kity with form updated abc",
+        "photoUrls": [
+            "http://foo.bar.com/1",
+            "http://foo.bar.com/2"
+        ],
+        "tags": [
+            {
+                "id": 2766825738,
+                "name": "python-pet-tag"
+            }
+        ],
+        "status": "pending"
+    },
+    {
+        "id": 1422744602,
+        "category": {
+            "id": 4264025421,
+            "name": "dog"
+        },
+        "name": "hello kity with form updated abc",
+        "photoUrls": [
+            "http://foo.bar.com/1",
+            "http://foo.bar.com/2"
+        ],
+        "tags": [
+            {
+                "id": 2519247512,
+                "name": "python-pet-tag"
+            }
+        ],
+        "status": "pending"
+    },
+    {
+        "id": 3576159783,
+        "category": {
+            "id": 837156518,
+            "name": "dog"
+        },
+        "name": "hello kity with form updated abc",
+        "photoUrls": [
+            "http://foo.bar.com/1",
+            "http://foo.bar.com/2"
+        ],
+        "tags": [
+            {
+                "id": 3962312210,
+                "name": "python-pet-tag"
+            }
+        ],
+        "status": "pending"
+    },
+    {
+        "id": 235,
+        "category": {
+            "id": 0,
+            "name": "Aldo"
+        },
+        "name": "Dog",
+        "photoUrls": [
+            "www.ornekolacakyadim1.com",
+            "www.ornekolacakyadim2.com"
+        ],
+        "tags": [
+            {
+                "id": 0,
+                "name": "Seven"
+            },
+            {
+                "id": 0,
+                "name": "Eight"
+            }
+        ],
+        "status": "pending"
+    },
+    {
+        "id": 742308,
+        "category": {
+            "id": 1,
+            "name": "Dogs"
+        },
+        "name": "UpdatedWorkflowDog-742308",
+        "photoUrls": [
+            "https://example.com/photo1.jpg"
+        ],
+        "tags": [
+            {
+                "id": 1,
+                "name": "test-tag"
+            }
+        ],
+        "status": "pending"
+    },
+    {
+        "id": 447274,
+        "category": {
+            "id": 1,
+            "name": "Dogs"
+        },
+        "name": "UpdatedWorkflowDog-447274",
+        "photoUrls": [
+            "https://example.com/photo1.jpg"
+        ],
+        "tags": [
+            {
+                "id": 1,
+                "name": "test-tag"
+            }
+        ],
+        "status": "pending"
+    },
+    {
+        "id": 732847,
+        "category": {
+            "id": 1,
+            "name": "Dogs"
+        },
+        "name": "UpdatedWorkflowDog-732847",
+        "photoUrls": [
+            "https://example.com/photo1.jpg"
+        ],
+        "tags": [
+            {
+                "id": 1,
+                "name": "test-tag"
+            }
+        ],
+        "status": "pending"
+    },
+    {
+        "id": 535470,
+        "category": {
+            "id": 1,
+            "name": "Dogs"
+        },
+        "name": "UpdatedWorkflowDog-535470",
+        "photoUrls": [
+            "https://example.com/photo1.jpg"
+        ],
+        "tags": [
+            {
+                "id": 1,
+                "name": "test-tag"
+            }
+        ],
+        "status": "pending"
+    }
+]

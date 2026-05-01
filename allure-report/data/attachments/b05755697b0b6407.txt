@@ -1,0 +1,51 @@
+=== POST /Patient (senior) ===
+Status: 201
+Time: 977ms
+Content-Type: application/fhir+json;charset=utf-8
+
+Body:
+{
+    "resourceType": "Patient",
+    "id": "131996279",
+    "meta": {
+        "versionId": "1",
+        "lastUpdated": "2026-05-01T02:12:52.459+00:00",
+        "source": "#lOiJbpeCyGkVDqTM"
+    },
+    "text": {
+        "status": "generated",
+        "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><div class=\"hapiHeaderText\">Dean <b>CRONA </b></div><table class=\"hapiPropertyTable\"><tbody><tr><td>Identifier</td><td>TEST-00100426</td></tr><tr><td>Address</td><td><span>North Adrianville </span><span>OK </span><span>US </span></td></tr><tr><td>Date of birth</td><td><span>01 May 1954</span></td></tr></tbody></table></div>"
+    },
+    "identifier": [
+        {
+            "system": "http://hospital.example.org/mrn",
+            "value": "TEST-00100426"
+        }
+    ],
+    "name": [
+        {
+            "use": "official",
+            "family": "Crona",
+            "given": [
+                "Dean"
+            ]
+        }
+    ],
+    "telecom": [
+        {
+            "system": "phone",
+            "value": "645-130-4541",
+            "use": "home"
+        }
+    ],
+    "gender": "female",
+    "birthDate": "1954-05-01",
+    "address": [
+        {
+            "city": "North Adrianville",
+            "state": "OK",
+            "postalCode": "42320-2126",
+            "country": "US"
+        }
+    ]
+}

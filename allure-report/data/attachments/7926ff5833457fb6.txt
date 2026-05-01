@@ -1,0 +1,51 @@
+=== POST /Patient (pediatric) ===
+Status: 201
+Time: 899ms
+Content-Type: application/fhir+json;charset=utf-8
+
+Body:
+{
+    "resourceType": "Patient",
+    "id": "131996278",
+    "meta": {
+        "versionId": "1",
+        "lastUpdated": "2026-05-01T02:12:51.458+00:00",
+        "source": "#tdTgo00hClzaiHCq"
+    },
+    "text": {
+        "status": "generated",
+        "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><div class=\"hapiHeaderText\">Darius <b>ZIEME </b></div><table class=\"hapiPropertyTable\"><tbody><tr><td>Identifier</td><td>TEST-00321051</td></tr><tr><td>Address</td><td><span>Kaceyville </span><span>SD </span><span>US </span></td></tr><tr><td>Date of birth</td><td><span>01 May 2018</span></td></tr></tbody></table></div>"
+    },
+    "identifier": [
+        {
+            "system": "http://hospital.example.org/mrn",
+            "value": "TEST-00321051"
+        }
+    ],
+    "name": [
+        {
+            "use": "official",
+            "family": "Zieme",
+            "given": [
+                "Darius"
+            ]
+        }
+    ],
+    "telecom": [
+        {
+            "system": "phone",
+            "value": "1-036-679-1850",
+            "use": "home"
+        }
+    ],
+    "gender": "male",
+    "birthDate": "2018-05-01",
+    "address": [
+        {
+            "city": "Kaceyville",
+            "state": "SD",
+            "postalCode": "24390-0403",
+            "country": "US"
+        }
+    ]
+}

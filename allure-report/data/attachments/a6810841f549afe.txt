@@ -1,0 +1,51 @@
+=== PUT /Patient/131996277 ===
+Status: 200
+Time: 1024ms
+Content-Type: application/fhir+json;charset=utf-8
+
+Body:
+{
+    "resourceType": "Patient",
+    "id": "131996277",
+    "meta": {
+        "versionId": "2",
+        "lastUpdated": "2026-05-01T02:12:58.459+00:00",
+        "source": "#dDOCvACON9hIXOcM"
+    },
+    "text": {
+        "status": "generated",
+        "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><div class=\"hapiHeaderText\">Augustine <b>BREKKE </b></div><table class=\"hapiPropertyTable\"><tbody><tr><td>Identifier</td><td>TEST-00968178</td></tr><tr><td>Address</td><td><span>Port Lawerenceville </span><span>GA </span><span>US </span></td></tr><tr><td>Date of birth</td><td><span>01 May 1991</span></td></tr></tbody></table></div>"
+    },
+    "identifier": [
+        {
+            "system": "http://hospital.example.org/mrn",
+            "value": "TEST-00968178"
+        }
+    ],
+    "name": [
+        {
+            "use": "official",
+            "family": "Brekke",
+            "given": [
+                "Augustine"
+            ]
+        }
+    ],
+    "telecom": [
+        {
+            "system": "phone",
+            "value": "1-860-970-8283 x638",
+            "use": "home"
+        }
+    ],
+    "gender": "female",
+    "birthDate": "1991-05-01",
+    "address": [
+        {
+            "city": "Port Lawerenceville",
+            "state": "GA",
+            "postalCode": "23096",
+            "country": "US"
+        }
+    ]
+}

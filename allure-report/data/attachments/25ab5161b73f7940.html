@@ -1,0 +1,91 @@
+<div>POST to https://hapi.fhir.org/baseR4/Patient</div>
+
+    <h4>Body</h4>
+    <div>
+    <pre class="preformated-text">
+{
+    &quot;id&quot;: &quot;TEST-00182431&quot;,
+    &quot;resourceType&quot;: &quot;Patient&quot;,
+    &quot;name&quot;: [
+        {
+            &quot;use&quot;: &quot;official&quot;,
+            &quot;family&quot;: &quot;Morar&quot;,
+            &quot;given&quot;: [
+                &quot;Teofila&quot;
+            ]
+        }
+    ],
+    &quot;birthDate&quot;: &quot;1991-05-01&quot;,
+    &quot;gender&quot;: &quot;female&quot;,
+    &quot;identifier&quot;: [
+        {
+            &quot;system&quot;: &quot;http://hospital.example.org/mrn&quot;,
+            &quot;value&quot;: &quot;TEST-00182431&quot;
+        }
+    ],
+    &quot;address&quot;: [
+        {
+            &quot;city&quot;: &quot;East Carminestad&quot;,
+            &quot;state&quot;: &quot;NM&quot;,
+            &quot;postalCode&quot;: &quot;90174&quot;,
+            &quot;country&quot;: &quot;US&quot;
+        }
+    ],
+    &quot;telecom&quot;: [
+        {
+            &quot;system&quot;: &quot;phone&quot;,
+            &quot;value&quot;: &quot;(403) 377-0114 x68567&quot;,
+            &quot;use&quot;: &quot;home&quot;
+        }
+    ]
+}    </pre>
+    </div>
+
+    <h4>Headers</h4>
+    <div>
+            <div>Accept: application/json, application/javascript, text/javascript, text/json</div>
+            <div>Content-Type: application/json</div>
+    </div>
+
+
+
+    <h4>Curl</h4>
+    <div>
+        curl -v -X POST &#39;https://hapi.fhir.org/baseR4/Patient&#39; -H &#39;Accept: application/json, application/javascript, text/javascript, text/json&#39; -H &#39;Content-Type: application/json&#39; -d &#39;{
+    &quot;id&quot;: &quot;TEST-00182431&quot;,
+    &quot;resourceType&quot;: &quot;Patient&quot;,
+    &quot;name&quot;: [
+        {
+            &quot;use&quot;: &quot;official&quot;,
+            &quot;family&quot;: &quot;Morar&quot;,
+            &quot;given&quot;: [
+                &quot;Teofila&quot;
+            ]
+        }
+    ],
+    &quot;birthDate&quot;: &quot;1991-05-01&quot;,
+    &quot;gender&quot;: &quot;female&quot;,
+    &quot;identifier&quot;: [
+        {
+            &quot;system&quot;: &quot;http://hospital.example.org/mrn&quot;,
+            &quot;value&quot;: &quot;TEST-00182431&quot;
+        }
+    ],
+    &quot;address&quot;: [
+        {
+            &quot;city&quot;: &quot;East Carminestad&quot;,
+            &quot;state&quot;: &quot;NM&quot;,
+            &quot;postalCode&quot;: &quot;90174&quot;,
+            &quot;country&quot;: &quot;US&quot;
+        }
+    ],
+    &quot;telecom&quot;: [
+        {
+            &quot;system&quot;: &quot;phone&quot;,
+            &quot;value&quot;: &quot;(403) 377-0114 x68567&quot;,
+            &quot;use&quot;: &quot;home&quot;
+        }
+    ]
+}&#39;
+    </div>
+
