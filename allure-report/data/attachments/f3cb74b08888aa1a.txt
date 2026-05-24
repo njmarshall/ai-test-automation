@@ -1,0 +1,51 @@
+=== POST /Patient (senior) ===
+Status: 201
+Time: 971ms
+Content-Type: application/fhir+json;charset=utf-8
+
+Body:
+{
+    "resourceType": "Patient",
+    "id": "132083701",
+    "meta": {
+        "versionId": "1",
+        "lastUpdated": "2026-05-24T02:26:26.845+00:00",
+        "source": "#q5PJTFGwnfjy0sC9"
+    },
+    "text": {
+        "status": "generated",
+        "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><div class=\"hapiHeaderText\">Jamee <b>BARTON </b></div><table class=\"hapiPropertyTable\"><tbody><tr><td>Identifier</td><td>TEST-00139722</td></tr><tr><td>Address</td><td><span>Port Johnathanchester </span><span>RI </span><span>US </span></td></tr><tr><td>Date of birth</td><td><span>24 May 1954</span></td></tr></tbody></table></div>"
+    },
+    "identifier": [
+        {
+            "system": "http://hospital.example.org/mrn",
+            "value": "TEST-00139722"
+        }
+    ],
+    "name": [
+        {
+            "use": "official",
+            "family": "Barton",
+            "given": [
+                "Jamee"
+            ]
+        }
+    ],
+    "telecom": [
+        {
+            "system": "phone",
+            "value": "1-366-167-3992 x6988",
+            "use": "home"
+        }
+    ],
+    "gender": "female",
+    "birthDate": "1954-05-24",
+    "address": [
+        {
+            "city": "Port Johnathanchester",
+            "state": "RI",
+            "postalCode": "03185-5420",
+            "country": "US"
+        }
+    ]
+}

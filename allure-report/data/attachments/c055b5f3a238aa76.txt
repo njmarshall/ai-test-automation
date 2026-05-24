@@ -1,0 +1,51 @@
+=== GET /Patient/132083699 ===
+Status: 200
+Time: 933ms
+Content-Type: application/fhir+json;charset=utf-8
+
+Body:
+{
+    "resourceType": "Patient",
+    "id": "132083699",
+    "meta": {
+        "versionId": "1",
+        "lastUpdated": "2026-05-24T02:26:24.844+00:00",
+        "source": "#fvKflVSFAA6wsvUX"
+    },
+    "text": {
+        "status": "generated",
+        "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><div class=\"hapiHeaderText\">Sumiko <b>DACH </b></div><table class=\"hapiPropertyTable\"><tbody><tr><td>Identifier</td><td>TEST-00623985</td></tr><tr><td>Address</td><td><span>West Roxannaland </span><span>NE </span><span>US </span></td></tr><tr><td>Date of birth</td><td><span>24 May 1991</span></td></tr></tbody></table></div>"
+    },
+    "identifier": [
+        {
+            "system": "http://hospital.example.org/mrn",
+            "value": "TEST-00623985"
+        }
+    ],
+    "name": [
+        {
+            "use": "official",
+            "family": "Dach",
+            "given": [
+                "Sumiko"
+            ]
+        }
+    ],
+    "telecom": [
+        {
+            "system": "phone",
+            "value": "(694) 933-6067",
+            "use": "home"
+        }
+    ],
+    "gender": "female",
+    "birthDate": "1991-05-24",
+    "address": [
+        {
+            "city": "West Roxannaland",
+            "state": "NE",
+            "postalCode": "46069",
+            "country": "US"
+        }
+    ]
+}

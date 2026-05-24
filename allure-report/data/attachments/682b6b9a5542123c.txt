@@ -1,0 +1,11 @@
+=== GET /user (not found) ===
+Status: 404
+Time: 25ms
+Content-Type: application/json
+
+Body:
+{
+    "code": 1,
+    "type": "error",
+    "message": "User not found"
+}

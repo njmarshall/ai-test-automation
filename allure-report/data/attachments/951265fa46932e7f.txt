@@ -1,0 +1,11 @@
+=== DELETE /user/ernielowe ===
+Status: 200
+Time: 20ms
+Content-Type: application/json
+
+Body:
+{
+    "code": 200,
+    "type": "unknown",
+    "message": "ernielowe"
+}

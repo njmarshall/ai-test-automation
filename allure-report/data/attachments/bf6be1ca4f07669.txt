@@ -1,0 +1,16 @@
+=== GET /user/ernielowe ===
+Status: 200
+Time: 23ms
+Content-Type: application/json
+
+Body:
+{
+    "id": 463817,
+    "username": "ernielowe",
+    "firstName": "Ernie",
+    "lastName": "Lowe",
+    "email": "graig.reinger@yahoo.com",
+    "password": "22pkube0f92f",
+    "phone": "177-932-2896 x1145",
+    "userStatus": 1
+}

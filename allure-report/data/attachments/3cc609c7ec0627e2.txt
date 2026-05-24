@@ -1,0 +1,21 @@
+=== GET /Encounter?patient=132083704 ===
+Status: 200
+Time: 989ms
+Content-Type: application/fhir+json;charset=utf-8
+
+Body:
+{
+    "resourceType": "Bundle",
+    "id": "84fd7de5-03c3-49c3-b681-43675dff069d",
+    "meta": {
+        "lastUpdated": "2026-05-24T02:26:39.845+00:00"
+    },
+    "type": "searchset",
+    "total": 0,
+    "link": [
+        {
+            "relation": "self",
+            "url": "https://hapi.fhir.org/baseR4/Encounter?patient=132083704"
+        }
+    ]
+}
