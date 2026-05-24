@@ -1,4 +1,4 @@
-package com.aitesting.petstore.model.api;
+package com.aitesting.petstore.api;
 
 import com.aitesting.shared.assertions.ResponseValidator;
 import io.restassured.response.Response;
