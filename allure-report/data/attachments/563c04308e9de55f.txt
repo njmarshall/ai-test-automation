@@ -1,0 +1,17 @@
+=== PUT /pet ===
+Status: 200
+Time: 44ms
+Content-Type: application/json
+
+Body:
+{
+    "id": 884877,
+    "name": "UpdatedBuddy",
+    "photoUrls": [
+        "https://example.com/updated.jpg"
+    ],
+    "tags": [
+        
+    ],
+    "status": "pending"
+}

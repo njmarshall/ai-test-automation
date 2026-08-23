@@ -1,0 +1,11 @@
+=== GET /store/order (not found) ===
+Status: 404
+Time: 42ms
+Content-Type: application/json
+
+Body:
+{
+    "code": 1,
+    "type": "error",
+    "message": "Order not found"
+}

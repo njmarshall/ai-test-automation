@@ -1,0 +1,20 @@
+=== POST /Encounter (IMP) ===
+Status: 400
+Time: 288ms
+Content-Type: application/fhir+json;charset=utf-8
+
+Body:
+{
+    "resourceType": "OperationOutcome",
+    "text": {
+        "status": "generated",
+        "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><h1>Operation Outcome</h1><table border=\"0\"><tr><td style=\"font-weight: bold;\">ERROR</td><td>[]</td><td>HAPI-1094: Resource Condition/TEST-COND-001 not found, specified in path: Encounter.diagnosis.condition</td></tr></table></div>"
+    },
+    "issue": [
+        {
+            "severity": "error",
+            "code": "processing",
+            "diagnostics": "HAPI-1094: Resource Condition/TEST-COND-001 not found, specified in path: Encounter.diagnosis.condition"
+        }
+    ]
+}

@@ -1,0 +1,51 @@
+=== POST /Patient ===
+Status: 201
+Time: 448ms
+Content-Type: application/fhir+json;charset=utf-8
+
+Body:
+{
+    "resourceType": "Patient",
+    "id": "137578218",
+    "meta": {
+        "versionId": "1",
+        "lastUpdated": "2026-08-23T01:51:18.174-04:00",
+        "source": "#8SCQatFxrrphnLye"
+    },
+    "text": {
+        "status": "generated",
+        "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><div class=\"hapiHeaderText\">Claudio <b>O'KEEFE </b></div><table class=\"hapiPropertyTable\"><tbody><tr><td>Identifier</td><td>TEST-00912836</td></tr><tr><td>Address</td><td><span>Lake Margeneberg </span><span>MS </span><span>US </span></td></tr><tr><td>Date of birth</td><td><span>23 August 1991</span></td></tr></tbody></table></div>"
+    },
+    "identifier": [
+        {
+            "system": "http://hospital.example.org/mrn",
+            "value": "TEST-00912836"
+        }
+    ],
+    "name": [
+        {
+            "use": "official",
+            "family": "O'Keefe",
+            "given": [
+                "Claudio"
+            ]
+        }
+    ],
+    "telecom": [
+        {
+            "system": "phone",
+            "value": "(028) 257-3763 x509",
+            "use": "home"
+        }
+    ],
+    "gender": "female",
+    "birthDate": "1991-08-23",
+    "address": [
+        {
+            "city": "Lake Margeneberg",
+            "state": "MS",
+            "postalCode": "83189",
+            "country": "US"
+        }
+    ]
+}

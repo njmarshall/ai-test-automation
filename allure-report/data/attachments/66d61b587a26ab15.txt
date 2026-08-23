@@ -1,0 +1,51 @@
+=== PUT /Patient/137578218 ===
+Status: 200
+Time: 307ms
+Content-Type: application/fhir+json;charset=utf-8
+
+Body:
+{
+    "resourceType": "Patient",
+    "id": "137578218",
+    "meta": {
+        "versionId": "2",
+        "lastUpdated": "2026-08-23T01:51:20.908-04:00",
+        "source": "#ZOuXii13vIvRWykd"
+    },
+    "text": {
+        "status": "generated",
+        "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><div class=\"hapiHeaderText\">Shalonda <b>TERRY </b></div><table class=\"hapiPropertyTable\"><tbody><tr><td>Identifier</td><td>TEST-00290694</td></tr><tr><td>Address</td><td><span>South Moisestown </span><span>ID </span><span>US </span></td></tr><tr><td>Date of birth</td><td><span>23 August 1991</span></td></tr></tbody></table></div>"
+    },
+    "identifier": [
+        {
+            "system": "http://hospital.example.org/mrn",
+            "value": "TEST-00290694"
+        }
+    ],
+    "name": [
+        {
+            "use": "official",
+            "family": "Terry",
+            "given": [
+                "Shalonda"
+            ]
+        }
+    ],
+    "telecom": [
+        {
+            "system": "phone",
+            "value": "(059) 694-6715 x8616",
+            "use": "home"
+        }
+    ],
+    "gender": "female",
+    "birthDate": "1991-08-23",
+    "address": [
+        {
+            "city": "South Moisestown",
+            "state": "ID",
+            "postalCode": "53246",
+            "country": "US"
+        }
+    ]
+}

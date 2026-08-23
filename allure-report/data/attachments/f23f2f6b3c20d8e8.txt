@@ -1,0 +1,51 @@
+=== POST /Patient (newborn) ===
+Status: 201
+Time: 325ms
+Content-Type: application/fhir+json;charset=utf-8
+
+Body:
+{
+    "resourceType": "Patient",
+    "id": "137578221",
+    "meta": {
+        "versionId": "1",
+        "lastUpdated": "2026-08-23T01:51:19.252-04:00",
+        "source": "#lHt8Rh7dhRKjxePa"
+    },
+    "text": {
+        "status": "generated",
+        "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><div class=\"hapiHeaderText\">Parker <b>STARK </b></div><table class=\"hapiPropertyTable\"><tbody><tr><td>Identifier</td><td>TEST-00342853</td></tr><tr><td>Address</td><td><span>Schambergerport </span><span>ME </span><span>US </span></td></tr><tr><td>Date of birth</td><td><span>23 August 2026</span></td></tr></tbody></table></div>"
+    },
+    "identifier": [
+        {
+            "system": "http://hospital.example.org/mrn",
+            "value": "TEST-00342853"
+        }
+    ],
+    "name": [
+        {
+            "use": "official",
+            "family": "Stark",
+            "given": [
+                "Parker"
+            ]
+        }
+    ],
+    "telecom": [
+        {
+            "system": "phone",
+            "value": "1-565-206-0911 x693",
+            "use": "home"
+        }
+    ],
+    "gender": "male",
+    "birthDate": "2026-08-23",
+    "address": [
+        {
+            "city": "Schambergerport",
+            "state": "ME",
+            "postalCode": "64465-2871",
+            "country": "US"
+        }
+    ]
+}

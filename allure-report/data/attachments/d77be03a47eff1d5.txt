@@ -1,0 +1,51 @@
+=== POST /Patient (senior) ===
+Status: 201
+Time: 317ms
+Content-Type: application/fhir+json;charset=utf-8
+
+Body:
+{
+    "resourceType": "Patient",
+    "id": "137578220",
+    "meta": {
+        "versionId": "1",
+        "lastUpdated": "2026-08-23T01:51:18.916-04:00",
+        "source": "#6nBooBaz3P3Pe8ms"
+    },
+    "text": {
+        "status": "generated",
+        "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><div class=\"hapiHeaderText\">Rufus <b>CORMIER </b></div><table class=\"hapiPropertyTable\"><tbody><tr><td>Identifier</td><td>TEST-00027730</td></tr><tr><td>Address</td><td><span>Lake Galinaland </span><span>ME </span><span>US </span></td></tr><tr><td>Date of birth</td><td><span>23 August 1954</span></td></tr></tbody></table></div>"
+    },
+    "identifier": [
+        {
+            "system": "http://hospital.example.org/mrn",
+            "value": "TEST-00027730"
+        }
+    ],
+    "name": [
+        {
+            "use": "official",
+            "family": "Cormier",
+            "given": [
+                "Rufus"
+            ]
+        }
+    ],
+    "telecom": [
+        {
+            "system": "phone",
+            "value": "1-668-269-1474",
+            "use": "home"
+        }
+    ],
+    "gender": "female",
+    "birthDate": "1954-08-23",
+    "address": [
+        {
+            "city": "Lake Galinaland",
+            "state": "ME",
+            "postalCode": "58558",
+            "country": "US"
+        }
+    ]
+}

@@ -1,0 +1,1255 @@
+=== GET /Patient?family=Smith ===
+Status: 200
+Time: 311ms
+Content-Type: application/fhir+json;charset=utf-8
+
+Body:
+{
+    "resourceType": "Bundle",
+    "id": "2d52ce99-5e16-45b8-980f-192387e36e05",
+    "meta": {
+        "lastUpdated": "2026-08-23T01:51:19.896-04:00"
+    },
+    "type": "searchset",
+    "link": [
+        {
+            "relation": "self",
+            "url": "https://hapi.fhir.org/baseR4/Patient?family=Smith"
+        },
+        {
+            "relation": "next",
+            "url": "https://hapi.fhir.org/baseR4?_getpages=2d52ce99-5e16-45b8-980f-192387e36e05&_getpagesoffset=20&_count=20&_pretty=true&_bundletype=searchset"
+        }
+    ],
+    "entry": [
+        {
+            "fullUrl": "https://hapi.fhir.org/baseR4/Patient/137208509",
+            "resource": {
+                "resourceType": "Patient",
+                "id": "137208509",
+                "meta": {
+                    "versionId": "11",
+                    "lastUpdated": "2026-08-18T10:45:05.817-04:00",
+                    "source": "#lqBmySHMOBvmtLSk"
+                },
+                "text": {
+                    "status": "generated",
+                    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><div class=\"hapiHeaderText\">Veronica Lab-Test \n            <b>SMITH </b></div><table class=\"hapiPropertyTable\"><tbody><tr><td>Identifier</td><td>91cb368a-45e9-4f90-b256-e1de87a2f03b</td></tr><tr><td>Date of birth</td><td><span>01 January 1990</span></td></tr></tbody></table></div>"
+                },
+                "identifier": [
+                    {
+                        "system": "https://ncs.health/fhir/sid/ncs-patient-id",
+                        "value": "91cb368a-45e9-4f90-b256-e1de87a2f03b"
+                    },
+                    {
+                        "use": "official",
+                        "type": {
+                            "coding": [
+                                {
+                                    "system": "http://terminology.hl7.org/CodeSystem/v2-0203",
+                                    "code": "MR",
+                                    "display": "Medical Record Number"
+                                }
+                            ],
+                            "text": "MRN"
+                        },
+                        "system": "http://hospital.example.org/mrn",
+                        "value": "MRN19979130"
+                    }
+                ],
+                "active": true,
+                "name": [
+                    {
+                        "family": "Smith",
+                        "given": [
+                            "Veronica",
+                            "Lab-Test"
+                        ]
+                    },
+                    {
+                        "family": "Update-Test",
+                        "given": [
+                            "Firely"
+                        ]
+                    }
+                ],
+                "telecom": [
+                    {
+                        "system": "phone",
+                        "value": "555-0199",
+                        "use": "home"
+                    }
+                ],
+                "gender": "male",
+                "birthDate": "1990-01-01"
+            },
+            "search": {
+                "mode": "match"
+            }
+        },
+        {
+            "fullUrl": "https://hapi.fhir.org/baseR4/Patient/137208839",
+            "resource": {
+                "resourceType": "Patient",
+                "id": "137208839",
+                "meta": {
+                    "versionId": "10",
+                    "lastUpdated": "2026-08-02T00:10:29.027-04:00",
+                    "source": "#5nU2rnHza3K9Wff3",
+                    "tag": [
+                        {
+                            "system": "urn:interopx:synthetic",
+                            "code": "DEMO",
+                            "display": "Synthetic Demo"
+                        }
+                    ]
+                },
+                "text": {
+                    "status": "generated",
+                    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><div class=\"hapiHeaderText\">Robert James <b>SMITH </b></div><table class=\"hapiPropertyTable\"><tbody><tr><td>Identifier</td><td>ILI-2026-00002</td></tr><tr><td>Date of birth</td><td><span>22 July 1970</span></td></tr></tbody></table></div>"
+                },
+                "identifier": [
+                    {
+                        "type": {
+                            "coding": [
+                                {
+                                    "code": "MR",
+                                    "display": "Medical Record Number"
+                                }
+                            ]
+                        },
+                        "system": "local/mrn",
+                        "value": "ILI-2026-00002"
+                    },
+                    {
+                        "use": "usual",
+                        "system": "urn:oid:1.2.840.114350.1.1",
+                        "value": "MRN-2002"
+                    }
+                ],
+                "active": true,
+                "name": [
+                    {
+                        "use": "official",
+                        "family": "Smith",
+                        "given": [
+                            "Robert",
+                            "James"
+                        ]
+                    }
+                ],
+                "gender": "male",
+                "birthDate": "1970-07-22"
+            },
+            "search": {
+                "mode": "match"
+            }
+        },
+        {
+            "fullUrl": "https://hapi.fhir.org/baseR4/Patient/137208842",
+            "resource": {
+                "resourceType": "Patient",
+                "id": "137208842",
+                "meta": {
+                    "versionId": "9",
+                    "lastUpdated": "2026-07-31T02:48:04.895-04:00",
+                    "source": "#FRL5j4Gimfyb1aB4"
+                },
+                "text": {
+                    "status": "generated",
+                    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><div class=\"hapiHeaderText\">John <b>SMITH </b></div><table class=\"hapiPropertyTable\"><tbody><tr><td>Date of birth</td><td><span>01 January 1990</span></td></tr></tbody></table></div>"
+                },
+                "active": false,
+                "name": [
+                    {
+                        "family": "Smith",
+                        "given": [
+                            "John"
+                        ]
+                    }
+                ],
+                "gender": "male",
+                "birthDate": "1990-01-01"
+            },
+            "search": {
+                "mode": "match"
+            }
+        },
+        {
+            "fullUrl": "https://hapi.fhir.org/baseR4/Patient/23e615fa-0068-46df-b064-10bb8a827e7f",
+            "resource": {
+                "resourceType": "Patient",
+                "id": "23e615fa-0068-46df-b064-10bb8a827e7f",
+                "meta": {
+                    "versionId": "8",
+                    "lastUpdated": "2026-07-31T02:53:47.507-04:00",
+                    "source": "#NHn8XkXsa1RxRNps"
+                },
+                "text": {
+                    "status": "generated",
+                    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><div class=\"hapiHeaderText\">Jane <b>SMITH </b></div><table class=\"hapiPropertyTable\"><tbody><tr><td>Address</td><td><span>Los Angeles </span><span>USA </span></td></tr><tr><td>Date of birth</td><td><span>15 May 1985</span></td></tr></tbody></table></div>"
+                },
+                "active": false,
+                "name": [
+                    {
+                        "family": "Smith",
+                        "given": [
+                            "Jane"
+                        ]
+                    }
+                ],
+                "telecom": [
+                    {
+                        "system": "phone",
+                        "value": "0987654321"
+                    }
+                ],
+                "gender": "female",
+                "birthDate": "1985-05-15",
+                "address": [
+                    {
+                        "city": "Los Angeles",
+                        "country": "USA"
+                    }
+                ]
+            },
+            "search": {
+                "mode": "match"
+            }
+        },
+        {
+            "fullUrl": "https://hapi.fhir.org/baseR4/Patient/137215163",
+            "resource": {
+                "resourceType": "Patient",
+                "id": "137215163",
+                "meta": {
+                    "versionId": "9",
+                    "lastUpdated": "2026-07-31T02:48:29.850-04:00",
+                    "source": "#UfzqjY4W3PCKq0WY"
+                },
+                "text": {
+                    "status": "generated",
+                    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><div class=\"hapiHeaderText\">John <b>SMITH </b></div><table class=\"hapiPropertyTable\"><tbody><tr><td>Identifier</td><td>Driver's license number</td></tr><tr><td>Address</td><td><span>MD </span></td></tr></tbody></table></div>"
+                },
+                "identifier": [
+                    {
+                        "use": "usual",
+                        "type": {
+                            "coding": [
+                                {
+                                    "system": "https:test",
+                                    "code": "DL"
+                                }
+                            ],
+                            "text": "Driver's license number"
+                        },
+                        "system": "https://testing.uri",
+                        "value": "Driver's license number"
+                    }
+                ],
+                "active": true,
+                "name": [
+                    {
+                        "use": "official",
+                        "text": "John Smith",
+                        "family": "Smith",
+                        "given": [
+                            "John"
+                        ]
+                    }
+                ],
+                "telecom": [
+                    {
+                        "system": "phone",
+                        "value": "249-098-7656",
+                        "use": "home"
+                    }
+                ],
+                "gender": "male",
+                "deceasedBoolean": true,
+                "address": [
+                    {
+                        "use": "home",
+                        "type": "physical",
+                        "text": "1234 snowbird Terrace",
+                        "state": "MD",
+                        "postalCode": "12345"
+                    }
+                ],
+                "maritalStatus": {
+                    "coding": [
+                        {
+                            "system": "http://terminology.hl7.org/CodeSystem/v3-MaritalStatus",
+                            "code": "D",
+                            "display": "Divorced"
+                        }
+                    ]
+                }
+            },
+            "search": {
+                "mode": "match"
+            }
+        },
+        {
+            "fullUrl": "https://hapi.fhir.org/baseR4/Patient/137215167",
+            "resource": {
+                "resourceType": "Patient",
+                "id": "137215167",
+                "meta": {
+                    "versionId": "13",
+                    "lastUpdated": "2026-07-31T02:48:30.065-04:00",
+                    "source": "#02TvwIAG8FGYzdUa"
+                },
+                "text": {
+                    "status": "generated",
+                    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><div class=\"hapiHeaderText\">John <b>SMITH </b></div><table class=\"hapiPropertyTable\"><tbody><tr><td>Identifier</td><td>125412365854</td></tr><tr><td>Address</td><td><span>MD </span></td></tr></tbody></table></div>"
+                },
+                "identifier": [
+                    {
+                        "use": "usual",
+                        "type": {
+                            "coding": [
+                                {
+                                    "system": "https:test",
+                                    "code": "DL"
+                                }
+                            ],
+                            "text": "Driver's license number"
+                        },
+                        "system": "https://testing.uri",
+                        "value": "125412365854"
+                    }
+                ],
+                "active": true,
+                "name": [
+                    {
+                        "use": "official",
+                        "text": "John Smith",
+                        "family": "Smith",
+                        "given": [
+                            "John"
+                        ]
+                    }
+                ],
+                "telecom": [
+                    {
+                        "system": "phone",
+                        "value": "249-098-7658",
+                        "use": "home"
+                    }
+                ],
+                "gender": "male",
+                "deceasedBoolean": true,
+                "address": [
+                    {
+                        "use": "home",
+                        "type": "physical",
+                        "text": "1234 snowbird Terrace",
+                        "state": "MD",
+                        "postalCode": "12345"
+                    }
+                ],
+                "maritalStatus": {
+                    "coding": [
+                        {
+                            "system": "http://terminology.hl7.org/CodeSystem/v3-MaritalStatus",
+                            "code": "D",
+                            "display": "Divorced"
+                        }
+                    ]
+                }
+            },
+            "search": {
+                "mode": "match"
+            }
+        },
+        {
+            "fullUrl": "https://hapi.fhir.org/baseR4/Patient/137215197",
+            "resource": {
+                "resourceType": "Patient",
+                "id": "137215197",
+                "meta": {
+                    "versionId": "14",
+                    "lastUpdated": "2026-07-31T02:48:30.289-04:00",
+                    "source": "#wdzL4xrmxa6lUAbL"
+                },
+                "text": {
+                    "status": "generated",
+                    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><div class=\"hapiHeaderText\">Francine <b>SMITH </b></div><table class=\"hapiPropertyTable\"><tbody><tr><td>Identifier</td><td>Driver's license number</td></tr><tr><td>Address</td><td><span>MD </span></td></tr></tbody></table></div>"
+                },
+                "identifier": [
+                    {
+                        "use": "usual",
+                        "type": {
+                            "coding": [
+                                {
+                                    "system": "https:test",
+                                    "code": "DL"
+                                }
+                            ],
+                            "text": "Driver's license number"
+                        },
+                        "system": "https://testing.uri",
+                        "value": "Driver's license number"
+                    }
+                ],
+                "active": true,
+                "name": [
+                    {
+                        "use": "official",
+                        "text": "Francine Smith",
+                        "family": "Smith",
+                        "given": [
+                            "Francine"
+                        ]
+                    }
+                ],
+                "telecom": [
+                    {
+                        "system": "phone",
+                        "value": "249-098-2278",
+                        "use": "home"
+                    }
+                ],
+                "gender": "female",
+                "address": [
+                    {
+                        "use": "home",
+                        "type": "physical",
+                        "text": "1234 snowbird Terrace",
+                        "state": "MD",
+                        "postalCode": "12345"
+                    }
+                ],
+                "maritalStatus": {
+                    "coding": [
+                        {
+                            "system": "http://terminology.hl7.org/CodeSystem/v3-MaritalStatus",
+                            "code": "D",
+                            "display": "Divorced"
+                        }
+                    ]
+                }
+            },
+            "search": {
+                "mode": "match"
+            }
+        },
+        {
+            "fullUrl": "https://hapi.fhir.org/baseR4/Patient/137221451",
+            "resource": {
+                "resourceType": "Patient",
+                "id": "137221451",
+                "meta": {
+                    "versionId": "9",
+                    "lastUpdated": "2026-07-31T02:48:54.812-04:00",
+                    "source": "#WSsy5OLEI93k2vDI"
+                },
+                "text": {
+                    "status": "generated",
+                    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><div class=\"hapiHeaderText\">John <b>SMITH </b></div><table class=\"hapiPropertyTable\"><tbody><tr><td>Identifier</td><td>MRN-JS-9a6286b4</td></tr><tr><td>Date of birth</td><td><span>15 July 1985</span></td></tr></tbody></table></div>"
+                },
+                "identifier": [
+                    {
+                        "use": "usual",
+                        "type": {
+                            "coding": [
+                                {
+                                    "system": "http://terminology.hl7.org/CodeSystem/v2-0203",
+                                    "code": "MR",
+                                    "display": "Medical Record Number"
+                                }
+                            ]
+                        },
+                        "system": "http://hospital.example.org/mrn",
+                        "value": "MRN-JS-9a6286b4"
+                    }
+                ],
+                "active": true,
+                "name": [
+                    {
+                        "family": "Smith",
+                        "given": [
+                            "John"
+                        ]
+                    }
+                ],
+                "gender": "male",
+                "birthDate": "1985-07-15"
+            },
+            "search": {
+                "mode": "match"
+            }
+        },
+        {
+            "fullUrl": "https://hapi.fhir.org/baseR4/Patient/137221621",
+            "resource": {
+                "resourceType": "Patient",
+                "id": "137221621",
+                "meta": {
+                    "versionId": "9",
+                    "lastUpdated": "2026-07-31T02:48:56.956-04:00",
+                    "source": "#ouoVQHzMh96NQyi7"
+                },
+                "text": {
+                    "status": "generated",
+                    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><div class=\"hapiHeaderText\">John <b>SMITH </b></div><table class=\"hapiPropertyTable\"><tbody><tr><td>Identifier</td><td>12345678</td></tr><tr><td>Date of birth</td><td><span>18 November 1982</span></td></tr></tbody></table></div>"
+                },
+                "identifier": [
+                    {
+                        "system": "http://medoc-web.com/fhir/patient-id",
+                        "value": "12345678"
+                    }
+                ],
+                "active": false,
+                "name": [
+                    {
+                        "family": "Smith",
+                        "given": [
+                            "John"
+                        ]
+                    }
+                ],
+                "gender": "male",
+                "birthDate": "1982-11-18"
+            },
+            "search": {
+                "mode": "match"
+            }
+        },
+        {
+            "fullUrl": "https://hapi.fhir.org/baseR4/Patient/137222569",
+            "resource": {
+                "resourceType": "Patient",
+                "id": "137222569",
+                "meta": {
+                    "versionId": "9",
+                    "lastUpdated": "2026-07-31T02:49:04.652-04:00",
+                    "source": "#kZ2TrxWcL1vZjIhz"
+                },
+                "text": {
+                    "status": "generated",
+                    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><div class=\"hapiHeaderText\">John <b>SMITH </b></div><table class=\"hapiPropertyTable\"><tbody><tr><td>Identifier</td><td>MEDOC-D9B8DDD5</td></tr><tr><td>Date of birth</td><td><span>18 November 1982</span></td></tr></tbody></table></div>"
+                },
+                "identifier": [
+                    {
+                        "system": "http://medoc-web.com/fhir/patient-id",
+                        "value": "MEDOC-D9B8DDD5"
+                    }
+                ],
+                "active": false,
+                "name": [
+                    {
+                        "family": "Smith",
+                        "given": [
+                            "John"
+                        ]
+                    }
+                ],
+                "gender": "male",
+                "birthDate": "1982-11-18"
+            },
+            "search": {
+                "mode": "match"
+            }
+        },
+        {
+            "fullUrl": "https://hapi.fhir.org/baseR4/Patient/137222570",
+            "resource": {
+                "resourceType": "Patient",
+                "id": "137222570",
+                "meta": {
+                    "versionId": "9",
+                    "lastUpdated": "2026-07-31T02:49:04.884-04:00",
+                    "source": "#h4A6GmrU9rPibibv"
+                },
+                "text": {
+                    "status": "generated",
+                    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><div class=\"hapiHeaderText\">John <b>SMITH </b></div><table class=\"hapiPropertyTable\"><tbody><tr><td>Identifier</td><td>MEDOC-181C42F6</td></tr><tr><td>Date of birth</td><td><span>18 November 1982</span></td></tr></tbody></table></div>"
+                },
+                "identifier": [
+                    {
+                        "system": "http://medoc-web.com/fhir/patient-id",
+                        "value": "MEDOC-181C42F6"
+                    }
+                ],
+                "active": false,
+                "name": [
+                    {
+                        "family": "Smith",
+                        "given": [
+                            "John"
+                        ]
+                    }
+                ],
+                "gender": "male",
+                "birthDate": "1982-11-18"
+            },
+            "search": {
+                "mode": "match"
+            }
+        },
+        {
+            "fullUrl": "https://hapi.fhir.org/baseR4/Patient/137222578",
+            "resource": {
+                "resourceType": "Patient",
+                "id": "137222578",
+                "meta": {
+                    "versionId": "9",
+                    "lastUpdated": "2026-07-31T02:49:05.571-04:00",
+                    "source": "#v0Uq9dMHF87Ikk72"
+                },
+                "text": {
+                    "status": "generated",
+                    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><div class=\"hapiHeaderText\">John <b>SMITH </b></div><table class=\"hapiPropertyTable\"><tbody><tr><td>Identifier</td><td>MEDOC-07D67FBC</td></tr><tr><td>Date of birth</td><td><span>18 November 1982</span></td></tr></tbody></table></div>"
+                },
+                "identifier": [
+                    {
+                        "system": "http://medoc-web.com/fhir/patient-id",
+                        "value": "MEDOC-07D67FBC"
+                    }
+                ],
+                "active": false,
+                "name": [
+                    {
+                        "family": "Smith",
+                        "given": [
+                            "John"
+                        ]
+                    }
+                ],
+                "gender": "male",
+                "birthDate": "1982-11-18"
+            },
+            "search": {
+                "mode": "match"
+            }
+        },
+        {
+            "fullUrl": "https://hapi.fhir.org/baseR4/Patient/137227440",
+            "resource": {
+                "resourceType": "Patient",
+                "id": "137227440",
+                "meta": {
+                    "versionId": "8",
+                    "lastUpdated": "2026-07-31T02:49:41.363-04:00",
+                    "source": "#zn4JqGzaIKtODsR4"
+                },
+                "text": {
+                    "status": "generated",
+                    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><div class=\"hapiHeaderText\">John <b>SMITH </b></div><table class=\"hapiPropertyTable\"><tbody><tr><td>Identifier</td><td>123456789</td></tr><tr><td>Address</td><td><span>MD </span></td></tr></tbody></table></div>"
+                },
+                "identifier": [
+                    {
+                        "use": "usual",
+                        "type": {
+                            "coding": [
+                                {
+                                    "system": "https:test",
+                                    "code": "DL"
+                                }
+                            ],
+                            "text": "Driver's license number"
+                        },
+                        "system": "https://testing.uri",
+                        "value": "123456789"
+                    }
+                ],
+                "active": false,
+                "name": [
+                    {
+                        "use": "official",
+                        "text": "John Smith",
+                        "family": "Smith",
+                        "given": [
+                            "John"
+                        ]
+                    }
+                ],
+                "telecom": [
+                    {
+                        "system": "phone",
+                        "value": "249-098-7656",
+                        "use": "home"
+                    }
+                ],
+                "gender": "male",
+                "address": [
+                    {
+                        "use": "home",
+                        "type": "physical",
+                        "text": "1234 snowbird Terrace",
+                        "state": "MD",
+                        "postalCode": "12345"
+                    }
+                ],
+                "maritalStatus": {
+                    "coding": [
+                        {
+                            "system": "http://terminology.hl7.org/CodeSystem/v3-MaritalStatus",
+                            "code": "D",
+                            "display": "Divorced"
+                        }
+                    ]
+                }
+            },
+            "search": {
+                "mode": "match"
+            }
+        },
+        {
+            "fullUrl": "https://hapi.fhir.org/baseR4/Patient/137227499",
+            "resource": {
+                "resourceType": "Patient",
+                "id": "137227499",
+                "meta": {
+                    "versionId": "8",
+                    "lastUpdated": "2026-07-31T02:49:46.155-04:00",
+                    "source": "#0xn0g1gjj5AamoQH"
+                },
+                "text": {
+                    "status": "generated",
+                    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><div class=\"hapiHeaderText\">John <b>SMITH </b></div><table class=\"hapiPropertyTable\"><tbody><tr><td>Identifier</td><td>125412365854</td></tr><tr><td>Address</td><td><span>MD </span></td></tr></tbody></table></div>"
+                },
+                "identifier": [
+                    {
+                        "use": "usual",
+                        "type": {
+                            "coding": [
+                                {
+                                    "system": "https:test",
+                                    "code": "DL"
+                                }
+                            ],
+                            "text": "Driver's license number"
+                        },
+                        "system": "https://testing.uri",
+                        "value": "125412365854"
+                    }
+                ],
+                "active": false,
+                "name": [
+                    {
+                        "use": "official",
+                        "text": "John Smith",
+                        "family": "Smith",
+                        "given": [
+                            "John"
+                        ]
+                    }
+                ],
+                "telecom": [
+                    {
+                        "system": "phone",
+                        "value": "249-098-7658",
+                        "use": "home"
+                    }
+                ],
+                "gender": "male",
+                "deceasedBoolean": true,
+                "address": [
+                    {
+                        "use": "home",
+                        "type": "physical",
+                        "text": "1234 snowbird Terrace",
+                        "state": "MD",
+                        "postalCode": "12345"
+                    }
+                ],
+                "maritalStatus": {
+                    "coding": [
+                        {
+                            "system": "http://terminology.hl7.org/CodeSystem/v3-MaritalStatus",
+                            "code": "D",
+                            "display": "Divorced"
+                        }
+                    ]
+                },
+                "generalPractitioner": [
+                    {
+                        "identifier": {
+                            "system": "urn:oid:2.16.528.1.1007.3.1",
+                            "value": "730291637"
+                        }
+                    }
+                ]
+            },
+            "search": {
+                "mode": "match"
+            }
+        },
+        {
+            "fullUrl": "https://hapi.fhir.org/baseR4/Patient/137227503",
+            "resource": {
+                "resourceType": "Patient",
+                "id": "137227503",
+                "meta": {
+                    "versionId": "8",
+                    "lastUpdated": "2026-07-31T02:49:46.384-04:00",
+                    "source": "#4FNd1VyMvNi8DjJa"
+                },
+                "text": {
+                    "status": "generated",
+                    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><div class=\"hapiHeaderText\">John <b>SMITH </b></div><table class=\"hapiPropertyTable\"><tbody><tr><td>Identifier</td><td>123456789</td></tr><tr><td>Address</td><td><span>MD </span></td></tr></tbody></table></div>"
+                },
+                "identifier": [
+                    {
+                        "use": "usual",
+                        "type": {
+                            "coding": [
+                                {
+                                    "system": "https:test",
+                                    "code": "DL"
+                                }
+                            ],
+                            "text": "Driver's license number"
+                        },
+                        "system": "https://testing.uri",
+                        "value": "123456789"
+                    }
+                ],
+                "active": false,
+                "name": [
+                    {
+                        "use": "official",
+                        "text": "John Smith",
+                        "family": "Smith",
+                        "given": [
+                            "John"
+                        ]
+                    }
+                ],
+                "telecom": [
+                    {
+                        "system": "phone",
+                        "value": "249-098-2345",
+                        "use": "home"
+                    }
+                ],
+                "gender": "male",
+                "deceasedBoolean": true,
+                "address": [
+                    {
+                        "use": "home",
+                        "type": "physical",
+                        "text": "1234 snowbird Terrace",
+                        "state": "MD",
+                        "postalCode": "12345"
+                    }
+                ],
+                "maritalStatus": {
+                    "coding": [
+                        {
+                            "system": "http://terminology.hl7.org/CodeSystem/v3-MaritalStatus",
+                            "code": "D",
+                            "display": "Divorced"
+                        }
+                    ]
+                }
+            },
+            "search": {
+                "mode": "match"
+            }
+        },
+        {
+            "fullUrl": "https://hapi.fhir.org/baseR4/Patient/137227743",
+            "resource": {
+                "resourceType": "Patient",
+                "id": "137227743",
+                "meta": {
+                    "versionId": "8",
+                    "lastUpdated": "2026-07-31T02:49:46.619-04:00",
+                    "source": "#iaiaCb9CKeCZILpF"
+                },
+                "text": {
+                    "status": "generated",
+                    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><div class=\"hapiHeaderText\">John <b>SMITH </b></div><table class=\"hapiPropertyTable\"><tbody><tr><td>Identifier</td><td>123456789</td></tr><tr><td>Address</td><td><span>MD </span></td></tr></tbody></table></div>"
+                },
+                "identifier": [
+                    {
+                        "use": "usual",
+                        "type": {
+                            "coding": [
+                                {
+                                    "system": "https:test",
+                                    "code": "DL"
+                                }
+                            ],
+                            "text": "Driver's license number"
+                        },
+                        "system": "https://testing.uri",
+                        "value": "123456789"
+                    }
+                ],
+                "active": false,
+                "name": [
+                    {
+                        "use": "official",
+                        "text": "John Smith",
+                        "family": "Smith",
+                        "given": [
+                            "John"
+                        ]
+                    }
+                ],
+                "telecom": [
+                    {
+                        "system": "phone",
+                        "value": "249-098-2345",
+                        "use": "home"
+                    }
+                ],
+                "gender": "male",
+                "deceasedBoolean": true,
+                "address": [
+                    {
+                        "use": "home",
+                        "type": "physical",
+                        "text": "1234 snowbird Terrace",
+                        "state": "MD",
+                        "postalCode": "12345"
+                    }
+                ],
+                "maritalStatus": {
+                    "coding": [
+                        {
+                            "system": "http://terminology.hl7.org/CodeSystem/v3-MaritalStatus",
+                            "code": "D",
+                            "display": "Divorced"
+                        }
+                    ]
+                },
+                "generalPractitioner": [
+                    {
+                        "reference": "Practitioner/137227504",
+                        "identifier": {
+                            "use": "official",
+                            "system": "uri",
+                            "value": "768-098-78abcd"
+                        },
+                        "display": "Patient's nominated primary care provider"
+                    }
+                ]
+            },
+            "search": {
+                "mode": "match"
+            }
+        },
+        {
+            "fullUrl": "https://hapi.fhir.org/baseR4/Patient/137228044",
+            "resource": {
+                "resourceType": "Patient",
+                "id": "137228044",
+                "meta": {
+                    "versionId": "8",
+                    "lastUpdated": "2026-07-31T02:49:50.892-04:00",
+                    "source": "#tZClGr6wGsWrIXcO"
+                },
+                "text": {
+                    "status": "generated",
+                    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><div class=\"hapiHeaderText\">John <b>SMITH </b></div><table class=\"hapiPropertyTable\"><tbody><tr><td>Identifier</td><td>125412365854</td></tr><tr><td>Address</td><td><span>MD </span></td></tr><tr><td>Date of birth</td><td><span>04 March 2021</span></td></tr></tbody></table></div>"
+                },
+                "identifier": [
+                    {
+                        "use": "usual",
+                        "type": {
+                            "coding": [
+                                {
+                                    "system": "https:test",
+                                    "code": "DL"
+                                }
+                            ],
+                            "text": "Driver's license number"
+                        },
+                        "system": "https://testing.uri",
+                        "value": "125412365854"
+                    }
+                ],
+                "active": false,
+                "name": [
+                    {
+                        "use": "official",
+                        "text": "John Smith",
+                        "family": "Smith",
+                        "given": [
+                            "John"
+                        ]
+                    }
+                ],
+                "telecom": [
+                    {
+                        "system": "phone",
+                        "value": "249-098-7658",
+                        "use": "home"
+                    }
+                ],
+                "gender": "male",
+                "birthDate": "2021-03-04",
+                "deceasedBoolean": true,
+                "address": [
+                    {
+                        "use": "home",
+                        "type": "physical",
+                        "text": "1234 snowbird Terrace",
+                        "state": "MD",
+                        "postalCode": "12345"
+                    }
+                ],
+                "maritalStatus": {
+                    "coding": [
+                        {
+                            "system": "http://terminology.hl7.org/CodeSystem/v3-MaritalStatus",
+                            "code": "D",
+                            "display": "Divorced"
+                        }
+                    ]
+                }
+            },
+            "search": {
+                "mode": "match"
+            }
+        },
+        {
+            "fullUrl": "https://hapi.fhir.org/baseR4/Patient/137228061",
+            "resource": {
+                "resourceType": "Patient",
+                "id": "137228061",
+                "meta": {
+                    "versionId": "8",
+                    "lastUpdated": "2026-07-31T02:49:52.100-04:00",
+                    "source": "#YsHlAUmCpm5Mflwz"
+                },
+                "text": {
+                    "status": "generated",
+                    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><div class=\"hapiHeaderText\">John <b>SMITH </b></div><table class=\"hapiPropertyTable\"><tbody><tr><td>Identifier</td><td>123</td></tr><tr><td>Address</td><td><span>MD </span></td></tr></tbody></table></div>"
+                },
+                "identifier": [
+                    {
+                        "use": "usual",
+                        "type": {
+                            "coding": [
+                                {
+                                    "system": "https:test",
+                                    "code": "DL"
+                                }
+                            ],
+                            "text": "Driver's license number"
+                        },
+                        "system": "https://testing.uri",
+                        "value": "123"
+                    }
+                ],
+                "active": false,
+                "name": [
+                    {
+                        "use": "official",
+                        "text": "John Smith",
+                        "family": "Smith",
+                        "given": [
+                            "John"
+                        ]
+                    }
+                ],
+                "telecom": [
+                    {
+                        "system": "phone",
+                        "value": "249-098-2345",
+                        "use": "home"
+                    }
+                ],
+                "gender": "male",
+                "deceasedBoolean": true,
+                "address": [
+                    {
+                        "use": "home",
+                        "type": "physical",
+                        "text": "1234 snowbird Terrace",
+                        "state": "MD",
+                        "postalCode": "12345"
+                    }
+                ],
+                "maritalStatus": {
+                    "coding": [
+                        {
+                            "system": "http://terminology.hl7.org/CodeSystem/v3-MaritalStatus",
+                            "code": "D",
+                            "display": "Divorced"
+                        }
+                    ]
+                },
+                "generalPractitioner": [
+                    {
+                        "reference": "Practitioner/137227504",
+                        "identifier": {
+                            "use": "official",
+                            "system": "uri",
+                            "value": "768-098-78abcd"
+                        },
+                        "display": "Patient's nominated primary care provider"
+                    }
+                ]
+            },
+            "search": {
+                "mode": "match"
+            }
+        },
+        {
+            "fullUrl": "https://hapi.fhir.org/baseR4/Patient/137229933",
+            "resource": {
+                "resourceType": "Patient",
+                "id": "137229933",
+                "meta": {
+                    "versionId": "9",
+                    "lastUpdated": "2026-07-31T02:50:02.248-04:00",
+                    "source": "#OZezEmcP2s8pRkBX"
+                },
+                "text": {
+                    "status": "generated",
+                    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><div class=\"hapiHeaderText\">John <b>SMITH </b></div><table class=\"hapiPropertyTable\"><tbody><tr><td>Identifier</td><td>74512563251</td></tr><tr><td>Address</td><td><span>MD </span></td></tr><tr><td>Date of birth</td><td><span>04 March 2021</span></td></tr></tbody></table></div>"
+                },
+                "identifier": [
+                    {
+                        "use": "usual",
+                        "type": {
+                            "coding": [
+                                {
+                                    "system": "https:test",
+                                    "code": "DL"
+                                }
+                            ],
+                            "text": "Driver's license number"
+                        },
+                        "system": "https://testing.uri",
+                        "value": "74512563251"
+                    }
+                ],
+                "active": false,
+                "name": [
+                    {
+                        "use": "official",
+                        "text": "John Smith",
+                        "family": "Smith",
+                        "given": [
+                            "John"
+                        ]
+                    }
+                ],
+                "telecom": [
+                    {
+                        "system": "phone",
+                        "value": "249-098-7658",
+                        "use": "home"
+                    }
+                ],
+                "gender": "male",
+                "birthDate": "2021-03-04",
+                "deceasedBoolean": true,
+                "address": [
+                    {
+                        "use": "home",
+                        "type": "physical",
+                        "text": "1234 snowbird Terrace",
+                        "state": "MD",
+                        "postalCode": "84512"
+                    }
+                ],
+                "maritalStatus": {
+                    "coding": [
+                        {
+                            "system": "http://terminology.hl7.org/CodeSystem/v3-MaritalStatus",
+                            "code": "D",
+                            "display": "Divorced"
+                        }
+                    ]
+                }
+            },
+            "search": {
+                "mode": "match"
+            }
+        },
+        {
+            "fullUrl": "https://hapi.fhir.org/baseR4/Patient/137229935",
+            "resource": {
+                "resourceType": "Patient",
+                "id": "137229935",
+                "meta": {
+                    "versionId": "9",
+                    "lastUpdated": "2026-07-31T02:50:02.528-04:00",
+                    "source": "#Fkku491bWJthtjEe"
+                },
+                "text": {
+                    "status": "generated",
+                    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><div class=\"hapiHeaderText\">John <b>SMITH </b></div><table class=\"hapiPropertyTable\"><tbody><tr><td>Identifier</td><td>998899</td></tr><tr><td>Address</td><td><span>MD </span></td></tr></tbody></table></div>"
+                },
+                "identifier": [
+                    {
+                        "use": "usual",
+                        "type": {
+                            "coding": [
+                                {
+                                    "system": "https:test",
+                                    "code": "DL"
+                                }
+                            ],
+                            "text": "Driver's license number"
+                        },
+                        "system": "https://testing.uri",
+                        "value": "998899"
+                    }
+                ],
+                "active": false,
+                "name": [
+                    {
+                        "use": "official",
+                        "text": "John Smith",
+                        "family": "Smith",
+                        "given": [
+                            "John"
+                        ]
+                    }
+                ],
+                "telecom": [
+                    {
+                        "system": "phone",
+                        "value": "249-098-2345",
+                        "use": "home"
+                    }
+                ],
+                "gender": "male",
+                "deceasedBoolean": false,
+                "address": [
+                    {
+                        "use": "home",
+                        "type": "physical",
+                        "text": "1234 snowbird Terrace",
+                        "state": "MD",
+                        "postalCode": "12345"
+                    }
+                ],
+                "maritalStatus": {
+                    "coding": [
+                        {
+                            "system": "http://terminology.hl7.org/CodeSystem/v3-MaritalStatus",
+                            "code": "D",
+                            "display": "Divorced"
+                        }
+                    ]
+                },
+                "generalPractitioner": [
+                    {
+                        "reference": "Practitioner/137227504",
+                        "identifier": {
+                            "use": "official",
+                            "system": "uri",
+                            "value": "768-098-78abcd"
+                        },
+                        "display": "Patient's nominated primary care provider"
+                    }
+                ]
+            },
+            "search": {
+                "mode": "match"
+            }
+        }
+    ]
+}
