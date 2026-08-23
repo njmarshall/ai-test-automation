@@ -67,4 +67,10 @@
         </classes>
     </test>
 
+    <!-- PetStore UI Tests — Playwright -->
+    <test name="PetStore UI Tests">
+        <classes>
+            <class name="com.aitesting.petstore.ui.PetStoreUITests"/>
+        </classes>
+    </test>
 </suite>
