@@ -1,0 +1,51 @@
+=== POST /Patient (senior) ===
+Status: 201
+Time: 384ms
+Content-Type: application/fhir+json;charset=utf-8
+
+Body:
+{
+    "resourceType": "Patient",
+    "id": "137578214",
+    "meta": {
+        "versionId": "1",
+        "lastUpdated": "2026-08-23T01:26:31.692-04:00",
+        "source": "#sFTf5YcBZbwJwGm5"
+    },
+    "text": {
+        "status": "generated",
+        "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><div class=\"hapiHeaderText\">Nicholle <b>BERGE </b></div><table class=\"hapiPropertyTable\"><tbody><tr><td>Identifier</td><td>TEST-00221560</td></tr><tr><td>Address</td><td><span>Valdaport </span><span>FL </span><span>US </span></td></tr><tr><td>Date of birth</td><td><span>23 August 1954</span></td></tr></tbody></table></div>"
+    },
+    "identifier": [
+        {
+            "system": "http://hospital.example.org/mrn",
+            "value": "TEST-00221560"
+        }
+    ],
+    "name": [
+        {
+            "use": "official",
+            "family": "Berge",
+            "given": [
+                "Nicholle"
+            ]
+        }
+    ],
+    "telecom": [
+        {
+            "system": "phone",
+            "value": "(541) 551-6848 x489",
+            "use": "home"
+        }
+    ],
+    "gender": "female",
+    "birthDate": "1954-08-23",
+    "address": [
+        {
+            "city": "Valdaport",
+            "state": "FL",
+            "postalCode": "64824-5033",
+            "country": "US"
+        }
+    ]
+}

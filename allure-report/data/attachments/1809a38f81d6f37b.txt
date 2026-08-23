@@ -1,0 +1,51 @@
+=== PUT /Patient/137578212 ===
+Status: 200
+Time: 376ms
+Content-Type: application/fhir+json;charset=utf-8
+
+Body:
+{
+    "resourceType": "Patient",
+    "id": "137578212",
+    "meta": {
+        "versionId": "2",
+        "lastUpdated": "2026-08-23T01:26:33.956-04:00",
+        "source": "#1hTcad7Z64jNR071"
+    },
+    "text": {
+        "status": "generated",
+        "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><div class=\"hapiHeaderText\">Blanca <b>HILLL </b></div><table class=\"hapiPropertyTable\"><tbody><tr><td>Identifier</td><td>TEST-00796597</td></tr><tr><td>Address</td><td><span>Brandonview </span><span>IA </span><span>US </span></td></tr><tr><td>Date of birth</td><td><span>23 August 1991</span></td></tr></tbody></table></div>"
+    },
+    "identifier": [
+        {
+            "system": "http://hospital.example.org/mrn",
+            "value": "TEST-00796597"
+        }
+    ],
+    "name": [
+        {
+            "use": "official",
+            "family": "Hilll",
+            "given": [
+                "Blanca"
+            ]
+        }
+    ],
+    "telecom": [
+        {
+            "system": "phone",
+            "value": "203.971.6013 x81973",
+            "use": "home"
+        }
+    ],
+    "gender": "female",
+    "birthDate": "1991-08-23",
+    "address": [
+        {
+            "city": "Brandonview",
+            "state": "IA",
+            "postalCode": "19385",
+            "country": "US"
+        }
+    ]
+}

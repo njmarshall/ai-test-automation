@@ -1,0 +1,51 @@
+=== POST /Patient (pediatric) ===
+Status: 201
+Time: 365ms
+Content-Type: application/fhir+json;charset=utf-8
+
+Body:
+{
+    "resourceType": "Patient",
+    "id": "137578213",
+    "meta": {
+        "versionId": "1",
+        "lastUpdated": "2026-08-23T01:26:31.293-04:00",
+        "source": "#KBk98MJoh9V0CPk1"
+    },
+    "text": {
+        "status": "generated",
+        "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><div class=\"hapiHeaderText\">Jill <b>SATTERFIELD </b></div><table class=\"hapiPropertyTable\"><tbody><tr><td>Identifier</td><td>TEST-00524166</td></tr><tr><td>Address</td><td><span>Trudihaven </span><span>WV </span><span>US </span></td></tr><tr><td>Date of birth</td><td><span>23 August 2018</span></td></tr></tbody></table></div>"
+    },
+    "identifier": [
+        {
+            "system": "http://hospital.example.org/mrn",
+            "value": "TEST-00524166"
+        }
+    ],
+    "name": [
+        {
+            "use": "official",
+            "family": "Satterfield",
+            "given": [
+                "Jill"
+            ]
+        }
+    ],
+    "telecom": [
+        {
+            "system": "phone",
+            "value": "(232) 697-4041 x772",
+            "use": "home"
+        }
+    ],
+    "gender": "male",
+    "birthDate": "2018-08-23",
+    "address": [
+        {
+            "city": "Trudihaven",
+            "state": "WV",
+            "postalCode": "91276",
+            "country": "US"
+        }
+    ]
+}

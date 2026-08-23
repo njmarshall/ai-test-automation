@@ -1,0 +1,42 @@
+=== POST /Patient (missing name) ===
+Status: 201
+Time: 349ms
+Content-Type: application/fhir+json;charset=utf-8
+
+Body:
+{
+    "resourceType": "Patient",
+    "id": "137578216",
+    "meta": {
+        "versionId": "1",
+        "lastUpdated": "2026-08-23T01:26:33.189-04:00",
+        "source": "#KZN6IJw7eN32cCEu"
+    },
+    "text": {
+        "status": "generated",
+        "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><div class=\"hapiHeaderText\"/><table class=\"hapiPropertyTable\"><tbody><tr><td>Identifier</td><td>TEST-00567364</td></tr><tr><td>Address</td><td><span>East Errolfurt </span><span>ND </span><span>US </span></td></tr><tr><td>Date of birth</td><td><span>23 August 1991</span></td></tr></tbody></table></div>"
+    },
+    "identifier": [
+        {
+            "system": "http://hospital.example.org/mrn",
+            "value": "TEST-00567364"
+        }
+    ],
+    "telecom": [
+        {
+            "system": "phone",
+            "value": "145.299.1913",
+            "use": "home"
+        }
+    ],
+    "gender": "female",
+    "birthDate": "1991-08-23",
+    "address": [
+        {
+            "city": "East Errolfurt",
+            "state": "ND",
+            "postalCode": "79592",
+            "country": "US"
+        }
+    ]
+}

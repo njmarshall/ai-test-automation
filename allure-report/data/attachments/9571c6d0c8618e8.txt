@@ -1,0 +1,19 @@
+=== GET /Claim/TEST-CLM-00000001 ===
+Status: 200
+Time: 6ms
+Content-Type: application/json
+
+Body:
+{
+    "resourceType": "Claim",
+    "id": "TEST-CLM-00000001",
+    "status": "active",
+    "use": "claim",
+    "patient": {
+        "reference": "Patient/TEST-12345678"
+    },
+    "total": {
+        "value": 150.00,
+        "currency": "USD"
+    }
+}

@@ -1,0 +1,1271 @@
+<div>Status code 200 </div>
+
+
+<h4>Body</h4>
+<div>
+    <pre class="preformated-text">
+{
+    &quot;resourceType&quot;: &quot;Bundle&quot;,
+    &quot;id&quot;: &quot;8e7995c0-c3f2-4e3b-bb86-cbc5a74beea8&quot;,
+    &quot;meta&quot;: {
+        &quot;lastUpdated&quot;: &quot;2026-08-23T01:26:32.793-04:00&quot;
+    },
+    &quot;type&quot;: &quot;searchset&quot;,
+    &quot;link&quot;: [
+        {
+            &quot;relation&quot;: &quot;self&quot;,
+            &quot;url&quot;: &quot;https://hapi.fhir.org/baseR4/Patient?family=Smith&quot;
+        },
+        {
+            &quot;relation&quot;: &quot;next&quot;,
+            &quot;url&quot;: &quot;https://hapi.fhir.org/baseR4?_getpages=8e7995c0-c3f2-4e3b-bb86-cbc5a74beea8&amp;_getpagesoffset=20&amp;_count=20&amp;_pretty=true&amp;_bundletype=searchset&quot;
+        }
+    ],
+    &quot;entry&quot;: [
+        {
+            &quot;fullUrl&quot;: &quot;https://hapi.fhir.org/baseR4/Patient/137208509&quot;,
+            &quot;resource&quot;: {
+                &quot;resourceType&quot;: &quot;Patient&quot;,
+                &quot;id&quot;: &quot;137208509&quot;,
+                &quot;meta&quot;: {
+                    &quot;versionId&quot;: &quot;11&quot;,
+                    &quot;lastUpdated&quot;: &quot;2026-08-18T10:45:05.817-04:00&quot;,
+                    &quot;source&quot;: &quot;#lqBmySHMOBvmtLSk&quot;
+                },
+                &quot;text&quot;: {
+                    &quot;status&quot;: &quot;generated&quot;,
+                    &quot;div&quot;: &quot;&lt;div xmlns=\&quot;http://www.w3.org/1999/xhtml\&quot;&gt;&lt;div class=\&quot;hapiHeaderText\&quot;&gt;Veronica Lab-Test \n            &lt;b&gt;SMITH &lt;/b&gt;&lt;/div&gt;&lt;table class=\&quot;hapiPropertyTable\&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td&gt;Identifier&lt;/td&gt;&lt;td&gt;91cb368a-45e9-4f90-b256-e1de87a2f03b&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Date of birth&lt;/td&gt;&lt;td&gt;&lt;span&gt;01 January 1990&lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/div&gt;&quot;
+                },
+                &quot;identifier&quot;: [
+                    {
+                        &quot;system&quot;: &quot;https://ncs.health/fhir/sid/ncs-patient-id&quot;,
+                        &quot;value&quot;: &quot;91cb368a-45e9-4f90-b256-e1de87a2f03b&quot;
+                    },
+                    {
+                        &quot;use&quot;: &quot;official&quot;,
+                        &quot;type&quot;: {
+                            &quot;coding&quot;: [
+                                {
+                                    &quot;system&quot;: &quot;http://terminology.hl7.org/CodeSystem/v2-0203&quot;,
+                                    &quot;code&quot;: &quot;MR&quot;,
+                                    &quot;display&quot;: &quot;Medical Record Number&quot;
+                                }
+                            ],
+                            &quot;text&quot;: &quot;MRN&quot;
+                        },
+                        &quot;system&quot;: &quot;http://hospital.example.org/mrn&quot;,
+                        &quot;value&quot;: &quot;MRN19979130&quot;
+                    }
+                ],
+                &quot;active&quot;: true,
+                &quot;name&quot;: [
+                    {
+                        &quot;family&quot;: &quot;Smith&quot;,
+                        &quot;given&quot;: [
+                            &quot;Veronica&quot;,
+                            &quot;Lab-Test&quot;
+                        ]
+                    },
+                    {
+                        &quot;family&quot;: &quot;Update-Test&quot;,
+                        &quot;given&quot;: [
+                            &quot;Firely&quot;
+                        ]
+                    }
+                ],
+                &quot;telecom&quot;: [
+                    {
+                        &quot;system&quot;: &quot;phone&quot;,
+                        &quot;value&quot;: &quot;555-0199&quot;,
+                        &quot;use&quot;: &quot;home&quot;
+                    }
+                ],
+                &quot;gender&quot;: &quot;male&quot;,
+                &quot;birthDate&quot;: &quot;1990-01-01&quot;
+            },
+            &quot;search&quot;: {
+                &quot;mode&quot;: &quot;match&quot;
+            }
+        },
+        {
+            &quot;fullUrl&quot;: &quot;https://hapi.fhir.org/baseR4/Patient/137208839&quot;,
+            &quot;resource&quot;: {
+                &quot;resourceType&quot;: &quot;Patient&quot;,
+                &quot;id&quot;: &quot;137208839&quot;,
+                &quot;meta&quot;: {
+                    &quot;versionId&quot;: &quot;10&quot;,
+                    &quot;lastUpdated&quot;: &quot;2026-08-02T00:10:29.027-04:00&quot;,
+                    &quot;source&quot;: &quot;#5nU2rnHza3K9Wff3&quot;,
+                    &quot;tag&quot;: [
+                        {
+                            &quot;system&quot;: &quot;urn:interopx:synthetic&quot;,
+                            &quot;code&quot;: &quot;DEMO&quot;,
+                            &quot;display&quot;: &quot;Synthetic Demo&quot;
+                        }
+                    ]
+                },
+                &quot;text&quot;: {
+                    &quot;status&quot;: &quot;generated&quot;,
+                    &quot;div&quot;: &quot;&lt;div xmlns=\&quot;http://www.w3.org/1999/xhtml\&quot;&gt;&lt;div class=\&quot;hapiHeaderText\&quot;&gt;Robert James &lt;b&gt;SMITH &lt;/b&gt;&lt;/div&gt;&lt;table class=\&quot;hapiPropertyTable\&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td&gt;Identifier&lt;/td&gt;&lt;td&gt;ILI-2026-00002&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Date of birth&lt;/td&gt;&lt;td&gt;&lt;span&gt;22 July 1970&lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/div&gt;&quot;
+                },
+                &quot;identifier&quot;: [
+                    {
+                        &quot;type&quot;: {
+                            &quot;coding&quot;: [
+                                {
+                                    &quot;code&quot;: &quot;MR&quot;,
+                                    &quot;display&quot;: &quot;Medical Record Number&quot;
+                                }
+                            ]
+                        },
+                        &quot;system&quot;: &quot;local/mrn&quot;,
+                        &quot;value&quot;: &quot;ILI-2026-00002&quot;
+                    },
+                    {
+                        &quot;use&quot;: &quot;usual&quot;,
+                        &quot;system&quot;: &quot;urn:oid:1.2.840.114350.1.1&quot;,
+                        &quot;value&quot;: &quot;MRN-2002&quot;
+                    }
+                ],
+                &quot;active&quot;: true,
+                &quot;name&quot;: [
+                    {
+                        &quot;use&quot;: &quot;official&quot;,
+                        &quot;family&quot;: &quot;Smith&quot;,
+                        &quot;given&quot;: [
+                            &quot;Robert&quot;,
+                            &quot;James&quot;
+                        ]
+                    }
+                ],
+                &quot;gender&quot;: &quot;male&quot;,
+                &quot;birthDate&quot;: &quot;1970-07-22&quot;
+            },
+            &quot;search&quot;: {
+                &quot;mode&quot;: &quot;match&quot;
+            }
+        },
+        {
+            &quot;fullUrl&quot;: &quot;https://hapi.fhir.org/baseR4/Patient/137208842&quot;,
+            &quot;resource&quot;: {
+                &quot;resourceType&quot;: &quot;Patient&quot;,
+                &quot;id&quot;: &quot;137208842&quot;,
+                &quot;meta&quot;: {
+                    &quot;versionId&quot;: &quot;9&quot;,
+                    &quot;lastUpdated&quot;: &quot;2026-07-31T02:48:04.895-04:00&quot;,
+                    &quot;source&quot;: &quot;#FRL5j4Gimfyb1aB4&quot;
+                },
+                &quot;text&quot;: {
+                    &quot;status&quot;: &quot;generated&quot;,
+                    &quot;div&quot;: &quot;&lt;div xmlns=\&quot;http://www.w3.org/1999/xhtml\&quot;&gt;&lt;div class=\&quot;hapiHeaderText\&quot;&gt;John &lt;b&gt;SMITH &lt;/b&gt;&lt;/div&gt;&lt;table class=\&quot;hapiPropertyTable\&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td&gt;Date of birth&lt;/td&gt;&lt;td&gt;&lt;span&gt;01 January 1990&lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/div&gt;&quot;
+                },
+                &quot;active&quot;: false,
+                &quot;name&quot;: [
+                    {
+                        &quot;family&quot;: &quot;Smith&quot;,
+                        &quot;given&quot;: [
+                            &quot;John&quot;
+                        ]
+                    }
+                ],
+                &quot;gender&quot;: &quot;male&quot;,
+                &quot;birthDate&quot;: &quot;1990-01-01&quot;
+            },
+            &quot;search&quot;: {
+                &quot;mode&quot;: &quot;match&quot;
+            }
+        },
+        {
+            &quot;fullUrl&quot;: &quot;https://hapi.fhir.org/baseR4/Patient/23e615fa-0068-46df-b064-10bb8a827e7f&quot;,
+            &quot;resource&quot;: {
+                &quot;resourceType&quot;: &quot;Patient&quot;,
+                &quot;id&quot;: &quot;23e615fa-0068-46df-b064-10bb8a827e7f&quot;,
+                &quot;meta&quot;: {
+                    &quot;versionId&quot;: &quot;8&quot;,
+                    &quot;lastUpdated&quot;: &quot;2026-07-31T02:53:47.507-04:00&quot;,
+                    &quot;source&quot;: &quot;#NHn8XkXsa1RxRNps&quot;
+                },
+                &quot;text&quot;: {
+                    &quot;status&quot;: &quot;generated&quot;,
+                    &quot;div&quot;: &quot;&lt;div xmlns=\&quot;http://www.w3.org/1999/xhtml\&quot;&gt;&lt;div class=\&quot;hapiHeaderText\&quot;&gt;Jane &lt;b&gt;SMITH &lt;/b&gt;&lt;/div&gt;&lt;table class=\&quot;hapiPropertyTable\&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td&gt;Address&lt;/td&gt;&lt;td&gt;&lt;span&gt;Los Angeles &lt;/span&gt;&lt;span&gt;USA &lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Date of birth&lt;/td&gt;&lt;td&gt;&lt;span&gt;15 May 1985&lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/div&gt;&quot;
+                },
+                &quot;active&quot;: false,
+                &quot;name&quot;: [
+                    {
+                        &quot;family&quot;: &quot;Smith&quot;,
+                        &quot;given&quot;: [
+                            &quot;Jane&quot;
+                        ]
+                    }
+                ],
+                &quot;telecom&quot;: [
+                    {
+                        &quot;system&quot;: &quot;phone&quot;,
+                        &quot;value&quot;: &quot;0987654321&quot;
+                    }
+                ],
+                &quot;gender&quot;: &quot;female&quot;,
+                &quot;birthDate&quot;: &quot;1985-05-15&quot;,
+                &quot;address&quot;: [
+                    {
+                        &quot;city&quot;: &quot;Los Angeles&quot;,
+                        &quot;country&quot;: &quot;USA&quot;
+                    }
+                ]
+            },
+            &quot;search&quot;: {
+                &quot;mode&quot;: &quot;match&quot;
+            }
+        },
+        {
+            &quot;fullUrl&quot;: &quot;https://hapi.fhir.org/baseR4/Patient/137215163&quot;,
+            &quot;resource&quot;: {
+                &quot;resourceType&quot;: &quot;Patient&quot;,
+                &quot;id&quot;: &quot;137215163&quot;,
+                &quot;meta&quot;: {
+                    &quot;versionId&quot;: &quot;9&quot;,
+                    &quot;lastUpdated&quot;: &quot;2026-07-31T02:48:29.850-04:00&quot;,
+                    &quot;source&quot;: &quot;#UfzqjY4W3PCKq0WY&quot;
+                },
+                &quot;text&quot;: {
+                    &quot;status&quot;: &quot;generated&quot;,
+                    &quot;div&quot;: &quot;&lt;div xmlns=\&quot;http://www.w3.org/1999/xhtml\&quot;&gt;&lt;div class=\&quot;hapiHeaderText\&quot;&gt;John &lt;b&gt;SMITH &lt;/b&gt;&lt;/div&gt;&lt;table class=\&quot;hapiPropertyTable\&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td&gt;Identifier&lt;/td&gt;&lt;td&gt;Driver&#39;s license number&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Address&lt;/td&gt;&lt;td&gt;&lt;span&gt;MD &lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/div&gt;&quot;
+                },
+                &quot;identifier&quot;: [
+                    {
+                        &quot;use&quot;: &quot;usual&quot;,
+                        &quot;type&quot;: {
+                            &quot;coding&quot;: [
+                                {
+                                    &quot;system&quot;: &quot;https:test&quot;,
+                                    &quot;code&quot;: &quot;DL&quot;
+                                }
+                            ],
+                            &quot;text&quot;: &quot;Driver&#39;s license number&quot;
+                        },
+                        &quot;system&quot;: &quot;https://testing.uri&quot;,
+                        &quot;value&quot;: &quot;Driver&#39;s license number&quot;
+                    }
+                ],
+                &quot;active&quot;: true,
+                &quot;name&quot;: [
+                    {
+                        &quot;use&quot;: &quot;official&quot;,
+                        &quot;text&quot;: &quot;John Smith&quot;,
+                        &quot;family&quot;: &quot;Smith&quot;,
+                        &quot;given&quot;: [
+                            &quot;John&quot;
+                        ]
+                    }
+                ],
+                &quot;telecom&quot;: [
+                    {
+                        &quot;system&quot;: &quot;phone&quot;,
+                        &quot;value&quot;: &quot;249-098-7656&quot;,
+                        &quot;use&quot;: &quot;home&quot;
+                    }
+                ],
+                &quot;gender&quot;: &quot;male&quot;,
+                &quot;deceasedBoolean&quot;: true,
+                &quot;address&quot;: [
+                    {
+                        &quot;use&quot;: &quot;home&quot;,
+                        &quot;type&quot;: &quot;physical&quot;,
+                        &quot;text&quot;: &quot;1234 snowbird Terrace&quot;,
+                        &quot;state&quot;: &quot;MD&quot;,
+                        &quot;postalCode&quot;: &quot;12345&quot;
+                    }
+                ],
+                &quot;maritalStatus&quot;: {
+                    &quot;coding&quot;: [
+                        {
+                            &quot;system&quot;: &quot;http://terminology.hl7.org/CodeSystem/v3-MaritalStatus&quot;,
+                            &quot;code&quot;: &quot;D&quot;,
+                            &quot;display&quot;: &quot;Divorced&quot;
+                        }
+                    ]
+                }
+            },
+            &quot;search&quot;: {
+                &quot;mode&quot;: &quot;match&quot;
+            }
+        },
+        {
+            &quot;fullUrl&quot;: &quot;https://hapi.fhir.org/baseR4/Patient/137215167&quot;,
+            &quot;resource&quot;: {
+                &quot;resourceType&quot;: &quot;Patient&quot;,
+                &quot;id&quot;: &quot;137215167&quot;,
+                &quot;meta&quot;: {
+                    &quot;versionId&quot;: &quot;13&quot;,
+                    &quot;lastUpdated&quot;: &quot;2026-07-31T02:48:30.065-04:00&quot;,
+                    &quot;source&quot;: &quot;#02TvwIAG8FGYzdUa&quot;
+                },
+                &quot;text&quot;: {
+                    &quot;status&quot;: &quot;generated&quot;,
+                    &quot;div&quot;: &quot;&lt;div xmlns=\&quot;http://www.w3.org/1999/xhtml\&quot;&gt;&lt;div class=\&quot;hapiHeaderText\&quot;&gt;John &lt;b&gt;SMITH &lt;/b&gt;&lt;/div&gt;&lt;table class=\&quot;hapiPropertyTable\&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td&gt;Identifier&lt;/td&gt;&lt;td&gt;125412365854&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Address&lt;/td&gt;&lt;td&gt;&lt;span&gt;MD &lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/div&gt;&quot;
+                },
+                &quot;identifier&quot;: [
+                    {
+                        &quot;use&quot;: &quot;usual&quot;,
+                        &quot;type&quot;: {
+                            &quot;coding&quot;: [
+                                {
+                                    &quot;system&quot;: &quot;https:test&quot;,
+                                    &quot;code&quot;: &quot;DL&quot;
+                                }
+                            ],
+                            &quot;text&quot;: &quot;Driver&#39;s license number&quot;
+                        },
+                        &quot;system&quot;: &quot;https://testing.uri&quot;,
+                        &quot;value&quot;: &quot;125412365854&quot;
+                    }
+                ],
+                &quot;active&quot;: true,
+                &quot;name&quot;: [
+                    {
+                        &quot;use&quot;: &quot;official&quot;,
+                        &quot;text&quot;: &quot;John Smith&quot;,
+                        &quot;family&quot;: &quot;Smith&quot;,
+                        &quot;given&quot;: [
+                            &quot;John&quot;
+                        ]
+                    }
+                ],
+                &quot;telecom&quot;: [
+                    {
+                        &quot;system&quot;: &quot;phone&quot;,
+                        &quot;value&quot;: &quot;249-098-7658&quot;,
+                        &quot;use&quot;: &quot;home&quot;
+                    }
+                ],
+                &quot;gender&quot;: &quot;male&quot;,
+                &quot;deceasedBoolean&quot;: true,
+                &quot;address&quot;: [
+                    {
+                        &quot;use&quot;: &quot;home&quot;,
+                        &quot;type&quot;: &quot;physical&quot;,
+                        &quot;text&quot;: &quot;1234 snowbird Terrace&quot;,
+                        &quot;state&quot;: &quot;MD&quot;,
+                        &quot;postalCode&quot;: &quot;12345&quot;
+                    }
+                ],
+                &quot;maritalStatus&quot;: {
+                    &quot;coding&quot;: [
+                        {
+                            &quot;system&quot;: &quot;http://terminology.hl7.org/CodeSystem/v3-MaritalStatus&quot;,
+                            &quot;code&quot;: &quot;D&quot;,
+                            &quot;display&quot;: &quot;Divorced&quot;
+                        }
+                    ]
+                }
+            },
+            &quot;search&quot;: {
+                &quot;mode&quot;: &quot;match&quot;
+            }
+        },
+        {
+            &quot;fullUrl&quot;: &quot;https://hapi.fhir.org/baseR4/Patient/137215197&quot;,
+            &quot;resource&quot;: {
+                &quot;resourceType&quot;: &quot;Patient&quot;,
+                &quot;id&quot;: &quot;137215197&quot;,
+                &quot;meta&quot;: {
+                    &quot;versionId&quot;: &quot;14&quot;,
+                    &quot;lastUpdated&quot;: &quot;2026-07-31T02:48:30.289-04:00&quot;,
+                    &quot;source&quot;: &quot;#wdzL4xrmxa6lUAbL&quot;
+                },
+                &quot;text&quot;: {
+                    &quot;status&quot;: &quot;generated&quot;,
+                    &quot;div&quot;: &quot;&lt;div xmlns=\&quot;http://www.w3.org/1999/xhtml\&quot;&gt;&lt;div class=\&quot;hapiHeaderText\&quot;&gt;Francine &lt;b&gt;SMITH &lt;/b&gt;&lt;/div&gt;&lt;table class=\&quot;hapiPropertyTable\&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td&gt;Identifier&lt;/td&gt;&lt;td&gt;Driver&#39;s license number&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Address&lt;/td&gt;&lt;td&gt;&lt;span&gt;MD &lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/div&gt;&quot;
+                },
+                &quot;identifier&quot;: [
+                    {
+                        &quot;use&quot;: &quot;usual&quot;,
+                        &quot;type&quot;: {
+                            &quot;coding&quot;: [
+                                {
+                                    &quot;system&quot;: &quot;https:test&quot;,
+                                    &quot;code&quot;: &quot;DL&quot;
+                                }
+                            ],
+                            &quot;text&quot;: &quot;Driver&#39;s license number&quot;
+                        },
+                        &quot;system&quot;: &quot;https://testing.uri&quot;,
+                        &quot;value&quot;: &quot;Driver&#39;s license number&quot;
+                    }
+                ],
+                &quot;active&quot;: true,
+                &quot;name&quot;: [
+                    {
+                        &quot;use&quot;: &quot;official&quot;,
+                        &quot;text&quot;: &quot;Francine Smith&quot;,
+                        &quot;family&quot;: &quot;Smith&quot;,
+                        &quot;given&quot;: [
+                            &quot;Francine&quot;
+                        ]
+                    }
+                ],
+                &quot;telecom&quot;: [
+                    {
+                        &quot;system&quot;: &quot;phone&quot;,
+                        &quot;value&quot;: &quot;249-098-2278&quot;,
+                        &quot;use&quot;: &quot;home&quot;
+                    }
+                ],
+                &quot;gender&quot;: &quot;female&quot;,
+                &quot;address&quot;: [
+                    {
+                        &quot;use&quot;: &quot;home&quot;,
+                        &quot;type&quot;: &quot;physical&quot;,
+                        &quot;text&quot;: &quot;1234 snowbird Terrace&quot;,
+                        &quot;state&quot;: &quot;MD&quot;,
+                        &quot;postalCode&quot;: &quot;12345&quot;
+                    }
+                ],
+                &quot;maritalStatus&quot;: {
+                    &quot;coding&quot;: [
+                        {
+                            &quot;system&quot;: &quot;http://terminology.hl7.org/CodeSystem/v3-MaritalStatus&quot;,
+                            &quot;code&quot;: &quot;D&quot;,
+                            &quot;display&quot;: &quot;Divorced&quot;
+                        }
+                    ]
+                }
+            },
+            &quot;search&quot;: {
+                &quot;mode&quot;: &quot;match&quot;
+            }
+        },
+        {
+            &quot;fullUrl&quot;: &quot;https://hapi.fhir.org/baseR4/Patient/137221451&quot;,
+            &quot;resource&quot;: {
+                &quot;resourceType&quot;: &quot;Patient&quot;,
+                &quot;id&quot;: &quot;137221451&quot;,
+                &quot;meta&quot;: {
+                    &quot;versionId&quot;: &quot;9&quot;,
+                    &quot;lastUpdated&quot;: &quot;2026-07-31T02:48:54.812-04:00&quot;,
+                    &quot;source&quot;: &quot;#WSsy5OLEI93k2vDI&quot;
+                },
+                &quot;text&quot;: {
+                    &quot;status&quot;: &quot;generated&quot;,
+                    &quot;div&quot;: &quot;&lt;div xmlns=\&quot;http://www.w3.org/1999/xhtml\&quot;&gt;&lt;div class=\&quot;hapiHeaderText\&quot;&gt;John &lt;b&gt;SMITH &lt;/b&gt;&lt;/div&gt;&lt;table class=\&quot;hapiPropertyTable\&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td&gt;Identifier&lt;/td&gt;&lt;td&gt;MRN-JS-9a6286b4&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Date of birth&lt;/td&gt;&lt;td&gt;&lt;span&gt;15 July 1985&lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/div&gt;&quot;
+                },
+                &quot;identifier&quot;: [
+                    {
+                        &quot;use&quot;: &quot;usual&quot;,
+                        &quot;type&quot;: {
+                            &quot;coding&quot;: [
+                                {
+                                    &quot;system&quot;: &quot;http://terminology.hl7.org/CodeSystem/v2-0203&quot;,
+                                    &quot;code&quot;: &quot;MR&quot;,
+                                    &quot;display&quot;: &quot;Medical Record Number&quot;
+                                }
+                            ]
+                        },
+                        &quot;system&quot;: &quot;http://hospital.example.org/mrn&quot;,
+                        &quot;value&quot;: &quot;MRN-JS-9a6286b4&quot;
+                    }
+                ],
+                &quot;active&quot;: true,
+                &quot;name&quot;: [
+                    {
+                        &quot;family&quot;: &quot;Smith&quot;,
+                        &quot;given&quot;: [
+                            &quot;John&quot;
+                        ]
+                    }
+                ],
+                &quot;gender&quot;: &quot;male&quot;,
+                &quot;birthDate&quot;: &quot;1985-07-15&quot;
+            },
+            &quot;search&quot;: {
+                &quot;mode&quot;: &quot;match&quot;
+            }
+        },
+        {
+            &quot;fullUrl&quot;: &quot;https://hapi.fhir.org/baseR4/Patient/137221621&quot;,
+            &quot;resource&quot;: {
+                &quot;resourceType&quot;: &quot;Patient&quot;,
+                &quot;id&quot;: &quot;137221621&quot;,
+                &quot;meta&quot;: {
+                    &quot;versionId&quot;: &quot;9&quot;,
+                    &quot;lastUpdated&quot;: &quot;2026-07-31T02:48:56.956-04:00&quot;,
+                    &quot;source&quot;: &quot;#ouoVQHzMh96NQyi7&quot;
+                },
+                &quot;text&quot;: {
+                    &quot;status&quot;: &quot;generated&quot;,
+                    &quot;div&quot;: &quot;&lt;div xmlns=\&quot;http://www.w3.org/1999/xhtml\&quot;&gt;&lt;div class=\&quot;hapiHeaderText\&quot;&gt;John &lt;b&gt;SMITH &lt;/b&gt;&lt;/div&gt;&lt;table class=\&quot;hapiPropertyTable\&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td&gt;Identifier&lt;/td&gt;&lt;td&gt;12345678&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Date of birth&lt;/td&gt;&lt;td&gt;&lt;span&gt;18 November 1982&lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/div&gt;&quot;
+                },
+                &quot;identifier&quot;: [
+                    {
+                        &quot;system&quot;: &quot;http://medoc-web.com/fhir/patient-id&quot;,
+                        &quot;value&quot;: &quot;12345678&quot;
+                    }
+                ],
+                &quot;active&quot;: false,
+                &quot;name&quot;: [
+                    {
+                        &quot;family&quot;: &quot;Smith&quot;,
+                        &quot;given&quot;: [
+                            &quot;John&quot;
+                        ]
+                    }
+                ],
+                &quot;gender&quot;: &quot;male&quot;,
+                &quot;birthDate&quot;: &quot;1982-11-18&quot;
+            },
+            &quot;search&quot;: {
+                &quot;mode&quot;: &quot;match&quot;
+            }
+        },
+        {
+            &quot;fullUrl&quot;: &quot;https://hapi.fhir.org/baseR4/Patient/137222569&quot;,
+            &quot;resource&quot;: {
+                &quot;resourceType&quot;: &quot;Patient&quot;,
+                &quot;id&quot;: &quot;137222569&quot;,
+                &quot;meta&quot;: {
+                    &quot;versionId&quot;: &quot;9&quot;,
+                    &quot;lastUpdated&quot;: &quot;2026-07-31T02:49:04.652-04:00&quot;,
+                    &quot;source&quot;: &quot;#kZ2TrxWcL1vZjIhz&quot;
+                },
+                &quot;text&quot;: {
+                    &quot;status&quot;: &quot;generated&quot;,
+                    &quot;div&quot;: &quot;&lt;div xmlns=\&quot;http://www.w3.org/1999/xhtml\&quot;&gt;&lt;div class=\&quot;hapiHeaderText\&quot;&gt;John &lt;b&gt;SMITH &lt;/b&gt;&lt;/div&gt;&lt;table class=\&quot;hapiPropertyTable\&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td&gt;Identifier&lt;/td&gt;&lt;td&gt;MEDOC-D9B8DDD5&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Date of birth&lt;/td&gt;&lt;td&gt;&lt;span&gt;18 November 1982&lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/div&gt;&quot;
+                },
+                &quot;identifier&quot;: [
+                    {
+                        &quot;system&quot;: &quot;http://medoc-web.com/fhir/patient-id&quot;,
+                        &quot;value&quot;: &quot;MEDOC-D9B8DDD5&quot;
+                    }
+                ],
+                &quot;active&quot;: false,
+                &quot;name&quot;: [
+                    {
+                        &quot;family&quot;: &quot;Smith&quot;,
+                        &quot;given&quot;: [
+                            &quot;John&quot;
+                        ]
+                    }
+                ],
+                &quot;gender&quot;: &quot;male&quot;,
+                &quot;birthDate&quot;: &quot;1982-11-18&quot;
+            },
+            &quot;search&quot;: {
+                &quot;mode&quot;: &quot;match&quot;
+            }
+        },
+        {
+            &quot;fullUrl&quot;: &quot;https://hapi.fhir.org/baseR4/Patient/137222570&quot;,
+            &quot;resource&quot;: {
+                &quot;resourceType&quot;: &quot;Patient&quot;,
+                &quot;id&quot;: &quot;137222570&quot;,
+                &quot;meta&quot;: {
+                    &quot;versionId&quot;: &quot;9&quot;,
+                    &quot;lastUpdated&quot;: &quot;2026-07-31T02:49:04.884-04:00&quot;,
+                    &quot;source&quot;: &quot;#h4A6GmrU9rPibibv&quot;
+                },
+                &quot;text&quot;: {
+                    &quot;status&quot;: &quot;generated&quot;,
+                    &quot;div&quot;: &quot;&lt;div xmlns=\&quot;http://www.w3.org/1999/xhtml\&quot;&gt;&lt;div class=\&quot;hapiHeaderText\&quot;&gt;John &lt;b&gt;SMITH &lt;/b&gt;&lt;/div&gt;&lt;table class=\&quot;hapiPropertyTable\&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td&gt;Identifier&lt;/td&gt;&lt;td&gt;MEDOC-181C42F6&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Date of birth&lt;/td&gt;&lt;td&gt;&lt;span&gt;18 November 1982&lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/div&gt;&quot;
+                },
+                &quot;identifier&quot;: [
+                    {
+                        &quot;system&quot;: &quot;http://medoc-web.com/fhir/patient-id&quot;,
+                        &quot;value&quot;: &quot;MEDOC-181C42F6&quot;
+                    }
+                ],
+                &quot;active&quot;: false,
+                &quot;name&quot;: [
+                    {
+                        &quot;family&quot;: &quot;Smith&quot;,
+                        &quot;given&quot;: [
+                            &quot;John&quot;
+                        ]
+                    }
+                ],
+                &quot;gender&quot;: &quot;male&quot;,
+                &quot;birthDate&quot;: &quot;1982-11-18&quot;
+            },
+            &quot;search&quot;: {
+                &quot;mode&quot;: &quot;match&quot;
+            }
+        },
+        {
+            &quot;fullUrl&quot;: &quot;https://hapi.fhir.org/baseR4/Patient/137222578&quot;,
+            &quot;resource&quot;: {
+                &quot;resourceType&quot;: &quot;Patient&quot;,
+                &quot;id&quot;: &quot;137222578&quot;,
+                &quot;meta&quot;: {
+                    &quot;versionId&quot;: &quot;9&quot;,
+                    &quot;lastUpdated&quot;: &quot;2026-07-31T02:49:05.571-04:00&quot;,
+                    &quot;source&quot;: &quot;#v0Uq9dMHF87Ikk72&quot;
+                },
+                &quot;text&quot;: {
+                    &quot;status&quot;: &quot;generated&quot;,
+                    &quot;div&quot;: &quot;&lt;div xmlns=\&quot;http://www.w3.org/1999/xhtml\&quot;&gt;&lt;div class=\&quot;hapiHeaderText\&quot;&gt;John &lt;b&gt;SMITH &lt;/b&gt;&lt;/div&gt;&lt;table class=\&quot;hapiPropertyTable\&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td&gt;Identifier&lt;/td&gt;&lt;td&gt;MEDOC-07D67FBC&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Date of birth&lt;/td&gt;&lt;td&gt;&lt;span&gt;18 November 1982&lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/div&gt;&quot;
+                },
+                &quot;identifier&quot;: [
+                    {
+                        &quot;system&quot;: &quot;http://medoc-web.com/fhir/patient-id&quot;,
+                        &quot;value&quot;: &quot;MEDOC-07D67FBC&quot;
+                    }
+                ],
+                &quot;active&quot;: false,
+                &quot;name&quot;: [
+                    {
+                        &quot;family&quot;: &quot;Smith&quot;,
+                        &quot;given&quot;: [
+                            &quot;John&quot;
+                        ]
+                    }
+                ],
+                &quot;gender&quot;: &quot;male&quot;,
+                &quot;birthDate&quot;: &quot;1982-11-18&quot;
+            },
+            &quot;search&quot;: {
+                &quot;mode&quot;: &quot;match&quot;
+            }
+        },
+        {
+            &quot;fullUrl&quot;: &quot;https://hapi.fhir.org/baseR4/Patient/137227440&quot;,
+            &quot;resource&quot;: {
+                &quot;resourceType&quot;: &quot;Patient&quot;,
+                &quot;id&quot;: &quot;137227440&quot;,
+                &quot;meta&quot;: {
+                    &quot;versionId&quot;: &quot;8&quot;,
+                    &quot;lastUpdated&quot;: &quot;2026-07-31T02:49:41.363-04:00&quot;,
+                    &quot;source&quot;: &quot;#zn4JqGzaIKtODsR4&quot;
+                },
+                &quot;text&quot;: {
+                    &quot;status&quot;: &quot;generated&quot;,
+                    &quot;div&quot;: &quot;&lt;div xmlns=\&quot;http://www.w3.org/1999/xhtml\&quot;&gt;&lt;div class=\&quot;hapiHeaderText\&quot;&gt;John &lt;b&gt;SMITH &lt;/b&gt;&lt;/div&gt;&lt;table class=\&quot;hapiPropertyTable\&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td&gt;Identifier&lt;/td&gt;&lt;td&gt;123456789&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Address&lt;/td&gt;&lt;td&gt;&lt;span&gt;MD &lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/div&gt;&quot;
+                },
+                &quot;identifier&quot;: [
+                    {
+                        &quot;use&quot;: &quot;usual&quot;,
+                        &quot;type&quot;: {
+                            &quot;coding&quot;: [
+                                {
+                                    &quot;system&quot;: &quot;https:test&quot;,
+                                    &quot;code&quot;: &quot;DL&quot;
+                                }
+                            ],
+                            &quot;text&quot;: &quot;Driver&#39;s license number&quot;
+                        },
+                        &quot;system&quot;: &quot;https://testing.uri&quot;,
+                        &quot;value&quot;: &quot;123456789&quot;
+                    }
+                ],
+                &quot;active&quot;: false,
+                &quot;name&quot;: [
+                    {
+                        &quot;use&quot;: &quot;official&quot;,
+                        &quot;text&quot;: &quot;John Smith&quot;,
+                        &quot;family&quot;: &quot;Smith&quot;,
+                        &quot;given&quot;: [
+                            &quot;John&quot;
+                        ]
+                    }
+                ],
+                &quot;telecom&quot;: [
+                    {
+                        &quot;system&quot;: &quot;phone&quot;,
+                        &quot;value&quot;: &quot;249-098-7656&quot;,
+                        &quot;use&quot;: &quot;home&quot;
+                    }
+                ],
+                &quot;gender&quot;: &quot;male&quot;,
+                &quot;address&quot;: [
+                    {
+                        &quot;use&quot;: &quot;home&quot;,
+                        &quot;type&quot;: &quot;physical&quot;,
+                        &quot;text&quot;: &quot;1234 snowbird Terrace&quot;,
+                        &quot;state&quot;: &quot;MD&quot;,
+                        &quot;postalCode&quot;: &quot;12345&quot;
+                    }
+                ],
+                &quot;maritalStatus&quot;: {
+                    &quot;coding&quot;: [
+                        {
+                            &quot;system&quot;: &quot;http://terminology.hl7.org/CodeSystem/v3-MaritalStatus&quot;,
+                            &quot;code&quot;: &quot;D&quot;,
+                            &quot;display&quot;: &quot;Divorced&quot;
+                        }
+                    ]
+                }
+            },
+            &quot;search&quot;: {
+                &quot;mode&quot;: &quot;match&quot;
+            }
+        },
+        {
+            &quot;fullUrl&quot;: &quot;https://hapi.fhir.org/baseR4/Patient/137227499&quot;,
+            &quot;resource&quot;: {
+                &quot;resourceType&quot;: &quot;Patient&quot;,
+                &quot;id&quot;: &quot;137227499&quot;,
+                &quot;meta&quot;: {
+                    &quot;versionId&quot;: &quot;8&quot;,
+                    &quot;lastUpdated&quot;: &quot;2026-07-31T02:49:46.155-04:00&quot;,
+                    &quot;source&quot;: &quot;#0xn0g1gjj5AamoQH&quot;
+                },
+                &quot;text&quot;: {
+                    &quot;status&quot;: &quot;generated&quot;,
+                    &quot;div&quot;: &quot;&lt;div xmlns=\&quot;http://www.w3.org/1999/xhtml\&quot;&gt;&lt;div class=\&quot;hapiHeaderText\&quot;&gt;John &lt;b&gt;SMITH &lt;/b&gt;&lt;/div&gt;&lt;table class=\&quot;hapiPropertyTable\&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td&gt;Identifier&lt;/td&gt;&lt;td&gt;125412365854&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Address&lt;/td&gt;&lt;td&gt;&lt;span&gt;MD &lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/div&gt;&quot;
+                },
+                &quot;identifier&quot;: [
+                    {
+                        &quot;use&quot;: &quot;usual&quot;,
+                        &quot;type&quot;: {
+                            &quot;coding&quot;: [
+                                {
+                                    &quot;system&quot;: &quot;https:test&quot;,
+                                    &quot;code&quot;: &quot;DL&quot;
+                                }
+                            ],
+                            &quot;text&quot;: &quot;Driver&#39;s license number&quot;
+                        },
+                        &quot;system&quot;: &quot;https://testing.uri&quot;,
+                        &quot;value&quot;: &quot;125412365854&quot;
+                    }
+                ],
+                &quot;active&quot;: false,
+                &quot;name&quot;: [
+                    {
+                        &quot;use&quot;: &quot;official&quot;,
+                        &quot;text&quot;: &quot;John Smith&quot;,
+                        &quot;family&quot;: &quot;Smith&quot;,
+                        &quot;given&quot;: [
+                            &quot;John&quot;
+                        ]
+                    }
+                ],
+                &quot;telecom&quot;: [
+                    {
+                        &quot;system&quot;: &quot;phone&quot;,
+                        &quot;value&quot;: &quot;249-098-7658&quot;,
+                        &quot;use&quot;: &quot;home&quot;
+                    }
+                ],
+                &quot;gender&quot;: &quot;male&quot;,
+                &quot;deceasedBoolean&quot;: true,
+                &quot;address&quot;: [
+                    {
+                        &quot;use&quot;: &quot;home&quot;,
+                        &quot;type&quot;: &quot;physical&quot;,
+                        &quot;text&quot;: &quot;1234 snowbird Terrace&quot;,
+                        &quot;state&quot;: &quot;MD&quot;,
+                        &quot;postalCode&quot;: &quot;12345&quot;
+                    }
+                ],
+                &quot;maritalStatus&quot;: {
+                    &quot;coding&quot;: [
+                        {
+                            &quot;system&quot;: &quot;http://terminology.hl7.org/CodeSystem/v3-MaritalStatus&quot;,
+                            &quot;code&quot;: &quot;D&quot;,
+                            &quot;display&quot;: &quot;Divorced&quot;
+                        }
+                    ]
+                },
+                &quot;generalPractitioner&quot;: [
+                    {
+                        &quot;identifier&quot;: {
+                            &quot;system&quot;: &quot;urn:oid:2.16.528.1.1007.3.1&quot;,
+                            &quot;value&quot;: &quot;730291637&quot;
+                        }
+                    }
+                ]
+            },
+            &quot;search&quot;: {
+                &quot;mode&quot;: &quot;match&quot;
+            }
+        },
+        {
+            &quot;fullUrl&quot;: &quot;https://hapi.fhir.org/baseR4/Patient/137227503&quot;,
+            &quot;resource&quot;: {
+                &quot;resourceType&quot;: &quot;Patient&quot;,
+                &quot;id&quot;: &quot;137227503&quot;,
+                &quot;meta&quot;: {
+                    &quot;versionId&quot;: &quot;8&quot;,
+                    &quot;lastUpdated&quot;: &quot;2026-07-31T02:49:46.384-04:00&quot;,
+                    &quot;source&quot;: &quot;#4FNd1VyMvNi8DjJa&quot;
+                },
+                &quot;text&quot;: {
+                    &quot;status&quot;: &quot;generated&quot;,
+                    &quot;div&quot;: &quot;&lt;div xmlns=\&quot;http://www.w3.org/1999/xhtml\&quot;&gt;&lt;div class=\&quot;hapiHeaderText\&quot;&gt;John &lt;b&gt;SMITH &lt;/b&gt;&lt;/div&gt;&lt;table class=\&quot;hapiPropertyTable\&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td&gt;Identifier&lt;/td&gt;&lt;td&gt;123456789&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Address&lt;/td&gt;&lt;td&gt;&lt;span&gt;MD &lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/div&gt;&quot;
+                },
+                &quot;identifier&quot;: [
+                    {
+                        &quot;use&quot;: &quot;usual&quot;,
+                        &quot;type&quot;: {
+                            &quot;coding&quot;: [
+                                {
+                                    &quot;system&quot;: &quot;https:test&quot;,
+                                    &quot;code&quot;: &quot;DL&quot;
+                                }
+                            ],
+                            &quot;text&quot;: &quot;Driver&#39;s license number&quot;
+                        },
+                        &quot;system&quot;: &quot;https://testing.uri&quot;,
+                        &quot;value&quot;: &quot;123456789&quot;
+                    }
+                ],
+                &quot;active&quot;: false,
+                &quot;name&quot;: [
+                    {
+                        &quot;use&quot;: &quot;official&quot;,
+                        &quot;text&quot;: &quot;John Smith&quot;,
+                        &quot;family&quot;: &quot;Smith&quot;,
+                        &quot;given&quot;: [
+                            &quot;John&quot;
+                        ]
+                    }
+                ],
+                &quot;telecom&quot;: [
+                    {
+                        &quot;system&quot;: &quot;phone&quot;,
+                        &quot;value&quot;: &quot;249-098-2345&quot;,
+                        &quot;use&quot;: &quot;home&quot;
+                    }
+                ],
+                &quot;gender&quot;: &quot;male&quot;,
+                &quot;deceasedBoolean&quot;: true,
+                &quot;address&quot;: [
+                    {
+                        &quot;use&quot;: &quot;home&quot;,
+                        &quot;type&quot;: &quot;physical&quot;,
+                        &quot;text&quot;: &quot;1234 snowbird Terrace&quot;,
+                        &quot;state&quot;: &quot;MD&quot;,
+                        &quot;postalCode&quot;: &quot;12345&quot;
+                    }
+                ],
+                &quot;maritalStatus&quot;: {
+                    &quot;coding&quot;: [
+                        {
+                            &quot;system&quot;: &quot;http://terminology.hl7.org/CodeSystem/v3-MaritalStatus&quot;,
+                            &quot;code&quot;: &quot;D&quot;,
+                            &quot;display&quot;: &quot;Divorced&quot;
+                        }
+                    ]
+                }
+            },
+            &quot;search&quot;: {
+                &quot;mode&quot;: &quot;match&quot;
+            }
+        },
+        {
+            &quot;fullUrl&quot;: &quot;https://hapi.fhir.org/baseR4/Patient/137227743&quot;,
+            &quot;resource&quot;: {
+                &quot;resourceType&quot;: &quot;Patient&quot;,
+                &quot;id&quot;: &quot;137227743&quot;,
+                &quot;meta&quot;: {
+                    &quot;versionId&quot;: &quot;8&quot;,
+                    &quot;lastUpdated&quot;: &quot;2026-07-31T02:49:46.619-04:00&quot;,
+                    &quot;source&quot;: &quot;#iaiaCb9CKeCZILpF&quot;
+                },
+                &quot;text&quot;: {
+                    &quot;status&quot;: &quot;generated&quot;,
+                    &quot;div&quot;: &quot;&lt;div xmlns=\&quot;http://www.w3.org/1999/xhtml\&quot;&gt;&lt;div class=\&quot;hapiHeaderText\&quot;&gt;John &lt;b&gt;SMITH &lt;/b&gt;&lt;/div&gt;&lt;table class=\&quot;hapiPropertyTable\&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td&gt;Identifier&lt;/td&gt;&lt;td&gt;123456789&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Address&lt;/td&gt;&lt;td&gt;&lt;span&gt;MD &lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/div&gt;&quot;
+                },
+                &quot;identifier&quot;: [
+                    {
+                        &quot;use&quot;: &quot;usual&quot;,
+                        &quot;type&quot;: {
+                            &quot;coding&quot;: [
+                                {
+                                    &quot;system&quot;: &quot;https:test&quot;,
+                                    &quot;code&quot;: &quot;DL&quot;
+                                }
+                            ],
+                            &quot;text&quot;: &quot;Driver&#39;s license number&quot;
+                        },
+                        &quot;system&quot;: &quot;https://testing.uri&quot;,
+                        &quot;value&quot;: &quot;123456789&quot;
+                    }
+                ],
+                &quot;active&quot;: false,
+                &quot;name&quot;: [
+                    {
+                        &quot;use&quot;: &quot;official&quot;,
+                        &quot;text&quot;: &quot;John Smith&quot;,
+                        &quot;family&quot;: &quot;Smith&quot;,
+                        &quot;given&quot;: [
+                            &quot;John&quot;
+                        ]
+                    }
+                ],
+                &quot;telecom&quot;: [
+                    {
+                        &quot;system&quot;: &quot;phone&quot;,
+                        &quot;value&quot;: &quot;249-098-2345&quot;,
+                        &quot;use&quot;: &quot;home&quot;
+                    }
+                ],
+                &quot;gender&quot;: &quot;male&quot;,
+                &quot;deceasedBoolean&quot;: true,
+                &quot;address&quot;: [
+                    {
+                        &quot;use&quot;: &quot;home&quot;,
+                        &quot;type&quot;: &quot;physical&quot;,
+                        &quot;text&quot;: &quot;1234 snowbird Terrace&quot;,
+                        &quot;state&quot;: &quot;MD&quot;,
+                        &quot;postalCode&quot;: &quot;12345&quot;
+                    }
+                ],
+                &quot;maritalStatus&quot;: {
+                    &quot;coding&quot;: [
+                        {
+                            &quot;system&quot;: &quot;http://terminology.hl7.org/CodeSystem/v3-MaritalStatus&quot;,
+                            &quot;code&quot;: &quot;D&quot;,
+                            &quot;display&quot;: &quot;Divorced&quot;
+                        }
+                    ]
+                },
+                &quot;generalPractitioner&quot;: [
+                    {
+                        &quot;reference&quot;: &quot;Practitioner/137227504&quot;,
+                        &quot;identifier&quot;: {
+                            &quot;use&quot;: &quot;official&quot;,
+                            &quot;system&quot;: &quot;uri&quot;,
+                            &quot;value&quot;: &quot;768-098-78abcd&quot;
+                        },
+                        &quot;display&quot;: &quot;Patient&#39;s nominated primary care provider&quot;
+                    }
+                ]
+            },
+            &quot;search&quot;: {
+                &quot;mode&quot;: &quot;match&quot;
+            }
+        },
+        {
+            &quot;fullUrl&quot;: &quot;https://hapi.fhir.org/baseR4/Patient/137228044&quot;,
+            &quot;resource&quot;: {
+                &quot;resourceType&quot;: &quot;Patient&quot;,
+                &quot;id&quot;: &quot;137228044&quot;,
+                &quot;meta&quot;: {
+                    &quot;versionId&quot;: &quot;8&quot;,
+                    &quot;lastUpdated&quot;: &quot;2026-07-31T02:49:50.892-04:00&quot;,
+                    &quot;source&quot;: &quot;#tZClGr6wGsWrIXcO&quot;
+                },
+                &quot;text&quot;: {
+                    &quot;status&quot;: &quot;generated&quot;,
+                    &quot;div&quot;: &quot;&lt;div xmlns=\&quot;http://www.w3.org/1999/xhtml\&quot;&gt;&lt;div class=\&quot;hapiHeaderText\&quot;&gt;John &lt;b&gt;SMITH &lt;/b&gt;&lt;/div&gt;&lt;table class=\&quot;hapiPropertyTable\&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td&gt;Identifier&lt;/td&gt;&lt;td&gt;125412365854&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Address&lt;/td&gt;&lt;td&gt;&lt;span&gt;MD &lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Date of birth&lt;/td&gt;&lt;td&gt;&lt;span&gt;04 March 2021&lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/div&gt;&quot;
+                },
+                &quot;identifier&quot;: [
+                    {
+                        &quot;use&quot;: &quot;usual&quot;,
+                        &quot;type&quot;: {
+                            &quot;coding&quot;: [
+                                {
+                                    &quot;system&quot;: &quot;https:test&quot;,
+                                    &quot;code&quot;: &quot;DL&quot;
+                                }
+                            ],
+                            &quot;text&quot;: &quot;Driver&#39;s license number&quot;
+                        },
+                        &quot;system&quot;: &quot;https://testing.uri&quot;,
+                        &quot;value&quot;: &quot;125412365854&quot;
+                    }
+                ],
+                &quot;active&quot;: false,
+                &quot;name&quot;: [
+                    {
+                        &quot;use&quot;: &quot;official&quot;,
+                        &quot;text&quot;: &quot;John Smith&quot;,
+                        &quot;family&quot;: &quot;Smith&quot;,
+                        &quot;given&quot;: [
+                            &quot;John&quot;
+                        ]
+                    }
+                ],
+                &quot;telecom&quot;: [
+                    {
+                        &quot;system&quot;: &quot;phone&quot;,
+                        &quot;value&quot;: &quot;249-098-7658&quot;,
+                        &quot;use&quot;: &quot;home&quot;
+                    }
+                ],
+                &quot;gender&quot;: &quot;male&quot;,
+                &quot;birthDate&quot;: &quot;2021-03-04&quot;,
+                &quot;deceasedBoolean&quot;: true,
+                &quot;address&quot;: [
+                    {
+                        &quot;use&quot;: &quot;home&quot;,
+                        &quot;type&quot;: &quot;physical&quot;,
+                        &quot;text&quot;: &quot;1234 snowbird Terrace&quot;,
+                        &quot;state&quot;: &quot;MD&quot;,
+                        &quot;postalCode&quot;: &quot;12345&quot;
+                    }
+                ],
+                &quot;maritalStatus&quot;: {
+                    &quot;coding&quot;: [
+                        {
+                            &quot;system&quot;: &quot;http://terminology.hl7.org/CodeSystem/v3-MaritalStatus&quot;,
+                            &quot;code&quot;: &quot;D&quot;,
+                            &quot;display&quot;: &quot;Divorced&quot;
+                        }
+                    ]
+                }
+            },
+            &quot;search&quot;: {
+                &quot;mode&quot;: &quot;match&quot;
+            }
+        },
+        {
+            &quot;fullUrl&quot;: &quot;https://hapi.fhir.org/baseR4/Patient/137228061&quot;,
+            &quot;resource&quot;: {
+                &quot;resourceType&quot;: &quot;Patient&quot;,
+                &quot;id&quot;: &quot;137228061&quot;,
+                &quot;meta&quot;: {
+                    &quot;versionId&quot;: &quot;8&quot;,
+                    &quot;lastUpdated&quot;: &quot;2026-07-31T02:49:52.100-04:00&quot;,
+                    &quot;source&quot;: &quot;#YsHlAUmCpm5Mflwz&quot;
+                },
+                &quot;text&quot;: {
+                    &quot;status&quot;: &quot;generated&quot;,
+                    &quot;div&quot;: &quot;&lt;div xmlns=\&quot;http://www.w3.org/1999/xhtml\&quot;&gt;&lt;div class=\&quot;hapiHeaderText\&quot;&gt;John &lt;b&gt;SMITH &lt;/b&gt;&lt;/div&gt;&lt;table class=\&quot;hapiPropertyTable\&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td&gt;Identifier&lt;/td&gt;&lt;td&gt;123&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Address&lt;/td&gt;&lt;td&gt;&lt;span&gt;MD &lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/div&gt;&quot;
+                },
+                &quot;identifier&quot;: [
+                    {
+                        &quot;use&quot;: &quot;usual&quot;,
+                        &quot;type&quot;: {
+                            &quot;coding&quot;: [
+                                {
+                                    &quot;system&quot;: &quot;https:test&quot;,
+                                    &quot;code&quot;: &quot;DL&quot;
+                                }
+                            ],
+                            &quot;text&quot;: &quot;Driver&#39;s license number&quot;
+                        },
+                        &quot;system&quot;: &quot;https://testing.uri&quot;,
+                        &quot;value&quot;: &quot;123&quot;
+                    }
+                ],
+                &quot;active&quot;: false,
+                &quot;name&quot;: [
+                    {
+                        &quot;use&quot;: &quot;official&quot;,
+                        &quot;text&quot;: &quot;John Smith&quot;,
+                        &quot;family&quot;: &quot;Smith&quot;,
+                        &quot;given&quot;: [
+                            &quot;John&quot;
+                        ]
+                    }
+                ],
+                &quot;telecom&quot;: [
+                    {
+                        &quot;system&quot;: &quot;phone&quot;,
+                        &quot;value&quot;: &quot;249-098-2345&quot;,
+                        &quot;use&quot;: &quot;home&quot;
+                    }
+                ],
+                &quot;gender&quot;: &quot;male&quot;,
+                &quot;deceasedBoolean&quot;: true,
+                &quot;address&quot;: [
+                    {
+                        &quot;use&quot;: &quot;home&quot;,
+                        &quot;type&quot;: &quot;physical&quot;,
+                        &quot;text&quot;: &quot;1234 snowbird Terrace&quot;,
+                        &quot;state&quot;: &quot;MD&quot;,
+                        &quot;postalCode&quot;: &quot;12345&quot;
+                    }
+                ],
+                &quot;maritalStatus&quot;: {
+                    &quot;coding&quot;: [
+                        {
+                            &quot;system&quot;: &quot;http://terminology.hl7.org/CodeSystem/v3-MaritalStatus&quot;,
+                            &quot;code&quot;: &quot;D&quot;,
+                            &quot;display&quot;: &quot;Divorced&quot;
+                        }
+                    ]
+                },
+                &quot;generalPractitioner&quot;: [
+                    {
+                        &quot;reference&quot;: &quot;Practitioner/137227504&quot;,
+                        &quot;identifier&quot;: {
+                            &quot;use&quot;: &quot;official&quot;,
+                            &quot;system&quot;: &quot;uri&quot;,
+                            &quot;value&quot;: &quot;768-098-78abcd&quot;
+                        },
+                        &quot;display&quot;: &quot;Patient&#39;s nominated primary care provider&quot;
+                    }
+                ]
+            },
+            &quot;search&quot;: {
+                &quot;mode&quot;: &quot;match&quot;
+            }
+        },
+        {
+            &quot;fullUrl&quot;: &quot;https://hapi.fhir.org/baseR4/Patient/137229933&quot;,
+            &quot;resource&quot;: {
+                &quot;resourceType&quot;: &quot;Patient&quot;,
+                &quot;id&quot;: &quot;137229933&quot;,
+                &quot;meta&quot;: {
+                    &quot;versionId&quot;: &quot;9&quot;,
+                    &quot;lastUpdated&quot;: &quot;2026-07-31T02:50:02.248-04:00&quot;,
+                    &quot;source&quot;: &quot;#OZezEmcP2s8pRkBX&quot;
+                },
+                &quot;text&quot;: {
+                    &quot;status&quot;: &quot;generated&quot;,
+                    &quot;div&quot;: &quot;&lt;div xmlns=\&quot;http://www.w3.org/1999/xhtml\&quot;&gt;&lt;div class=\&quot;hapiHeaderText\&quot;&gt;John &lt;b&gt;SMITH &lt;/b&gt;&lt;/div&gt;&lt;table class=\&quot;hapiPropertyTable\&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td&gt;Identifier&lt;/td&gt;&lt;td&gt;74512563251&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Address&lt;/td&gt;&lt;td&gt;&lt;span&gt;MD &lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Date of birth&lt;/td&gt;&lt;td&gt;&lt;span&gt;04 March 2021&lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/div&gt;&quot;
+                },
+                &quot;identifier&quot;: [
+                    {
+                        &quot;use&quot;: &quot;usual&quot;,
+                        &quot;type&quot;: {
+                            &quot;coding&quot;: [
+                                {
+                                    &quot;system&quot;: &quot;https:test&quot;,
+                                    &quot;code&quot;: &quot;DL&quot;
+                                }
+                            ],
+                            &quot;text&quot;: &quot;Driver&#39;s license number&quot;
+                        },
+                        &quot;system&quot;: &quot;https://testing.uri&quot;,
+                        &quot;value&quot;: &quot;74512563251&quot;
+                    }
+                ],
+                &quot;active&quot;: false,
+                &quot;name&quot;: [
+                    {
+                        &quot;use&quot;: &quot;official&quot;,
+                        &quot;text&quot;: &quot;John Smith&quot;,
+                        &quot;family&quot;: &quot;Smith&quot;,
+                        &quot;given&quot;: [
+                            &quot;John&quot;
+                        ]
+                    }
+                ],
+                &quot;telecom&quot;: [
+                    {
+                        &quot;system&quot;: &quot;phone&quot;,
+                        &quot;value&quot;: &quot;249-098-7658&quot;,
+                        &quot;use&quot;: &quot;home&quot;
+                    }
+                ],
+                &quot;gender&quot;: &quot;male&quot;,
+                &quot;birthDate&quot;: &quot;2021-03-04&quot;,
+                &quot;deceasedBoolean&quot;: true,
+                &quot;address&quot;: [
+                    {
+                        &quot;use&quot;: &quot;home&quot;,
+                        &quot;type&quot;: &quot;physical&quot;,
+                        &quot;text&quot;: &quot;1234 snowbird Terrace&quot;,
+                        &quot;state&quot;: &quot;MD&quot;,
+                        &quot;postalCode&quot;: &quot;84512&quot;
+                    }
+                ],
+                &quot;maritalStatus&quot;: {
+                    &quot;coding&quot;: [
+                        {
+                            &quot;system&quot;: &quot;http://terminology.hl7.org/CodeSystem/v3-MaritalStatus&quot;,
+                            &quot;code&quot;: &quot;D&quot;,
+                            &quot;display&quot;: &quot;Divorced&quot;
+                        }
+                    ]
+                }
+            },
+            &quot;search&quot;: {
+                &quot;mode&quot;: &quot;match&quot;
+            }
+        },
+        {
+            &quot;fullUrl&quot;: &quot;https://hapi.fhir.org/baseR4/Patient/137229935&quot;,
+            &quot;resource&quot;: {
+                &quot;resourceType&quot;: &quot;Patient&quot;,
+                &quot;id&quot;: &quot;137229935&quot;,
+                &quot;meta&quot;: {
+                    &quot;versionId&quot;: &quot;9&quot;,
+                    &quot;lastUpdated&quot;: &quot;2026-07-31T02:50:02.528-04:00&quot;,
+                    &quot;source&quot;: &quot;#Fkku491bWJthtjEe&quot;
+                },
+                &quot;text&quot;: {
+                    &quot;status&quot;: &quot;generated&quot;,
+                    &quot;div&quot;: &quot;&lt;div xmlns=\&quot;http://www.w3.org/1999/xhtml\&quot;&gt;&lt;div class=\&quot;hapiHeaderText\&quot;&gt;John &lt;b&gt;SMITH &lt;/b&gt;&lt;/div&gt;&lt;table class=\&quot;hapiPropertyTable\&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td&gt;Identifier&lt;/td&gt;&lt;td&gt;998899&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Address&lt;/td&gt;&lt;td&gt;&lt;span&gt;MD &lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/div&gt;&quot;
+                },
+                &quot;identifier&quot;: [
+                    {
+                        &quot;use&quot;: &quot;usual&quot;,
+                        &quot;type&quot;: {
+                            &quot;coding&quot;: [
+                                {
+                                    &quot;system&quot;: &quot;https:test&quot;,
+                                    &quot;code&quot;: &quot;DL&quot;
+                                }
+                            ],
+                            &quot;text&quot;: &quot;Driver&#39;s license number&quot;
+                        },
+                        &quot;system&quot;: &quot;https://testing.uri&quot;,
+                        &quot;value&quot;: &quot;998899&quot;
+                    }
+                ],
+                &quot;active&quot;: false,
+                &quot;name&quot;: [
+                    {
+                        &quot;use&quot;: &quot;official&quot;,
+                        &quot;text&quot;: &quot;John Smith&quot;,
+                        &quot;family&quot;: &quot;Smith&quot;,
+                        &quot;given&quot;: [
+                            &quot;John&quot;
+                        ]
+                    }
+                ],
+                &quot;telecom&quot;: [
+                    {
+                        &quot;system&quot;: &quot;phone&quot;,
+                        &quot;value&quot;: &quot;249-098-2345&quot;,
+                        &quot;use&quot;: &quot;home&quot;
+                    }
+                ],
+                &quot;gender&quot;: &quot;male&quot;,
+                &quot;deceasedBoolean&quot;: false,
+                &quot;address&quot;: [
+                    {
+                        &quot;use&quot;: &quot;home&quot;,
+                        &quot;type&quot;: &quot;physical&quot;,
+                        &quot;text&quot;: &quot;1234 snowbird Terrace&quot;,
+                        &quot;state&quot;: &quot;MD&quot;,
+                        &quot;postalCode&quot;: &quot;12345&quot;
+                    }
+                ],
+                &quot;maritalStatus&quot;: {
+                    &quot;coding&quot;: [
+                        {
+                            &quot;system&quot;: &quot;http://terminology.hl7.org/CodeSystem/v3-MaritalStatus&quot;,
+                            &quot;code&quot;: &quot;D&quot;,
+                            &quot;display&quot;: &quot;Divorced&quot;
+                        }
+                    ]
+                },
+                &quot;generalPractitioner&quot;: [
+                    {
+                        &quot;reference&quot;: &quot;Practitioner/137227504&quot;,
+                        &quot;identifier&quot;: {
+                            &quot;use&quot;: &quot;official&quot;,
+                            &quot;system&quot;: &quot;uri&quot;,
+                            &quot;value&quot;: &quot;768-098-78abcd&quot;
+                        },
+                        &quot;display&quot;: &quot;Patient&#39;s nominated primary care provider&quot;
+                    }
+                ]
+            },
+            &quot;search&quot;: {
+                &quot;mode&quot;: &quot;match&quot;
+            }
+        }
+    ]
+}    </pre>
+</div>
+
+<h4>Headers</h4>
+<div>
+        <div>Transfer-Encoding: chunked</div>
+        <div>Server: nginx/1.28.3 (Ubuntu)</div>
+        <div>X-Request-ID: 1iubipzMvxZJUlFK</div>
+        <div>Connection: keep-alive</div>
+        <div>Content-Encoding: gzip</div>
+        <div>Last-Modified: Sun, 23 Aug 2026 05:26:32 GMT</div>
+        <div>Date: Sun, 23 Aug 2026 05:26:32 GMT</div>
+        <div>Content-Type: application/fhir+json;charset=utf-8</div>
+        <div>X-Powered-By: HAPI FHIR 8.11.16-SNAPSHOT/7e7129efb5/2026-07-08 REST Server (FHIR Server; FHIR 4.0.1/R4)</div>
+</div>
+
+
