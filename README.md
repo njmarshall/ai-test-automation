@@ -1,7 +1,7 @@
 # ai-test-automation
 
 > AI-powered API test automation framework in Java — built to FAANG-grade standards.
-> Three industry capstones · 87 tests · 0 failures · CRTP · SOLID · AsyncApiClient
+> Three industry capstones · 95 tests · 0 failures · CRTP · SOLID · AsyncApiClient
 
 [![CI](https://github.com/njmarshall/ai-test-automation/actions/workflows/ci.yml/badge.svg)](https://github.com/njmarshall/ai-test-automation/actions/workflows/ci.yml)
 
@@ -31,7 +31,8 @@ architect-level design patterns used at Google and Meta.
 | **PetStore** | 29 | ✅ Passing | Live Swagger API |
 | **Insurance** | 28 | ✅ Passing | WireMock |
 | **Healthcare FHIR R4** | 30 | ✅ Passing | HAPI FHIR + WireMock |
-| **Total** | **87** | **✅ 0 failures** | |
+| **PetStore UI** | 8 | ✅ Passing | Playwright + Chromium |
+| **Total** | **95** | **✅ 0 failures** | | |
 
 ---
 
@@ -70,13 +71,25 @@ ai-test-automation/
 │       │       └── FhirModels.java      # Patient, Encounter, Claim, PriorAuth (FHIR R4)
 │       │
 │       └── test/java/com/aitesting/
-│           ├── petstore/api/            # PetStore capstone (29 tests)
+│           ├── petstore/api/            # PetStore capstone (29 API + 8 UI tests)
 │           │   ├── PetTests.java        # CRUD: POST/GET/PUT/DELETE /pet
 │           │   ├── StoreTests.java      # Orders: POST/GET/DELETE /store/order
 │           │   ├── UserTests.java       # Users: POST/GET/PUT/DELETE /user
 │           │   ├── PetTestDataFactory.java    # CRTP subclass
 │           │   └── PetResponseValidator.java  # CRTP subclass
 │           │
+│           ├── petstore/pom/           # Page Objects (Playwright)
+│           │   ├── SwaggerHomePage.java
+│           │   └── PetEndpointPage.java
+│           │
+│           ├── petstore/ui/            # UI tests (8 tests)
+│           │   └── PetStoreUITests.java
+│           │
+│           └── ui/                    # Shared Playwright utilities
+│               ├── PlaywrightFactory.java
+│               ├── BasePage.java
+│               ├── UIConfig.java
+│               └── ScreenshotHelper.java│           │
 │           ├── insurance/api/           # Insurance capstone (28 tests)
 │           │   ├── QuoteTests.java      # POST/GET /quotes — standard, teen, high-risk
 │           │   ├── PolicyTests.java     # POST/GET/PATCH /policies — bind, cancel
@@ -107,6 +120,7 @@ ai-test-automation/
 ### Prerequisites
 
 - Java 17+
+- Chromium (auto-installed by Playwright on first run)
 - Maven 3.9+
 
 ### Run all tests
@@ -116,7 +130,7 @@ ai-test-automation/
 git clone https://github.com/njmarshall/ai-test-automation.git
 cd ai-test-automation
 
-# Run all 87 tests
+# Run all 95 tests
 mvn clean test -pl api -am
 
 # Generate Allure HTML report
@@ -285,7 +299,7 @@ Generated files land in `api/src/test/java/com/aitesting/petstore/api/aigenerate
 Every push to `main` or `develop`:
 
 1. Builds the `shared` library
-2. Runs all 87 tests in parallel (3 threads)
+2. Runs all 95 tests in parallel (3 threads)
 3. Generates an Allure HTML report
 4. Publishes the report to GitHub Pages
 5. Uploads artifacts for 30 days
