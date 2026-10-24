@@ -1,0 +1,51 @@
+=== POST /Patient (senior) ===
+Status: 201
+Time: 505ms
+Content-Type: application/fhir+json;charset=utf-8
+
+Body:
+{
+    "resourceType": "Patient",
+    "id": "266383",
+    "meta": {
+        "versionId": "1",
+        "lastUpdated": "2026-10-24T00:55:53.091-04:00",
+        "source": "#7pD7YGHpP9JOFnwf"
+    },
+    "text": {
+        "status": "generated",
+        "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><div class=\"hapiHeaderText\">Mariela <b>JOHNSTON </b></div><table class=\"hapiPropertyTable\"><tbody><tr><td>Identifier</td><td>TEST-00425308</td></tr><tr><td>Address</td><td><span>Lake Major </span><span>MD </span><span>US </span></td></tr><tr><td>Date of birth</td><td><span>24 October 1954</span></td></tr></tbody></table></div>"
+    },
+    "identifier": [
+        {
+            "system": "http://hospital.example.org/mrn",
+            "value": "TEST-00425308"
+        }
+    ],
+    "name": [
+        {
+            "use": "official",
+            "family": "Johnston",
+            "given": [
+                "Mariela"
+            ]
+        }
+    ],
+    "telecom": [
+        {
+            "system": "phone",
+            "value": "(499) 877-6660 x232",
+            "use": "home"
+        }
+    ],
+    "gender": "female",
+    "birthDate": "1954-10-24",
+    "address": [
+        {
+            "city": "Lake Major",
+            "state": "MD",
+            "postalCode": "83942-3813",
+            "country": "US"
+        }
+    ]
+}

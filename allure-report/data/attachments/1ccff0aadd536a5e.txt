@@ -1,0 +1,51 @@
+=== POST /Patient ===
+Status: 201
+Time: 793ms
+Content-Type: application/fhir+json;charset=utf-8
+
+Body:
+{
+    "resourceType": "Patient",
+    "id": "266381",
+    "meta": {
+        "versionId": "1",
+        "lastUpdated": "2026-10-24T00:55:51.958-04:00",
+        "source": "#aiey0FhmUHYGn6T6"
+    },
+    "text": {
+        "status": "generated",
+        "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><div class=\"hapiHeaderText\">Tyler <b>GOLDNER </b></div><table class=\"hapiPropertyTable\"><tbody><tr><td>Identifier</td><td>TEST-00059292</td></tr><tr><td>Address</td><td><span>East Bartmouth </span><span>VA </span><span>US </span></td></tr><tr><td>Date of birth</td><td><span>24 October 1991</span></td></tr></tbody></table></div>"
+    },
+    "identifier": [
+        {
+            "system": "http://hospital.example.org/mrn",
+            "value": "TEST-00059292"
+        }
+    ],
+    "name": [
+        {
+            "use": "official",
+            "family": "Goldner",
+            "given": [
+                "Tyler"
+            ]
+        }
+    ],
+    "telecom": [
+        {
+            "system": "phone",
+            "value": "544.306.9809",
+            "use": "home"
+        }
+    ],
+    "gender": "female",
+    "birthDate": "1991-10-24",
+    "address": [
+        {
+            "city": "East Bartmouth",
+            "state": "VA",
+            "postalCode": "55726-3853",
+            "country": "US"
+        }
+    ]
+}

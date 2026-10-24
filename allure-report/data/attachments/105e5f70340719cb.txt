@@ -1,0 +1,11 @@
+=== POST /user/createWithArray ===
+Status: 200
+Time: 365ms
+Content-Type: application/json
+
+Body:
+{
+    "code": 200,
+    "type": "unknown",
+    "message": "ok"
+}

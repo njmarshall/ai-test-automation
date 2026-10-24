@@ -1,0 +1,21 @@
+=== GET /store/inventory ===
+Status: 200
+Time: 362ms
+Content-Type: application/json
+
+Body:
+{
+    "sold": 50,
+    "6000": 1,
+    "string": 714,
+    "unavailable": 1,
+    "pending": 14,
+    "available": 150,
+    "peric": 4,
+    "archived": 1,
+    "2": 1,
+    "http://does.not.exist.spidynamics.com/?available": 1,
+    "reserved": 1,
+    "42": 1,
+    "invalid-status": 2
+}

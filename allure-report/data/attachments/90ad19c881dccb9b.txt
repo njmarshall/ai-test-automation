@@ -1,0 +1,16 @@
+=== Final PA decision (denied) ===
+Status: 200
+Time: 3ms
+Content-Type: application/json
+
+Body:
+{
+    "resourceType": "Claim",
+    "id": "TEST-PA-00000001",
+    "status": "denied",
+    "use": "preauthorization",
+    "outcome": "complete",
+    "patient": {
+        "reference": "Patient/TEST-12345678"
+    }
+}
