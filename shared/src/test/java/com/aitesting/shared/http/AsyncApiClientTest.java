@@ -3,6 +3,8 @@ package com.aitesting.shared.http;
 import com.aitesting.shared.reporting.AllureHelper;
 import io.restassured.response.Response;
 import io.restassured.path.json.JsonPath;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
@@ -11,8 +13,8 @@ import org.mockito.Mock;
 import org.mockito.MockedStatic;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.atomic.AtomicInteger;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.*;
@@ -36,13 +38,15 @@ import static org.mockito.Mockito.*;
  *   3. Throws AssertionError on timeout after N attempts
  *
  * ═══════════════════════════════════════════════════════════════════════
- * TECHNIQUE: MockedStatic for Thread.sleep + AllureHelper
+ * TECHNIQUE: Sleeper seam + MockedStatic for AllureHelper
  * ═══════════════════════════════════════════════════════════════════════
  *
- * Thread.sleep() and AllureHelper.step() are patched as no-ops so:
+ * Mockito cannot mock static methods of java.lang.Thread, so
+ * AsyncApiClient exposes a package-private Sleeper seam. Each test
+ * replaces it with a recorder, and AllureHelper.step() is a no-op, so:
  *   - Tests run in milliseconds (no real sleeping)
  *   - No Allure context is required on the classpath at test time
- *   - Backoff doubling is verified via sleep call argument capture
+ *   - Backoff doubling is verified via the recorded sleep durations
  *
  * ApiClient.get() is mocked via @Mock — each test configures the
  * exact sequence of status values the mock returns.
@@ -59,6 +63,20 @@ class AsyncApiClientTest {
 
     @Mock
     private JsonPath jsonPath;
+
+    /** Sleep durations (ms) requested by AsyncApiClient during a test. */
+    private List<Long> sleeps;
+
+    @BeforeEach
+    void recordSleepsInsteadOfWaiting() {
+        sleeps = new ArrayList<>();
+        AsyncApiClient.sleeper = millis -> sleeps.add(millis);
+    }
+
+    @AfterEach
+    void restoreRealSleeper() {
+        AsyncApiClient.sleeper = Thread::sleep;
+    }
 
     // ─── pollUntil ────────────────────────────────────────────────────────────
 
@@ -199,12 +217,8 @@ class AsyncApiClientTest {
         @Test
         @DisplayName("throws AssertionError with timeout message when deadline expires")
         void throwsOnTimeout() {
-            when(api.get("/slow/S-1")).thenReturn(response);
-            when(response.jsonPath()).thenReturn(jsonPath);
-            // Always returns "processing" — never reaches "approved"
-            when(jsonPath.getString("status")).thenReturn("processing");
-
-            // maxWaitSeconds=0 → deadline is in the past immediately
+            // maxWaitSeconds=0 → deadline is in the past immediately,
+            // so no GET is issued and the timeout fires straight away
             AssertionError err = assertThrows(AssertionError.class, () ->
                 withSuppressedSideEffects(() ->
                     AsyncApiClient.pollUntil(api, "/slow/S-1", "status", "approved", 0, 1)
@@ -214,14 +228,13 @@ class AsyncApiClientTest {
             assertTrue(err.getMessage().toLowerCase().contains("timeout")
                 || err.getMessage().contains("0s"),
                 "Timeout message should mention timeout or 0s: " + err.getMessage());
+            verify(api, never()).get(anyString());
         }
 
         @Test
         @DisplayName("error message names the path that timed out")
         void timeoutMessageIncludesPath() {
-            when(api.get("/slow/S-2")).thenReturn(response);
-            when(response.jsonPath()).thenReturn(jsonPath);
-            when(jsonPath.getString("status")).thenReturn("pending");
+            // maxWaitSeconds=0: deadline already passed, so the loop never polls
 
             AssertionError err = assertThrows(AssertionError.class, () ->
                 withSuppressedSideEffects(() ->
@@ -299,9 +312,7 @@ class AsyncApiClientTest {
         @Test
         @DisplayName("throws AssertionError on timeout with list of expected terminals")
         void throwsOnTimeout() {
-            when(api.get("/mvr/M-1")).thenReturn(response);
-            when(response.jsonPath()).thenReturn(jsonPath);
-            when(jsonPath.getString("status")).thenReturn("running");
+            // maxWaitSeconds=0: deadline already passed, so the loop never polls
 
             AssertionError err = assertThrows(AssertionError.class, () ->
                 withSuppressedSideEffects(() ->
@@ -372,35 +383,16 @@ class AsyncApiClientTest {
                 .thenReturn("pending")
                 .thenReturn("approved");
 
-            // Capture sleep durations to verify backoff progression
-            AtomicInteger callCount = new AtomicInteger(0);
-            long[] sleepArgs = new long[5];
-
-            try (MockedStatic<Thread> threadMock = mockStatic(Thread.class);
-                 MockedStatic<AllureHelper> alluMock = mockStatic(AllureHelper.class)) {
-
-                threadMock.when(() -> Thread.sleep(anyLong()))
-                    .thenAnswer(inv -> {
-                        long ms = inv.getArgument(0);
-                        int i = callCount.getAndIncrement();
-                        if (i < sleepArgs.length) sleepArgs[i] = ms;
-                        return null;
-                    });
-
-                alluMock.when(() -> AllureHelper.step(anyString(), any()))
-                    .thenAnswer(inv -> null);
-
+            withSuppressedSideEffects(() ->
                 AsyncApiClient.pollWithBackoff(
                     api, "/auth/PA-2", "status", "approved",
-                    300, 2, 30);
-            }
+                    300, 2, 30)
+            );
 
             // Intervals: 2s, 4s, 8s, 16s (before hitting max of 30s)
-            // Thread.sleep receives milliseconds: 2000, 4000, 8000, 16000
-            assertEquals(2_000L, sleepArgs[0], "First interval: 2s");
-            assertEquals(4_000L, sleepArgs[1], "Second interval: 4s (doubled)");
-            assertEquals(8_000L, sleepArgs[2], "Third interval: 8s (doubled)");
-            assertEquals(16_000L, sleepArgs[3], "Fourth interval: 16s (doubled)");
+            // The sleeper receives milliseconds: 2000, 4000, 8000, 16000
+            assertEquals(List.of(2_000L, 4_000L, 8_000L, 16_000L), sleeps,
+                "Backoff should double each retry: 2s, 4s, 8s, 16s");
         }
 
         @Test
@@ -418,35 +410,15 @@ class AsyncApiClientTest {
                 .thenReturn("pending")
                 .thenReturn("approved");
 
-            AtomicInteger callCount = new AtomicInteger(0);
-            long[] sleepArgs = new long[7];
-
-            try (MockedStatic<Thread> threadMock = mockStatic(Thread.class);
-                 MockedStatic<AllureHelper> alluMock = mockStatic(AllureHelper.class)) {
-
-                threadMock.when(() -> Thread.sleep(anyLong()))
-                    .thenAnswer(inv -> {
-                        long ms = inv.getArgument(0);
-                        int i = callCount.getAndIncrement();
-                        if (i < sleepArgs.length) sleepArgs[i] = ms;
-                        return null;
-                    });
-
-                alluMock.when(() -> AllureHelper.step(anyString(), any()))
-                    .thenAnswer(inv -> null);
-
+            withSuppressedSideEffects(() ->
                 AsyncApiClient.pollWithBackoff(
                     api, "/auth/PA-3", "status", "approved",
-                    300, 2, 5);  // max cap = 5s
-            }
+                    300, 2, 5)  // max cap = 5s
+            );
 
             // 2s, 4s, then capped at 5s, 5s, 5s, 5s
-            assertEquals(2_000L, sleepArgs[0], "First: 2s");
-            assertEquals(4_000L, sleepArgs[1], "Second: 4s");
-            assertEquals(5_000L, sleepArgs[2], "Third: capped at 5s");
-            assertEquals(5_000L, sleepArgs[3], "Fourth: stays at 5s cap");
-            assertEquals(5_000L, sleepArgs[4], "Fifth: stays at 5s cap");
-            assertEquals(5_000L, sleepArgs[5], "Sixth: stays at 5s cap");
+            assertEquals(List.of(2_000L, 4_000L, 5_000L, 5_000L, 5_000L, 5_000L), sleeps,
+                "Backoff should double to the 5s cap, then stay there");
         }
 
         @Test
@@ -473,9 +445,7 @@ class AsyncApiClientTest {
         @Test
         @DisplayName("throws AssertionError with path on timeout")
         void throwsOnTimeoutIncludesPath() {
-            when(api.get("/auth/PA-timeout")).thenReturn(response);
-            when(response.jsonPath()).thenReturn(jsonPath);
-            when(jsonPath.getString("status")).thenReturn("pending");
+            // maxWaitSeconds=0: deadline already passed, so the loop never polls
 
             AssertionError err = assertThrows(AssertionError.class, () ->
                 withSuppressedSideEffects(() ->
@@ -567,12 +537,10 @@ class AsyncApiClientTest {
     // ─── Shared helper ────────────────────────────────────────────────────────
 
     /**
-     * Runs the given supplier with Thread.sleep and AllureHelper.step
-     * both mocked as no-ops. This prevents actual sleeping (tests run in ms)
-     * and avoids requiring an Allure test context.
-     *
-     * For backoff tests that need to inspect the sleep arguments, use
-     * MockedStatic directly instead of this helper.
+     * Runs the given supplier with AllureHelper.step mocked as a no-op,
+     * which avoids requiring an Allure test context. Sleeping is already
+     * suppressed by the Sleeper seam installed in @BeforeEach; inspect
+     * the {@code sleeps} list to verify requested durations.
      */
     @FunctionalInterface
     interface PollingSupplier<T> {
@@ -580,12 +548,7 @@ class AsyncApiClientTest {
     }
 
     private <T> T withSuppressedSideEffects(PollingSupplier<T> supplier) throws Exception {
-        try (MockedStatic<Thread> threadMock = mockStatic(Thread.class);
-             MockedStatic<AllureHelper> alluMock = mockStatic(AllureHelper.class)) {
-
-            // Thread.sleep() → no-op (no actual sleeping)
-            threadMock.when(() -> Thread.sleep(anyLong()))
-                .thenAnswer(inv -> null);
+        try (MockedStatic<AllureHelper> alluMock = mockStatic(AllureHelper.class)) {
 
             // AllureHelper.step() → no-op (no Allure context needed)
             alluMock.when(() -> AllureHelper.step(anyString(), any()))

@@ -65,6 +65,18 @@ public final class AsyncApiClient {
     private static final Logger log =
         LoggerFactory.getLogger(AsyncApiClient.class);
 
+    /** Sleep strategy, abstracted so tests can avoid real waiting. */
+    @FunctionalInterface
+    interface Sleeper {
+        void sleep(long millis) throws InterruptedException;
+    }
+
+    /**
+     * Test seam only: unit tests swap this to record sleeps instead of waiting.
+     * Production code must not reassign it.
+     */
+    static volatile Sleeper sleeper = Thread::sleep;
+
     // ── Polling ───────────────────────────────────────────────────────────────
 
     /**
@@ -276,7 +288,7 @@ public final class AsyncApiClient {
 
     private static void sleep(int seconds) {
         try {
-            Thread.sleep(seconds * 1000L);
+            sleeper.sleep(seconds * 1000L);
         } catch (InterruptedException e) {
             Thread.currentThread().interrupt();
             log.warn("Polling interrupted");
