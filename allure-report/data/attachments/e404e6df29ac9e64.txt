@@ -1,0 +1,10 @@
+=== PATCH /claims/close (conflict) ===
+Status: 409
+Time: 7ms
+Content-Type: application/json
+
+Body:
+{
+    "code": 409,
+    "message": "Claim is already closed"
+}

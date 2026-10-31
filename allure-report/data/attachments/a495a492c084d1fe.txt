@@ -1,0 +1,897 @@
+=== GET /Patient?family=Smith ===
+Status: 200
+Time: 493ms
+Content-Type: application/fhir+json;charset=utf-8
+
+Body:
+{
+    "resourceType": "Bundle",
+    "id": "46024521-ce0d-43e2-83a7-ebc9fd8dfe94",
+    "meta": {
+        "lastUpdated": "2026-10-31T00:37:22.770-04:00"
+    },
+    "type": "searchset",
+    "link": [
+        {
+            "relation": "self",
+            "url": "https://hapi.fhir.org/baseR4/Patient?family=Smith"
+        },
+        {
+            "relation": "next",
+            "url": "https://hapi.fhir.org/baseR4?_getpages=46024521-ce0d-43e2-83a7-ebc9fd8dfe94&_getpagesoffset=20&_count=20&_pretty=true&_bundletype=searchset"
+        }
+    ],
+    "entry": [
+        {
+            "fullUrl": "https://hapi.fhir.org/baseR4/Patient/Patient-6946748",
+            "resource": {
+                "resourceType": "Patient",
+                "id": "Patient-6946748",
+                "meta": {
+                    "versionId": "1",
+                    "lastUpdated": "2026-09-25T15:00:40.146-04:00",
+                    "source": "#GpyRGfyhENlHkRxI"
+                },
+                "text": {
+                    "status": "generated",
+                    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">Rik Smithies</div>"
+                },
+                "identifier": [
+                    {
+                        "system": "http://clinfhir.com/fhir/NamingSystem/identifier",
+                        "value": "rik.smithies"
+                    }
+                ],
+                "name": [
+                    {
+                        "use": "official",
+                        "text": "Rik Smithies",
+                        "family": "Smithies",
+                        "given": [
+                            "Rik"
+                        ]
+                    }
+                ],
+                "gender": "male",
+                "birthDate": "2022-08-04"
+            },
+            "search": {
+                "mode": "match"
+            }
+        },
+        {
+            "fullUrl": "https://hapi.fhir.org/baseR4/Patient/42254",
+            "resource": {
+                "resourceType": "Patient",
+                "id": "42254",
+                "meta": {
+                    "versionId": "2",
+                    "lastUpdated": "2026-10-19T01:35:57.321-04:00",
+                    "source": "#vZcWOvbaW8VRvrzH",
+                    "tag": [
+                        {
+                            "system": "http://terminology.hl7.org/CodeSystem/v3-ObservationValue",
+                            "code": "SUBSETTED",
+                            "display": "Resource encoded in summary mode"
+                        }
+                    ]
+                },
+                "identifier": [
+                    {
+                        "use": "official",
+                        "system": "urn:ietf:rfc:3986",
+                        "value": "urn:uuid:56871209-19ff-42ad-85d4-aa9ba7cbb83c"
+                    }
+                ],
+                "name": [
+                    {
+                        "family": "Smith"
+                    }
+                ]
+            },
+            "search": {
+                "mode": "match"
+            }
+        },
+        {
+            "fullUrl": "https://hapi.fhir.org/baseR4/Patient/41698",
+            "resource": {
+                "resourceType": "Patient",
+                "id": "41698",
+                "meta": {
+                    "versionId": "2",
+                    "lastUpdated": "2026-10-19T01:35:56.597-04:00",
+                    "source": "#SMYfFWCvsAlJEoFB",
+                    "tag": [
+                        {
+                            "system": "http://terminology.hl7.org/CodeSystem/v3-ObservationValue",
+                            "code": "SUBSETTED",
+                            "display": "Resource encoded in summary mode"
+                        }
+                    ]
+                },
+                "identifier": [
+                    {
+                        "use": "official",
+                        "system": "urn:ietf:rfc:3986",
+                        "value": "urn:uuid:9f5d3612-2da9-4d3a-9d1f-0e9af443c5f1"
+                    }
+                ],
+                "name": [
+                    {
+                        "family": "Smith",
+                        "given": [
+                            "John"
+                        ]
+                    }
+                ]
+            },
+            "search": {
+                "mode": "match"
+            }
+        },
+        {
+            "fullUrl": "https://hapi.fhir.org/baseR4/Patient/38032",
+            "resource": {
+                "resourceType": "Patient",
+                "id": "38032",
+                "meta": {
+                    "versionId": "1",
+                    "lastUpdated": "2026-09-28T01:54:25.776-04:00",
+                    "source": "#WVmMGRk6NyJ9vzSh",
+                    "profile": [
+                        "http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient"
+                    ]
+                },
+                "identifier": [
+                    {
+                        "use": "usual",
+                        "type": {
+                            "coding": [
+                                {
+                                    "system": "http://terminology.hl7.org/CodeSystem/v2-0203",
+                                    "code": "MR"
+                                }
+                            ]
+                        },
+                        "system": "urn:tenant:acme:mrn",
+                        "value": "MRN-2002"
+                    }
+                ],
+                "name": [
+                    {
+                        "use": "official",
+                        "family": "Smith",
+                        "given": [
+                            "Robert",
+                            "James"
+                        ]
+                    }
+                ],
+                "gender": "male",
+                "birthDate": "1970-07-22",
+                "maritalStatus": {
+                    "coding": [
+                        {
+                            "system": "http://terminology.hl7.org/CodeSystem/v3-MaritalStatus",
+                            "code": "S"
+                        }
+                    ]
+                },
+                "communication": [
+                    {
+                        "language": {
+                            "coding": [
+                                {
+                                    "system": "urn:ietf:bcp:47",
+                                    "code": "en"
+                                }
+                            ]
+                        },
+                        "preferred": true
+                    }
+                ]
+            },
+            "search": {
+                "mode": "match"
+            }
+        },
+        {
+            "fullUrl": "https://hapi.fhir.org/baseR4/Patient/42219",
+            "resource": {
+                "resourceType": "Patient",
+                "id": "42219",
+                "meta": {
+                    "versionId": "2",
+                    "lastUpdated": "2026-10-19T01:35:57.195-04:00",
+                    "source": "#r9wYkLtG8BvpkNSe",
+                    "tag": [
+                        {
+                            "system": "http://terminology.hl7.org/CodeSystem/v3-ObservationValue",
+                            "code": "SUBSETTED",
+                            "display": "Resource encoded in summary mode"
+                        }
+                    ]
+                },
+                "identifier": [
+                    {
+                        "use": "official",
+                        "system": "urn:ietf:rfc:3986",
+                        "value": "urn:uuid:b2ff7951-cca1-4b08-97b2-4b247f1fd78c"
+                    }
+                ],
+                "name": [
+                    {
+                        "family": "Smith"
+                    }
+                ]
+            },
+            "search": {
+                "mode": "match"
+            }
+        },
+        {
+            "fullUrl": "https://hapi.fhir.org/baseR4/Patient/41355",
+            "resource": {
+                "resourceType": "Patient",
+                "id": "41355",
+                "meta": {
+                    "versionId": "1",
+                    "lastUpdated": "2026-09-28T12:24:43.907-04:00",
+                    "source": "#RP9M1gWFcgTszqxA"
+                },
+                "text": {
+                    "status": "generated",
+                    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><div class=\"hapiHeaderText\">john developer <b>SMITH </b></div><table class=\"hapiPropertyTable\"><tbody><tr><td>Identifier</td><td>12345</td></tr><tr><td>Address</td><td><span>123 Healing Way </span><br/><span>Metropolis </span><span>NY </span><span>US </span></td></tr><tr><td>Date of birth</td><td><span>15 January 1980</span></td></tr></tbody></table></div>"
+                },
+                "identifier": [
+                    {
+                        "use": "official",
+                        "system": "http://hospital.example.org/patients",
+                        "value": "12345"
+                    }
+                ],
+                "active": true,
+                "name": [
+                    {
+                        "use": "official",
+                        "family": "smith",
+                        "given": [
+                            "john",
+                            "developer"
+                        ]
+                    }
+                ],
+                "telecom": [
+                    {
+                        "system": "phone",
+                        "value": "555-555-5555",
+                        "use": "mobile"
+                    },
+                    {
+                        "system": "email",
+                        "value": "john.smith@example.com"
+                    }
+                ],
+                "gender": "male",
+                "birthDate": "1980-01-15",
+                "address": [
+                    {
+                        "use": "home",
+                        "line": [
+                            "123 Healing Way"
+                        ],
+                        "city": "Metropolis",
+                        "state": "NY",
+                        "postalCode": "10001",
+                        "country": "US"
+                    }
+                ]
+            },
+            "search": {
+                "mode": "match"
+            }
+        },
+        {
+            "fullUrl": "https://hapi.fhir.org/baseR4/Patient/46457",
+            "resource": {
+                "resourceType": "Patient",
+                "id": "46457",
+                "meta": {
+                    "versionId": "1",
+                    "lastUpdated": "2026-09-29T00:57:16.949-04:00",
+                    "source": "#hWj6nNaZJYzCiKfZ"
+                },
+                "text": {
+                    "status": "generated",
+                    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><div class=\"hapiHeaderText\">john developer <b>SMITH </b></div><table class=\"hapiPropertyTable\"><tbody><tr><td>Identifier</td><td>12345</td></tr><tr><td>Address</td><td><span>123 Healing Way </span><br/><span>Metropolis </span><span>NY </span><span>US </span></td></tr><tr><td>Date of birth</td><td><span>15 January 1980</span></td></tr></tbody></table></div>"
+                },
+                "identifier": [
+                    {
+                        "use": "official",
+                        "system": "http://hospital.example.org/patients",
+                        "value": "12345"
+                    }
+                ],
+                "active": true,
+                "name": [
+                    {
+                        "use": "official",
+                        "family": "smith",
+                        "given": [
+                            "john",
+                            "developer"
+                        ]
+                    }
+                ],
+                "telecom": [
+                    {
+                        "system": "phone",
+                        "value": "555-555-5555",
+                        "use": "mobile"
+                    },
+                    {
+                        "system": "email",
+                        "value": "john.smith@example.com"
+                    }
+                ],
+                "gender": "male",
+                "birthDate": "1980-01-15",
+                "address": [
+                    {
+                        "use": "home",
+                        "line": [
+                            "123 Healing Way"
+                        ],
+                        "city": "Metropolis",
+                        "state": "NY",
+                        "postalCode": "10001",
+                        "country": "US"
+                    }
+                ]
+            },
+            "search": {
+                "mode": "match"
+            }
+        },
+        {
+            "fullUrl": "https://hapi.fhir.org/baseR4/Patient/example9823fhj",
+            "resource": {
+                "resourceType": "Patient",
+                "id": "example9823fhj",
+                "meta": {
+                    "versionId": "1",
+                    "lastUpdated": "2026-09-29T15:59:33.981-04:00",
+                    "source": "#zfH7NlQJuD2ct0G8"
+                },
+                "text": {
+                    "status": "generated",
+                    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><div class=\"hapiHeaderText\">Jane <b>SMITH </b></div><table class=\"hapiPropertyTable\"><tbody><tr><td>Identifier</td><td>12345</td></tr><tr><td>Date of birth</td><td><span>12 April 1985</span></td></tr></tbody></table></div>"
+                },
+                "identifier": [
+                    {
+                        "system": "http://hospital.example/mrn",
+                        "value": "12345"
+                    }
+                ],
+                "name": [
+                    {
+                        "family": "Smith",
+                        "given": [
+                            "Jane"
+                        ]
+                    }
+                ],
+                "birthDate": "1985-04-12"
+            },
+            "search": {
+                "mode": "match"
+            }
+        },
+        {
+            "fullUrl": "https://hapi.fhir.org/baseR4/Patient/65988",
+            "resource": {
+                "resourceType": "Patient",
+                "id": "65988",
+                "meta": {
+                    "versionId": "2",
+                    "lastUpdated": "2026-10-19T01:36:14.628-04:00",
+                    "source": "#yObxb0s9rmUy41Zd",
+                    "tag": [
+                        {
+                            "system": "http://terminology.hl7.org/CodeSystem/v3-ObservationValue",
+                            "code": "SUBSETTED",
+                            "display": "Resource encoded in summary mode"
+                        }
+                    ]
+                },
+                "identifier": [
+                    {
+                        "use": "official",
+                        "system": "urn:ietf:rfc:3986",
+                        "value": "urn:uuid:ddcf6b56-4601-454d-baca-893d0ce955ef"
+                    }
+                ],
+                "name": [
+                    {
+                        "family": "Smith",
+                        "given": [
+                            "John"
+                        ]
+                    }
+                ]
+            },
+            "search": {
+                "mode": "match"
+            }
+        },
+        {
+            "fullUrl": "https://hapi.fhir.org/baseR4/Patient/66144",
+            "resource": {
+                "resourceType": "Patient",
+                "id": "66144",
+                "meta": {
+                    "versionId": "2",
+                    "lastUpdated": "2026-10-19T01:36:15.372-04:00",
+                    "source": "#S0tlycN22p1K2xM1",
+                    "tag": [
+                        {
+                            "system": "http://terminology.hl7.org/CodeSystem/v3-ObservationValue",
+                            "code": "SUBSETTED",
+                            "display": "Resource encoded in summary mode"
+                        }
+                    ]
+                },
+                "identifier": [
+                    {
+                        "use": "official",
+                        "system": "urn:ietf:rfc:3986",
+                        "value": "urn:uuid:32a7e978-52ac-494f-b7b3-4959d20c2503"
+                    }
+                ],
+                "name": [
+                    {
+                        "family": "Smith",
+                        "given": [
+                            "John"
+                        ]
+                    }
+                ]
+            },
+            "search": {
+                "mode": "match"
+            }
+        },
+        {
+            "fullUrl": "https://hapi.fhir.org/baseR4/Patient/67792",
+            "resource": {
+                "resourceType": "Patient",
+                "id": "67792",
+                "meta": {
+                    "versionId": "1",
+                    "lastUpdated": "2026-09-30T09:17:59.963-04:00",
+                    "source": "#LKWPkrFvDhYvnJw8",
+                    "profile": [
+                        "http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient"
+                    ]
+                },
+                "identifier": [
+                    {
+                        "use": "usual",
+                        "type": {
+                            "coding": [
+                                {
+                                    "system": "http://terminology.hl7.org/CodeSystem/v2-0203",
+                                    "code": "MR"
+                                }
+                            ]
+                        },
+                        "system": "urn:tenant:acme:mrn",
+                        "value": "MRN-2002"
+                    }
+                ],
+                "name": [
+                    {
+                        "use": "official",
+                        "family": "Smith",
+                        "given": [
+                            "Robert",
+                            "James"
+                        ]
+                    }
+                ],
+                "gender": "male",
+                "birthDate": "1970-07-22",
+                "maritalStatus": {
+                    "coding": [
+                        {
+                            "system": "http://terminology.hl7.org/CodeSystem/v3-MaritalStatus",
+                            "code": "S"
+                        }
+                    ]
+                },
+                "communication": [
+                    {
+                        "language": {
+                            "coding": [
+                                {
+                                    "system": "urn:ietf:bcp:47",
+                                    "code": "en"
+                                }
+                            ]
+                        },
+                        "preferred": true
+                    }
+                ]
+            },
+            "search": {
+                "mode": "match"
+            }
+        },
+        {
+            "fullUrl": "https://hapi.fhir.org/baseR4/Patient/68906",
+            "resource": {
+                "resourceType": "Patient",
+                "id": "68906",
+                "meta": {
+                    "versionId": "2",
+                    "lastUpdated": "2026-10-19T01:36:18.142-04:00",
+                    "source": "#m2hGfpShcf7pqtPC",
+                    "tag": [
+                        {
+                            "system": "http://terminology.hl7.org/CodeSystem/v3-ObservationValue",
+                            "code": "SUBSETTED",
+                            "display": "Resource encoded in summary mode"
+                        }
+                    ]
+                },
+                "identifier": [
+                    {
+                        "use": "official",
+                        "system": "urn:ietf:rfc:3986",
+                        "value": "urn:uuid:001296c9-b86c-4ca7-9259-e5ad3441cdf5"
+                    }
+                ],
+                "name": [
+                    {
+                        "family": "Smith",
+                        "given": [
+                            "John"
+                        ]
+                    }
+                ]
+            },
+            "search": {
+                "mode": "match"
+            }
+        },
+        {
+            "fullUrl": "https://hapi.fhir.org/baseR4/Patient/71749",
+            "resource": {
+                "resourceType": "Patient",
+                "id": "71749",
+                "meta": {
+                    "versionId": "2",
+                    "lastUpdated": "2026-10-19T01:36:22.258-04:00",
+                    "source": "#Szc3ijHvp6OXpy0V",
+                    "tag": [
+                        {
+                            "system": "http://terminology.hl7.org/CodeSystem/v3-ObservationValue",
+                            "code": "SUBSETTED",
+                            "display": "Resource encoded in summary mode"
+                        }
+                    ]
+                },
+                "identifier": [
+                    {
+                        "use": "official",
+                        "system": "urn:ietf:rfc:3986",
+                        "value": "urn:uuid:0a1a6fee-b302-47ef-931d-038cf2a1be73"
+                    }
+                ],
+                "name": [
+                    {
+                        "use": "official",
+                        "family": "Smith",
+                        "given": [
+                            "John"
+                        ]
+                    }
+                ]
+            },
+            "search": {
+                "mode": "match"
+            }
+        },
+        {
+            "fullUrl": "https://hapi.fhir.org/baseR4/Patient/71751",
+            "resource": {
+                "resourceType": "Patient",
+                "id": "71751",
+                "meta": {
+                    "versionId": "2",
+                    "lastUpdated": "2026-10-19T01:36:22.343-04:00",
+                    "source": "#CakKbxJmWtNI7wcq",
+                    "tag": [
+                        {
+                            "system": "http://terminology.hl7.org/CodeSystem/v3-ObservationValue",
+                            "code": "SUBSETTED",
+                            "display": "Resource encoded in summary mode"
+                        }
+                    ]
+                },
+                "identifier": [
+                    {
+                        "use": "official",
+                        "system": "urn:ietf:rfc:3986",
+                        "value": "urn:uuid:f6036192-4797-4330-ad61-d75a25f8c974"
+                    }
+                ],
+                "name": [
+                    {
+                        "use": "official",
+                        "family": "Smith",
+                        "given": [
+                            "John"
+                        ]
+                    }
+                ]
+            },
+            "search": {
+                "mode": "match"
+            }
+        },
+        {
+            "fullUrl": "https://hapi.fhir.org/baseR4/Patient/71888",
+            "resource": {
+                "resourceType": "Patient",
+                "id": "71888",
+                "meta": {
+                    "versionId": "2",
+                    "lastUpdated": "2026-10-19T01:36:23.789-04:00",
+                    "source": "#MFMP697e1UcCxbVm",
+                    "tag": [
+                        {
+                            "system": "http://terminology.hl7.org/CodeSystem/v3-ObservationValue",
+                            "code": "SUBSETTED",
+                            "display": "Resource encoded in summary mode"
+                        }
+                    ]
+                },
+                "identifier": [
+                    {
+                        "use": "official",
+                        "system": "urn:ietf:rfc:3986",
+                        "value": "urn:uuid:1500f512-193f-4d68-aa80-017015a2962e"
+                    }
+                ],
+                "name": [
+                    {
+                        "use": "official",
+                        "family": "Smith",
+                        "given": [
+                            "John"
+                        ]
+                    }
+                ]
+            },
+            "search": {
+                "mode": "match"
+            }
+        },
+        {
+            "fullUrl": "https://hapi.fhir.org/baseR4/Patient/72447",
+            "resource": {
+                "resourceType": "Patient",
+                "id": "72447",
+                "meta": {
+                    "versionId": "1",
+                    "lastUpdated": "2026-10-01T04:34:21.764-04:00",
+                    "source": "#Af2rqR0yUSbHw3iY"
+                },
+                "text": {
+                    "status": "generated",
+                    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><div class=\"hapiHeaderText\">john developer <b>SMITH </b></div><table class=\"hapiPropertyTable\"><tbody><tr><td>Identifier</td><td>12345</td></tr><tr><td>Address</td><td><span>123 Healing Way </span><br/><span>Metropolis </span><span>NY </span><span>US </span></td></tr><tr><td>Date of birth</td><td><span>15 January 1980</span></td></tr></tbody></table></div>"
+                },
+                "identifier": [
+                    {
+                        "use": "official",
+                        "system": "http://hospital.example.org/patients",
+                        "value": "12345"
+                    }
+                ],
+                "active": true,
+                "name": [
+                    {
+                        "use": "official",
+                        "family": "smith",
+                        "given": [
+                            "john",
+                            "developer"
+                        ]
+                    }
+                ],
+                "telecom": [
+                    {
+                        "system": "phone",
+                        "value": "555-555-5555",
+                        "use": "mobile"
+                    },
+                    {
+                        "system": "email",
+                        "value": "john.smith@example.com"
+                    }
+                ],
+                "gender": "male",
+                "birthDate": "1980-01-15",
+                "address": [
+                    {
+                        "use": "home",
+                        "line": [
+                            "123 Healing Way"
+                        ],
+                        "city": "Metropolis",
+                        "state": "NY",
+                        "postalCode": "10001",
+                        "country": "US"
+                    }
+                ]
+            },
+            "search": {
+                "mode": "match"
+            }
+        },
+        {
+            "fullUrl": "https://hapi.fhir.org/baseR4/Patient/76475",
+            "resource": {
+                "resourceType": "Patient",
+                "id": "76475",
+                "meta": {
+                    "versionId": "2",
+                    "lastUpdated": "2026-10-19T01:36:59.713-04:00",
+                    "source": "#3EHiV7siVehxAgCK",
+                    "tag": [
+                        {
+                            "system": "http://terminology.hl7.org/CodeSystem/v3-ObservationValue",
+                            "code": "SUBSETTED",
+                            "display": "Resource encoded in summary mode"
+                        }
+                    ]
+                },
+                "identifier": [
+                    {
+                        "use": "official",
+                        "system": "urn:ietf:rfc:3986",
+                        "value": "urn:uuid:4da7f868-36bd-4fe2-a1d9-709ccb22143b"
+                    }
+                ],
+                "name": [
+                    {
+                        "use": "official",
+                        "family": "Smith",
+                        "given": [
+                            "John"
+                        ]
+                    }
+                ]
+            },
+            "search": {
+                "mode": "match"
+            }
+        },
+        {
+            "fullUrl": "https://hapi.fhir.org/baseR4/Patient/77034",
+            "resource": {
+                "resourceType": "Patient",
+                "id": "77034",
+                "meta": {
+                    "versionId": "3",
+                    "lastUpdated": "2026-10-19T01:37:04.651-04:00",
+                    "source": "#S7hHCkxmxNFHLA9O",
+                    "tag": [
+                        {
+                            "system": "http://terminology.hl7.org/CodeSystem/v3-ObservationValue",
+                            "code": "SUBSETTED",
+                            "display": "Resource encoded in summary mode"
+                        }
+                    ]
+                },
+                "identifier": [
+                    {
+                        "use": "official",
+                        "system": "urn:ietf:rfc:3986",
+                        "value": "urn:uuid:7054bae1-b37b-4ae3-bc96-1720af5a482f"
+                    }
+                ],
+                "name": [
+                    {
+                        "use": "official",
+                        "family": "Smith1",
+                        "given": [
+                            "John",
+                            "Developer"
+                        ]
+                    }
+                ]
+            },
+            "search": {
+                "mode": "match"
+            }
+        },
+        {
+            "fullUrl": "https://hapi.fhir.org/baseR4/Patient/81635",
+            "resource": {
+                "resourceType": "Patient",
+                "id": "81635",
+                "meta": {
+                    "versionId": "2",
+                    "lastUpdated": "2026-10-19T01:37:18.962-04:00",
+                    "source": "#429lPuMxJknejrbO",
+                    "tag": [
+                        {
+                            "system": "http://terminology.hl7.org/CodeSystem/v3-ObservationValue",
+                            "code": "SUBSETTED",
+                            "display": "Resource encoded in summary mode"
+                        }
+                    ]
+                },
+                "identifier": [
+                    {
+                        "use": "official",
+                        "system": "urn:ietf:rfc:3986",
+                        "value": "urn:uuid:f275641a-ba81-4bf5-81c1-4ec137b53797"
+                    }
+                ],
+                "name": [
+                    {
+                        "use": "official",
+                        "family": "Smith",
+                        "given": [
+                            "John"
+                        ]
+                    }
+                ]
+            },
+            "search": {
+                "mode": "match"
+            }
+        },
+        {
+            "fullUrl": "https://hapi.fhir.org/baseR4/Patient/82018",
+            "resource": {
+                "resourceType": "Patient",
+                "id": "82018",
+                "meta": {
+                    "versionId": "2",
+                    "lastUpdated": "2026-10-19T01:37:20.898-04:00",
+                    "source": "#S5BZfE9ZIFozioUY",
+                    "tag": [
+                        {
+                            "system": "http://terminology.hl7.org/CodeSystem/v3-ObservationValue",
+                            "code": "SUBSETTED",
+                            "display": "Resource encoded in summary mode"
+                        }
+                    ]
+                },
+                "identifier": [
+                    {
+                        "use": "official",
+                        "system": "urn:ietf:rfc:3986",
+                        "value": "urn:uuid:2d3b0ca3-2874-4d57-b8fc-4b694cc8803b"
+                    }
+                ],
+                "name": [
+                    {
+                        "family": "Smith",
+                        "given": [
+                            "John"
+                        ]
+                    }
+                ]
+            },
+            "search": {
+                "mode": "match"
+            }
+        }
+    ]
+}

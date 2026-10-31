@@ -1,0 +1,51 @@
+=== POST /Patient (newborn) ===
+Status: 201
+Time: 502ms
+Content-Type: application/fhir+json;charset=utf-8
+
+Body:
+{
+    "resourceType": "Patient",
+    "id": "362132",
+    "meta": {
+        "versionId": "1",
+        "lastUpdated": "2026-10-31T00:37:21.775-04:00",
+        "source": "#a95JP6DgXe4mptqd"
+    },
+    "text": {
+        "status": "generated",
+        "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><div class=\"hapiHeaderText\">Sanda <b>KUVALIS </b></div><table class=\"hapiPropertyTable\"><tbody><tr><td>Identifier</td><td>TEST-00395782</td></tr><tr><td>Address</td><td><span>East Laveratown </span><span>TX </span><span>US </span></td></tr><tr><td>Date of birth</td><td><span>31 October 2026</span></td></tr></tbody></table></div>"
+    },
+    "identifier": [
+        {
+            "system": "http://hospital.example.org/mrn",
+            "value": "TEST-00395782"
+        }
+    ],
+    "name": [
+        {
+            "use": "official",
+            "family": "Kuvalis",
+            "given": [
+                "Sanda"
+            ]
+        }
+    ],
+    "telecom": [
+        {
+            "system": "phone",
+            "value": "598.983.7273 x173",
+            "use": "home"
+        }
+    ],
+    "gender": "male",
+    "birthDate": "2026-10-31",
+    "address": [
+        {
+            "city": "East Laveratown",
+            "state": "TX",
+            "postalCode": "85725",
+            "country": "US"
+        }
+    ]
+}

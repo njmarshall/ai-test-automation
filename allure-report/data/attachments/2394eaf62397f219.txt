@@ -1,0 +1,21 @@
+=== GET /ClaimResponse ===
+Status: 200
+Time: 3ms
+Content-Type: application/json
+
+Body:
+{
+    "resourceType": "ClaimResponse",
+    "id": "TEST-CR-00000001",
+    "status": "active",
+    "outcome": "complete",
+    "request": {
+        "reference": "Claim/TEST-CLM-00000001"
+    },
+    "payment": {
+        "amount": {
+            "value": 120.00,
+            "currency": "USD"
+        }
+    }
+}

@@ -1,0 +1,42 @@
+=== POST /Patient (missing name) ===
+Status: 201
+Time: 505ms
+Content-Type: application/fhir+json;charset=utf-8
+
+Body:
+{
+    "resourceType": "Patient",
+    "id": "362133",
+    "meta": {
+        "versionId": "1",
+        "lastUpdated": "2026-10-31T00:37:23.294-04:00",
+        "source": "#iSVtQGpWTUcjilUf"
+    },
+    "text": {
+        "status": "generated",
+        "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><div class=\"hapiHeaderText\"/><table class=\"hapiPropertyTable\"><tbody><tr><td>Identifier</td><td>TEST-00124045</td></tr><tr><td>Address</td><td><span>Port Diego </span><span>NH </span><span>US </span></td></tr><tr><td>Date of birth</td><td><span>31 October 1991</span></td></tr></tbody></table></div>"
+    },
+    "identifier": [
+        {
+            "system": "http://hospital.example.org/mrn",
+            "value": "TEST-00124045"
+        }
+    ],
+    "telecom": [
+        {
+            "system": "phone",
+            "value": "000.762.2169",
+            "use": "home"
+        }
+    ],
+    "gender": "female",
+    "birthDate": "1991-10-31",
+    "address": [
+        {
+            "city": "Port Diego",
+            "state": "NH",
+            "postalCode": "06988-3403",
+            "country": "US"
+        }
+    ]
+}

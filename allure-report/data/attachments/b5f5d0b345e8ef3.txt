@@ -1,0 +1,15 @@
+=== POST /quotes deductible=250 ===
+Status: 200
+Time: 11ms
+Content-Type: application/json
+
+Body:
+{
+    "quoteId": "QT-2025-00250",
+    "status": "approved",
+    "monthlyPremium": 150.00,
+    "annualPremium": 1700.00,
+    "coverageType": "comprehensive",
+    "deductible": 250,
+    "expiresAt": "2025-04-22T00:00:00Z"
+}

@@ -1,0 +1,23 @@
+=== GET /store/inventory ===
+Status: 200
+Time: 328ms
+Content-Type: application/json
+
+Body:
+{
+    "sold": 139,
+    "string": 686,
+    "pending": 24,
+    "available": 91,
+    "${sleep 15}\n": 2,
+    "2'; SELECT pg_sleep(15) -- -": 2,
+    "https://ssrfpinger.aikidosec.com/uuid/set/3108abb7-c290-462c-979a-936ba8183582_status": 1,
+    "`sleep 15`\n": 2,
+    "invalid": 5,
+    "https://ssrfpinger.aikidosec.com/uuid/set/34894ef2-bcfd-4bbc-84f6-a065eedc6887_status": 1,
+    "2; SELECT pg_sleep(15) -- -": 2,
+    "2'; SELECT SLEEP(15) -- -": 2,
+    "1;sleep${IFS}15;#${IFS}';sleep${IFS}15;#${IFS}\";sleep${IFS}15;#${IFS}\n": 2,
+    "2; SELECT SLEEP(15) -- -": 2,
+    "invalid-status": 1
+}

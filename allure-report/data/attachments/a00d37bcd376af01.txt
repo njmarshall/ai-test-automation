@@ -1,0 +1,51 @@
+=== POST /Patient ===
+Status: 201
+Time: 13537ms
+Content-Type: application/fhir+json;charset=utf-8
+
+Body:
+{
+    "resourceType": "Patient",
+    "id": "362129",
+    "meta": {
+        "versionId": "1",
+        "lastUpdated": "2026-10-31T00:37:20.225-04:00",
+        "source": "#K1SJ9SrtdAPAheNv"
+    },
+    "text": {
+        "status": "generated",
+        "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><div class=\"hapiHeaderText\">Elliott <b>RUSSEL </b></div><table class=\"hapiPropertyTable\"><tbody><tr><td>Identifier</td><td>TEST-00068238</td></tr><tr><td>Address</td><td><span>Port Careyton </span><span>MD </span><span>US </span></td></tr><tr><td>Date of birth</td><td><span>31 October 1991</span></td></tr></tbody></table></div>"
+    },
+    "identifier": [
+        {
+            "system": "http://hospital.example.org/mrn",
+            "value": "TEST-00068238"
+        }
+    ],
+    "name": [
+        {
+            "use": "official",
+            "family": "Russel",
+            "given": [
+                "Elliott"
+            ]
+        }
+    ],
+    "telecom": [
+        {
+            "system": "phone",
+            "value": "962-619-1614 x57030",
+            "use": "home"
+        }
+    ],
+    "gender": "female",
+    "birthDate": "1991-10-31",
+    "address": [
+        {
+            "city": "Port Careyton",
+            "state": "MD",
+            "postalCode": "00063-9493",
+            "country": "US"
+        }
+    ]
+}
