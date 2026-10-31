@@ -62,6 +62,30 @@
             <artifactId>testng</artifactId>
             <scope>provided</scope>
         </dependency>
+
+        <!-- Unit testing for shared/ module — JUnit 5 + Mockito 5 -->
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-core</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <!-- mockito-junit-jupiter provides @ExtendWith(MockitoExtension.class) -->
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-junit-jupiter</artifactId>
+            <version>${mockito.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <!--
+            Note: mockito-inline was merged into mockito-core in Mockito 5.x.
+            MockedStatic (used for Thread.sleep + AllureHelper) works with
+            mockito-core 5.11.0 — no separate mockito-inline dependency needed.
+        -->
     </dependencies>
 
     <build>
@@ -69,6 +93,18 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
+            </plugin>
+
+            <!-- maven-surefire-plugin: run JUnit 5 tests in the shared module -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>3.2.5</version>
+                <configuration>
+                    <includes>
+                        <include>**/*Test.java</include>
+                    </includes>
+                </configuration>
             </plugin>
 
             <!--

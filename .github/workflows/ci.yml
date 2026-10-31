@@ -8,11 +8,43 @@ on:
   workflow_dispatch:   # allow manual trigger from GitHub UI
 
 jobs:
+  # ── NEW: Shared module unit tests (JUnit 5 + Mockito 5) ───────────────────
+  shared-unit-tests:
+    name: Shared Module Unit Tests
+    runs-on: ubuntu-24.04    # pinned — avoids surprises on ubuntu-latest runner upgrades
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+          cache: 'maven'
+
+      # Build and run the shared module's JUnit 5 tests.
+      # These tests have zero external dependencies — no live endpoints,
+      # no API keys, no Allure context. They run in milliseconds.
+      - name: Run shared/ unit tests
+        run: mvn test -pl shared --no-transfer-progress
+
+      - name: Upload Surefire reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: shared-unit-test-results
+          path: shared/target/surefire-reports/
+          retention-days: 14
+
+  # ── Integration: build shared, run PetStore API tests ─────────────────────
   build-and-test:
     name: Build & Run API Tests
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04    # pinned — matches shared-unit-tests runner
+    needs: shared-unit-tests  # shared module must pass unit tests first
     permissions:
-      contents: write   # ← Required: allows peaceiris/actions-gh-pages to push to gh-pages branch
+      contents: write   # Required: allows peaceiris/actions-gh-pages to push to gh-pages branch
 
     steps:
       # ── Checkout ────────────────────────────────────────────────────────────
@@ -29,7 +61,7 @@ jobs:
 
       # ── Build shared library first ──────────────────────────────────────────
       - name: Build shared module
-        run: mvn install -pl shared -am -DskipTests
+        run: mvn install -pl shared -am -DskipTests --no-transfer-progress
 
       # ── Run API tests ────────────────────────────────────────────────────────
       - name: Run PetStore API tests
@@ -41,12 +73,12 @@ jobs:
           ALLURE_ATTACH_ALWAYS:  "true"
           API_KEY:               ${{ secrets.API_KEY }}
           BEARER_TOKEN:          ${{ secrets.BEARER_TOKEN }}
-        run: mvn test -pl api -am
+        run: mvn test -pl api -am --no-transfer-progress
 
       # ── Allure report ────────────────────────────────────────────────────────
       - name: Generate Allure report
         if: always()   # generate even when tests fail
-        run: mvn allure:report -pl api
+        run: mvn allure:report -pl api --no-transfer-progress
 
       - name: Upload Allure results (raw)
         if: always()
@@ -76,11 +108,11 @@ jobs:
   # ── Optional: AI test generation job (runs on demand) ─────────────────────
   generate-tests:
     name: AI Test Generation
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04    # pinned
     if: github.event_name == 'workflow_dispatch'
     needs: build-and-test
     permissions:
-      contents: write   # ← Required: allows git push of AI-generated tests
+      contents: write   # Required: allows git push of AI-generated tests
 
     steps:
       - uses: actions/checkout@v4
@@ -93,12 +125,12 @@ jobs:
           cache: 'maven'
 
       - name: Build shared module
-        run: mvn install -pl shared -am -DskipTests
+        run: mvn install -pl shared -am -DskipTests --no-transfer-progress
 
       - name: Run AI Test Generator
         env:
           LLM_API_KEY:   ${{ secrets.LLM_API_KEY }}
-          LLM_MODEL:     "claude-sonnet-4-20250514"
+          LLM_MODEL:     "claude-sonnet-4-6"
           AI_OUTPUT_DIR: "api/src/test/java/com/aitesting/api/aigenerated"
         run: |
           mvn exec:java \
