@@ -1,0 +1,14 @@
+=== POST /policies ===
+Status: 201
+Time: 6ms
+Content-Type: application/json
+
+Body:
+{
+    "policyId": "POL-2025-056789",
+    "status": "active",
+    "effectiveDate": "2025-04-03",
+    "expirationDate": "2026-04-03",
+    "premium": 1402.50,
+    "paymentMethod": "monthly"
+}

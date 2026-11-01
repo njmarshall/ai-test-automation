@@ -1,0 +1,51 @@
+=== POST /Patient (newborn) ===
+Status: 201
+Time: 406ms
+Content-Type: application/fhir+json;charset=utf-8
+
+Body:
+{
+    "resourceType": "Patient",
+    "id": "380615",
+    "meta": {
+        "versionId": "1",
+        "lastUpdated": "2026-11-01T12:31:45.864-05:00",
+        "source": "#ypjTDbtiRMR7wnjw"
+    },
+    "text": {
+        "status": "generated",
+        "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><div class=\"hapiHeaderText\">Carleen <b>KOSS </b></div><table class=\"hapiPropertyTable\"><tbody><tr><td>Identifier</td><td>TEST-00775975</td></tr><tr><td>Address</td><td><span>Juniorland </span><span>ND </span><span>US </span></td></tr><tr><td>Date of birth</td><td><span>01 November 2026</span></td></tr></tbody></table></div>"
+    },
+    "identifier": [
+        {
+            "system": "http://hospital.example.org/mrn",
+            "value": "TEST-00775975"
+        }
+    ],
+    "name": [
+        {
+            "use": "official",
+            "family": "Koss",
+            "given": [
+                "Carleen"
+            ]
+        }
+    ],
+    "telecom": [
+        {
+            "system": "phone",
+            "value": "(022) 903-4075 x53079",
+            "use": "home"
+        }
+    ],
+    "gender": "male",
+    "birthDate": "2026-11-01",
+    "address": [
+        {
+            "city": "Juniorland",
+            "state": "ND",
+            "postalCode": "77647-2653",
+            "country": "US"
+        }
+    ]
+}

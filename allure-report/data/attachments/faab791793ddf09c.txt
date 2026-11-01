@@ -1,0 +1,16 @@
+=== POST /Claim PA (missing patient) ===
+Status: 400
+Time: 3ms
+Content-Type: application/json
+
+Body:
+{
+    "resourceType": "OperationOutcome",
+    "issue": [
+        {
+            "severity": "error",
+            "code": "required",
+            "diagnostics": "Patient reference required"
+        }
+    ]
+}
