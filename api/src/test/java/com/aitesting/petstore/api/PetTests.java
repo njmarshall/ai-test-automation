@@ -1,6 +1,7 @@
 package com.aitesting.petstore.api;
 
 import com.aitesting.shared.assertions.ResponseValidator;
+import com.aitesting.shared.config.BaseConfig;
 import com.aitesting.shared.dataprovider.TestDataFactory;
 import com.aitesting.shared.http.ApiClient;
 import com.aitesting.shared.reporting.AllureHelper;
@@ -62,7 +63,7 @@ public class PetTests {
 
             ResponseValidator.from(response)
                     .statusCode(200)
-                    .withinSla()
+                    .withinSla(BaseConfig.LIVE_API_SLA_MS)
                     .hasField("id")
                     .fieldEquals("name", payload.get("name"))
                     .fieldEquals("status", "available");
@@ -102,7 +103,7 @@ public class PetTests {
 
         ResponseValidator.from(response)
                 .statusCode(200)
-                .withinSla()
+                .withinSla(BaseConfig.LIVE_API_SLA_MS)
                 .hasField("id")
                 .hasField("name")
                 .hasField("status");
@@ -135,7 +136,7 @@ public class PetTests {
 
         ResponseValidator.from(response)
                 .statusCode(404)  // ✅ PetStore returns 404 not 400
-                .withinSla();
+                .withinSla(BaseConfig.LIVE_API_SLA_MS);
     }
 
     // ── PUT /pet ──────────────────────────────────────────────────────────────
@@ -178,7 +179,7 @@ public class PetTests {
 
         ResponseValidator.from(response)
                 .statusCode(200)
-                .withinSla();
+                .withinSla(BaseConfig.LIVE_API_SLA_MS);
 
         // Confirm deletion — subsequent GET should 404
         Response verifyResponse = ApiClient.DEFAULT.get("/pet/" + createdPetId);
@@ -217,7 +218,7 @@ public class PetTests {
 
         ResponseValidator.from(response)
                 .statusCode(200)
-                .withinSla();
+                .withinSla(BaseConfig.LIVE_API_SLA_MS);
         // Body is an array — check it's not a 4xx
     }
 
@@ -234,7 +235,7 @@ public class PetTests {
         // A production API should return 400
         ResponseValidator.from(response)
                 .statusCode(200)    // ✅ actual PetStore behavior
-                .withinSla();
+                .withinSla(BaseConfig.LIVE_API_SLA_MS);
     }
 
     // ── Data providers ────────────────────────────────────────────────────────

@@ -28,6 +28,10 @@ public final class BaseConfig {
     public static final long RESPONSE_TIME_SLA_MS =
             EnvConfig.getInt("RESPONSE_TIME_SLA_MS", 3000);
 
+    /** SLA for tests that call live public servers (HAPI FHIR, PetStore). Looser than RESPONSE_TIME_SLA_MS because we do not control those servers. */
+    public static final long LIVE_API_SLA_MS =
+            EnvConfig.getInt("LIVE_API_SLA_MS", 8000);
+
     // ── Auth ─────────────────────────────────────────────────────────────────
     /** API key header value. Set API_KEY env var in CI; leave blank for public APIs. */
     public static final String API_KEY =

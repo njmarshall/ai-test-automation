@@ -90,11 +90,16 @@ public class ResponseValidator<T extends ResponseValidator<T>> {
     // ── Performance ───────────────────────────────────────────────────────────
 
     public T withinSla() {
+        return withinSla(BaseConfig.RESPONSE_TIME_SLA_MS);
+    }
+
+    /** SLA check against an explicit limit, e.g. BaseConfig.LIVE_API_SLA_MS for live servers. */
+    public T withinSla(long maxMillis) {
         long elapsed = response.getTime();
         assertThat("Response time " + elapsed + "ms exceeded SLA "
-                + BaseConfig.RESPONSE_TIME_SLA_MS + "ms",
+                + maxMillis + "ms",
                 elapsed,
-                lessThanOrEqualTo(BaseConfig.RESPONSE_TIME_SLA_MS));
+                lessThanOrEqualTo(maxMillis));
         return self();
     }
 

@@ -1,6 +1,7 @@
 package com.aitesting.petstore.api;
 
 import com.aitesting.shared.assertions.ResponseValidator;
+import com.aitesting.shared.config.BaseConfig;
 import com.aitesting.shared.dataprovider.TestDataFactory;
 import com.aitesting.shared.http.ApiClient;
 import com.aitesting.shared.reporting.AllureHelper;
@@ -42,7 +43,7 @@ public class StoreTests {
 
         ResponseValidator.from(response)
                 .statusCode(200)
-                .withinSla()
+                .withinSla(BaseConfig.LIVE_API_SLA_MS)
                 .contentType("application/json");
     }
 
@@ -62,7 +63,7 @@ public class StoreTests {
 
         ResponseValidator.from(response)
                 .statusCode(200)
-                .withinSla()
+                .withinSla(BaseConfig.LIVE_API_SLA_MS)
                 .hasField("id")
                 .fieldEquals("status", "placed");
 
@@ -104,7 +105,7 @@ public class StoreTests {
 
         ResponseValidator.from(response)
                 .statusCode(200)
-                .withinSla()
+                .withinSla(BaseConfig.LIVE_API_SLA_MS)
                 .hasField("id")
                 .hasField("petId")
                 .hasField("status");
@@ -137,7 +138,7 @@ public class StoreTests {
 
         ResponseValidator.from(response)
                 .statusCode(200)
-                .withinSla();
+                .withinSla(BaseConfig.LIVE_API_SLA_MS);
 
         // Confirm deletion
         Response verify = ApiClient.DEFAULT.get("/store/order/" + createdOrderId);

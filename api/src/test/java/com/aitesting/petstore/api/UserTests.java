@@ -1,6 +1,7 @@
 package com.aitesting.petstore.api;
 
 import com.aitesting.shared.assertions.ResponseValidator;
+import com.aitesting.shared.config.BaseConfig;
 import com.aitesting.shared.dataprovider.TestDataFactory;
 import com.aitesting.shared.http.ApiClient;
 import com.aitesting.shared.reporting.AllureHelper;
@@ -58,7 +59,7 @@ public class UserTests {
 
             ResponseValidator.from(response)
                     .statusCode(200)
-                    .withinSla()
+                    .withinSla(BaseConfig.LIVE_API_SLA_MS)
                     .hasField("message");   // PetStore returns {"code":200,"message":"<userId>"}
         });
     }
@@ -78,7 +79,7 @@ public class UserTests {
 
         ResponseValidator.from(response)
                 .statusCode(200)
-                .withinSla();
+                .withinSla(BaseConfig.LIVE_API_SLA_MS);
     }
 
     @Test(priority = 3)
@@ -97,7 +98,7 @@ public class UserTests {
 
         ResponseValidator.from(response)
                 .statusCode(200)
-                .withinSla();
+                .withinSla(BaseConfig.LIVE_API_SLA_MS);
     }
 
     // ── GET /user/{username} ──────────────────────────────────────────────────
@@ -114,7 +115,7 @@ public class UserTests {
 
         ResponseValidator.from(response)
                 .statusCode(200)
-                .withinSla()
+                .withinSla(BaseConfig.LIVE_API_SLA_MS)
                 .hasField("id")
                 .hasField("username")
                 .hasField("email")
@@ -134,7 +135,7 @@ public class UserTests {
 
         ResponseValidator.from(response)
                 .statusCode(404)
-                .withinSla();
+                .withinSla(BaseConfig.LIVE_API_SLA_MS);
     }
 
     // ── PUT /user/{username} ──────────────────────────────────────────────────
@@ -156,7 +157,7 @@ public class UserTests {
 
         ResponseValidator.from(response)
                 .statusCode(200)
-                .withinSla();
+                .withinSla(BaseConfig.LIVE_API_SLA_MS);
     }
 
     // ── GET /user/login ───────────────────────────────────────────────────────
@@ -173,7 +174,7 @@ public class UserTests {
 
         ResponseValidator.from(response)
                 .statusCode(200)
-                .withinSla()
+                .withinSla(BaseConfig.LIVE_API_SLA_MS)
                 .hasField("message");   // message contains the session token
     }
 
@@ -188,7 +189,7 @@ public class UserTests {
 
         // PetStore public API returns 200 even without creds — document actual behavior
         // In a real API this should assert 400; adjust per your target system
-        ResponseValidator.from(response).withinSla();
+        ResponseValidator.from(response).withinSla(BaseConfig.LIVE_API_SLA_MS);
     }
 
     // ── GET /user/logout ──────────────────────────────────────────────────────
@@ -203,7 +204,7 @@ public class UserTests {
 
         ResponseValidator.from(response)
                 .statusCode(200)
-                .withinSla();
+                .withinSla(BaseConfig.LIVE_API_SLA_MS);
     }
 
     // ── DELETE /user/{username} ───────────────────────────────────────────────
@@ -220,13 +221,13 @@ public class UserTests {
 
         ResponseValidator.from(response)
                 .statusCode(200)
-                .withinSla();
+                .withinSla(BaseConfig.LIVE_API_SLA_MS);
 
         // Confirm deletion — GET should now return 404
         Response verify = ApiClient.DEFAULT.get("/user/" + createdUsername);
         ResponseValidator.from(response)
                 .statusCode(200)
-                .withinSla();
+                .withinSla(BaseConfig.LIVE_API_SLA_MS);
 
         // NOTE: Public PetStore does not consistently delete users
         // Post-delete verification removed — API returns 200 on re-fetch

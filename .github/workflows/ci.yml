@@ -69,6 +69,7 @@ jobs:
           BASE_URL:              ${{ vars.BASE_URL || 'https://petstore.swagger.io/v2' }}
           REQUEST_TIMEOUT_MS:    "10000"
           RESPONSE_TIME_SLA_MS:  "3000"
+          LIVE_API_SLA_MS:       "8000"
           LOG_ALL_REQUESTS:      "false"
           ALLURE_ATTACH_ALWAYS:  "true"
           API_KEY:               ${{ secrets.API_KEY }}

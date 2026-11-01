@@ -2,6 +2,7 @@ package com.aitesting.healthcare.api;
 
 import com.aitesting.healthcare.model.FhirModels.Encounter;
 import com.aitesting.healthcare.model.FhirModels.Patient;
+import com.aitesting.shared.config.BaseConfig;
 import com.aitesting.shared.http.ApiClient;
 import com.aitesting.shared.http.ApiClientFactory;
 import com.aitesting.shared.reporting.AllureHelper;
@@ -139,7 +140,7 @@ public class EncounterTests {
 
         HealthResponseValidator.from(response)
             .statusCode(200)
-            .withinSla()
+            .withinSla(BaseConfig.LIVE_API_SLA_MS)
             .hasCompleteEncounterStructure()
             .fieldEquals("id", createdEncounterId);
     }
@@ -157,7 +158,7 @@ public class EncounterTests {
 
         HealthResponseValidator.from(response)
             .statusCode(404)
-            .withinSla();
+            .withinSla(BaseConfig.LIVE_API_SLA_MS);
     }
 
     // ── GET /Encounter?patient=X ──────────────────────────────────────────────
@@ -175,7 +176,7 @@ public class EncounterTests {
 
         HealthResponseValidator.from(response)
             .statusCode(200)
-            .withinSla()
+            .withinSla(BaseConfig.LIVE_API_SLA_MS)
             .hasFhirResourceType("Bundle");
     }
 
@@ -195,6 +196,6 @@ public class EncounterTests {
 
         HealthResponseValidator.from(response)
             .is4xx()
-            .withinSla();
+            .withinSla(BaseConfig.LIVE_API_SLA_MS);
     }
 }

@@ -1,6 +1,7 @@
 package com.aitesting.healthcare.api;
 
 import com.aitesting.healthcare.model.FhirModels.Patient;
+import com.aitesting.shared.config.BaseConfig;
 import com.aitesting.shared.http.ApiClient;
 import com.aitesting.shared.http.ApiClientFactory;
 import com.aitesting.shared.reporting.AllureHelper;
@@ -70,7 +71,7 @@ public class PatientTests {
 
             HealthResponseValidator.from(response)
                 .statusCode(201)
-                .withinSla()
+                .withinSla(BaseConfig.LIVE_API_SLA_MS)
                 .hasFhirResourceType("Patient")
                 .hasFhirId()
                 .hasCompletePatientStructure();
@@ -93,7 +94,7 @@ public class PatientTests {
 
         HealthResponseValidator.from(response)
             .statusCode(201)
-            .withinSla()
+            .withinSla(BaseConfig.LIVE_API_SLA_MS)
             .hasFhirResourceType("Patient")
             .hasFhirId();
     }
@@ -111,7 +112,7 @@ public class PatientTests {
 
         HealthResponseValidator.from(response)
             .statusCode(201)
-            .withinSla()
+            .withinSla(BaseConfig.LIVE_API_SLA_MS)
             .hasFhirResourceType("Patient");
     }
 
@@ -128,7 +129,7 @@ public class PatientTests {
 
         HealthResponseValidator.from(response)
             .statusCode(201)
-            .withinSla()
+            .withinSla(BaseConfig.LIVE_API_SLA_MS)
             .hasFhirResourceType("Patient");
     }
 
@@ -146,7 +147,7 @@ public class PatientTests {
 
         HealthResponseValidator.from(response)
             .statusCode(200)
-            .withinSla()
+            .withinSla(BaseConfig.LIVE_API_SLA_MS)
             .hasCompletePatientStructure()
             .fieldEquals("id", createdPatientId);
     }
@@ -164,7 +165,7 @@ public class PatientTests {
 
         HealthResponseValidator.from(response)
             .statusCode(404)
-            .withinSla();
+            .withinSla(BaseConfig.LIVE_API_SLA_MS);
     }
 
     // ── PUT /Patient/{id} ─────────────────────────────────────────────────────
@@ -183,7 +184,7 @@ public class PatientTests {
 
         HealthResponseValidator.from(response)
             .statusCode(200)
-            .withinSla()
+            .withinSla(BaseConfig.LIVE_API_SLA_MS)
             .hasFhirResourceType("Patient")
             .fieldEquals("id", createdPatientId);
     }
@@ -204,7 +205,7 @@ public class PatientTests {
         // FHIR search returns a Bundle resource
         HealthResponseValidator.from(response)
             .statusCode(200)
-            .withinSla()
+            .withinSla(BaseConfig.LIVE_API_SLA_MS)
             .hasFhirResourceType("Bundle");
     }
 
