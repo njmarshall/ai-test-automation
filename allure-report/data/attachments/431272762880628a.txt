@@ -1,0 +1,2705 @@
+=== GET /pet/findByStatus?status=available ===
+Status: 200
+Time: 337ms
+Content-Type: application/json
+
+Body:
+[
+    {
+        "id": 1793508883842,
+        "category": {
+            "id": 0,
+            "name": "iggy"
+        },
+        "name": "yuggy",
+        "photoUrls": [
+            "string"
+        ],
+        "tags": [
+            {
+                "id": 0,
+                "name": "cccc"
+            }
+        ],
+        "status": "available"
+    },
+    {
+        "id": 1793508883843,
+        "category": {
+            "id": 0,
+            "name": "string"
+        },
+        "name": "doggie",
+        "photoUrls": [
+            "string"
+        ],
+        "tags": [
+            {
+                "id": 0,
+                "name": "string"
+            }
+        ],
+        "status": "available"
+    },
+    {
+        "id": 1716163661,
+        "category": {
+            "id": 0,
+            "name": "pajaro"
+        },
+        "name": "pupo",
+        "photoUrls": [
+            "string"
+        ],
+        "tags": [
+            {
+                "id": 0,
+                "name": "sintag"
+            }
+        ],
+        "status": "available"
+    },
+    {
+        "id": 499,
+        "category": {
+            "id": 588,
+            "name": "Titus"
+        },
+        "name": "{{our_pet}}",
+        "photoUrls": [
+            "{{randomImgUrl}}"
+        ],
+        "tags": [
+            {
+                "id": 651,
+                "name": "Lillian"
+            }
+        ],
+        "status": "available"
+    },
+    {
+        "id": 22386778,
+        "category": {
+            "id": -25647035,
+            "name": "Duis dolor"
+        },
+        "name": "doggie",
+        "photoUrls": [
+            "proident qui",
+            "eiusmod non fugiat qui in"
+        ],
+        "tags": [
+            {
+                "id": 28440767,
+                "name": "est ad"
+            },
+            {
+                "id": 42048646,
+                "name": "non ad"
+            }
+        ],
+        "status": "available"
+    },
+    {
+        "id": 31,
+        "category": {
+            "id": 2,
+            "name": "perro"
+        },
+        "name": "Firulais",
+        "photoUrls": [
+            "string"
+        ],
+        "tags": [
+            {
+                "id": 1,
+                "name": "alegre"
+            }
+        ],
+        "status": "available"
+    },
+    {
+        "id": 999998,
+        "name": "ExternalPlaywrightDog",
+        "photoUrls": [
+            "https://example.com/dog.jpg"
+        ],
+        "tags": [
+            
+        ],
+        "status": "available"
+    },
+    {
+        "id": 1793508883853,
+        "category": {
+            "id": 0,
+            "name": "string"
+        },
+        "name": "doggie",
+        "photoUrls": [
+            "string"
+        ],
+        "tags": [
+            {
+                "id": 0,
+                "name": "string"
+            }
+        ],
+        "status": "available"
+    },
+    {
+        "id": 47,
+        "category": {
+            "id": 0,
+            "name": "string"
+        },
+        "name": "rocky",
+        "photoUrls": [
+            "string"
+        ],
+        "tags": [
+            {
+                "id": 0,
+                "name": "string"
+            }
+        ],
+        "status": "available"
+    },
+    {
+        "id": 1793508883859,
+        "category": {
+            "id": 92705150,
+            "name": "Mi dolor"
+        },
+        "name": "doggie",
+        "photoUrls": [
+            "string"
+        ],
+        "tags": [
+            {
+                "id": 0,
+                "name": "string"
+            }
+        ],
+        "status": "available"
+    },
+    {
+        "id": 1793508883862,
+        "category": {
+            "id": 0,
+            "name": "Pomeranian"
+        },
+        "name": "Yeontn",
+        "photoUrls": [
+            "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwikibio.in%2Fyeontan%2F&psig=AOvVaw0UdJeOGlk-jKSOtT-nplW1&ust=1682581409377000&source=images&cd=vfe&ved=0CA4QjRxqFwoTCMCQvJiuyP4CFQAAAAAdAAAAABAI"
+        ],
+        "tags": [
+            {
+                "id": 0,
+                "name": "Dog"
+            }
+        ],
+        "status": "available"
+    },
+    {
+        "id": 1793508883872,
+        "category": {
+            "id": 0,
+            "name": "doggie"
+        },
+        "name": "doggie",
+        "photoUrls": [
+            "https://example.com/photo.jpg"
+        ],
+        "tags": [
+            {
+                "id": 0,
+                "name": "doggie"
+            }
+        ],
+        "status": "available"
+    },
+    {
+        "id": 1793508883873,
+        "category": {
+            "id": 0,
+            "name": "doggie"
+        },
+        "name": "doggie",
+        "photoUrls": [
+            "https://example.com/photo.jpg"
+        ],
+        "tags": [
+            {
+                "id": 0,
+                "name": "doggie"
+            }
+        ],
+        "status": "available"
+    },
+    {
+        "id": 1793508883874,
+        "category": {
+            "id": 0,
+            "name": "doggie"
+        },
+        "name": "doggie",
+        "photoUrls": [
+            "https://example.com/photo.jpg"
+        ],
+        "tags": [
+            {
+                "id": 0,
+                "name": "doggie"
+            }
+        ],
+        "status": "available"
+    },
+    {
+        "id": 1793508883875,
+        "category": {
+            "id": 0,
+            "name": "doggie"
+        },
+        "name": "doggie",
+        "photoUrls": [
+            "https://example.com/photo.jpg"
+        ],
+        "tags": [
+            {
+                "id": 0,
+                "name": "doggie"
+            }
+        ],
+        "status": "available"
+    },
+    {
+        "id": 1793508883876,
+        "category": {
+            "id": 0,
+            "name": "doggie"
+        },
+        "name": "doggie",
+        "photoUrls": [
+            "https://example.com/photo.jpg"
+        ],
+        "tags": [
+            {
+                "id": 0,
+                "name": "doggie"
+            }
+        ],
+        "status": "available"
+    },
+    {
+        "id": 1793508883900,
+        "category": {
+            "id": 0,
+            "name": "string"
+        },
+        "name": "doggie",
+        "photoUrls": [
+            "string"
+        ],
+        "tags": [
+            {
+                "id": 0,
+                "name": "string"
+            }
+        ],
+        "status": "available"
+    },
+    {
+        "id": 2365144566245,
+        "category": {
+            "id": 1,
+            "name": "Husky"
+        },
+        "name": "Zeus",
+        "photoUrls": [
+            "string"
+        ],
+        "tags": [
+            {
+                "id": 0,
+                "name": "string"
+            }
+        ],
+        "status": "available"
+    },
+    {
+        "id": 1245,
+        "category": {
+            "id": 1245,
+            "name": "xyz"
+        },
+        "name": "xyz",
+        "photoUrls": [
+            "test"
+        ],
+        "tags": [
+            
+        ],
+        "status": "available"
+    },
+    {
+        "id": 9222968140497181635,
+        "category": {
+            "id": 0,
+            "name": "string"
+        },
+        "name": "doggie",
+        "photoUrls": [
+            "string"
+        ],
+        "tags": [
+            {
+                "id": 0,
+                "name": "string"
+            }
+        ],
+        "status": "available"
+    },
+    {
+        "id": 9222968140497181639,
+        "category": {
+            "id": 0,
+            "name": "string"
+        },
+        "name": "doggie",
+        "photoUrls": [
+            "string"
+        ],
+        "tags": [
+            {
+                "id": 0,
+                "name": "string"
+            }
+        ],
+        "status": "available"
+    },
+    {
+        "id": 9222968140497181640,
+        "category": {
+            "id": 0,
+            "name": "string"
+        },
+        "name": "doggie",
+        "photoUrls": [
+            "string"
+        ],
+        "tags": [
+            {
+                "id": 0,
+                "name": "string"
+            }
+        ],
+        "status": "available"
+    },
+    {
+        "id": 9222968140497181643,
+        "name": "Javierito",
+        "photoUrls": [
+            
+        ],
+        "tags": [
+            
+        ],
+        "status": "available"
+    },
+    {
+        "id": 1793510373175,
+        "name": "pwp-pet-1793510373175",
+        "photoUrls": [
+            "https://example.com/pet.png"
+        ],
+        "tags": [
+            
+        ],
+        "status": "available"
+    },
+    {
+        "id": 9222968140497181674,
+        "category": {
+            "id": 0,
+            "name": "string"
+        },
+        "name": "doggie",
+        "photoUrls": [
+            "string"
+        ],
+        "tags": [
+            {
+                "id": 0,
+                "name": "string"
+            }
+        ],
+        "status": "available"
+    },
+    {
+        "id": 9222968140497181680,
+        "category": {
+            "id": 0,
+            "name": "string"
+        },
+        "name": "doggie",
+        "photoUrls": [
+            "string"
+        ],
+        "tags": [
+            {
+                "id": 0,
+                "name": "string"
+            }
+        ],
+        "status": "available"
+    },
+    {
+        "id": 9222968140497181685,
+        "category": {
+            "id": 0,
+            "name": "string"
+        },
+        "name": "doggie",
+        "photoUrls": [
+            "string"
+        ],
+        "tags": [
+            {
+                "id": 0,
+                "name": "string"
+            }
+        ],
+        "status": "available"
+    },
+    {
+        "id": 36311,
+        "category": {
+            "id": 17,
+            "name": "FISH1"
+        },
+        "name": "birdie",
+        "photoUrls": [
+            "URL1"
+        ],
+        "tags": [
+            {
+                "id": 57,
+                "name": "TAG2"
+            }
+        ],
+        "status": "available"
+    },
+    {
+        "id": 36151,
+        "category": {
+            "id": 3,
+            "name": "CAT2"
+        },
+        "name": "bunnie",
+        "photoUrls": [
+            "URL1"
+        ],
+        "tags": [
+            {
+                "id": 40,
+                "name": "TAG2"
+            }
+        ],
+        "status": "available"
+    },
+    {
+        "id": 93625,
+        "category": {
+            "id": 29,
+            "name": "BIRD1"
+        },
+        "name": "birdie",
+        "photoUrls": [
+            "URL1"
+        ],
+        "tags": [
+            {
+                "id": 71,
+                "name": "TAG3"
+            }
+        ],
+        "status": "available"
+    },
+    {
+        "id": 9222968140497181707,
+        "category": {
+            "id": 0,
+            "name": "string"
+        },
+        "name": "fish",
+        "photoUrls": [
+            "string"
+        ],
+        "tags": [
+            {
+                "id": 0,
+                "name": "string"
+            }
+        ],
+        "status": "available"
+    },
+    {
+        "id": 9222968140497181716,
+        "category": {
+            "id": 0,
+            "name": "string"
+        },
+        "name": "fish",
+        "photoUrls": [
+            "string"
+        ],
+        "tags": [
+            {
+                "id": 0,
+                "name": "string"
+            }
+        ],
+        "status": "available"
+    },
+    {
+        "id": 9222968140497181717,
+        "category": {
+            "id": 0,
+            "name": "string"
+        },
+        "name": "fish",
+        "photoUrls": [
+            "string"
+        ],
+        "tags": [
+            {
+                "id": 0,
+                "name": "string"
+            }
+        ],
+        "status": "available"
+    },
+    {
+        "id": 9222968140497181734,
+        "category": {
+            "id": 0,
+            "name": "string"
+        },
+        "name": "fish",
+        "photoUrls": [
+            "string"
+        ],
+        "tags": [
+            {
+                "id": 0,
+                "name": "string"
+            }
+        ],
+        "status": "available"
+    },
+    {
+        "id": 89791,
+        "category": {
+            "id": 1,
+            "name": "would"
+        },
+        "name": "Teresa",
+        "photoUrls": [
+            "https://dummyimage.com/250x977"
+        ],
+        "tags": [
+            {
+                "id": 1,
+                "name": "thought"
+            }
+        ],
+        "status": "available"
+    },
+    {
+        "id": 9222968140497181739,
+        "category": {
+            "id": 0,
+            "name": "string"
+        },
+        "name": "fish",
+        "photoUrls": [
+            "string"
+        ],
+        "tags": [
+            {
+                "id": 0,
+                "name": "string"
+            }
+        ],
+        "status": "available"
+    },
+    {
+        "id": 9222968140497181747,
+        "category": {
+            "id": 0,
+            "name": "string"
+        },
+        "name": "doggie",
+        "photoUrls": [
+            "string"
+        ],
+        "tags": [
+            {
+                "id": 0,
+                "name": "string"
+            }
+        ],
+        "status": "available"
+    },
+    {
+        "id": 9222968140497181756,
+        "category": {
+            "id": 0,
+            "name": "string"
+        },
+        "name": "doggie",
+        "photoUrls": [
+            "string"
+        ],
+        "tags": [
+            {
+                "id": 0,
+                "name": "string"
+            }
+        ],
+        "status": "available"
+    },
+    {
+        "id": 99,
+        "category": {
+            "id": 101,
+            "name": "dogz"
+        },
+        "name": "fido",
+        "photoUrls": [
+            "http://fido.jpg"
+        ],
+        "tags": [
+            {
+                "id": 102,
+                "name": "friendly"
+            }
+        ],
+        "status": "available"
+    },
+    {
+        "id": 9222968140497181770,
+        "category": {
+            "id": 101,
+            "name": "dogz"
+        },
+        "name": "fodi",
+        "photoUrls": [
+            "http://fido.jpg"
+        ],
+        "tags": [
+            {
+                "id": 102,
+                "name": "friendly"
+            }
+        ],
+        "status": "available"
+    },
+    {
+        "id": 9222968140497181776,
+        "category": {
+            "id": 0,
+            "name": "string"
+        },
+        "name": "doggie",
+        "photoUrls": [
+            "string"
+        ],
+        "tags": [
+            {
+                "id": 0,
+                "name": "string"
+            }
+        ],
+        "status": "available"
+    },
+    {
+        "id": 9222968140497181803,
+        "category": {
+            "id": 101,
+            "name": "dogz"
+        },
+        "name": "fodi",
+        "photoUrls": [
+            "http://fido.jpg"
+        ],
+        "tags": [
+            {
+                "id": 102,
+                "name": "friendly"
+            }
+        ],
+        "status": "available"
+    },
+    {
+        "id": 123,
+        "category": {
+            "id": 123,
+            "name": "Puppy"
+        },
+        "name": "Puppy",
+        "photoUrls": [
+            "https://puppypic.png"
+        ],
+        "tags": [
+            {
+                "id": 123,
+                "name": "puppy"
+            }
+        ],
+        "status": "available"
+    },
+    {
+        "id": 9222968140497181826,
+        "category": {
+            "id": 0,
+            "name": "string"
+        },
+        "name": "doggie",
+        "photoUrls": [
+            "string"
+        ],
+        "tags": [
+            {
+                "id": 0,
+                "name": "string"
+            }
+        ],
+        "status": "available"
+    },
+    {
+        "id": 9222968140497181897,
+        "category": {
+            "id": 0,
+            "name": "string"
+        },
+        "name": "doggie",
+        "photoUrls": [
+            "string"
+        ],
+        "tags": [
+            {
+                "id": 0,
+                "name": "string"
+            }
+        ],
+        "status": "available"
+    },
+    {
+        "id": 9222968140497181898,
+        "name": "doggie",
+        "photoUrls": [
+            "string"
+        ],
+        "tags": [
+            
+        ],
+        "status": "available"
+    },
+    {
+        "id": 9222968140497181899,
+        "name": "doggie",
+        "photoUrls": [
+            "string"
+        ],
+        "tags": [
+            
+        ],
+        "status": "available"
+    },
+    {
+        "id": 9222968140497181901,
+        "name": "doggie",
+        "photoUrls": [
+            "string"
+        ],
+        "tags": [
+            
+        ],
+        "status": "available"
+    },
+    {
+        "id": 9222968140497181904,
+        "name": "doggie",
+        "photoUrls": [
+            "string"
+        ],
+        "tags": [
+            
+        ],
+        "status": "available"
+    },
+    {
+        "id": 9222968140497181977,
+        "category": {
+            "id": 29217671,
+            "name": "Mikilandzelo"
+        },
+        "name": "Turtle",
+        "photoUrls": [
+            "ea dolor ipsum nisi",
+            "Duis"
+        ],
+        "tags": [
+            {
+                "id": 98727158,
+                "name": "la"
+            },
+            {
+                "id": 17957877,
+                "name": "Excepteur fugiat elit"
+            }
+        ],
+        "status": "available"
+    },
+    {
+        "id": 9223372000001082396,
+        "category": {
+            "id": 0,
+            "name": "string"
+        },
+        "name": "doggie",
+        "photoUrls": [
+            "string"
+        ],
+        "tags": [
+            {
+                "id": 0,
+                "name": "string"
+            }
+        ],
+        "status": "available"
+    },
+    {
+        "id": 9999999,
+        "category": {
+            "id": 3,
+            "name": "Baks"
+        },
+        "name": "doggie",
+        "photoUrls": [
+            
+        ],
+        "tags": [
+            {
+                "id": 3,
+                "name": "Baks"
+            }
+        ],
+        "status": "available"
+    },
+    {
+        "id": 25555556,
+        "category": {
+            "id": 0,
+            "name": "dog"
+        },
+        "name": "kyra",
+        "photoUrls": [
+            "string"
+        ],
+        "tags": [
+            {
+                "id": 0,
+                "name": "string"
+            }
+        ],
+        "status": "available"
+    },
+    {
+        "id": 11712002,
+        "category": {
+            "id": 0,
+            "name": "scotish"
+        },
+        "name": "uskup",
+        "photoUrls": [
+            "string"
+        ],
+        "tags": [
+            {
+                "id": 0,
+                "name": "string"
+            }
+        ],
+        "status": "available"
+    },
+    {
+        "id": 9223372000001082401,
+        "category": {
+            "id": 0,
+            "name": "iggy"
+        },
+        "name": "yuggy",
+        "photoUrls": [
+            "string"
+        ],
+        "tags": [
+            {
+                "id": 0,
+                "name": "cccc"
+            }
+        ],
+        "status": "available"
+    },
+    {
+        "id": 9223372000001082402,
+        "category": {
+            "id": 0,
+            "name": "string"
+        },
+        "name": "doggie",
+        "photoUrls": [
+            "string"
+        ],
+        "tags": [
+            {
+                "id": 0,
+                "name": "string"
+            }
+        ],
+        "status": "available"
+    },
+    {
+        "id": 9223372000001082414,
+        "category": {
+            "id": 1,
+            "name": "doggie"
+        },
+        "name": "doggie",
+        "photoUrls": [
+            null
+        ],
+        "tags": [
+            {
+                "id": 1,
+                "name": "doggie"
+            }
+        ],
+        "status": "available"
+    },
+    {
+        "id": 9223372000001082415,
+        "category": {
+            "id": 1,
+            "name": "doggie"
+        },
+        "name": "doggie",
+        "photoUrls": [
+            null
+        ],
+        "tags": [
+            {
+                "id": 1,
+                "name": "doggie"
+            }
+        ],
+        "status": "available"
+    },
+    {
+        "id": 9223372000001082418,
+        "category": {
+            "id": 1,
+            "name": "doggie"
+        },
+        "name": "doggie",
+        "photoUrls": [
+            null
+        ],
+        "tags": [
+            {
+                "id": 1,
+                "name": "doggie"
+            }
+        ],
+        "status": "available"
+    },
+    {
+        "id": 9223372000001082419,
+        "category": {
+            "id": 1,
+            "name": "doggie"
+        },
+        "name": "doggie",
+        "photoUrls": [
+            null
+        ],
+        "tags": [
+            {
+                "id": 1,
+                "name": "doggie"
+            }
+        ],
+        "status": "available"
+    },
+    {
+        "id": 9223372000001082420,
+        "category": {
+            "id": 1,
+            "name": "doggie"
+        },
+        "name": "doggie",
+        "photoUrls": [
+            null
+        ],
+        "tags": [
+            {
+                "id": 1,
+                "name": "doggie"
+            }
+        ],
+        "status": "available"
+    },
+    {
+        "id": 9223372000001082441,
+        "category": {
+            "id": 0,
+            "name": "string"
+        },
+        "name": "doggie",
+        "photoUrls": [
+            "string"
+        ],
+        "tags": [
+            {
+                "id": 0,
+                "name": "string"
+            }
+        ],
+        "status": "available"
+    },
+    {
+        "id": 1793513097948,
+        "name": "Rex",
+        "photoUrls": [
+            "https://example.com/photo.jpg"
+        ],
+        "tags": [
+            
+        ],
+        "status": "available"
+    },
+    {
+        "id": 690855,
+        "category": {
+            "id": 690855,
+            "name": "kangs name"
+        },
+        "name": "doggie",
+        "photoUrls": [
+            "kangs url"
+        ],
+        "tags": [
+            {
+                "id": 690855,
+                "name": "kangs tag 690855"
+            }
+        ],
+        "status": "available"
+    },
+    {
+        "id": 9223372000001082458,
+        "category": {
+            "id": 0,
+            "name": "string"
+        },
+        "name": "doggie",
+        "photoUrls": [
+            "string"
+        ],
+        "tags": [
+            {
+                "id": 0,
+                "name": "string"
+            }
+        ],
+        "status": "available"
+    },
+    {
+        "id": 237417,
+        "category": {
+            "id": 237417,
+            "name": "kangs name"
+        },
+        "name": "doggie",
+        "photoUrls": [
+            "kangs url"
+        ],
+        "tags": [
+            {
+                "id": 237417,
+                "name": "kangs tag 237417"
+            }
+        ],
+        "status": "available"
+    },
+    {
+        "id": 657345,
+        "category": {
+            "id": 657345,
+            "name": "kangs name"
+        },
+        "name": "doggie",
+        "photoUrls": [
+            "kangs url"
+        ],
+        "tags": [
+            {
+                "id": 657345,
+                "name": "kangs tag 657345"
+            }
+        ],
+        "status": "available"
+    },
+    {
+        "id": 26280,
+        "category": {
+            "id": 1,
+            "name": "Dogs"
+        },
+        "name": "TestDog-26280",
+        "photoUrls": [
+            "https://example.com/photo1.jpg"
+        ],
+        "tags": [
+            {
+                "id": 1,
+                "name": "test-tag"
+            }
+        ],
+        "status": "available"
+    },
+    {
+        "id": 945366,
+        "category": {
+            "id": 945366,
+            "name": "kangs name"
+        },
+        "name": "doggie",
+        "photoUrls": [
+            "kangs url"
+        ],
+        "tags": [
+            {
+                "id": 945366,
+                "name": "kangs tag 945366"
+            }
+        ],
+        "status": "available"
+    },
+    {
+        "id": 49002,
+        "category": {
+            "id": 1,
+            "name": "Dogs"
+        },
+        "name": "TestPet_XML",
+        "photoUrls": [
+            "https://example.com/photo1.jpg"
+        ],
+        "tags": [
+            {
+                "id": 1,
+                "name": "test-tag"
+            }
+        ],
+        "status": "available"
+    },
+    {
+        "id": 625510,
+        "category": {
+            "id": 625510,
+            "name": "kangs name"
+        },
+        "name": "doggie",
+        "photoUrls": [
+            "kangs url"
+        ],
+        "tags": [
+            {
+                "id": 625510,
+                "name": "kangs tag 625510"
+            }
+        ],
+        "status": "available"
+    },
+    {
+        "id": 234875,
+        "category": {
+            "id": 234875,
+            "name": "kangs name"
+        },
+        "name": "doggie",
+        "photoUrls": [
+            "kangs url"
+        ],
+        "tags": [
+            {
+                "id": 234875,
+                "name": "kangs tag 234875"
+            }
+        ],
+        "status": "available"
+    },
+    {
+        "id": 520979,
+        "category": {
+            "id": 1,
+            "name": "Dogs"
+        },
+        "name": "TestPet_XML",
+        "photoUrls": [
+            "https://example.com/photo1.jpg"
+        ],
+        "tags": [
+            {
+                "id": 1,
+                "name": "test-tag"
+            }
+        ],
+        "status": "available"
+    },
+    {
+        "id": 53452,
+        "category": {
+            "id": 53452,
+            "name": "kangs name"
+        },
+        "name": "doggie",
+        "photoUrls": [
+            "kangs url"
+        ],
+        "tags": [
+            {
+                "id": 53452,
+                "name": "kangs tag 53452"
+            }
+        ],
+        "status": "available"
+    },
+    {
+        "id": 380431,
+        "category": {
+            "id": 380431,
+            "name": "kangs name"
+        },
+        "name": "doggie",
+        "photoUrls": [
+            "kangs url"
+        ],
+        "tags": [
+            {
+                "id": 380431,
+                "name": "kangs tag 380431"
+            }
+        ],
+        "status": "available"
+    },
+    {
+        "id": 72759,
+        "category": {
+            "id": 1,
+            "name": "Dogs"
+        },
+        "name": "TestPet_XML",
+        "photoUrls": [
+            "https://example.com/photo1.jpg"
+        ],
+        "tags": [
+            {
+                "id": 1,
+                "name": "test-tag"
+            }
+        ],
+        "status": "available"
+    },
+    {
+        "id": 181799,
+        "category": {
+            "id": 181799,
+            "name": "kangs name"
+        },
+        "name": "doggie",
+        "photoUrls": [
+            "kangs url"
+        ],
+        "tags": [
+            {
+                "id": 181799,
+                "name": "kangs tag 181799"
+            }
+        ],
+        "status": "available"
+    },
+    {
+        "id": 585002,
+        "category": {
+            "id": 585002,
+            "name": "kangs name"
+        },
+        "name": "doggie",
+        "photoUrls": [
+            "kangs url"
+        ],
+        "tags": [
+            {
+                "id": 585002,
+                "name": "kangs tag 585002"
+            }
+        ],
+        "status": "available"
+    },
+    {
+        "id": 663986,
+        "category": {
+            "id": 663986,
+            "name": "kangs name"
+        },
+        "name": "doggie",
+        "photoUrls": [
+            "kangs url"
+        ],
+        "tags": [
+            {
+                "id": 663986,
+                "name": "kangs tag 663986"
+            }
+        ],
+        "status": "available"
+    },
+    {
+        "id": 523377,
+        "category": {
+            "id": 1,
+            "name": "Dogs"
+        },
+        "name": "TestPet_XML",
+        "photoUrls": [
+            "https://example.com/photo1.jpg"
+        ],
+        "tags": [
+            {
+                "id": 1,
+                "name": "test-tag"
+            }
+        ],
+        "status": "available"
+    },
+    {
+        "id": 146938,
+        "category": {
+            "id": 146938,
+            "name": "kangs name"
+        },
+        "name": "doggie",
+        "photoUrls": [
+            "kangs url"
+        ],
+        "tags": [
+            {
+                "id": 146938,
+                "name": "kangs tag 146938"
+            }
+        ],
+        "status": "available"
+    },
+    {
+        "id": 409695,
+        "category": {
+            "id": 409695,
+            "name": "kangs name"
+        },
+        "name": "doggie",
+        "photoUrls": [
+            "kangs url"
+        ],
+        "tags": [
+            {
+                "id": 409695,
+                "name": "kangs tag 409695"
+            }
+        ],
+        "status": "available"
+    },
+    {
+        "id": 46081,
+        "category": {
+            "id": 46081,
+            "name": "kangs name"
+        },
+        "name": "doggie",
+        "photoUrls": [
+            "kangs url"
+        ],
+        "tags": [
+            {
+                "id": 46081,
+                "name": "kangs tag 46081"
+            }
+        ],
+        "status": "available"
+    },
+    {
+        "id": 864210,
+        "category": {
+            "id": 864210,
+            "name": "kangs name"
+        },
+        "name": "doggie",
+        "photoUrls": [
+            "kangs url"
+        ],
+        "tags": [
+            {
+                "id": 864210,
+                "name": "kangs tag 864210"
+            }
+        ],
+        "status": "available"
+    },
+    {
+        "id": 42266,
+        "category": {
+            "id": 1,
+            "name": "Dogs"
+        },
+        "name": "TestPet_XML",
+        "photoUrls": [
+            "https://example.com/photo1.jpg"
+        ],
+        "tags": [
+            {
+                "id": 1,
+                "name": "test-tag"
+            }
+        ],
+        "status": "available"
+    },
+    {
+        "id": 612926,
+        "category": {
+            "id": 612926,
+            "name": "kangs name"
+        },
+        "name": "doggie",
+        "photoUrls": [
+            "kangs url"
+        ],
+        "tags": [
+            {
+                "id": 612926,
+                "name": "kangs tag 612926"
+            }
+        ],
+        "status": "available"
+    },
+    {
+        "id": 842222,
+        "category": {
+            "id": 842222,
+            "name": "kangs name"
+        },
+        "name": "doggie",
+        "photoUrls": [
+            "kangs url"
+        ],
+        "tags": [
+            {
+                "id": 842222,
+                "name": "kangs tag 842222"
+            }
+        ],
+        "status": "available"
+    },
+    {
+        "id": 480397,
+        "category": {
+            "id": 480397,
+            "name": "kangs name"
+        },
+        "name": "doggie",
+        "photoUrls": [
+            "kangs url"
+        ],
+        "tags": [
+            {
+                "id": 480397,
+                "name": "kangs tag 480397"
+            }
+        ],
+        "status": "available"
+    },
+    {
+        "id": 521777,
+        "category": {
+            "id": 1,
+            "name": "Dogs"
+        },
+        "name": "TestPet_XML",
+        "photoUrls": [
+            "https://example.com/photo1.jpg"
+        ],
+        "tags": [
+            {
+                "id": 1,
+                "name": "test-tag"
+            }
+        ],
+        "status": "available"
+    },
+    {
+        "id": 84192,
+        "category": {
+            "id": 1,
+            "name": "Dogs"
+        },
+        "name": "TestPet_XML",
+        "photoUrls": [
+            "https://example.com/photo1.jpg"
+        ],
+        "tags": [
+            {
+                "id": 1,
+                "name": "test-tag"
+            }
+        ],
+        "status": "available"
+    },
+    {
+        "id": 193727,
+        "category": {
+            "id": 193727,
+            "name": "kangs name"
+        },
+        "name": "doggie",
+        "photoUrls": [
+            "kangs url"
+        ],
+        "tags": [
+            {
+                "id": 193727,
+                "name": "kangs tag 193727"
+            }
+        ],
+        "status": "available"
+    },
+    {
+        "id": 398511,
+        "category": {
+            "id": 398511,
+            "name": "kangs name"
+        },
+        "name": "doggie",
+        "photoUrls": [
+            "kangs url"
+        ],
+        "tags": [
+            {
+                "id": 398511,
+                "name": "kangs tag 398511"
+            }
+        ],
+        "status": "available"
+    },
+    {
+        "id": 524839,
+        "category": {
+            "id": 1,
+            "name": "Dogs"
+        },
+        "name": "TestPet_XML",
+        "photoUrls": [
+            "https://example.com/photo1.jpg"
+        ],
+        "tags": [
+            {
+                "id": 1,
+                "name": "test-tag"
+            }
+        ],
+        "status": "available"
+    },
+    {
+        "id": 512221,
+        "category": {
+            "id": 512221,
+            "name": "kangs name"
+        },
+        "name": "doggie",
+        "photoUrls": [
+            "kangs url"
+        ],
+        "tags": [
+            {
+                "id": 512221,
+                "name": "kangs tag 512221"
+            }
+        ],
+        "status": "available"
+    },
+    {
+        "id": 337939,
+        "category": {
+            "id": 337939,
+            "name": "kangs name"
+        },
+        "name": "doggie",
+        "photoUrls": [
+            "kangs url"
+        ],
+        "tags": [
+            {
+                "id": 337939,
+                "name": "kangs tag 337939"
+            }
+        ],
+        "status": "available"
+    },
+    {
+        "id": 582047,
+        "category": {
+            "id": 582047,
+            "name": "kangs name"
+        },
+        "name": "doggie",
+        "photoUrls": [
+            "kangs url"
+        ],
+        "tags": [
+            {
+                "id": 582047,
+                "name": "kangs tag 582047"
+            }
+        ],
+        "status": "available"
+    },
+    {
+        "id": 551002,
+        "category": {
+            "id": 551002,
+            "name": "kangs name"
+        },
+        "name": "doggie",
+        "photoUrls": [
+            "kangs url"
+        ],
+        "tags": [
+            {
+                "id": 551002,
+                "name": "kangs tag 551002"
+            }
+        ],
+        "status": "available"
+    },
+    {
+        "id": 37576,
+        "category": {
+            "id": 1,
+            "name": "Dogs"
+        },
+        "name": "TestPet_XML",
+        "photoUrls": [
+            "https://example.com/photo1.jpg"
+        ],
+        "tags": [
+            {
+                "id": 1,
+                "name": "test-tag"
+            }
+        ],
+        "status": "available"
+    },
+    {
+        "id": 989770,
+        "category": {
+            "id": 989770,
+            "name": "kangs name"
+        },
+        "name": "doggie",
+        "photoUrls": [
+            "kangs url"
+        ],
+        "tags": [
+            {
+                "id": 989770,
+                "name": "kangs tag 989770"
+            }
+        ],
+        "status": "available"
+    },
+    {
+        "id": 263010,
+        "category": {
+            "id": 263010,
+            "name": "kangs name"
+        },
+        "name": "doggie",
+        "photoUrls": [
+            "kangs url"
+        ],
+        "tags": [
+            {
+                "id": 263010,
+                "name": "kangs tag 263010"
+            }
+        ],
+        "status": "available"
+    },
+    {
+        "id": 634094,
+        "category": {
+            "id": 634094,
+            "name": "kangs name"
+        },
+        "name": "doggie",
+        "photoUrls": [
+            "kangs url"
+        ],
+        "tags": [
+            {
+                "id": 634094,
+                "name": "kangs tag 634094"
+            }
+        ],
+        "status": "available"
+    },
+    {
+        "id": 519407,
+        "category": {
+            "id": 1,
+            "name": "Dogs"
+        },
+        "name": "TestPet_XML",
+        "photoUrls": [
+            "https://example.com/photo1.jpg"
+        ],
+        "tags": [
+            {
+                "id": 1,
+                "name": "test-tag"
+            }
+        ],
+        "status": "available"
+    },
+    {
+        "id": 53591,
+        "category": {
+            "id": 1,
+            "name": "Dogs"
+        },
+        "name": "TestPet_XML",
+        "photoUrls": [
+            "https://example.com/photo1.jpg"
+        ],
+        "tags": [
+            {
+                "id": 1,
+                "name": "test-tag"
+            }
+        ],
+        "status": "available"
+    },
+    {
+        "id": 310193,
+        "category": {
+            "id": 310193,
+            "name": "kangs name"
+        },
+        "name": "doggie",
+        "photoUrls": [
+            "kangs url"
+        ],
+        "tags": [
+            {
+                "id": 310193,
+                "name": "kangs tag 310193"
+            }
+        ],
+        "status": "available"
+    },
+    {
+        "id": 79464,
+        "category": {
+            "id": 1,
+            "name": "Dogs"
+        },
+        "name": "TestPet_XML",
+        "photoUrls": [
+            "https://example.com/photo1.jpg"
+        ],
+        "tags": [
+            {
+                "id": 1,
+                "name": "test-tag"
+            }
+        ],
+        "status": "available"
+    },
+    {
+        "id": 148320,
+        "category": {
+            "id": 148320,
+            "name": "kangs name"
+        },
+        "name": "doggie",
+        "photoUrls": [
+            "kangs url"
+        ],
+        "tags": [
+            {
+                "id": 148320,
+                "name": "kangs tag 148320"
+            }
+        ],
+        "status": "available"
+    },
+    {
+        "id": 258205,
+        "category": {
+            "id": 1,
+            "name": "Dogs"
+        },
+        "name": "TestDog-258205",
+        "photoUrls": [
+            "https://example.com/photo1.jpg"
+        ],
+        "tags": [
+            {
+                "id": 1,
+                "name": "test-tag"
+            }
+        ],
+        "status": "available"
+    },
+    {
+        "id": 480965,
+        "category": {
+            "id": 480965,
+            "name": "kangs name"
+        },
+        "name": "doggie",
+        "photoUrls": [
+            "kangs url"
+        ],
+        "tags": [
+            {
+                "id": 480965,
+                "name": "kangs tag 480965"
+            }
+        ],
+        "status": "available"
+    },
+    {
+        "id": 148141,
+        "category": {
+            "id": 148141,
+            "name": "kangs name"
+        },
+        "name": "doggie",
+        "photoUrls": [
+            "kangs url"
+        ],
+        "tags": [
+            {
+                "id": 148141,
+                "name": "kangs tag 148141"
+            }
+        ],
+        "status": "available"
+    },
+    {
+        "id": 215731,
+        "category": {
+            "id": 215731,
+            "name": "kangs name"
+        },
+        "name": "doggie",
+        "photoUrls": [
+            "kangs url"
+        ],
+        "tags": [
+            {
+                "id": 215731,
+                "name": "kangs tag 215731"
+            }
+        ],
+        "status": "available"
+    },
+    {
+        "id": 587617,
+        "category": {
+            "id": 587617,
+            "name": "kangs name"
+        },
+        "name": "doggie",
+        "photoUrls": [
+            "kangs url"
+        ],
+        "tags": [
+            {
+                "id": 587617,
+                "name": "kangs tag 587617"
+            }
+        ],
+        "status": "available"
+    },
+    {
+        "id": 312070,
+        "category": {
+            "id": 312070,
+            "name": "kangs name"
+        },
+        "name": "doggie",
+        "photoUrls": [
+            "kangs url"
+        ],
+        "tags": [
+            {
+                "id": 312070,
+                "name": "kangs tag 312070"
+            }
+        ],
+        "status": "available"
+    },
+    {
+        "id": 447576,
+        "category": {
+            "id": 447576,
+            "name": "kangs name"
+        },
+        "name": "doggie",
+        "photoUrls": [
+            "kangs url"
+        ],
+        "tags": [
+            {
+                "id": 447576,
+                "name": "kangs tag 447576"
+            }
+        ],
+        "status": "available"
+    },
+    {
+        "id": 525615,
+        "category": {
+            "id": 1,
+            "name": "Dogs"
+        },
+        "name": "TestPet_XML",
+        "photoUrls": [
+            "https://example.com/photo1.jpg"
+        ],
+        "tags": [
+            {
+                "id": 1,
+                "name": "test-tag"
+            }
+        ],
+        "status": "available"
+    },
+    {
+        "id": 414197,
+        "category": {
+            "id": 414197,
+            "name": "kangs name"
+        },
+        "name": "doggie",
+        "photoUrls": [
+            "kangs url"
+        ],
+        "tags": [
+            {
+                "id": 414197,
+                "name": "kangs tag 414197"
+            }
+        ],
+        "status": "available"
+    },
+    {
+        "id": 104193,
+        "category": {
+            "id": 1,
+            "name": "Dogs"
+        },
+        "name": "TestDog-104193",
+        "photoUrls": [
+            "https://example.com/photo1.jpg"
+        ],
+        "tags": [
+            {
+                "id": 1,
+                "name": "test-tag"
+            }
+        ],
+        "status": "available"
+    },
+    {
+        "id": 342874,
+        "category": {
+            "id": 342874,
+            "name": "kangs name"
+        },
+        "name": "doggie",
+        "photoUrls": [
+            "kangs url"
+        ],
+        "tags": [
+            {
+                "id": 342874,
+                "name": "kangs tag 342874"
+            }
+        ],
+        "status": "available"
+    },
+    {
+        "id": 60284,
+        "category": {
+            "id": 1,
+            "name": "Dogs"
+        },
+        "name": "TestPet_XML",
+        "photoUrls": [
+            "https://example.com/photo1.jpg"
+        ],
+        "tags": [
+            {
+                "id": 1,
+                "name": "test-tag"
+            }
+        ],
+        "status": "available"
+    },
+    {
+        "id": 939418,
+        "category": {
+            "id": 939418,
+            "name": "kangs name"
+        },
+        "name": "doggie",
+        "photoUrls": [
+            "kangs url"
+        ],
+        "tags": [
+            {
+                "id": 939418,
+                "name": "kangs tag 939418"
+            }
+        ],
+        "status": "available"
+    },
+    {
+        "id": 651226,
+        "category": {
+            "id": 651226,
+            "name": "kangs name"
+        },
+        "name": "doggie",
+        "photoUrls": [
+            "kangs url"
+        ],
+        "tags": [
+            {
+                "id": 651226,
+                "name": "kangs tag 651226"
+            }
+        ],
+        "status": "available"
+    },
+    {
+        "id": 516173,
+        "category": {
+            "id": 1,
+            "name": "Dogs"
+        },
+        "name": "TestPet_XML",
+        "photoUrls": [
+            "https://example.com/photo1.jpg"
+        ],
+        "tags": [
+            {
+                "id": 1,
+                "name": "test-tag"
+            }
+        ],
+        "status": "available"
+    },
+    {
+        "id": 472812,
+        "category": {
+            "id": 472812,
+            "name": "kangs name"
+        },
+        "name": "doggie",
+        "photoUrls": [
+            "kangs url"
+        ],
+        "tags": [
+            {
+                "id": 472812,
+                "name": "kangs tag 472812"
+            }
+        ],
+        "status": "available"
+    },
+    {
+        "id": 753085,
+        "category": {
+            "id": 753085,
+            "name": "kangs name"
+        },
+        "name": "doggie",
+        "photoUrls": [
+            "kangs url"
+        ],
+        "tags": [
+            {
+                "id": 753085,
+                "name": "kangs tag 753085"
+            }
+        ],
+        "status": "available"
+    },
+    {
+        "id": 174040,
+        "category": {
+            "id": 174040,
+            "name": "kangs name"
+        },
+        "name": "doggie",
+        "photoUrls": [
+            "kangs url"
+        ],
+        "tags": [
+            {
+                "id": 174040,
+                "name": "kangs tag 174040"
+            }
+        ],
+        "status": "available"
+    },
+    {
+        "id": 964680,
+        "category": {
+            "id": 964680,
+            "name": "kangs name"
+        },
+        "name": "doggie",
+        "photoUrls": [
+            "kangs url"
+        ],
+        "tags": [
+            {
+                "id": 964680,
+                "name": "kangs tag 964680"
+            }
+        ],
+        "status": "available"
+    },
+    {
+        "id": 577541,
+        "category": {
+            "id": 577541,
+            "name": "kangs name"
+        },
+        "name": "doggie",
+        "photoUrls": [
+            "kangs url"
+        ],
+        "tags": [
+            {
+                "id": 577541,
+                "name": "kangs tag 577541"
+            }
+        ],
+        "status": "available"
+    },
+    {
+        "id": 471235,
+        "category": {
+            "id": 471235,
+            "name": "kangs name"
+        },
+        "name": "doggie",
+        "photoUrls": [
+            "kangs url"
+        ],
+        "tags": [
+            {
+                "id": 471235,
+                "name": "kangs tag 471235"
+            }
+        ],
+        "status": "available"
+    },
+    {
+        "id": 184738,
+        "category": {
+            "id": 184738,
+            "name": "kangs name"
+        },
+        "name": "doggie",
+        "photoUrls": [
+            "kangs url"
+        ],
+        "tags": [
+            {
+                "id": 184738,
+                "name": "kangs tag 184738"
+            }
+        ],
+        "status": "available"
+    },
+    {
+        "id": 66897,
+        "category": {
+            "id": 1,
+            "name": "Dogs"
+        },
+        "name": "TestPet_XML",
+        "photoUrls": [
+            "https://example.com/photo1.jpg"
+        ],
+        "tags": [
+            {
+                "id": 1,
+                "name": "test-tag"
+            }
+        ],
+        "status": "available"
+    },
+    {
+        "id": 754071,
+        "category": {
+            "id": 754071,
+            "name": "kangs name"
+        },
+        "name": "doggie",
+        "photoUrls": [
+            "kangs url"
+        ],
+        "tags": [
+            {
+                "id": 754071,
+                "name": "kangs tag 754071"
+            }
+        ],
+        "status": "available"
+    },
+    {
+        "id": 522558,
+        "category": {
+            "id": 1,
+            "name": "Dogs"
+        },
+        "name": "TestPet_XML",
+        "photoUrls": [
+            "https://example.com/photo1.jpg"
+        ],
+        "tags": [
+            {
+                "id": 1,
+                "name": "test-tag"
+            }
+        ],
+        "status": "available"
+    },
+    {
+        "id": 34413,
+        "category": {
+            "id": 34413,
+            "name": "kangs name"
+        },
+        "name": "doggie",
+        "photoUrls": [
+            "kangs url"
+        ],
+        "tags": [
+            {
+                "id": 34413,
+                "name": "kangs tag 34413"
+            }
+        ],
+        "status": "available"
+    },
+    {
+        "id": 1087317,
+        "category": {
+            "id": 1,
+            "name": "Dogs"
+        },
+        "name": "TestDog-1087317",
+        "photoUrls": [
+            "https://example.com/photo1.jpg"
+        ],
+        "tags": [
+            {
+                "id": 1,
+                "name": "test-tag"
+            }
+        ],
+        "status": "available"
+    },
+    {
+        "id": 475809,
+        "category": {
+            "id": 475809,
+            "name": "kangs name"
+        },
+        "name": "doggie",
+        "photoUrls": [
+            "kangs url"
+        ],
+        "tags": [
+            {
+                "id": 475809,
+                "name": "kangs tag 475809"
+            }
+        ],
+        "status": "available"
+    },
+    {
+        "id": 524098,
+        "category": {
+            "id": 1,
+            "name": "Dogs"
+        },
+        "name": "TestPet_XML",
+        "photoUrls": [
+            "https://example.com/photo1.jpg"
+        ],
+        "tags": [
+            {
+                "id": 1,
+                "name": "test-tag"
+            }
+        ],
+        "status": "available"
+    },
+    {
+        "id": 271143,
+        "category": {
+            "id": 271143,
+            "name": "kangs name"
+        },
+        "name": "doggie",
+        "photoUrls": [
+            "kangs url"
+        ],
+        "tags": [
+            {
+                "id": 271143,
+                "name": "kangs tag 271143"
+            }
+        ],
+        "status": "available"
+    },
+    {
+        "id": 42498,
+        "category": {
+            "id": 42498,
+            "name": "kangs name"
+        },
+        "name": "doggie",
+        "photoUrls": [
+            "kangs url"
+        ],
+        "tags": [
+            {
+                "id": 42498,
+                "name": "kangs tag 42498"
+            }
+        ],
+        "status": "available"
+    },
+    {
+        "id": 748186,
+        "category": {
+            "id": 748186,
+            "name": "kangs name"
+        },
+        "name": "doggie",
+        "photoUrls": [
+            "kangs url"
+        ],
+        "tags": [
+            {
+                "id": 748186,
+                "name": "kangs tag 748186"
+            }
+        ],
+        "status": "available"
+    },
+    {
+        "id": 923717,
+        "category": {
+            "id": 923717,
+            "name": "kangs name"
+        },
+        "name": "doggie",
+        "photoUrls": [
+            "kangs url"
+        ],
+        "tags": [
+            {
+                "id": 923717,
+                "name": "kangs tag 923717"
+            }
+        ],
+        "status": "available"
+    },
+    {
+        "id": 784032,
+        "category": {
+            "id": 784032,
+            "name": "kangs name"
+        },
+        "name": "doggie",
+        "photoUrls": [
+            "kangs url"
+        ],
+        "tags": [
+            {
+                "id": 784032,
+                "name": "kangs tag 784032"
+            }
+        ],
+        "status": "available"
+    },
+    {
+        "id": 27241,
+        "category": {
+            "id": 1,
+            "name": "Dogs"
+        },
+        "name": "TestPet_XML",
+        "photoUrls": [
+            "https://example.com/photo1.jpg"
+        ],
+        "tags": [
+            {
+                "id": 1,
+                "name": "test-tag"
+            }
+        ],
+        "status": "available"
+    },
+    {
+        "id": 520205,
+        "category": {
+            "id": 1,
+            "name": "Dogs"
+        },
+        "name": "TestPet_XML",
+        "photoUrls": [
+            "https://example.com/photo1.jpg"
+        ],
+        "tags": [
+            {
+                "id": 1,
+                "name": "test-tag"
+            }
+        ],
+        "status": "available"
+    },
+    {
+        "id": 640653,
+        "category": {
+            "id": 640653,
+            "name": "kangs name"
+        },
+        "name": "doggie",
+        "photoUrls": [
+            "kangs url"
+        ],
+        "tags": [
+            {
+                "id": 640653,
+                "name": "kangs tag 640653"
+            }
+        ],
+        "status": "available"
+    },
+    {
+        "id": 41413,
+        "category": {
+            "id": 41413,
+            "name": "kangs name"
+        },
+        "name": "doggie",
+        "photoUrls": [
+            "kangs url"
+        ],
+        "tags": [
+            {
+                "id": 41413,
+                "name": "kangs tag 41413"
+            }
+        ],
+        "status": "available"
+    },
+    {
+        "id": 12,
+        "category": {
+            "id": 1,
+            "name": "string"
+        },
+        "name": "doggie",
+        "photoUrls": [
+            "string"
+        ],
+        "tags": [
+            {
+                "id": 1,
+                "name": "string"
+            }
+        ],
+        "status": "available"
+    },
+    {
+        "id": 9223372000001082539,
+        "category": {
+            "id": 0,
+            "name": "string"
+        },
+        "name": "doggie",
+        "photoUrls": [
+            "string"
+        ],
+        "tags": [
+            {
+                "id": 0,
+                "name": "string"
+            }
+        ],
+        "status": "available"
+    },
+    {
+        "id": 112233,
+        "category": {
+            "id": 30,
+            "name": "Eq-dog"
+        },
+        "name": "Postman",
+        "photoUrls": [
+            "URLLink"
+        ],
+        "tags": [
+            {
+                "id": 10,
+                "name": "Doberman"
+            }
+        ],
+        "status": "available"
+    },
+    {
+        "id": 167,
+        "category": {
+            "id": 2,
+            "name": "cat"
+        },
+        "name": "purplefieldstester167",
+        "photoUrls": [
+            "http://purplefieldstestimage1",
+            "http://purplefieldstestimage2"
+        ],
+        "tags": [
+            {
+                "id": 1,
+                "name": "naughty"
+            },
+            {
+                "id": 2,
+                "name": "nice"
+            }
+        ],
+        "status": "available"
+    },
+    {
+        "id": 1,
+        "category": {
+            "id": 1,
+            "name": "cat1"
+        },
+        "name": "purplefieldstester1",
+        "photoUrls": [
+            "https://purplefieldstestimage1",
+            "https://purplefieldstestimage2"
+        ],
+        "tags": [
+            {
+                "id": 1,
+                "name": "naughty1"
+            },
+            {
+                "id": 2,
+                "name": "nice1"
+            }
+        ],
+        "status": "available"
+    },
+    {
+        "id": 933819,
+        "category": {
+            "id": 1,
+            "name": "Dogs"
+        },
+        "name": "TestDog-933819",
+        "photoUrls": [
+            "https://example.com/photo1.jpg"
+        ],
+        "tags": [
+            {
+                "id": 1,
+                "name": "test-tag"
+            }
+        ],
+        "status": "available"
+    },
+    {
+        "id": 1176129,
+        "category": {
+            "id": 1,
+            "name": "Dogs"
+        },
+        "name": "WorkflowDog-1176129",
+        "photoUrls": [
+            "https://example.com/photo1.jpg"
+        ],
+        "tags": [
+            {
+                "id": 1,
+                "name": "test-tag"
+            }
+        ],
+        "status": "available"
+    },
+    {
+        "id": 1040857,
+        "category": {
+            "id": 1,
+            "name": "Dogs"
+        },
+        "name": "WorkflowDog-1040857",
+        "photoUrls": [
+            "https://example.com/photo1.jpg"
+        ],
+        "tags": [
+            {
+                "id": 1,
+                "name": "test-tag"
+            }
+        ],
+        "status": "available"
+    }
+]

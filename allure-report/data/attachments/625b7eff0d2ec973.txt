@@ -1,0 +1,51 @@
+=== POST /Patient ===
+Status: 201
+Time: 3199ms
+Content-Type: application/fhir+json;charset=utf-8
+
+Body:
+{
+    "resourceType": "Patient",
+    "id": "371308",
+    "meta": {
+        "versionId": "1",
+        "lastUpdated": "2026-11-01T01:23:52.561-05:00",
+        "source": "#bHv4y0DSzWgiZAD5"
+    },
+    "text": {
+        "status": "generated",
+        "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><div class=\"hapiHeaderText\">Thaddeus <b>O'HARA </b></div><table class=\"hapiPropertyTable\"><tbody><tr><td>Identifier</td><td>TEST-00026936</td></tr><tr><td>Address</td><td><span>Ullrichshire </span><span>SC </span><span>US </span></td></tr><tr><td>Date of birth</td><td><span>01 November 1991</span></td></tr></tbody></table></div>"
+    },
+    "identifier": [
+        {
+            "system": "http://hospital.example.org/mrn",
+            "value": "TEST-00026936"
+        }
+    ],
+    "name": [
+        {
+            "use": "official",
+            "family": "O'Hara",
+            "given": [
+                "Thaddeus"
+            ]
+        }
+    ],
+    "telecom": [
+        {
+            "system": "phone",
+            "value": "1-930-536-1137 x6497",
+            "use": "home"
+        }
+    ],
+    "gender": "female",
+    "birthDate": "1991-11-01",
+    "address": [
+        {
+            "city": "Ullrichshire",
+            "state": "SC",
+            "postalCode": "30223",
+            "country": "US"
+        }
+    ]
+}

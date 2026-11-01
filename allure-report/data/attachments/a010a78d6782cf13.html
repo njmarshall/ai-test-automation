@@ -1,0 +1,31 @@
+<div>POST to http://localhost:8089/claims</div>
+
+    <h4>Body</h4>
+    <div>
+    <pre class="preformated-text">
+{
+    &quot;claimAmount&quot;: 5000.0,
+    &quot;policyId&quot;: &quot;POL-DOES-NOT-EXIST&quot;,
+    &quot;description&quot;: &quot;Damage&quot;,
+    &quot;incidentDate&quot;: &quot;2025-03-20&quot;
+}    </pre>
+    </div>
+
+    <h4>Headers</h4>
+    <div>
+            <div>Accept: application/json, application/javascript, text/javascript, text/json</div>
+            <div>Content-Type: application/json</div>
+    </div>
+
+
+
+    <h4>Curl</h4>
+    <div>
+        curl -v -X POST &#39;http://localhost:8089/claims&#39; -H &#39;Accept: application/json, application/javascript, text/javascript, text/json&#39; -H &#39;Content-Type: application/json&#39; -d &#39;{
+    &quot;claimAmount&quot;: 5000.0,
+    &quot;policyId&quot;: &quot;POL-DOES-NOT-EXIST&quot;,
+    &quot;description&quot;: &quot;Damage&quot;,
+    &quot;incidentDate&quot;: &quot;2025-03-20&quot;
+}&#39;
+    </div>
+
