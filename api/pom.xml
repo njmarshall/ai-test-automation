@@ -82,6 +82,9 @@
                             ${project.build.directory}/allure-results
                         </allure.results.directory>
                     </systemPropertyVariables>
+                    <!-- Retry once on failure — guards against transient SLA
+                         breaches on shared public sandboxes (HAPI FHIR, etc.) -->
+                    <rerunFailingTestsCount>1</rerunFailingTestsCount>
                 </configuration>
                 <dependencies>
                     <!-- Force Surefire to use TestNG provider, not JUnit -->
