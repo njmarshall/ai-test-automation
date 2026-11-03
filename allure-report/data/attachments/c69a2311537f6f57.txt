@@ -1,0 +1,16 @@
+=== POST /Claim (invalid ICD-10) ===
+Status: 422
+Time: 4ms
+Content-Type: application/json
+
+Body:
+{
+    "resourceType": "OperationOutcome",
+    "issue": [
+        {
+            "severity": "error",
+            "code": "invalid",
+            "diagnostics": "Invalid ICD-10 diagnosis code"
+        }
+    ]
+}

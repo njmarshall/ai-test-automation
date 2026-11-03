@@ -1,0 +1,11 @@
+=== PUT /user/angelweissnat ===
+Status: 200
+Time: 142ms
+Content-Type: application/json
+
+Body:
+{
+    "code": 200,
+    "type": "unknown",
+    "message": "812141"
+}

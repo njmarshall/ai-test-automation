@@ -1,0 +1,51 @@
+=== POST /Patient (pediatric) ===
+Status: 201
+Time: 413ms
+Content-Type: application/fhir+json;charset=utf-8
+
+Body:
+{
+    "resourceType": "Patient",
+    "id": "437644",
+    "meta": {
+        "versionId": "1",
+        "lastUpdated": "2026-11-03T02:05:43.554-05:00",
+        "source": "#vo8GSYe8hcbw56IF"
+    },
+    "text": {
+        "status": "generated",
+        "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><div class=\"hapiHeaderText\">Daren <b>MARQUARDT </b></div><table class=\"hapiPropertyTable\"><tbody><tr><td>Identifier</td><td>TEST-00576763</td></tr><tr><td>Address</td><td><span>North Norbertoburgh </span><span>MO </span><span>US </span></td></tr><tr><td>Date of birth</td><td><span>03 November 2018</span></td></tr></tbody></table></div>"
+    },
+    "identifier": [
+        {
+            "system": "http://hospital.example.org/mrn",
+            "value": "TEST-00576763"
+        }
+    ],
+    "name": [
+        {
+            "use": "official",
+            "family": "Marquardt",
+            "given": [
+                "Daren"
+            ]
+        }
+    ],
+    "telecom": [
+        {
+            "system": "phone",
+            "value": "(940) 207-8770 x78285",
+            "use": "home"
+        }
+    ],
+    "gender": "male",
+    "birthDate": "2018-11-03",
+    "address": [
+        {
+            "city": "North Norbertoburgh",
+            "state": "MO",
+            "postalCode": "65192-7533",
+            "country": "US"
+        }
+    ]
+}
