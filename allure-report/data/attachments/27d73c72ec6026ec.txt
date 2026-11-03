@@ -1,0 +1,51 @@
+=== PUT /Patient/437635 ===
+Status: 200
+Time: 473ms
+Content-Type: application/fhir+json;charset=utf-8
+
+Body:
+{
+    "resourceType": "Patient",
+    "id": "437635",
+    "meta": {
+        "versionId": "2",
+        "lastUpdated": "2026-11-03T02:02:29.096-05:00",
+        "source": "#3QHjH52ZytbdLDG1"
+    },
+    "text": {
+        "status": "generated",
+        "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><div class=\"hapiHeaderText\">Lyn <b>KEEBLER </b></div><table class=\"hapiPropertyTable\"><tbody><tr><td>Identifier</td><td>TEST-00476912</td></tr><tr><td>Address</td><td><span>South Numbersside </span><span>AR </span><span>US </span></td></tr><tr><td>Date of birth</td><td><span>03 November 1991</span></td></tr></tbody></table></div>"
+    },
+    "identifier": [
+        {
+            "system": "http://hospital.example.org/mrn",
+            "value": "TEST-00476912"
+        }
+    ],
+    "name": [
+        {
+            "use": "official",
+            "family": "Keebler",
+            "given": [
+                "Lyn"
+            ]
+        }
+    ],
+    "telecom": [
+        {
+            "system": "phone",
+            "value": "1-395-156-3329 x665",
+            "use": "home"
+        }
+    ],
+    "gender": "female",
+    "birthDate": "1991-11-03",
+    "address": [
+        {
+            "city": "South Numbersside",
+            "state": "AR",
+            "postalCode": "20379",
+            "country": "US"
+        }
+    ]
+}
