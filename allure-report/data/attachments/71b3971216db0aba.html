@@ -1,0 +1,91 @@
+<div>POST to https://hapi.fhir.org/baseR4/Patient</div>
+
+    <h4>Body</h4>
+    <div>
+    <pre class="preformated-text">
+{
+    &quot;id&quot;: &quot;TEST-00975030&quot;,
+    &quot;resourceType&quot;: &quot;Patient&quot;,
+    &quot;name&quot;: [
+        {
+            &quot;use&quot;: &quot;official&quot;,
+            &quot;family&quot;: &quot;Kassulke&quot;,
+            &quot;given&quot;: [
+                &quot;Cecil&quot;
+            ]
+        }
+    ],
+    &quot;birthDate&quot;: &quot;2026-11-04&quot;,
+    &quot;gender&quot;: &quot;male&quot;,
+    &quot;identifier&quot;: [
+        {
+            &quot;system&quot;: &quot;http://hospital.example.org/mrn&quot;,
+            &quot;value&quot;: &quot;TEST-00975030&quot;
+        }
+    ],
+    &quot;address&quot;: [
+        {
+            &quot;city&quot;: &quot;West Jamey&quot;,
+            &quot;state&quot;: &quot;VT&quot;,
+            &quot;postalCode&quot;: &quot;38182&quot;,
+            &quot;country&quot;: &quot;US&quot;
+        }
+    ],
+    &quot;telecom&quot;: [
+        {
+            &quot;system&quot;: &quot;phone&quot;,
+            &quot;value&quot;: &quot;259-950-2216 x838&quot;,
+            &quot;use&quot;: &quot;home&quot;
+        }
+    ]
+}    </pre>
+    </div>
+
+    <h4>Headers</h4>
+    <div>
+            <div>Accept: application/json, application/javascript, text/javascript, text/json</div>
+            <div>Content-Type: application/json</div>
+    </div>
+
+
+
+    <h4>Curl</h4>
+    <div>
+        curl -v -X POST &#39;https://hapi.fhir.org/baseR4/Patient&#39; -H &#39;Accept: application/json, application/javascript, text/javascript, text/json&#39; -H &#39;Content-Type: application/json&#39; -d &#39;{
+    &quot;id&quot;: &quot;TEST-00975030&quot;,
+    &quot;resourceType&quot;: &quot;Patient&quot;,
+    &quot;name&quot;: [
+        {
+            &quot;use&quot;: &quot;official&quot;,
+            &quot;family&quot;: &quot;Kassulke&quot;,
+            &quot;given&quot;: [
+                &quot;Cecil&quot;
+            ]
+        }
+    ],
+    &quot;birthDate&quot;: &quot;2026-11-04&quot;,
+    &quot;gender&quot;: &quot;male&quot;,
+    &quot;identifier&quot;: [
+        {
+            &quot;system&quot;: &quot;http://hospital.example.org/mrn&quot;,
+            &quot;value&quot;: &quot;TEST-00975030&quot;
+        }
+    ],
+    &quot;address&quot;: [
+        {
+            &quot;city&quot;: &quot;West Jamey&quot;,
+            &quot;state&quot;: &quot;VT&quot;,
+            &quot;postalCode&quot;: &quot;38182&quot;,
+            &quot;country&quot;: &quot;US&quot;
+        }
+    ],
+    &quot;telecom&quot;: [
+        {
+            &quot;system&quot;: &quot;phone&quot;,
+            &quot;value&quot;: &quot;259-950-2216 x838&quot;,
+            &quot;use&quot;: &quot;home&quot;
+        }
+    ]
+}&#39;
+    </div>
+

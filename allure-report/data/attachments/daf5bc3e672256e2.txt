@@ -1,0 +1,51 @@
+=== POST /Patient (senior) ===
+Status: 201
+Time: 471ms
+Content-Type: application/fhir+json;charset=utf-8
+
+Body:
+{
+    "resourceType": "Patient",
+    "id": "464113",
+    "meta": {
+        "versionId": "1",
+        "lastUpdated": "2026-11-04T02:45:14.461-05:00",
+        "source": "#wzu3VhMnbKghpzMc"
+    },
+    "text": {
+        "status": "generated",
+        "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><div class=\"hapiHeaderText\">Kareem <b>HERMANN </b></div><table class=\"hapiPropertyTable\"><tbody><tr><td>Identifier</td><td>TEST-00585228</td></tr><tr><td>Address</td><td><span>Juneborough </span><span>WA </span><span>US </span></td></tr><tr><td>Date of birth</td><td><span>04 November 1954</span></td></tr></tbody></table></div>"
+    },
+    "identifier": [
+        {
+            "system": "http://hospital.example.org/mrn",
+            "value": "TEST-00585228"
+        }
+    ],
+    "name": [
+        {
+            "use": "official",
+            "family": "Hermann",
+            "given": [
+                "Kareem"
+            ]
+        }
+    ],
+    "telecom": [
+        {
+            "system": "phone",
+            "value": "063-755-8022 x909",
+            "use": "home"
+        }
+    ],
+    "gender": "female",
+    "birthDate": "1954-11-04",
+    "address": [
+        {
+            "city": "Juneborough",
+            "state": "WA",
+            "postalCode": "27280",
+            "country": "US"
+        }
+    ]
+}

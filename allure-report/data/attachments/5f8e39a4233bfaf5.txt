@@ -1,0 +1,1399 @@
+=== GET /pet/findByStatus?status=sold ===
+Status: 200
+Time: 242ms
+Content-Type: application/json
+
+Body:
+[
+    {
+        "id": 5559393179559,
+        "name": "karate-a79486bf-a7d5-4fd2-83d9-a2d47f63f50d",
+        "photoUrls": [
+            "https://example.com/karate.jpg"
+        ],
+        "tags": [
+            
+        ],
+        "status": "sold"
+    },
+    {
+        "id": 2800279089447,
+        "name": "karate-parcial-ae663349-c14a-4a22-9da3-1c0c974cd034",
+        "photoUrls": [
+            "https://example.com/karate.jpg"
+        ],
+        "tags": [
+            
+        ],
+        "status": "sold"
+    },
+    {
+        "id": 9223372036854257764,
+        "category": {
+            "id": 1,
+            "name": "doggie"
+        },
+        "name": "doggie",
+        "photoUrls": [
+            null
+        ],
+        "tags": [
+            {
+                "id": 1,
+                "name": "doggie"
+            }
+        ],
+        "status": "sold"
+    },
+    {
+        "id": 9223372036854257765,
+        "category": {
+            "id": 1,
+            "name": "doggie"
+        },
+        "name": "doggie",
+        "photoUrls": [
+            null
+        ],
+        "tags": [
+            {
+                "id": 1,
+                "name": "doggie"
+            }
+        ],
+        "status": "sold"
+    },
+    {
+        "id": 9223372036854257766,
+        "category": {
+            "id": 1,
+            "name": "doggie"
+        },
+        "name": "doggie",
+        "photoUrls": [
+            null
+        ],
+        "tags": [
+            {
+                "id": 1,
+                "name": "doggie"
+            }
+        ],
+        "status": "sold"
+    },
+    {
+        "id": 9223372036854257767,
+        "category": {
+            "id": 1,
+            "name": "doggie"
+        },
+        "name": "doggie",
+        "photoUrls": [
+            null
+        ],
+        "tags": [
+            {
+                "id": 1,
+                "name": "doggie"
+            }
+        ],
+        "status": "sold"
+    },
+    {
+        "id": 9223372036854257768,
+        "category": {
+            "id": 1,
+            "name": "doggie"
+        },
+        "name": "doggie",
+        "photoUrls": [
+            null
+        ],
+        "tags": [
+            {
+                "id": 1,
+                "name": "doggie"
+            }
+        ],
+        "status": "sold"
+    },
+    {
+        "id": 7854053873802,
+        "name": "karate-656b74e3-0352-4896-aad2-d37246a821e3",
+        "photoUrls": [
+            "https://example.com/karate.jpg"
+        ],
+        "tags": [
+            
+        ],
+        "status": "sold"
+    },
+    {
+        "id": 4108596404825,
+        "name": "karate-parcial-b5861c4e-4ddd-41a3-bba0-71fa8d1d3769",
+        "photoUrls": [
+            "https://example.com/karate.jpg"
+        ],
+        "tags": [
+            
+        ],
+        "status": "sold"
+    },
+    {
+        "id": 699117,
+        "category": {
+            "id": 2,
+            "name": "Updated_Category_699117"
+        },
+        "name": "Updated_Pet_699117",
+        "photoUrls": [
+            "https://example.com/updated_pet_699117.jpg"
+        ],
+        "tags": [
+            {
+                "id": 2,
+                "name": "Updated_Tag_699117"
+            }
+        ],
+        "status": "sold"
+    },
+    {
+        "id": 5361,
+        "category": {
+            "id": 57,
+            "name": "bird"
+        },
+        "name": "birdger02",
+        "photoUrls": [
+            "string"
+        ],
+        "tags": [
+            {
+                "id": 17,
+                "name": "birdbird02"
+            }
+        ],
+        "status": "sold"
+    },
+    {
+        "id": 5365,
+        "category": {
+            "id": 61,
+            "name": "cat"
+        },
+        "name": "catger03",
+        "photoUrls": [
+            "string"
+        ],
+        "tags": [
+            {
+                "id": 21,
+                "name": "catcat03"
+            }
+        ],
+        "status": "sold"
+    },
+    {
+        "id": 1793773437,
+        "category": {
+            "id": 1793773437,
+            "name": "dog"
+        },
+        "name": "hello kity",
+        "photoUrls": [
+            "http://foo.bar.com/1",
+            "http://foo.bar.com/2"
+        ],
+        "tags": [
+            {
+                "id": 1793773437,
+                "name": "blank"
+            }
+        ],
+        "status": "sold"
+    },
+    {
+        "id": 5369,
+        "category": {
+            "id": 65,
+            "name": "dog"
+        },
+        "name": "dogger04",
+        "photoUrls": [
+            "string"
+        ],
+        "tags": [
+            {
+                "id": 25,
+                "name": "dogdog04"
+            }
+        ],
+        "status": "sold"
+    },
+    {
+        "id": 5373,
+        "category": {
+            "id": 69,
+            "name": "horse"
+        },
+        "name": "horse04",
+        "photoUrls": [
+            "string"
+        ],
+        "tags": [
+            {
+                "id": 29,
+                "name": "horsetag04"
+            }
+        ],
+        "status": "sold"
+    },
+    {
+        "id": 1793773439,
+        "category": {
+            "id": 1793773439,
+            "name": "dog"
+        },
+        "name": "hello kity",
+        "photoUrls": [
+            "http://foo.bar.com/1",
+            "http://foo.bar.com/2"
+        ],
+        "tags": [
+            {
+                "id": 1793773439,
+                "name": "swagger-codegen-python-pet-tag"
+            }
+        ],
+        "status": "sold"
+    },
+    {
+        "id": 1793773442,
+        "category": {
+            "id": 1793773442,
+            "name": "dog"
+        },
+        "name": "hello kity",
+        "photoUrls": [
+            "http://foo.bar.com/1",
+            "http://foo.bar.com/2"
+        ],
+        "tags": [
+            {
+                "id": 1793773442,
+                "name": "blank"
+            }
+        ],
+        "status": "sold"
+    },
+    {
+        "id": 1793773443,
+        "category": {
+            "id": 1793773443,
+            "name": "dog"
+        },
+        "name": "hello kity",
+        "photoUrls": [
+            "http://foo.bar.com/1",
+            "http://foo.bar.com/2"
+        ],
+        "tags": [
+            {
+                "id": 1793773443,
+                "name": "swagger-codegen-python-pet-tag"
+            }
+        ],
+        "status": "sold"
+    },
+    {
+        "id": 1793773447,
+        "category": {
+            "id": 1793773447,
+            "name": "dog"
+        },
+        "name": "hello kity",
+        "photoUrls": [
+            "http://foo.bar.com/1",
+            "http://foo.bar.com/2"
+        ],
+        "tags": [
+            {
+                "id": 1793773447,
+                "name": "blank"
+            }
+        ],
+        "status": "sold"
+    },
+    {
+        "id": 1793773448,
+        "category": {
+            "id": 1793773448,
+            "name": "dog"
+        },
+        "name": "hello kity",
+        "photoUrls": [
+            "http://foo.bar.com/1",
+            "http://foo.bar.com/2"
+        ],
+        "tags": [
+            {
+                "id": 1793773448,
+                "name": "blank"
+            }
+        ],
+        "status": "sold"
+    },
+    {
+        "id": 1793773450,
+        "category": {
+            "id": 1793773450,
+            "name": "dog"
+        },
+        "name": "hello kity",
+        "photoUrls": [
+            "http://foo.bar.com/1",
+            "http://foo.bar.com/2"
+        ],
+        "tags": [
+            {
+                "id": 1793773450,
+                "name": "swagger-codegen-python-pet-tag"
+            }
+        ],
+        "status": "sold"
+    },
+    {
+        "id": 1793773452,
+        "category": {
+            "id": 1793773452,
+            "name": "dog"
+        },
+        "name": "hello kity",
+        "photoUrls": [
+            "http://foo.bar.com/1",
+            "http://foo.bar.com/2"
+        ],
+        "tags": [
+            {
+                "id": 1793773452,
+                "name": "blank"
+            }
+        ],
+        "status": "sold"
+    },
+    {
+        "id": 1793773455,
+        "category": {
+            "id": 1793773455,
+            "name": "dog"
+        },
+        "name": "hello kity",
+        "photoUrls": [
+            "http://foo.bar.com/1",
+            "http://foo.bar.com/2"
+        ],
+        "tags": [
+            {
+                "id": 1793773455,
+                "name": "swagger-codegen-python-pet-tag"
+            }
+        ],
+        "status": "sold"
+    },
+    {
+        "id": 1793773552,
+        "category": {
+            "id": 1793773552,
+            "name": "dog"
+        },
+        "name": "hello kity",
+        "photoUrls": [
+            "http://foo.bar.com/1",
+            "http://foo.bar.com/2"
+        ],
+        "tags": [
+            {
+                "id": 1793773552,
+                "name": "blank"
+            }
+        ],
+        "status": "sold"
+    },
+    {
+        "id": 1793773558,
+        "category": {
+            "id": 1793773558,
+            "name": "dog"
+        },
+        "name": "hello kity",
+        "photoUrls": [
+            "http://foo.bar.com/1",
+            "http://foo.bar.com/2"
+        ],
+        "tags": [
+            {
+                "id": 1793773558,
+                "name": "blank"
+            }
+        ],
+        "status": "sold"
+    },
+    {
+        "id": 1793773586,
+        "category": {
+            "id": 1793773586,
+            "name": "dog"
+        },
+        "name": "hello kity",
+        "photoUrls": [
+            "http://foo.bar.com/1",
+            "http://foo.bar.com/2"
+        ],
+        "tags": [
+            {
+                "id": 1793773586,
+                "name": "blank"
+            }
+        ],
+        "status": "sold"
+    },
+    {
+        "id": 1793773685,
+        "category": {
+            "id": 1793773685,
+            "name": "dog"
+        },
+        "name": "hello kity",
+        "photoUrls": [
+            "http://foo.bar.com/1",
+            "http://foo.bar.com/2"
+        ],
+        "tags": [
+            {
+                "id": 1793773685,
+                "name": "blank"
+            }
+        ],
+        "status": "sold"
+    },
+    {
+        "id": 1793773687,
+        "category": {
+            "id": 1793773687,
+            "name": "dog"
+        },
+        "name": "hello kity",
+        "photoUrls": [
+            "http://foo.bar.com/1",
+            "http://foo.bar.com/2"
+        ],
+        "tags": [
+            {
+                "id": 1793773687,
+                "name": "swagger-codegen-python-pet-tag"
+            }
+        ],
+        "status": "sold"
+    },
+    {
+        "id": 1793773712,
+        "category": {
+            "id": 1793773712,
+            "name": "dog"
+        },
+        "name": "hello kity",
+        "photoUrls": [
+            "http://foo.bar.com/1",
+            "http://foo.bar.com/2"
+        ],
+        "tags": [
+            {
+                "id": 1793773712,
+                "name": "blank"
+            }
+        ],
+        "status": "sold"
+    },
+    {
+        "id": 1793773737,
+        "category": {
+            "id": 1793773737,
+            "name": "dog"
+        },
+        "name": "hello kity",
+        "photoUrls": [
+            "http://foo.bar.com/1",
+            "http://foo.bar.com/2"
+        ],
+        "tags": [
+            {
+                "id": 1793773737,
+                "name": "swagger-codegen-python-pet-tag"
+            }
+        ],
+        "status": "sold"
+    },
+    {
+        "id": 1793773746,
+        "category": {
+            "id": 1793773746,
+            "name": "dog"
+        },
+        "name": "hello kity",
+        "photoUrls": [
+            "http://foo.bar.com/1",
+            "http://foo.bar.com/2"
+        ],
+        "tags": [
+            {
+                "id": 1793773746,
+                "name": "blank"
+            }
+        ],
+        "status": "sold"
+    },
+    {
+        "id": 1793773748,
+        "category": {
+            "id": 1793773748,
+            "name": "dog"
+        },
+        "name": "hello kity",
+        "photoUrls": [
+            "http://foo.bar.com/1",
+            "http://foo.bar.com/2"
+        ],
+        "tags": [
+            {
+                "id": 1793773748,
+                "name": "swagger-codegen-python-pet-tag"
+            }
+        ],
+        "status": "sold"
+    },
+    {
+        "id": 1793773766,
+        "category": {
+            "id": 1793773766,
+            "name": "dog"
+        },
+        "name": "hello kity",
+        "photoUrls": [
+            "http://foo.bar.com/1",
+            "http://foo.bar.com/2"
+        ],
+        "tags": [
+            {
+                "id": 1793773766,
+                "name": "blank"
+            }
+        ],
+        "status": "sold"
+    },
+    {
+        "id": 1793773768,
+        "category": {
+            "id": 1793773768,
+            "name": "dog"
+        },
+        "name": "hello kity",
+        "photoUrls": [
+            "http://foo.bar.com/1",
+            "http://foo.bar.com/2"
+        ],
+        "tags": [
+            {
+                "id": 1793773768,
+                "name": "swagger-codegen-python-pet-tag"
+            }
+        ],
+        "status": "sold"
+    },
+    {
+        "id": 1793773770,
+        "category": {
+            "id": 1793773770,
+            "name": "dog"
+        },
+        "name": "hello kity",
+        "photoUrls": [
+            "http://foo.bar.com/1",
+            "http://foo.bar.com/2"
+        ],
+        "tags": [
+            {
+                "id": 1793773770,
+                "name": "blank"
+            }
+        ],
+        "status": "sold"
+    },
+    {
+        "id": 1793773774,
+        "category": {
+            "id": 1793773774,
+            "name": "dog"
+        },
+        "name": "hello kity",
+        "photoUrls": [
+            "http://foo.bar.com/1",
+            "http://foo.bar.com/2"
+        ],
+        "tags": [
+            {
+                "id": 1793773774,
+                "name": "swagger-codegen-python-pet-tag"
+            }
+        ],
+        "status": "sold"
+    },
+    {
+        "id": 194884,
+        "category": {
+            "id": 1,
+            "name": "Dogs"
+        },
+        "name": "Rocky_194884",
+        "photoUrls": [
+            "https://example.com/pet_photos/194884.jpg"
+        ],
+        "tags": [
+            {
+                "id": 75,
+                "name": "vaccinated"
+            }
+        ],
+        "status": "sold"
+    },
+    {
+        "id": 1793774074,
+        "category": {
+            "id": 1793774074,
+            "name": "dog"
+        },
+        "name": "hello kity",
+        "photoUrls": [
+            "http://foo.bar.com/1",
+            "http://foo.bar.com/2"
+        ],
+        "tags": [
+            {
+                "id": 1793774074,
+                "name": "blank"
+            }
+        ],
+        "status": "sold"
+    },
+    {
+        "id": 1793774078,
+        "category": {
+            "id": 1793774078,
+            "name": "dog"
+        },
+        "name": "hello kity",
+        "photoUrls": [
+            "http://foo.bar.com/1",
+            "http://foo.bar.com/2"
+        ],
+        "tags": [
+            {
+                "id": 1793774078,
+                "name": "swagger-codegen-python-pet-tag"
+            }
+        ],
+        "status": "sold"
+    },
+    {
+        "id": 1793774082,
+        "category": {
+            "id": 1793774082,
+            "name": "dog"
+        },
+        "name": "hello kity",
+        "photoUrls": [
+            "http://foo.bar.com/1",
+            "http://foo.bar.com/2"
+        ],
+        "tags": [
+            {
+                "id": 1793774082,
+                "name": "swagger-codegen-python-pet-tag"
+            }
+        ],
+        "status": "sold"
+    },
+    {
+        "id": 1793774098,
+        "category": {
+            "id": 1793774098,
+            "name": "dog"
+        },
+        "name": "hello kity",
+        "photoUrls": [
+            "http://foo.bar.com/1",
+            "http://foo.bar.com/2"
+        ],
+        "tags": [
+            {
+                "id": 1793774098,
+                "name": "blank"
+            }
+        ],
+        "status": "sold"
+    },
+    {
+        "id": 1793774110,
+        "category": {
+            "id": 1793774110,
+            "name": "dog"
+        },
+        "name": "hello kity",
+        "photoUrls": [
+            "http://foo.bar.com/1",
+            "http://foo.bar.com/2"
+        ],
+        "tags": [
+            {
+                "id": 1793774110,
+                "name": "swagger-codegen-python-pet-tag"
+            }
+        ],
+        "status": "sold"
+    },
+    {
+        "id": 1793774113,
+        "category": {
+            "id": 1793774113,
+            "name": "dog"
+        },
+        "name": "hello kity",
+        "photoUrls": [
+            "http://foo.bar.com/1",
+            "http://foo.bar.com/2"
+        ],
+        "tags": [
+            {
+                "id": 1793774113,
+                "name": "swagger-codegen-python-pet-tag"
+            }
+        ],
+        "status": "sold"
+    },
+    {
+        "id": 1793774121,
+        "category": {
+            "id": 1793774121,
+            "name": "dog"
+        },
+        "name": "hello kity",
+        "photoUrls": [
+            "http://foo.bar.com/1",
+            "http://foo.bar.com/2"
+        ],
+        "tags": [
+            {
+                "id": 1793774121,
+                "name": "blank"
+            }
+        ],
+        "status": "sold"
+    },
+    {
+        "id": 822334,
+        "category": {
+            "id": 2,
+            "name": "Updated_Category_822334"
+        },
+        "name": "Updated_Pet_822334",
+        "photoUrls": [
+            "https://example.com/updated_pet_822334.jpg"
+        ],
+        "tags": [
+            {
+                "id": 2,
+                "name": "Updated_Tag_822334"
+            }
+        ],
+        "status": "sold"
+    },
+    {
+        "id": 1793774138,
+        "category": {
+            "id": 1793774138,
+            "name": "dog"
+        },
+        "name": "hello kity",
+        "photoUrls": [
+            "http://foo.bar.com/1",
+            "http://foo.bar.com/2"
+        ],
+        "tags": [
+            {
+                "id": 1793774138,
+                "name": "blank"
+            }
+        ],
+        "status": "sold"
+    },
+    {
+        "id": 1793774146,
+        "category": {
+            "id": 1793774146,
+            "name": "dog"
+        },
+        "name": "hello kity",
+        "photoUrls": [
+            "http://foo.bar.com/1",
+            "http://foo.bar.com/2"
+        ],
+        "tags": [
+            {
+                "id": 1793774146,
+                "name": "swagger-codegen-python-pet-tag"
+            }
+        ],
+        "status": "sold"
+    },
+    {
+        "id": 1793774149,
+        "category": {
+            "id": 1793774149,
+            "name": "dog"
+        },
+        "name": "hello kity",
+        "photoUrls": [
+            "http://foo.bar.com/1",
+            "http://foo.bar.com/2"
+        ],
+        "tags": [
+            {
+                "id": 1793774149,
+                "name": "swagger-codegen-python-pet-tag"
+            }
+        ],
+        "status": "sold"
+    },
+    {
+        "id": 440025,
+        "category": {
+            "id": 3,
+            "name": "bird"
+        },
+        "name": "Ollie",
+        "photoUrls": [
+            
+        ],
+        "tags": [
+            {
+                "id": 0,
+                "name": "team4"
+            },
+            {
+                "id": 2,
+                "name": "elegance"
+            },
+            {
+                "id": 4,
+                "name": "active"
+            }
+        ],
+        "status": "sold"
+    },
+    {
+        "id": 440022,
+        "category": {
+            "id": 1,
+            "name": "cat"
+        },
+        "name": "Oscar",
+        "photoUrls": [
+            
+        ],
+        "tags": [
+            {
+                "id": 0,
+                "name": "team4"
+            },
+            {
+                "id": 4,
+                "name": "active"
+            },
+            {
+                "id": 5,
+                "name": "mild"
+            }
+        ],
+        "status": "sold"
+    },
+    {
+        "id": 440023,
+        "category": {
+            "id": 2,
+            "name": "dog"
+        },
+        "name": "Milo",
+        "photoUrls": [
+            
+        ],
+        "tags": [
+            {
+                "id": 0,
+                "name": "team4"
+            },
+            {
+                "id": 3,
+                "name": "lazy"
+            },
+            {
+                "id": 1,
+                "name": "brave"
+            }
+        ],
+        "status": "sold"
+    },
+    {
+        "id": 440027,
+        "category": {
+            "id": 0,
+            "name": "rabbit"
+        },
+        "name": "Jack",
+        "photoUrls": [
+            
+        ],
+        "tags": [
+            {
+                "id": 0,
+                "name": "team4"
+            },
+            {
+                "id": 2,
+                "name": "elegance"
+            },
+            {
+                "id": 5,
+                "name": "mild"
+            }
+        ],
+        "status": "sold"
+    },
+    {
+        "id": 440026,
+        "category": {
+            "id": 3,
+            "name": "bird"
+        },
+        "name": "Toby",
+        "photoUrls": [
+            
+        ],
+        "tags": [
+            {
+                "id": 0,
+                "name": "team4"
+            },
+            {
+                "id": 2,
+                "name": "elegance"
+            },
+            {
+                "id": 1,
+                "name": "brave"
+            }
+        ],
+        "status": "sold"
+    },
+    {
+        "id": 440021,
+        "category": {
+            "id": 1,
+            "name": "cat"
+        },
+        "name": "Max",
+        "photoUrls": [
+            
+        ],
+        "tags": [
+            {
+                "id": 0,
+                "name": "team4"
+            },
+            {
+                "id": 3,
+                "name": "lazy"
+            },
+            {
+                "id": 2,
+                "name": "elegance"
+            }
+        ],
+        "status": "sold"
+    },
+    {
+        "id": 440030,
+        "category": {
+            "id": 5,
+            "name": "hamsters"
+        },
+        "name": "Nala",
+        "photoUrls": [
+            
+        ],
+        "tags": [
+            {
+                "id": 0,
+                "name": "team4"
+            },
+            {
+                "id": 5,
+                "name": "mild"
+            },
+            {
+                "id": 4,
+                "name": "active"
+            }
+        ],
+        "status": "sold"
+    },
+    {
+        "id": 440028,
+        "category": {
+            "id": 0,
+            "name": "rabbit"
+        },
+        "name": "Teddy",
+        "photoUrls": [
+            
+        ],
+        "tags": [
+            {
+                "id": 0,
+                "name": "team4"
+            },
+            {
+                "id": 1,
+                "name": "brave"
+            },
+            {
+                "id": 4,
+                "name": "active"
+            }
+        ],
+        "status": "sold"
+    },
+    {
+        "id": 440029,
+        "category": {
+            "id": 5,
+            "name": "hamsters"
+        },
+        "name": "Callie",
+        "photoUrls": [
+            
+        ],
+        "tags": [
+            {
+                "id": 0,
+                "name": "team4"
+            },
+            {
+                "id": 1,
+                "name": "brave"
+            },
+            {
+                "id": 4,
+                "name": "active"
+            }
+        ],
+        "status": "sold"
+    },
+    {
+        "id": 851312,
+        "category": {
+            "id": 2,
+            "name": "Updated_Category_851312"
+        },
+        "name": "Updated_Pet_851312",
+        "photoUrls": [
+            "https://example.com/updated_pet_851312.jpg"
+        ],
+        "tags": [
+            {
+                "id": 2,
+                "name": "Updated_Tag_851312"
+            }
+        ],
+        "status": "sold"
+    },
+    {
+        "id": 9223372036854258032,
+        "category": {
+            "id": 0,
+            "name": "DOG"
+        },
+        "name": "dogyy",
+        "photoUrls": [
+            "string"
+        ],
+        "tags": [
+            {
+                "id": 0,
+                "name": "string"
+            }
+        ],
+        "status": "sold"
+    },
+    {
+        "id": 1232,
+        "category": {
+            "id": 181,
+            "name": "string"
+        },
+        "name": "doggie",
+        "photoUrls": [
+            "string",
+            "string"
+        ],
+        "tags": [
+            {
+                "id": 1376,
+                "name": "string"
+            },
+            {
+                "id": 3480,
+                "name": "string"
+            }
+        ],
+        "status": "sold"
+    },
+    {
+        "id": 28,
+        "category": {
+            "id": 40,
+            "name": "dog"
+        },
+        "name": "Cookie",
+        "photoUrls": [
+            "string"
+        ],
+        "tags": [
+            {
+                "id": 9,
+                "name": "West Highland Terrier"
+            }
+        ],
+        "status": "sold"
+    },
+    {
+        "id": 1793775808,
+        "category": {
+            "id": 1793775808,
+            "name": "dog"
+        },
+        "name": "hello kity",
+        "photoUrls": [
+            "http://foo.bar.com/1",
+            "http://foo.bar.com/2"
+        ],
+        "tags": [
+            {
+                "id": 1793775808,
+                "name": "blank"
+            }
+        ],
+        "status": "sold"
+    },
+    {
+        "id": 1793775844,
+        "category": {
+            "id": 1793775844,
+            "name": "dog"
+        },
+        "name": "hello kity",
+        "photoUrls": [
+            "http://foo.bar.com/1",
+            "http://foo.bar.com/2"
+        ],
+        "tags": [
+            {
+                "id": 1793775844,
+                "name": "blank"
+            }
+        ],
+        "status": "sold"
+    },
+    {
+        "id": 17,
+        "name": "Special_char_owner_!@#$^&()`.testing",
+        "photoUrls": [
+            "https://petstore3.swagger.io/resources/photos/623389095.jpg"
+        ],
+        "tags": [
+            
+        ],
+        "status": "sold"
+    },
+    {
+        "id": 19467,
+        "name": "見響见响仮仏!$%&()*+,-ƄƅƆḞḟṀʶʷʸăĄą",
+        "photoUrls": [
+            "https://petstore3.swagger.io/resources/photos/623389095.jpg"
+        ],
+        "tags": [
+            
+        ],
+        "status": "sold"
+    },
+    {
+        "id": 1793776022,
+        "category": {
+            "id": 1793776022,
+            "name": "dog"
+        },
+        "name": "hello kity",
+        "photoUrls": [
+            "http://foo.bar.com/1",
+            "http://foo.bar.com/2"
+        ],
+        "tags": [
+            {
+                "id": 1793776022,
+                "name": "blank"
+            }
+        ],
+        "status": "sold"
+    },
+    {
+        "id": 1793776130,
+        "category": {
+            "id": 1793776130,
+            "name": "dog"
+        },
+        "name": "hello kity",
+        "photoUrls": [
+            "http://foo.bar.com/1",
+            "http://foo.bar.com/2"
+        ],
+        "tags": [
+            {
+                "id": 1793776130,
+                "name": "blank"
+            }
+        ],
+        "status": "sold"
+    },
+    {
+        "id": 1793776220,
+        "category": {
+            "id": 1793776220,
+            "name": "dog"
+        },
+        "name": "hello kity",
+        "photoUrls": [
+            "http://foo.bar.com/1",
+            "http://foo.bar.com/2"
+        ],
+        "tags": [
+            {
+                "id": 1793776220,
+                "name": "blank"
+            }
+        ],
+        "status": "sold"
+    },
+    {
+        "id": 1793776469,
+        "category": {
+            "id": 1793776469,
+            "name": "dog"
+        },
+        "name": "hello kity",
+        "photoUrls": [
+            "http://foo.bar.com/1",
+            "http://foo.bar.com/2"
+        ],
+        "tags": [
+            {
+                "id": 1793776469,
+                "name": "blank"
+            }
+        ],
+        "status": "sold"
+    },
+    {
+        "id": 1793776683,
+        "category": {
+            "id": 1793776683,
+            "name": "dog"
+        },
+        "name": "hello kity",
+        "photoUrls": [
+            "http://foo.bar.com/1",
+            "http://foo.bar.com/2"
+        ],
+        "tags": [
+            {
+                "id": 1793776683,
+                "name": "swagger-codegen-python-pet-tag"
+            }
+        ],
+        "status": "sold"
+    },
+    {
+        "id": 1793776787,
+        "category": {
+            "id": 1793776787,
+            "name": "dog"
+        },
+        "name": "hello kity",
+        "photoUrls": [
+            "http://foo.bar.com/1",
+            "http://foo.bar.com/2"
+        ],
+        "tags": [
+            {
+                "id": 1793776787,
+                "name": "blank"
+            }
+        ],
+        "status": "sold"
+    },
+    {
+        "id": 1793777383,
+        "category": {
+            "id": 1793777383,
+            "name": "dog"
+        },
+        "name": "hello kity",
+        "photoUrls": [
+            "http://foo.bar.com/1",
+            "http://foo.bar.com/2"
+        ],
+        "tags": [
+            {
+                "id": 1793777383,
+                "name": "blank"
+            }
+        ],
+        "status": "sold"
+    },
+    {
+        "id": 1793778126,
+        "category": {
+            "id": 1793778126,
+            "name": "dog"
+        },
+        "name": "hello kity",
+        "photoUrls": [
+            "http://foo.bar.com/1",
+            "http://foo.bar.com/2"
+        ],
+        "tags": [
+            {
+                "id": 1793778126,
+                "name": "swagger-codegen-python-pet-tag"
+            }
+        ],
+        "status": "sold"
+    }
+]

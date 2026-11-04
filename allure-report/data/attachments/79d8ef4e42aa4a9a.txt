@@ -1,0 +1,51 @@
+=== PUT /Patient/464111 ===
+Status: 200
+Time: 482ms
+Content-Type: application/fhir+json;charset=utf-8
+
+Body:
+{
+    "resourceType": "Patient",
+    "id": "464111",
+    "meta": {
+        "versionId": "2",
+        "lastUpdated": "2026-11-04T02:45:17.284-05:00",
+        "source": "#MgmkXpQXT8Yi5pdy"
+    },
+    "text": {
+        "status": "generated",
+        "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><div class=\"hapiHeaderText\">Yolando <b>PROHASKA </b></div><table class=\"hapiPropertyTable\"><tbody><tr><td>Identifier</td><td>TEST-00480946</td></tr><tr><td>Address</td><td><span>West Brain </span><span>OH </span><span>US </span></td></tr><tr><td>Date of birth</td><td><span>04 November 1991</span></td></tr></tbody></table></div>"
+    },
+    "identifier": [
+        {
+            "system": "http://hospital.example.org/mrn",
+            "value": "TEST-00480946"
+        }
+    ],
+    "name": [
+        {
+            "use": "official",
+            "family": "Prohaska",
+            "given": [
+                "Yolando"
+            ]
+        }
+    ],
+    "telecom": [
+        {
+            "system": "phone",
+            "value": "297-505-2094 x51651",
+            "use": "home"
+        }
+    ],
+    "gender": "female",
+    "birthDate": "1991-11-04",
+    "address": [
+        {
+            "city": "West Brain",
+            "state": "OH",
+            "postalCode": "87693-0390",
+            "country": "US"
+        }
+    ]
+}
