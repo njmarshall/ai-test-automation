@@ -73,4 +73,11 @@
             <class name="com.aitesting.petstore.ui.PetStoreUITests"/>
         </classes>
     </test>
+
+    <!-- PetStore UI Tests: Selenium (same scenarios as Playwright) -->
+    <test name="PetStore Selenium UI Tests">
+        <classes>
+            <class name="com.aitesting.petstore.ui.PetStoreSeleniumTests"/>
+        </classes>
+    </test>
 </suite>

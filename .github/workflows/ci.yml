@@ -66,7 +66,8 @@ jobs:
       # ── Run API tests ────────────────────────────────────────────────────────
       - name: Run PetStore API tests
         env:
-          BASE_URL:              ${{ vars.BASE_URL || 'https://petstore.swagger.io/v2' }}
+          CI:                    "true"   # Selenium runs headless (runner image ships Chrome)
+          BASE_URL:             ${{ vars.BASE_URL || 'https://petstore.swagger.io/v2' }}
           REQUEST_TIMEOUT_MS:    "10000"
           RESPONSE_TIME_SLA_MS:  "3000"
           LIVE_API_SLA_MS:       "8000"

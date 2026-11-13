@@ -33,3 +33,17 @@ A running log of checks and changes.
 * Test: Added `ResponseValidatorTest` (mocked `Response.getTime()`): under the limit passes, over the limit throws an AssertionError naming the limit.
 * Result: `mvn clean test -pl api -am` on JDK 17 passes. Shared 29 run, 0 failures. API 95 run, 0 failures, 1 known skip.
 * Next: replace live Patient create with WireMock (Option C) and run live tests in a non-blocking job.
+
+## 2026.11.13
+
+### Added: Selenium (Java) UI tests mirroring the Playwright PetStore UI tests
+
+* Goal: Show the same 8 PetStore Swagger UI scenarios in both Playwright and Selenium. Option A layout: test scope, inside the `api` module.
+* Dependency: `org.seleniumhq.selenium:selenium-java:4.52.0` (test scope) in `api/pom.xml`. No WebDriverManager. Selenium Manager resolves chromedriver.
+* Utilities (`api/src/test/java/com/aitesting/ui/selenium/`): `DriverFactory` (ThreadLocal ChromeDriver, headless when CI=true or HEADLESS=true, timeouts and viewport from `UIConfig`), `SeleniumBasePage` (WebDriverWait plus ExpectedConditions, no Thread.sleep, no implicit wait), `SeleniumScreenshotHelper` (failure screenshot saved and attached to Allure).
+* Page objects (`petstore/selenium/pages/`): `SwaggerHomePageSelenium`, `PetEndpointPageSelenium`. Locators copied unchanged from the Playwright page objects.
+* Tests: `PetStoreSeleniumTests` (same scenarios and assertions as `PetStoreUITests`), registered in `testng.xml`.
+* CI: `CI: "true"` set explicitly on the api test step so Selenium runs headless. No new secrets.
+* Locator changes: None. All selectors passed against the live Swagger DOM on the first run.
+* Result: `mvn clean test -pl api -am` on JDK 17 passes. Shared 29 run, 0 failures. API 103 run, 0 failures, 1 known skip. Headless run with CI=true: Selenium 8/8 (22.4s), Playwright 8/8 (20.8s).
+* Docs: README (test count, Selenium UI row, structure diagram), `docs/playbooks/selenium_vs_playwright.md`.

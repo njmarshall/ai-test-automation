@@ -65,6 +65,16 @@
             <version>1.44.0</version>
             <scope>test</scope>
         </dependency>
+
+        <!-- Selenium WebDriver: same PetStore UI scenarios as Playwright.
+             Selenium Manager (built in since 4.6) resolves chromedriver,
+             so no WebDriverManager dependency is needed. -->
+        <dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-java</artifactId>
+            <version>4.52.0</version>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
 
     <build>
