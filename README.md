@@ -1,7 +1,7 @@
 # ai-test-automation
 
 > AI-powered API test automation framework in Java — built to FAANG-grade standards.
-> Three industry capstones · 103 tests · 0 failures · CRTP · SOLID · AsyncApiClient
+> Three industry capstones · 103 tests (88 CI gate + 15 live FHIR) · 0 failures · CRTP · SOLID · AsyncApiClient
 
 [![CI](https://github.com/njmarshall/ai-test-automation/actions/workflows/ci.yml/badge.svg)](https://github.com/njmarshall/ai-test-automation/actions/workflows/ci.yml)
 
@@ -34,6 +34,17 @@ architect-level design patterns used at Google and Meta.
 | **PetStore UI (Playwright)** | 8 | ✅ Passing | Playwright + Chromium |
 | **PetStore UI (Selenium)** | 8 | ✅ Passing | Selenium WebDriver + Chrome |
 | **Total** | **103** | **✅ 0 failures** | | |
+
+| Suite | Suite file | Tests | Blocks the build? |
+|---|---|---|---|
+| **Default CI gate** | `testng.xml` (excludes group `live`) | 88 | Yes |
+| **Live public FHIR** | `testng-live.xml` (only group `live`: PatientTests, EncounterTests) | 15 | No (`continue-on-error`) |
+
+**Why live tests are separate:** PatientTests and EncounterTests call the public
+`hapi.fhir.org` server, whose latency we do not control (one CI run saw 12.5s
+against an 8s SLA). Raising the SLA each time hides real regressions, so these
+tests are tagged `@Test(groups = "live")` and run in their own non-blocking CI job.
+The gate stays deterministic. Plan: WireMock for FHIR Patient create (Option C).
 
 ---
 
@@ -142,8 +153,11 @@ ai-test-automation/
 git clone https://github.com/njmarshall/ai-test-automation.git
 cd ai-test-automation
 
-# Run all 103 tests
+# Run the default CI gate (88 tests, live FHIR excluded)
 mvn clean test -pl api -am
+
+# Run the live public FHIR suite (15 tests, hapi.fhir.org)
+mvn clean test -pl api -am -Dtestng.suite=src/test/resources/testng-live.xml
 
 # Generate Allure HTML report
 mvn allure:report -pl api
@@ -315,10 +329,11 @@ Generated files land in `api/src/test/java/com/aitesting/petstore/api/aigenerate
 Every push to `main` or `develop`:
 
 1. Builds the `shared` library
-2. Runs all 103 tests in parallel (3 threads)
+2. Runs the 88-test gate in parallel (3 threads); live FHIR tests are excluded
 3. Generates an Allure HTML report
 4. Publishes the report to GitHub Pages
 5. Uploads artifacts for 30 days
+6. Runs the 15 live FHIR tests in a separate `live-fhir-tests` job with `continue-on-error: true`, so a slow public server never fails the build
 
 Allure report: `https://njmarshall.github.io/ai-test-automation/allure-report/`
 

@@ -1,0 +1,19 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<!-- Live public FHIR suite: runs ONLY group "live" (PatientTests, EncounterTests
+     against hapi.fhir.org). Non-blocking in CI (live-fhir-tests job).
+     Run locally: mvn test -pl api -am -Dtestng.suite=src/test/resources/testng-live.xml -->
+<suite name="Live FHIR Suite" verbose="1">
+
+    <groups>
+        <run>
+            <include name="live"/>
+        </run>
+    </groups>
+
+    <test name="Live FHIR Tests">
+        <classes>
+            <class name="com.aitesting.healthcare.api.PatientTests"/>
+            <class name="com.aitesting.healthcare.api.EncounterTests"/>
+        </classes>
+    </test>
+</suite>

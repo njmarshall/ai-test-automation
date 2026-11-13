@@ -4,6 +4,15 @@
        parallel="classes"
        thread-count="3">
 
+    <!-- Default CI gate: skip tests that hit the live public HAPI FHIR server.
+         Surefire ignores groups/excludedGroups when suiteXmlFiles is used, so the
+         exclusion lives here. Live tests run separately via testng-live.xml. -->
+    <groups>
+        <run>
+            <exclude name="live"/>
+        </run>
+    </groups>
+
     <!-- PetStore Capstone -->
     <test name="Pet Endpoint Tests">
         <classes>

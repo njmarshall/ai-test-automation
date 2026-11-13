@@ -28,6 +28,9 @@ import org.testng.annotations.*;
  */
 @Epic("Healthcare FHIR API")
 @Feature("Encounter Resource")
+// Live public HAPI FHIR server: excluded from the default CI gate (testng.xml),
+// run non-blocking via testng-live.xml. Class-level groups merge into every @Test method.
+@Test(groups = "live")
 public class EncounterTests {
 
     private static ApiClient api;

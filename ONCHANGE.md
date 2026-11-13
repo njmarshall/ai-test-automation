@@ -47,3 +47,14 @@ A running log of checks and changes.
 * Locator changes: None. All selectors passed against the live Swagger DOM on the first run.
 * Result: `mvn clean test -pl api -am` on JDK 17 passes. Shared 29 run, 0 failures. API 103 run, 0 failures, 1 known skip. Headless run with CI=true: Selenium 8/8 (22.4s), Playwright 8/8 (20.8s).
 * Docs: README (test count, Selenium UI row, structure diagram), `docs/playbooks/selenium_vs_playwright.md`.
+
+### Fixed: Live FHIR tests no longer block CI
+
+* Failure: `PatientTests.createPatient_validAdult_returns201` failed in CI again. The live public HAPI FHIR server took 12569ms (about 12.5s) against the 8000ms (8s) `LIVE_API_SLA_MS`.
+* Why raising the limit is the wrong fix: We already raised it once (3s to 8s on 2026.11.01). HAPI is a shared public sandbox and its latency is outside our control, so any limit we pick will eventually be breached. Raising it each time makes the SLA meaningless and would hide real regressions, while the gate still fails on noise we cannot fix.
+* Fix: Tagged `PatientTests` and `EncounterTests` (the only `forFhirApi()` users) with class-level `@Test(groups = "live")`. TestNG merges this into every `@Test` method; verified all 15 methods ran in the live suite. WireMock tests (ClaimTests, PriorAuthTests) and PetStore tests are untagged. No other test depends on data they create.
+* Suites: `testng.xml` now has `<groups><run><exclude name="live"/></run></groups>` (Surefire ignores `groups`/`excludedGroups` when `suiteXmlFiles` is set, so the exclusion lives in the suite file). New `testng-live.xml` runs only group `live`. `api/pom.xml` selects the suite via the `testng.suite` property (default `testng.xml`).
+* CI: `build-and-test` stays the gate and skips live tests. New `live-fhir-tests` job runs `testng-live.xml` with `continue-on-error: true`, same JDK 17 setup, `LIVE_API_SLA_MS: "8000"`. No new secrets.
+* Assertions and limits: unchanged.
+* Result: `mvn clean test -pl api -am` on JDK 17: Shared 29 run, 0 failures. API gate 88 run, 0 failures, 0 skipped (was 103; the 15 live tests and the known Encounter skip moved out). Live suite: 15 run, 0 failures, 1 known skip (`getEncounter_found_returns200`), 11.7s. No HAPI calls in the gate, including the live classes' `@BeforeClass` setup.
+* Next: WireMock for FHIR Patient create (Option C).

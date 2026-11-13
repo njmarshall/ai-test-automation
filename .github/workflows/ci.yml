@@ -64,6 +64,7 @@ jobs:
         run: mvn install -pl shared -am -DskipTests --no-transfer-progress
 
       # ── Run API tests ────────────────────────────────────────────────────────
+      # Gate: testng.xml excludes group "live" (public HAPI FHIR), see live-fhir-tests.
       - name: Run PetStore API tests
         env:
           CI:                    "true"   # Selenium runs headless (runner image ships Chrome)
@@ -106,6 +107,50 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir:  api/target/site/allure-maven-plugin/
           destination_dir: allure-report
+
+  # ── Live public FHIR tests (non-blocking) ─────────────────────────────────
+  # PatientTests and EncounterTests (TestNG group "live") call the public
+  # hapi.fhir.org server, whose latency we do not control. They are excluded
+  # from the build-and-test gate (testng.xml) and run here from testng-live.xml.
+  # continue-on-error: a slow public server never fails the build.
+  live-fhir-tests:
+    name: Live FHIR Tests (non-blocking)
+    runs-on: ubuntu-24.04    # pinned, matches build-and-test
+    needs: shared-unit-tests
+    continue-on-error: true
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+          cache: 'maven'
+
+      - name: Build shared module
+        run: mvn install -pl shared -am -DskipTests --no-transfer-progress
+
+      - name: Run live FHIR suite
+        env:
+          CI:                    "true"
+          REQUEST_TIMEOUT_MS:    "10000"
+          LIVE_API_SLA_MS:       "8000"
+          LOG_ALL_REQUESTS:      "false"
+          ALLURE_ATTACH_ALWAYS:  "true"
+        run: >
+          mvn test -pl api -am --no-transfer-progress
+          -Dtestng.suite=src/test/resources/testng-live.xml
+
+      - name: Upload Surefire reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: live-fhir-test-results
+          path: api/target/surefire-reports/
+          retention-days: 14
 
   # ── Optional: AI test generation job (runs on demand) ─────────────────────
   generate-tests:

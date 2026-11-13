@@ -15,6 +15,12 @@
     <name>AI Test Automation - API Tests</name>
     <description>API test suites: PetStore, Insurance, Healthcare and other capstones</description>
 
+    <properties>
+        <!-- Default suite is the CI gate (excludes group "live").
+             Live public FHIR suite: -Dtestng.suite=src/test/resources/testng-live.xml -->
+        <testng.suite>src/test/resources/testng.xml</testng.suite>
+    </properties>
+
     <dependencies>
         <!-- Shared framework library -->
         <dependency>
@@ -85,7 +91,7 @@
                 <version>3.2.5</version>
                 <configuration>
                     <suiteXmlFiles>
-                        <suiteXmlFile>src/test/resources/testng.xml</suiteXmlFile>
+                        <suiteXmlFile>${testng.suite}</suiteXmlFile>
                     </suiteXmlFiles>
                     <systemPropertyVariables>
                         <allure.results.directory>
