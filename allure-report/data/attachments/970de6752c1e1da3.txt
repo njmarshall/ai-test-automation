@@ -1,0 +1,51 @@
+=== POST /Patient (newborn) ===
+Status: 201
+Time: 428ms
+Content-Type: application/fhir+json;charset=utf-8
+
+Body:
+{
+    "resourceType": "Patient",
+    "id": "733301",
+    "meta": {
+        "versionId": "1",
+        "lastUpdated": "2026-11-13T17:58:18.597-05:00",
+        "source": "#YzJ0doE7bOYJ5Jr7"
+    },
+    "text": {
+        "status": "generated",
+        "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><div class=\"hapiHeaderText\">Lue <b>MAYERT </b></div><table class=\"hapiPropertyTable\"><tbody><tr><td>Identifier</td><td>TEST-00762287</td></tr><tr><td>Address</td><td><span>North Gustavohaven </span><span>MA </span><span>US </span></td></tr><tr><td>Date of birth</td><td><span>13 November 2026</span></td></tr></tbody></table></div>"
+    },
+    "identifier": [
+        {
+            "system": "http://hospital.example.org/mrn",
+            "value": "TEST-00762287"
+        }
+    ],
+    "name": [
+        {
+            "use": "official",
+            "family": "Mayert",
+            "given": [
+                "Lue"
+            ]
+        }
+    ],
+    "telecom": [
+        {
+            "system": "phone",
+            "value": "280.754.1881 x7456",
+            "use": "home"
+        }
+    ],
+    "gender": "male",
+    "birthDate": "2026-11-13",
+    "address": [
+        {
+            "city": "North Gustavohaven",
+            "state": "MA",
+            "postalCode": "94751-9598",
+            "country": "US"
+        }
+    ]
+}

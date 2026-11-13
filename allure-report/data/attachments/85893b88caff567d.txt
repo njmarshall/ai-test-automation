@@ -1,0 +1,10 @@
+=== GET /policies (not found) ===
+Status: 404
+Time: 5ms
+Content-Type: application/json
+
+Body:
+{
+    "code": 404,
+    "message": "Policy not found"
+}
