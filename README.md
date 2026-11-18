@@ -199,7 +199,6 @@ All settings are controlled by environment variables (highest priority) or
 | `BASE_URL` | `https://petstore.swagger.io/v2` | Primary API base URL |
 | `REQUEST_TIMEOUT_MS` | `10000` | HTTP timeout in ms |
 | `RESPONSE_TIME_SLA_MS` | `3000` | Max acceptable response time |
-| `MAX_RETRIES` | `2` | Retries on 5xx |
 | `API_KEY` | *(blank)* | API key header value |
 | `BEARER_TOKEN` | *(blank)* | OAuth bearer token |
 | `LOG_ALL_REQUESTS` | `false` | Log full req/resp to console |

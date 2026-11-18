@@ -8,8 +8,11 @@ import org.slf4j.LoggerFactory;
  * ApiClientFactory — creates ApiClient instances for different API servers.
  *
  * ═══════════════════════════════════════════════════════════════════════
- * DESIGN: Interface Segregation Principle (SOLID — I)
+ * DESIGN: Static Factory Methods
  * ═══════════════════════════════════════════════════════════════════════
+ *
+ * Each test asks for a client configured for the server it needs,
+ * so no test shares a client meant for another server.
  *
  * Problem solved:
  *   When a test run involves multiple API servers (primary API, WireMock
@@ -22,7 +25,7 @@ import org.slf4j.LoggerFactory;
  *     insurance tests created their own wireMockSpec — duplication.
  *     Three insurance test classes each duplicated the same 6-line spec.
  *
- *   After (ISP compliant):
+ *   After:
  *     Each test class requests exactly the client it needs.
  *     No test is forced to use a client configured for another server.
  *     Shared infrastructure — no duplication.

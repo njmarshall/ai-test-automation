@@ -7,12 +7,13 @@ import io.restassured.specification.RequestSpecification;
  * AuthHelper injects authentication headers into a RequestSpecification.
  *
  * Supports: Bearer token, API key header, Basic auth.
- * Designed to be chained onto ApiClient.given() for auth overrides per-test.
+ * Designed to be chained onto an ApiClient instance's given() for auth overrides per-test.
  *
  * Usage:
- *   Response r = AuthHelper.withBearer("myToken", ApiClient.given()).get("/pet/1");
- *   Response r = AuthHelper.withApiKey("myKey",   ApiClient.given()).post("/pet", body);
- *   Response r = AuthHelper.noAuth(ApiClient.given()).get("/pet/1");  // test 401 flows
+ *   ApiClient api = ApiClientFactory.forPrimaryApi();
+ *   Response r = AuthHelper.withBearer("myToken", api.given()).get("/pet/1");
+ *   Response r = AuthHelper.withApiKey("myKey",   api.given()).body(body).post("/pet");
+ *   Response r = AuthHelper.noAuth(api.given()).get("/pet/1");  // test 401 flows
  */
 public final class AuthHelper {
 

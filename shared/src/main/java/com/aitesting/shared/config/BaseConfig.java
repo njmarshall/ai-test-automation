@@ -20,10 +20,6 @@ public final class BaseConfig {
     public static final int REQUEST_TIMEOUT_MS =
             EnvConfig.getInt("REQUEST_TIMEOUT_MS", 10_000);
 
-    /** Maximum number of automatic retries for 5xx responses. */
-    public static final int MAX_RETRIES =
-            EnvConfig.getInt("MAX_RETRIES", 2);
-
     /** SLA: API responses must arrive within this many milliseconds. */
     public static final long RESPONSE_TIME_SLA_MS =
             EnvConfig.getInt("RESPONSE_TIME_SLA_MS", 3000);

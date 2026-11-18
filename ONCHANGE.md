@@ -58,3 +58,12 @@ A running log of checks and changes.
 * Assertions and limits: unchanged.
 * Result: `mvn clean test -pl api -am` on JDK 17: Shared 29 run, 0 failures. API gate 88 run, 0 failures, 0 skipped (was 103; the 15 live tests and the known Encounter skip moved out). Live suite: 15 run, 0 failures, 1 known skip (`getEncounter_found_returns200`), 11.7s. No HAPI calls in the gate, including the live classes' `@BeforeClass` setup.
 * Next: WireMock for FHIR Patient create (Option C).
+
+## 2026.11.17
+
+### Chore: Dependabot, unused MAX_RETRIES removed, pattern comments fixed
+
+* Added `.github/dependabot.yml`: weekly (Monday) updates for Maven (limit 5 open PRs, minor and patch grouped as `maven-minor-patch`) and GitHub Actions. Why: so dependencies stop going stale silently.
+* Removed `MAX_RETRIES`: the field in `BaseConfig`, the line (and its comment) in `api/src/test/resources/config/default.properties`, and the README config row. Why: it was documented but never implemented. Grep confirmed no Java code read it.
+* Corrected Javadoc only, no code changes. `ApiClientFactory` now says "Static Factory Methods" instead of "Interface Segregation Principle" / "ISP compliant". `AuthHelper` examples now use an `ApiClient` instance (`api.given()`) instead of the removed static `ApiClient.given()`. Why: so pattern names match the code.
+* Result: `mvn -q clean verify -Dtestng.suite=src/test/resources/testng.xml` on JDK 17 passes. Shared 29 run, 0 failures. API 88 run, 0 failures, 0 skipped. (On JDK 25 the shared `AsyncApiClientTest` fails because Mockito cannot mock `ApiClient`. That is the known JDK issue from 2026.10.22, not caused by this change.)
