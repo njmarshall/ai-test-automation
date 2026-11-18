@@ -25,7 +25,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
         <!-- Core versions -->
-        <restassured.version>5.4.0</restassured.version>
+        <restassured.version>6.3.0</restassured.version>
         <testng.version>7.9.0</testng.version>
         <junit5.version>5.10.2</junit5.version>
         <mockito.version>5.11.0</mockito.version>
