@@ -153,13 +153,15 @@ jobs:
           retention-days: 14
 
   # ── Optional: AI test generation job (runs on demand) ─────────────────────
+  # Generated tests are uploaded as an artifact for human review and are
+  # never pushed to main.
   generate-tests:
     name: AI Test Generation
     runs-on: ubuntu-24.04    # pinned
     if: github.event_name == 'workflow_dispatch'
     needs: build-and-test
     permissions:
-      contents: write   # Required: allows git push of AI-generated tests
+      contents: read
 
     steps:
       - uses: actions/checkout@v4
@@ -183,12 +185,12 @@ jobs:
           mvn exec:java \
             -pl shared \
             -Dexec.mainClass="com.aitesting.shared.ai.TestGeneratorRunner" \
-            -Dexec.args="api/src/test/resources/petstore-openapi.json petstore"
+            -Dexec.args="https://petstore.swagger.io/v2/swagger.json petstore"
 
-      - name: Commit generated tests
-        run: |
-          git config user.name  "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add api/src/test/java/com/aitesting/api/aigenerated/
-          git diff --cached --quiet || git commit -m "chore: AI-generated tests [skip ci]"
-          git push
+      - name: Upload generated tests for review
+        uses: actions/upload-artifact@v4
+        with:
+          name: ai-generated-tests
+          path: api/src/test/java/com/aitesting/api/aigenerated/
+          if-no-files-found: warn
+          retention-days: 14

@@ -67,3 +67,10 @@ A running log of checks and changes.
 * Removed `MAX_RETRIES`: the field in `BaseConfig`, the line (and its comment) in `api/src/test/resources/config/default.properties`, and the README config row. Why: it was documented but never implemented. Grep confirmed no Java code read it.
 * Corrected Javadoc only, no code changes. `ApiClientFactory` now says "Static Factory Methods" instead of "Interface Segregation Principle" / "ISP compliant". `AuthHelper` examples now use an `ApiClient` instance (`api.given()`) instead of the removed static `ApiClient.given()`. Why: so pattern names match the code.
 * Result: `mvn -q clean verify -Dtestng.suite=src/test/resources/testng.xml` on JDK 17 passes. Shared 29 run, 0 failures. API 88 run, 0 failures, 0 skipped. (On JDK 25 the shared `AsyncApiClientTest` fails because Mockito cannot mock `ApiClient`. That is the known JDK issue from 2026.10.22, not caused by this change.)
+
+### Build and CI: enforce JDK 17 to 21; AI job uploads tests for review
+
+* Added `maven-enforcer-plugin` 3.7.0 to the root `pom.xml` `<build><plugins>` so it runs for every module. Execution `enforce-java` (goal `enforce`, default `validate` phase) with `requireJavaVersion` `[17,22)` and `requireMavenVersion` `[3.8,)`. Why: running on the wrong JDK (for example JDK 25) used to fail later with a confusing Mockito error. Now it fails right away with a clear message saying how to set JAVA_HOME.
+* `ci.yml` job `generate-tests`: the generator now reads the spec from `https://petstore.swagger.io/v2/swagger.json`, because the local `petstore-openapi.json` does not exist in the repo. The "Commit generated tests" step (`git push`) is replaced with `actions/upload-artifact@v4` (`ai-generated-tests`, `if-no-files-found: warn`, 14-day retention). Permissions are now `contents: read`. Why: AI-generated tests should get a human review and never be pushed straight to main.
+* Test code: unchanged.
+* Result: on JDK 17.0.5, `mvn -q clean verify` passes. Shared 29 run, 0 failures. API 88 run, 0 failures, 0 skipped. On JDK 25.0.2, `mvn -q validate` fails right away (exit 1) with the enforcer message.
