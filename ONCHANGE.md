@@ -74,3 +74,20 @@ A running log of checks and changes.
 * `ci.yml` job `generate-tests`: the generator now reads the spec from `https://petstore.swagger.io/v2/swagger.json`, because the local `petstore-openapi.json` does not exist in the repo. The "Commit generated tests" step (`git push`) is replaced with `actions/upload-artifact@v4` (`ai-generated-tests`, `if-no-files-found: warn`, 14-day retention). Permissions are now `contents: read`. Why: AI-generated tests should get a human review and never be pushed straight to main.
 * Test code: unchanged.
 * Result: on JDK 17.0.5, `mvn -q clean verify` passes. Shared 29 run, 0 failures. API 88 run, 0 failures, 0 skipped. On JDK 25.0.2, `mvn -q validate` fails right away (exit 1) with the enforcer message.
+
+## 2026.11.18
+
+### Build: Maven wrapper added
+
+* Ran `mvn -N wrapper:wrapper` on JDK 17. Committed `mvnw` (executable, mode 100755 in git), `mvnw.cmd` and `.mvn/wrapper/maven-wrapper.properties` (wrapper 3.3.4, Maven 3.9.14). Why: everyone, including CI later, builds with the same Maven version. Use `./mvnw` instead of `mvn`.
+* CI: unchanged in this commit.
+
+### Test: PetTests no longer depends on test order
+
+* Problem: `getPetById_found`, `updatePet_happyPath` and `deletePet_happyPath` used `dependsOnMethods = "createPet_happyPath"` and a shared `createdPetId` field, so they could not run alone or in any other order. If the create test failed, the others were skipped.
+* Fix: Added a private helper `createPet(name, status)` that POSTs `PetTestDataFactory.petPayload(name, status)`, asserts 200, records the id in `createdPetIds` and returns it. Each of the three tests now creates its own pet. `createPet_happyPath` keeps its own POST and checks, then records the id. `deletePet_happyPath` removes its id from the list after a successful delete. `@AfterMethod(alwaysRun = true)` deletes every recorded id (best effort, failures ignored) and clears the list. It replaces the old `@AfterClass` cleanup. All `priority` and `dependsOnMethods` attributes are gone from the class.
+* Assertions: unchanged.
+* This is the pattern for the other test classes that still rely on test order.
+* Known gap, left for a later fix: `getPetById_notFound` accepts 404 or 200, so it can never fail. Not changed in this commit.
+* Result: on JDK 17, `./mvnw -q clean verify` passes. Shared 29 run, 0 failures. API 88 run, 0 failures, 0 skipped (same as before). Each test passes alone, for example `./mvnw -q -pl api -am test -Dtest=PetTests#getPetById_found -Dsurefire.failIfNoSpecifiedTests=false` (also `updatePet_happyPath`, `deletePet_happyPath`).
+* Note: `-am` is required. Without it, Maven uses an old `shared` jar from `~/.m2` and the test fails with `NoSuchFieldError: DEFAULT`.

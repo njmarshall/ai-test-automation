@@ -9,6 +9,8 @@ import io.qameta.allure.*;
 import io.restassured.response.Response;
 import org.testng.annotations.*;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -28,8 +30,8 @@ import java.util.Map;
 @Feature("Pet Endpoint")
 public class PetTests {
 
-    // Shared pet ID reused across the create → update → delete lifecycle tests
-    private long createdPetId;
+    // IDs of pets created by the current test; deleted in cleanupCreatedPets()
+    private final List<Long> createdPetIds = new ArrayList<>();
 
     // ── Lifecycle ─────────────────────────────────────────────────────────────
 
@@ -38,17 +40,38 @@ public class PetTests {
         AllureHelper.description("Full CRUD coverage for POST/GET/PUT/DELETE /pet");
     }
 
-    @AfterClass(alwaysRun = true)
-    public void suiteTeardown() {
-        // Best-effort cleanup: delete the pet created in createPet_happyPath
-        if (createdPetId != 0) {
-            ApiClient.DEFAULT.delete("/pet/" + createdPetId);
+    @AfterMethod(alwaysRun = true)
+    public void cleanupCreatedPets() {
+        // Best-effort cleanup: delete every pet this test created, ignoring failures
+        for (Long id : createdPetIds) {
+            try {
+                ApiClient.DEFAULT.delete("/pet/" + id);
+            } catch (Exception ignored) {
+                // Cleanup must never fail the run
+            }
         }
+        createdPetIds.clear();
+    }
+
+    // ── Helpers ───────────────────────────────────────────────────────────────
+
+    /** POSTs a new pet, asserts 200, records its id for cleanup, and returns the id. */
+    private long createPet(String name, String status) {
+        Response response = ApiClient.DEFAULT.post("/pet", PetTestDataFactory.petPayload(name, status));
+        AllureHelper.attachResponse("POST /pet (setup)", response);
+
+        ResponseValidator.from(response)
+                .statusCode(200)
+                .hasField("id");
+
+        long id = ((Number) response.jsonPath().get("id")).longValue();
+        createdPetIds.add(id);
+        return id;
     }
 
     // ── POST /pet ─────────────────────────────────────────────────────────────
 
-    @Test(priority = 1)
+    @Test
     @Story("Create Pet")
     @Severity(SeverityLevel.BLOCKER)
     @Description("POST /pet with valid payload should return 200 and the persisted pet ID.")
@@ -68,11 +91,11 @@ public class PetTests {
                     .fieldEquals("name", payload.get("name"))
                     .fieldEquals("status", "available");
 
-            createdPetId = ((Number) response.jsonPath().get("id")).longValue();
+            createdPetIds.add(((Number) response.jsonPath().get("id")).longValue());
         });
     }
 
-    @Test(priority = 2)
+    @Test
     @Story("Create Pet")
     @Severity(SeverityLevel.NORMAL)
     @Description("POST /pet with all optional fields (tags, category, photoUrls) should succeed.")
@@ -91,15 +114,16 @@ public class PetTests {
 
     // ── GET /pet/{id} ─────────────────────────────────────────────────────────
 
-    @Test(priority = 3, dependsOnMethods = "createPet_happyPath")
+    @Test
     @Story("Get Pet by ID")
     @Severity(SeverityLevel.BLOCKER)
     @Description("GET /pet/{id} for an existing pet should return 200 with correct data.")
     public void getPetById_found() {
-        AllureHelper.parameter("Pet ID", createdPetId);
+        long petId = createPet("Buddy", "available");
+        AllureHelper.parameter("Pet ID", petId);
 
-        Response response = ApiClient.DEFAULT.get("/pet/" + createdPetId);
-        AllureHelper.attachResponse("GET /pet/" + createdPetId, response);
+        Response response = ApiClient.DEFAULT.get("/pet/" + petId);
+        AllureHelper.attachResponse("GET /pet/" + petId, response);
 
         ResponseValidator.from(response)
                 .statusCode(200)
@@ -109,7 +133,7 @@ public class PetTests {
                 .hasField("status");
     }
 
-    @Test(priority = 4)
+    @Test
     @Story("Get Pet by ID")
     @Severity(SeverityLevel.CRITICAL)
     @Description("GET /pet/{id} for a non-existent pet should return 404.")
@@ -126,7 +150,7 @@ public class PetTests {
                 "Expected 404 or 200 for non-existent pet, got: " + status);
     }
 
-    @Test(priority = 5)
+    @Test
     @Story("Get Pet by ID")
     @Severity(SeverityLevel.NORMAL)
     @Description("GET /pet/{id} with a non-numeric ID should return 400.")
@@ -141,20 +165,21 @@ public class PetTests {
 
     // ── PUT /pet ──────────────────────────────────────────────────────────────
 
-    @Test(priority = 6, dependsOnMethods = "createPet_happyPath")
+    @Test
     @Story("Update Pet")
     @Severity(SeverityLevel.CRITICAL)
     @Description("PUT /pet with updated name and status should return 200 with new values.")
     public void updatePet_happyPath() {
+        long petId = createPet("Buddy", "available");
         Map<String, Object> updatePayload = PetTestDataFactory.petPayload("UpdatedBuddy", "pending");
         // Preserve the created ID so the server can locate the record
         updatePayload = Map.of(
-                "id",       createdPetId,
+                "id",       petId,
                 "name",     "UpdatedBuddy",
                 "status",   "pending",
                 "photoUrls", java.util.List.of("https://example.com/updated.jpg")
         );
-        AllureHelper.parameter("Updated Pet ID", createdPetId);
+        AllureHelper.parameter("Updated Pet ID", petId);
 
         Response response = ApiClient.DEFAULT.put("/pet", updatePayload);
         AllureHelper.attachResponse("PUT /pet", response);
@@ -167,28 +192,30 @@ public class PetTests {
 
     // ── DELETE /pet/{id} ──────────────────────────────────────────────────────
 
-    @Test(priority = 10, dependsOnMethods = "createPet_happyPath")
+    @Test
     @Story("Delete Pet")
     @Severity(SeverityLevel.CRITICAL)
     @Description("DELETE /pet/{id} for an existing pet should return 200.")
     public void deletePet_happyPath() {
-        AllureHelper.parameter("Pet ID to delete", createdPetId);
+        long petId = createPet("Buddy", "available");
+        AllureHelper.parameter("Pet ID to delete", petId);
 
-        Response response = ApiClient.DEFAULT.delete("/pet/" + createdPetId);
-        AllureHelper.attachResponse("DELETE /pet/" + createdPetId, response);
+        Response response = ApiClient.DEFAULT.delete("/pet/" + petId);
+        AllureHelper.attachResponse("DELETE /pet/" + petId, response);
 
         ResponseValidator.from(response)
                 .statusCode(200)
                 .withinSla(BaseConfig.LIVE_API_SLA_MS);
 
         // Confirm deletion — subsequent GET should 404
-        Response verifyResponse = ApiClient.DEFAULT.get("/pet/" + createdPetId);
-        ResponseValidator.from(verifyResponse).statusCode(404);
+        // Already deleted, so teardown has nothing left to clean up
+        createdPetIds.remove(Long.valueOf(petId));
 
-        createdPetId = 0; // Signal teardown that cleanup is done
+        Response verifyResponse = ApiClient.DEFAULT.get("/pet/" + petId);
+        ResponseValidator.from(verifyResponse).statusCode(404);
     }
 
-    @Test(priority = 11)
+    @Test
     @Story("Delete Pet")
     @Severity(SeverityLevel.NORMAL)
     @Description("DELETE /pet/{id} for a non-existent ID should return 404.")
