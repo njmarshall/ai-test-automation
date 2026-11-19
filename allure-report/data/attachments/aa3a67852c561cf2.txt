@@ -1,0 +1,11 @@
+=== DELETE /pet/849206 ===
+Status: 200
+Time: 340ms
+Content-Type: application/json
+
+Body:
+{
+    "code": 200,
+    "type": "unknown",
+    "message": "849206"
+}
