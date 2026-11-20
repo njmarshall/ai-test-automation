@@ -9,6 +9,9 @@ import io.qameta.allure.*;
 import io.restassured.response.Response;
 import org.testng.annotations.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * PatientTests — FHIR R4 /Patient endpoint tests.
  *
@@ -37,7 +40,9 @@ import org.testng.annotations.*;
 public class PatientTests {
 
     private static ApiClient api;
-    private static String    createdPatientId;
+
+    // IDs of patients created by the current test; deleted in cleanupCreatedPatients()
+    private final List<String> createdPatientIds = new ArrayList<>();
 
     @BeforeClass(alwaysRun = true)
     public void suiteSetup() {
@@ -49,17 +54,45 @@ public class PatientTests {
         );
     }
 
-    @AfterClass(alwaysRun = true)
-    public void suiteTeardown() {
-        // Best-effort cleanup — delete created patient
-        if (createdPatientId != null) {
-            api.delete("/Patient/" + createdPatientId);
+    @AfterMethod(alwaysRun = true)
+    public void cleanupCreatedPatients() {
+        // Best-effort cleanup: delete every patient this test created, ignoring failures
+        for (String id : createdPatientIds) {
+            try {
+                api.delete("/Patient/" + id);
+            } catch (Exception ignored) {
+                // Cleanup must never fail the run
+            }
         }
+        createdPatientIds.clear();
+    }
+
+    // ── Helpers ───────────────────────────────────────────────────────────────
+
+    /**
+     * POSTs a synthetic adult patient with the same checks as
+     * createPatient_validAdult_returns201, records its id for cleanup, and returns the id.
+     */
+    private String createAdultPatient() {
+        Patient patient = FhirTestDataFactory.adultPatient();
+        Response response = api.post("/Patient", patient);
+        AllureHelper.attachResponse("POST /Patient (setup)", response);
+
+        HealthResponseValidator.from(response)
+            .statusCode(201)
+            .withinSla(BaseConfig.LIVE_API_SLA_MS)
+            .hasFhirResourceType("Patient")
+            .hasFhirId()
+            .hasCompletePatientStructure();
+
+        String id = response.jsonPath().getString("id");
+        createdPatientIds.add(id);
+        return id;
     }
 
     // ── POST /Patient ─────────────────────────────────────────────────────────
 
-    @Test(priority = 1)
+    @Test
     @Story("Create Patient")
     @Severity(SeverityLevel.BLOCKER)
     @Description("POST /Patient with valid FHIR R4 payload should return 201 with patient ID.")
@@ -79,12 +112,13 @@ public class PatientTests {
                 .hasFhirId()
                 .hasCompletePatientStructure();
 
-            createdPatientId = response.jsonPath().getString("id");
+            String createdPatientId = response.jsonPath().getString("id");
+            createdPatientIds.add(createdPatientId);
             AllureHelper.parameter("Created Patient ID", createdPatientId);
         });
     }
 
-    @Test(priority = 2)
+    @Test
     @Story("Create Patient")
     @Severity(SeverityLevel.NORMAL)
     @Description("POST /Patient with pediatric patient (age 8) should return 201.")
@@ -102,7 +136,7 @@ public class PatientTests {
             .hasFhirId();
     }
 
-    @Test(priority = 3)
+    @Test
     @Story("Create Patient")
     @Severity(SeverityLevel.NORMAL)
     @Description("POST /Patient with senior patient (age 72, Medicare eligible) should return 201.")
@@ -119,7 +153,7 @@ public class PatientTests {
             .hasFhirResourceType("Patient");
     }
 
-    @Test(priority = 4)
+    @Test
     @Story("Create Patient")
     @Severity(SeverityLevel.NORMAL)
     @Description("POST /Patient with newborn (age 0) should return 201.")
@@ -138,11 +172,12 @@ public class PatientTests {
 
     // ── GET /Patient/{id} ─────────────────────────────────────────────────────
 
-    @Test(priority = 5, dependsOnMethods = "createPatient_validAdult_returns201")
+    @Test
     @Story("Get Patient")
     @Severity(SeverityLevel.BLOCKER)
     @Description("GET /Patient/{id} for existing patient should return 200 with complete data.")
     public void getPatient_found_returns200() {
+        String createdPatientId = createAdultPatient();
         AllureHelper.parameter("Patient ID", createdPatientId);
 
         Response response = api.get("/Patient/" + createdPatientId);
@@ -155,7 +190,7 @@ public class PatientTests {
             .fieldEquals("id", createdPatientId);
     }
 
-    @Test(priority = 6)
+    @Test
     @Story("Get Patient")
     @Severity(SeverityLevel.CRITICAL)
     @Description("GET /Patient/{id} for non-existent patient should return 404.")
@@ -173,11 +208,12 @@ public class PatientTests {
 
     // ── PUT /Patient/{id} ─────────────────────────────────────────────────────
 
-    @Test(priority = 7, dependsOnMethods = "createPatient_validAdult_returns201")
+    @Test
     @Story("Update Patient")
     @Severity(SeverityLevel.CRITICAL)
     @Description("PUT /Patient/{id} should update patient and return 200.")
     public void updatePatient_changePhone_returns200() {
+        String createdPatientId = createAdultPatient();
         Patient updated = FhirTestDataFactory.adultPatient();
         updated.setId(createdPatientId);
         AllureHelper.parameter("Patient ID", createdPatientId);
@@ -194,7 +230,7 @@ public class PatientTests {
 
     // ── GET /Patient?family=X ─────────────────────────────────────────────────
 
-    @Test(priority = 8)
+    @Test
     @Story("Search Patient")
     @Severity(SeverityLevel.NORMAL)
     @Description("GET /Patient?family=Smith should return a Bundle with matching patients.")
@@ -214,7 +250,7 @@ public class PatientTests {
 
     // ── Validation ────────────────────────────────────────────────────────────
 
-    @Test(priority = 9)
+    @Test
     @Story("Create Patient — Validation")
     @Severity(SeverityLevel.NORMAL)
     @Description("POST /Patient with missing required name should return 400 or 422.")

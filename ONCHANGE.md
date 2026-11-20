@@ -91,3 +91,24 @@ A running log of checks and changes.
 * Known gap, left for a later fix: `getPetById_notFound` accepts 404 or 200, so it can never fail. Not changed in this commit.
 * Result: on JDK 17, `./mvnw -q clean verify` passes. Shared 29 run, 0 failures. API 88 run, 0 failures, 0 skipped (same as before). Each test passes alone, for example `./mvnw -q -pl api -am test -Dtest=PetTests#getPetById_found -Dsurefire.failIfNoSpecifiedTests=false` (also `updatePet_happyPath`, `deletePet_happyPath`).
 * Note: `-am` is required. Without it, Maven uses an old `shared` jar from `~/.m2` and the test fails with `NoSuchFieldError: DEFAULT`.
+
+## 2026.11.19
+
+### Test: PetTests.getPetById_notFound now asserts 404 on a deleted pet
+
+* Problem: The test used the fixed id from `TestDataFactory.nonExistentId()` (999999999) and accepted 404 or 200. Anyone can create that id on the public PetStore, so the test could never fail. This was the known gap noted on 2026.11.18.
+* Fix: The test creates a pet with the `createPet(...)` helper, DELETEs it, asserts the delete returned 200, and removes the id from `createdPetIds`. It then GETs `/pet/{thatId}` and asserts 404 only, with `ResponseValidator`. The `@Description` now says it checks a pet that was just deleted.
+* Unchanged: `deletePet_notFound` (it still accepts 404 or 200).
+
+### Test: PatientTests no longer depends on test order
+
+* Problem: `getPatient_found_returns200` and `updatePatient_changePhone_returns200` used `dependsOnMethods = "createPatient_validAdult_returns201"` and a shared static `createdPatientId`, so they could not run alone. If the create test failed, both were skipped.
+* Fix: Same pattern as PetTests. Added a private helper `createAdultPatient()` that POSTs `FhirTestDataFactory.adultPatient()` with the same checks as the create test (201, `LIVE_API_SLA_MS`, resource type Patient, has id, complete patient structure), records the id in `createdPatientIds` and returns it. Both tests create their own patient first. `createPatient_validAdult_returns201` also records its id. `@AfterMethod(alwaysRun = true)` deletes every recorded id (best effort, failures ignored) and clears the list. It replaces the old `@AfterClass` cleanup. All `priority` and `dependsOnMethods` attributes are gone from the class. The class-level `@Test(groups = "live")` is unchanged.
+* Assertions: unchanged.
+* Not changed: `EncounterTests`.
+
+### Result
+
+* On JDK 17, `./mvnw -q clean verify` passes. Shared 29 run, 0 failures. API 88 run, 0 failures, 0 skipped.
+* Each test passes alone, run with `./mvnw -q -pl api -am test -Dtest=<Class>#<method> -Dsurefire.failIfNoSpecifiedTests=false`: `PetTests#getPetById_notFound`, `PatientTests#getPatient_found_returns200`, `PatientTests#updatePatient_changePhone_returns200`. The two PatientTests runs call the live HAPI FHIR server. Both passed on the first try, so no rerun was needed.
+* Live suite (`-Dtestng.suite=src/test/resources/testng-live.xml`): 15 run, 0 failures, 1 known skip (`getEncounter_found_returns200`).
