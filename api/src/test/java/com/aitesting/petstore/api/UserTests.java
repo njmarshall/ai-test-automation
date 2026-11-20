@@ -9,6 +9,7 @@ import io.qameta.allure.*;
 import io.restassured.response.Response;
 import org.testng.annotations.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -28,30 +29,58 @@ import java.util.Map;
 @Feature("User Endpoint")
 public class UserTests {
 
-    private String createdUsername;
+    // Usernames created by the current test; deleted in cleanupCreatedUsers()
+    private final List<String> createdUsernames = new ArrayList<>();
+
+    // ── Lifecycle ─────────────────────────────────────────────────────────────
 
     @BeforeClass(alwaysRun = true)
     public void suiteSetup() {
         AllureHelper.description("Full CRUD coverage for /user endpoint including login/logout flows");
     }
 
-    @AfterClass(alwaysRun = true)
-    public void suiteTeardown() {
-        if (createdUsername != null) {
-            ApiClient.DEFAULT.delete("/user/" + createdUsername);
+    @AfterMethod(alwaysRun = true)
+    public void cleanupCreatedUsers() {
+        // Best-effort cleanup: delete every user this test created, ignoring failures
+        for (String username : createdUsernames) {
+            try {
+                ApiClient.DEFAULT.delete("/user/" + username);
+            } catch (Exception ignored) {
+                // Cleanup must never fail the run
+            }
         }
+        createdUsernames.clear();
+    }
+
+    // ── Helpers ───────────────────────────────────────────────────────────────
+
+    /** POSTs a new user, asserts 200, records its username for cleanup, and returns it. */
+    private String createUser() {
+        Map<String, Object> payload = PetTestDataFactory.userPayload();
+        String username = (String) payload.get("username");
+
+        Response response = ApiClient.DEFAULT.post("/user", payload);
+        AllureHelper.attachResponse("POST /user (setup)", response);
+
+        ResponseValidator.from(response)
+                .statusCode(200)
+                .withinSla(BaseConfig.LIVE_API_SLA_MS)
+                .hasField("message");
+
+        createdUsernames.add(username);
+        return username;
     }
 
     // ── POST /user ────────────────────────────────────────────────────────────
 
-    @Test(priority = 1)
+    @Test
     @Story("Create User")
     @Severity(SeverityLevel.BLOCKER)
     @Description("POST /user with a valid payload should return 200 and the created user ID.")
     public void createUser_happyPath() {
         Map<String, Object> payload = PetTestDataFactory.userPayload();
-        createdUsername = (String) payload.get("username");
-        AllureHelper.parameter("Username", createdUsername);
+        String username = (String) payload.get("username");
+        AllureHelper.parameter("Username", username);
 
         AllureHelper.step("POST /user with valid payload", () -> {
             Response response = ApiClient.DEFAULT.post("/user", payload);
@@ -61,10 +90,12 @@ public class UserTests {
                     .statusCode(200)
                     .withinSla(BaseConfig.LIVE_API_SLA_MS)
                     .hasField("message");   // PetStore returns {"code":200,"message":"<userId>"}
+
+            createdUsernames.add(username);
         });
     }
 
-    @Test(priority = 2)
+    @Test
     @Story("Create User")
     @Severity(SeverityLevel.NORMAL)
     @Description("POST /user/createWithArray with a list of users should return 200.")
@@ -82,7 +113,7 @@ public class UserTests {
                 .withinSla(BaseConfig.LIVE_API_SLA_MS);
     }
 
-    @Test(priority = 3)
+    @Test
     @Story("Create User")
     @Severity(SeverityLevel.NORMAL)
     @Description("POST /user/createWithList with a list of users should return 200.")
@@ -103,11 +134,12 @@ public class UserTests {
 
     // ── GET /user/{username} ──────────────────────────────────────────────────
 
-    @Test(priority = 4, dependsOnMethods = "createUser_happyPath")
+    @Test
     @Story("Get User")
     @Severity(SeverityLevel.BLOCKER)
     @Description("GET /user/{username} for an existing user should return 200 with user data.")
     public void getUserByUsername_found() {
+        String createdUsername = createUser();
         AllureHelper.parameter("Username", createdUsername);
 
         Response response = ApiClient.DEFAULT.get("/user/" + createdUsername);
@@ -122,7 +154,7 @@ public class UserTests {
                 .fieldEquals("username", createdUsername);
     }
 
-    @Test(priority = 5)
+    @Test
     @Story("Get User")
     @Severity(SeverityLevel.CRITICAL)
     @Description("GET /user/{username} for a non-existent username should return 404.")
@@ -140,11 +172,12 @@ public class UserTests {
 
     // ── PUT /user/{username} ──────────────────────────────────────────────────
 
-    @Test(priority = 6, dependsOnMethods = "createUser_happyPath")
+    @Test
     @Story("Update User")
     @Severity(SeverityLevel.CRITICAL)
     @Description("PUT /user/{username} with updated fields should return 200.")
     public void updateUser_happyPath() {
+        String createdUsername = createUser();
         Map<String, Object> updatedPayload = PetTestDataFactory.userPayload();
         // Keep same username so the server can locate the record
         updatedPayload = new java.util.HashMap<>(updatedPayload);
@@ -162,7 +195,7 @@ public class UserTests {
 
     // ── GET /user/login ───────────────────────────────────────────────────────
 
-    @Test(priority = 7)
+    @Test
     @Story("Login / Logout")
     @Severity(SeverityLevel.CRITICAL)
     @Description("GET /user/login with valid credentials should return 200 and a session token.")
@@ -178,23 +211,25 @@ public class UserTests {
                 .hasField("message");   // message contains the session token
     }
 
-    @Test(priority = 8)
+    @Test
     @Story("Login / Logout")
     @Severity(SeverityLevel.NORMAL)
-    @Description("GET /user/login with missing credentials should return 400.")
-    public void login_missingCredentials() {
+    @Description("GET /user/login with missing credentials returns 200 on the public PetStore (documents actual behavior; a real API should return 400).")
+    public void login_missingCredentials_returns200() {
         // No username or password params
         Response response = ApiClient.DEFAULT.get("/user/login");
         AllureHelper.attachResponse("GET /user/login (missing creds)", response);
 
         // PetStore public API returns 200 even without creds — document actual behavior
         // In a real API this should assert 400; adjust per your target system
-        ResponseValidator.from(response).withinSla(BaseConfig.LIVE_API_SLA_MS);
+        ResponseValidator.from(response)
+                .statusCode(200)
+                .withinSla(BaseConfig.LIVE_API_SLA_MS);
     }
 
     // ── GET /user/logout ──────────────────────────────────────────────────────
 
-    @Test(priority = 9)
+    @Test
     @Story("Login / Logout")
     @Severity(SeverityLevel.NORMAL)
     @Description("GET /user/logout should always return 200.")
@@ -209,11 +244,12 @@ public class UserTests {
 
     // ── DELETE /user/{username} ───────────────────────────────────────────────
 
-    @Test(priority = 10, dependsOnMethods = "createUser_happyPath")
+    @Test
     @Story("Delete User")
     @Severity(SeverityLevel.CRITICAL)
     @Description("DELETE /user/{username} for an existing user should return 200.")
     public void deleteUser_happyPath() {
+        String createdUsername = createUser();
         AllureHelper.parameter("Username to delete", createdUsername);
 
         Response response = ApiClient.DEFAULT.delete("/user/" + createdUsername);
@@ -231,10 +267,11 @@ public class UserTests {
 
         // NOTE: Public PetStore does not consistently delete users
         // Post-delete verification removed — API returns 200 on re-fetch
-        createdUsername = null;    // ✅
+        // Already deleted, so teardown has nothing left to clean up
+        createdUsernames.remove(createdUsername);
     }
 
-    @Test(priority = 11)
+    @Test
     @Story("Delete User")
     @Severity(SeverityLevel.NORMAL)
     @Description("DELETE /user/{username} for a non-existent user should return 404.")

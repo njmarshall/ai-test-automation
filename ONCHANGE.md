@@ -122,3 +122,12 @@ A running log of checks and changes.
 * Assertions: both `createEncounter_*` tests now assert 201 only.
 * Negative test: the old missing-subject test passed only because of the bad Condition reference, since subject is optional (0..1) in FHIR R4. HAPI also accepts a missing `status` (it does not enforce cardinality on create). The test is now `createEncounter_invalidStatus_returns4xx`. It sends `status: "not-a-status"`, which the HAPI parser rejects with 400 (HAPI-1821), and still asserts 4xx. If the server ever returns 201, the id is recorded so cleanup deletes it.
 * Result: on JDK 17, `./mvnw -q clean verify` passes. Shared 29 run, 0 failures. API 88 run, 0 failures, 0 skipped. Live suite (`testng-live.xml`): 15 run, 0 failures, 0 skipped. `createEncounter_ambulatory_returns201`, `getEncounter_found_returns200` and `createEncounter_invalidStatus_returns4xx` each pass alone.
+
+## 2026.11.20
+
+### Test: UserTests no longer depends on test order
+
+* Problem: `getUserByUsername_found`, `updateUser_happyPath` and `deleteUser_happyPath` used `dependsOnMethods = "createUser_happyPath"` and a shared `createdUsername` field, so they could not run alone. If the create test failed, the others were skipped.
+* Fix: Same pattern as PetTests. Added a private helper `createUser()` that POSTs `PetTestDataFactory.userPayload()` with the same checks as `createUser_happyPath` (200, `LIVE_API_SLA_MS`, has `message`), records the username in `createdUsernames` and returns it. The three tests each create their own user first. `createUser_happyPath` also records its username. `deleteUser_happyPath` removes its username from the list after a successful delete. `@AfterMethod(alwaysRun = true)` deletes every recorded username (best effort, failures ignored) and clears the list. It replaces the old `@AfterClass` cleanup. All `priority` and `dependsOnMethods` attributes are gone from the class.
+* Missing-credentials login: `login_missingCredentials` asserted no status, so it could never fail. Renamed to `login_missingCredentials_returns200`, it now asserts `statusCode(200)`, and the `@Description` says this documents public PetStore behavior (a real API should return 400).
+* Other assertions: unchanged.
