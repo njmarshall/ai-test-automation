@@ -1,0 +1,566 @@
+=== GET /pet/findByStatus?status=pending ===
+Status: 200
+Time: 92ms
+Content-Type: application/json
+
+Body:
+[
+    {
+        "id": 1795204363,
+        "category": {
+            "id": 1795204363,
+            "name": "dog"
+        },
+        "name": "hello kity with form updated",
+        "photoUrls": [
+            "http://foo.bar.com/1",
+            "http://foo.bar.com/2"
+        ],
+        "tags": [
+            {
+                "id": 1795204363,
+                "name": "swagger-codegen-python-pet-tag"
+            }
+        ],
+        "status": "pending"
+    },
+    {
+        "id": 532960593,
+        "category": {
+            "id": 1,
+            "name": "dogs"
+        },
+        "name": "Firulais",
+        "photoUrls": [
+            "https://example.com/foto.jpg"
+        ],
+        "tags": [
+            {
+                "id": 1,
+                "name": "automatizacion"
+            }
+        ],
+        "status": "pending"
+    },
+    {
+        "id": 359685548,
+        "category": {
+            "id": 1,
+            "name": "dogs"
+        },
+        "name": "Max",
+        "photoUrls": [
+            "https://example.com/foto.jpg"
+        ],
+        "tags": [
+            {
+                "id": 1,
+                "name": "automatizacion"
+            }
+        ],
+        "status": "pending"
+    },
+    {
+        "id": 1795204529,
+        "category": {
+            "id": 1795204529,
+            "name": "dog"
+        },
+        "name": "hello kity with form updated",
+        "photoUrls": [
+            "http://foo.bar.com/1",
+            "http://foo.bar.com/2"
+        ],
+        "tags": [
+            {
+                "id": 1795204529,
+                "name": "swagger-codegen-python-pet-tag"
+            }
+        ],
+        "status": "pending"
+    },
+    {
+        "id": 9223372036854775680,
+        "category": {
+            "id": -32966235,
+            "name": "fish"
+        },
+        "name": "Nemo",
+        "photoUrls": [
+            "nulla",
+            "https://avatars.mds.yandex.net/i?id=104e005e3907e8d390b39dcd90d23b140286feae-5232253-images-thumbs&n=13"
+        ],
+        "tags": [
+            {
+                "id": -59006519,
+                "name": "Lorem sit"
+            },
+            {
+                "id": -16341059,
+                "name": "ullamco sit in dolore laboris"
+            }
+        ],
+        "status": "pending"
+    },
+    {
+        "id": 9223372036854571830,
+        "category": {
+            "id": -329662355,
+            "name": "fish 1"
+        },
+        "name": "Nemo 1",
+        "photoUrls": [
+            "nulla",
+            "https://avatars.mds.yandex.net/i?id=104e005e3907e8d390b39dcd90d23b140286feae-5232253-images-thumbs&n=13"
+        ],
+        "tags": [
+            {
+                "id": -59006519,
+                "name": "Lorem sit"
+            },
+            {
+                "id": -16341059,
+                "name": "ullamco sit in dolore laboris"
+            }
+        ],
+        "status": "pending"
+    },
+    {
+        "id": 31227963,
+        "category": {
+            "id": 32677841,
+            "name": "fish"
+        },
+        "name": "Nemo",
+        "photoUrls": [
+            "some photo",
+            "https://w.forfun.com/fetch/86/8638a61a7d65fb5c448daf8d36082d5d.jpeg"
+        ],
+        "tags": [
+            {
+                "id": 23899291,
+                "name": "something"
+            },
+            {
+                "id": 1234567890,
+                "name": "new"
+            }
+        ],
+        "status": "pending"
+    },
+    {
+        "id": 70468829,
+        "category": {
+            "id": 30918535,
+            "name": "mollit cillum officia aute"
+        },
+        "name": "doggie",
+        "photoUrls": [
+            "aute ut ex incididunt cillum",
+            "veniam esse exercitation"
+        ],
+        "tags": [
+            {
+                "id": 3742233,
+                "name": "et deserunt"
+            },
+            {
+                "id": -22661485,
+                "name": "laboris in veniam"
+            }
+        ],
+        "status": "pending"
+    },
+    {
+        "id": 18150789,
+        "category": {
+            "id": -18439198,
+            "name": "consequat Ut quis aute dolor"
+        },
+        "name": "doggie",
+        "photoUrls": [
+            "ut in",
+            "laborum cupidatat co"
+        ],
+        "tags": [
+            {
+                "id": -25166077,
+                "name": "tempor dolor"
+            },
+            {
+                "id": -81550056,
+                "name": "q"
+            }
+        ],
+        "status": "pending"
+    },
+    {
+        "id": 2022001,
+        "category": {
+            "id": 0,
+            "name": "fish"
+        },
+        "name": "Space",
+        "photoUrls": [
+            "string"
+        ],
+        "tags": [
+            {
+                "id": 0,
+                "name": "shy"
+            }
+        ],
+        "status": "pending"
+    },
+    {
+        "id": 31227963777,
+        "category": {
+            "id": 32677841,
+            "name": "fishs"
+        },
+        "name": "Nemo fish",
+        "photoUrls": [
+            "some photo",
+            "https://w.forfun.com/fetch/86/8638a61a7d65fb5c448daf8d36082d5d.jpeg"
+        ],
+        "tags": [
+            {
+                "id": 23899291,
+                "name": "something"
+            },
+            {
+                "id": 1234567890,
+                "name": "new"
+            }
+        ],
+        "status": "pending"
+    },
+    {
+        "id": 80745630,
+        "category": {
+            "id": -77423658,
+            "name": "labore officia"
+        },
+        "name": "doggie",
+        "photoUrls": [
+            "aliqua D",
+            "enim elit"
+        ],
+        "tags": [
+            {
+                "id": 9968674,
+                "name": "fugiat"
+            },
+            {
+                "id": -98096807,
+                "name": "dolor ex qui ut veniam"
+            }
+        ],
+        "status": "pending"
+    },
+    {
+        "id": 74168421,
+        "category": {
+            "id": -86231686,
+            "name": "dolore e"
+        },
+        "name": "doggie",
+        "photoUrls": [
+            "incididunt la",
+            "culpa fugiat"
+        ],
+        "tags": [
+            {
+                "id": -33347964,
+                "name": "Lorem sit consequat"
+            },
+            {
+                "id": -43091515,
+                "name": "aliquip irure ut"
+            }
+        ],
+        "status": "pending"
+    },
+    {
+        "id": 555556,
+        "category": {
+            "id": 4545565656565565,
+            "name": "fich"
+        },
+        "name": "nemo",
+        "photoUrls": [
+            "http://faunazoo.ru/wp-content/uploads/2018/08/%D0%A0%D1%8B%D0%B1%D0%B0-%D0%A5%D0%B8%D1%80%D1%83%D1%80%D0%B3.jpg"
+        ],
+        "tags": [
+            {
+                "id": 454545454,
+                "name": "kkklklj"
+            },
+            {
+                "id": 555,
+                "name": "kkk"
+            }
+        ],
+        "status": "pending"
+    },
+    {
+        "id": 4820,
+        "category": {
+            "id": 6956,
+            "name": "string"
+        },
+        "name": "doggie",
+        "photoUrls": [
+            "string",
+            "string"
+        ],
+        "tags": [
+            {
+                "id": 6457,
+                "name": "string"
+            },
+            {
+                "id": 2053,
+                "name": "string"
+            }
+        ],
+        "status": "pending"
+    },
+    {
+        "id": 4294967297,
+        "category": {
+            "id": 6956,
+            "name": "string"
+        },
+        "name": "doggie",
+        "photoUrls": [
+            "string",
+            "string"
+        ],
+        "tags": [
+            {
+                "id": 6457,
+                "name": "string"
+            },
+            {
+                "id": 2053,
+                "name": "string"
+            }
+        ],
+        "status": "pending"
+    },
+    {
+        "id": 53868678,
+        "category": {
+            "id": 41814781,
+            "name": "dolor "
+        },
+        "name": "doggie",
+        "photoUrls": [
+            "mollit culpa in rep",
+            "cupidatat"
+        ],
+        "tags": [
+            {
+                "id": 67974040,
+                "name": "minim culpa nulla"
+            },
+            {
+                "id": -74842126,
+                "name": "mollit ipsum anim"
+            }
+        ],
+        "status": "pending"
+    },
+    {
+        "id": 13131313,
+        "category": {
+            "id": 66532288,
+            "name": "male"
+        },
+        "name": "Luke",
+        "photoUrls": [
+            
+        ],
+        "tags": [
+            {
+                "id": 26136232,
+                "name": "white"
+            },
+            {
+                "id": 11286088,
+                "name": "sterile"
+            }
+        ],
+        "status": "pending"
+    },
+    {
+        "id": 62504260,
+        "category": {
+            "id": -94000904,
+            "name": "velit non adipisicing aliqua"
+        },
+        "name": "doggie",
+        "photoUrls": [
+            "id sunt sint",
+            "ea esse occaecat do"
+        ],
+        "tags": [
+            {
+                "id": 50919652,
+                "name": "laborum consequat"
+            },
+            {
+                "id": 3150162,
+                "name": "velit ea o"
+            }
+        ],
+        "status": "pending"
+    },
+    {
+        "id": 98416678,
+        "category": {
+            "id": 21210924,
+            "name": "laborum aute proident"
+        },
+        "name": "doggie",
+        "photoUrls": [
+            "mollit in sed cupidatat",
+            "nisi velit"
+        ],
+        "tags": [
+            {
+                "id": -95022425,
+                "name": "aliqua ea eu occaecat ut"
+            },
+            {
+                "id": -10133551,
+                "name": "commodo eu do"
+            }
+        ],
+        "status": "pending"
+    },
+    {
+        "id": 666,
+        "category": {
+            "id": 1,
+            "name": "DRAGON"
+        },
+        "name": "Gorinych",
+        "photoUrls": [
+            "string"
+        ],
+        "tags": [
+            {
+                "id": 0,
+                "name": "string"
+            }
+        ],
+        "status": "pending"
+    },
+    {
+        "id": 80512036,
+        "category": {
+            "id": -39944538,
+            "name": "velit"
+        },
+        "name": "doggie",
+        "photoUrls": [
+            "eiusmod laboris adipisicing aliqua",
+            "laboris eu laborum"
+        ],
+        "tags": [
+            {
+                "id": 14214380,
+                "name": "occaecat dolor reprehenderit"
+            },
+            {
+                "id": -41890292,
+                "name": "velit non laboris"
+            }
+        ],
+        "status": "pending"
+    },
+    {
+        "id": 74363536,
+        "category": {
+            "id": 42960236,
+            "name": "Barsik"
+        },
+        "name": "kitty",
+        "photoUrls": [
+            "quis Duis v",
+            "enim"
+        ],
+        "tags": [
+            {
+                "id": -74259310,
+                "name": "qui in nostrud"
+            },
+            {
+                "id": 32311120,
+                "name": "Lorem laboris sint occaecat esse"
+            }
+        ],
+        "status": "pending"
+    },
+    {
+        "id": 2799412,
+        "category": {
+            "id": 19475553,
+            "name": "nostrud cupidatat labore"
+        },
+        "name": "doggie",
+        "photoUrls": [
+            "culpa occaecat",
+            "ad incididunt"
+        ],
+        "tags": [
+            {
+                "id": 47291519,
+                "name": "consequat aute pariatur"
+            },
+            {
+                "id": -53726990,
+                "name": "Lorem enim consectetur"
+            }
+        ],
+        "status": "pending"
+    },
+    {
+        "id": 387116,
+        "category": {
+            "id": 1,
+            "name": "Dogs"
+        },
+        "name": "UpdatedWorkflowDog-387116",
+        "photoUrls": [
+            "https://example.com/photo1.jpg"
+        ],
+        "tags": [
+            {
+                "id": 1,
+                "name": "test-tag"
+            }
+        ],
+        "status": "pending"
+    },
+    {
+        "id": 490486,
+        "category": {
+            "id": 1,
+            "name": "Dogs"
+        },
+        "name": "UpdatedWorkflowDog-490486",
+        "photoUrls": [
+            "https://example.com/photo1.jpg"
+        ],
+        "tags": [
+            {
+                "id": 1,
+                "name": "test-tag"
+            }
+        ],
+        "status": "pending"
+    }
+]

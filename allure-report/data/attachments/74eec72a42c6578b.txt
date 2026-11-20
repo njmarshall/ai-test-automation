@@ -1,0 +1,6 @@
+=== DELETE /pet (not found) ===
+Status: 404
+Time: 100ms
+Content-Type: 
+
+Body:

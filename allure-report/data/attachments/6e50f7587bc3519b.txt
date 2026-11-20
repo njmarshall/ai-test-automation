@@ -1,0 +1,10 @@
+=== POST /claims (invalid policy) ===
+Status: 404
+Time: 4ms
+Content-Type: application/json
+
+Body:
+{
+    "code": 404,
+    "message": "Policy not found"
+}
