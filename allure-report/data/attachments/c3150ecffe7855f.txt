@@ -1,0 +1,19 @@
+=== GET /store/inventory ===
+Status: 200
+Time: 298ms
+Content-Type: application/json
+
+Body:
+{
+    "sold": 423,
+    "1": 1,
+    "string": 57,
+    "d": 1,
+    "available, sold": 1,
+    "Busy": 1,
+    "avaliable": 1,
+    "pending": 101,
+    "available": 366,
+    "avalible": 1,
+    "availabl": 1
+}
