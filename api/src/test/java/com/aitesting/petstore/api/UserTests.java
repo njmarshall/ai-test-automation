@@ -260,13 +260,11 @@ public class UserTests {
                 .withinSla(BaseConfig.LIVE_API_SLA_MS);
 
         // Confirm deletion — GET should now return 404
+        // Public PetStore returned 404 on the GET right after delete in 3 of 3 runs (2026.11.20)
         Response verify = ApiClient.DEFAULT.get("/user/" + createdUsername);
-        ResponseValidator.from(response)
-                .statusCode(200)
-                .withinSla(BaseConfig.LIVE_API_SLA_MS);
+        AllureHelper.attachResponse("GET /user/" + createdUsername + " (after delete)", verify);
+        ResponseValidator.from(verify).statusCode(404);
 
-        // NOTE: Public PetStore does not consistently delete users
-        // Post-delete verification removed — API returns 200 on re-fetch
         // Already deleted, so teardown has nothing left to clean up
         createdUsernames.remove(createdUsername);
     }
