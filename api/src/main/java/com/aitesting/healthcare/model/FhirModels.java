@@ -1,6 +1,7 @@
 package com.aitesting.healthcare.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -107,6 +108,7 @@ public class FhirModels {
         private String       id;
         private String       resourceType;   // always "Encounter"
         private String       status;         // planned|in-progress|finished
+        @JsonProperty("class")               // FHIR R4 element name; "class" is a Java keyword
         private EncounterClass classCode;    // AMB|IMP|EMER
         private Reference    subject;        // Patient reference
         private Period       period;         // start/end times

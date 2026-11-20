@@ -177,12 +177,8 @@ public final class FhirTestDataFactory
                 .start(LocalDate.now().minusDays(1) + "T09:00:00Z")
                 .end(LocalDate.now().minusDays(1) + "T10:00:00Z")
                 .build())
-            .diagnosis(List.of(Encounter.Diagnosis.builder()
-                .condition(Reference.builder()
-                    .reference("Condition/TEST-COND-001")
-                    .build())
-                .rank(1)
-                .build()))
+            // No diagnosis: HAPI FHIR enforces referential integrity, and a
+            // reference to a Condition that does not exist returns 400 (HAPI-1094).
             .build();
     }
 
