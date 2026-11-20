@@ -131,3 +131,18 @@ A running log of checks and changes.
 * Fix: Same pattern as PetTests. Added a private helper `createUser()` that POSTs `PetTestDataFactory.userPayload()` with the same checks as `createUser_happyPath` (200, `LIVE_API_SLA_MS`, has `message`), records the username in `createdUsernames` and returns it. The three tests each create their own user first. `createUser_happyPath` also records its username. `deleteUser_happyPath` removes its username from the list after a successful delete. `@AfterMethod(alwaysRun = true)` deletes every recorded username (best effort, failures ignored) and clears the list. It replaces the old `@AfterClass` cleanup. All `priority` and `dependsOnMethods` attributes are gone from the class.
 * Missing-credentials login: `login_missingCredentials` asserted no status, so it could never fail. Renamed to `login_missingCredentials_returns200`, it now asserts `statusCode(200)`, and the `@Description` says this documents public PetStore behavior (a real API should return 400).
 * Other assertions: unchanged.
+
+### Test: StoreTests no longer depends on test order
+
+* Problem: `getOrder_found` and `deleteOrder_happyPath` used `dependsOnMethods = "placeOrder_happyPath"` and a shared `createdOrderId` field, so they could not run alone.
+* Fix: Same pattern as PetTests. Added a private helper `placeOrder()` with the same payload and checks as `placeOrder_happyPath` (200, `LIVE_API_SLA_MS`, has `id`, status `placed`), which records the id in `createdOrderIds` and returns it. Both tests place their own order first. `placeOrder_happyPath` also records its id. `deleteOrder_happyPath` removes its id after a successful delete. `@AfterMethod(alwaysRun = true)` deletes every recorded order id (best effort, failures ignored) and clears the list. It replaces the old `@AfterClass` cleanup. All `priority` and `dependsOnMethods` attributes are gone from the class.
+* `getOrder_notFound`: used the fixed id from `TestDataFactory.nonExistentId()` (999999999), which anyone can create on the public PetStore. It now places an order, DELETEs it (asserts 200), removes the id from the list, then GETs it and asserts 404 only. Same fix as `PetTests.getPetById_notFound`.
+* Zero quantity: `placeOrder_zeroQuantity` asserted 2xx while its `@Description` said 400. Renamed to `placeOrder_zeroQuantity_isAccepted`. The `@Description` now says the public PetStore accepts quantity 0. Still asserts `is2xx()`.
+* Other assertions: unchanged.
+
+### Result
+
+* On JDK 17, `./mvnw -q clean verify` passes. Shared 29 run, 0 failures. API 88 run, 0 failures, 0 skipped.
+* Each test passes alone, run with `./mvnw -q -pl api -am test -Dtest=<Class>#<method> -Dsurefire.failIfNoSpecifiedTests=false` (one test run each): `UserTests#getUserByUsername_found`, `UserTests#updateUser_happyPath`, `UserTests#deleteUser_happyPath`, `StoreTests#getOrder_found`, `StoreTests#deleteOrder_happyPath`, `StoreTests#getOrder_notFound`. These call the live PetStore. All passed on the first try, so no rerun was needed, and no Surefire retries were reported.
+* `grep -rn dependsOnMethods api/src/test/java` finds nothing.
+* Known gap, not changed: in `deleteUser_happyPath` the post-delete GET (`verify`) is never asserted; the next check repeats the assertion on the DELETE response.

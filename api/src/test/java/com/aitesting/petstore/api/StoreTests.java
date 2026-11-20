@@ -9,6 +9,8 @@ import io.qameta.allure.*;
 import io.restassured.response.Response;
 import org.testng.annotations.*;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -22,18 +24,48 @@ import java.util.Map;
 @Feature("Store Endpoint")
 public class StoreTests {
 
-    private long createdOrderId;
+    // Ids of orders placed by the current test; deleted in cleanupCreatedOrders()
+    private final List<Long> createdOrderIds = new ArrayList<>();
 
-    @AfterClass(alwaysRun = true)
-    public void cleanup() {
-        if (createdOrderId != 0) {
-            ApiClient.DEFAULT.delete("/store/order/" + createdOrderId);
+    // ── Lifecycle ─────────────────────────────────────────────────────────────
+
+    @AfterMethod(alwaysRun = true)
+    public void cleanupCreatedOrders() {
+        // Best-effort cleanup: delete every order this test placed, ignoring failures
+        for (Long id : createdOrderIds) {
+            try {
+                ApiClient.DEFAULT.delete("/store/order/" + id);
+            } catch (Exception ignored) {
+                // Cleanup must never fail the run
+            }
         }
+        createdOrderIds.clear();
+    }
+
+    // ── Helpers ───────────────────────────────────────────────────────────────
+
+    /** POSTs a new order, asserts 200 and status "placed", records its id for cleanup, and returns it. */
+    private long placeOrder() {
+        long petId = TestDataFactory.randomId();
+        Map<String, Object> payload = PetTestDataFactory.orderPayload(petId);
+
+        Response response = ApiClient.DEFAULT.post("/store/order", payload);
+        AllureHelper.attachResponse("POST /store/order (setup)", response);
+
+        ResponseValidator.from(response)
+                .statusCode(200)
+                .withinSla(BaseConfig.LIVE_API_SLA_MS)
+                .hasField("id")
+                .fieldEquals("status", "placed");
+
+        long id = ((Number) response.jsonPath().get("id")).longValue();
+        createdOrderIds.add(id);
+        return id;
     }
 
     // ── GET /store/inventory ──────────────────────────────────────────────────
 
-    @Test(priority = 1)
+    @Test
     @Story("Inventory")
     @Severity(SeverityLevel.CRITICAL)
     @Description("GET /store/inventory should return 200 with a non-null inventory map.")
@@ -49,7 +81,7 @@ public class StoreTests {
 
     // ── POST /store/order ─────────────────────────────────────────────────────
 
-    @Test(priority = 2)
+    @Test
     @Story("Place Order")
     @Severity(SeverityLevel.BLOCKER)
     @Description("POST /store/order with a valid payload should return 200 and the order ID.")
@@ -67,14 +99,14 @@ public class StoreTests {
                 .hasField("id")
                 .fieldEquals("status", "placed");
 
-        createdOrderId = ((Number) response.jsonPath().get("id")).longValue();
+        createdOrderIds.add(((Number) response.jsonPath().get("id")).longValue());
     }
 
-    @Test(priority = 3)
+    @Test
     @Story("Place Order")
     @Severity(SeverityLevel.NORMAL)
-    @Description("POST /store/order with quantity=0 should return 400.")
-    public void placeOrder_zeroQuantity() {
+    @Description("POST /store/order with quantity=0 is accepted (2xx) by the public PetStore (documents actual behavior).")
+    public void placeOrder_zeroQuantity_isAccepted() {
         Map<String, Object> payload = Map.of(
                 "id",       TestDataFactory.randomId(),
                 "petId",    TestDataFactory.randomId(),
@@ -93,11 +125,12 @@ public class StoreTests {
 
     // ── GET /store/order/{orderId} ────────────────────────────────────────────
 
-    @Test(priority = 4, dependsOnMethods = "placeOrder_happyPath")
+    @Test
     @Story("Get Order")
     @Severity(SeverityLevel.CRITICAL)
     @Description("GET /store/order/{id} for an existing order should return 200 with order details.")
     public void getOrder_found() {
+        long createdOrderId = placeOrder();
         AllureHelper.parameter("Order ID", createdOrderId);
 
         Response response = ApiClient.DEFAULT.get("/store/order/" + createdOrderId);
@@ -111,14 +144,23 @@ public class StoreTests {
                 .hasField("status");
     }
 
-    @Test(priority = 5)
+    @Test
     @Story("Get Order")
     @Severity(SeverityLevel.NORMAL)
-    @Description("GET /store/order/{id} for a non-existent order should return 404.")
+    @Description("GET /store/order/{id} for an order that was just deleted should return 404.")
     public void getOrder_notFound() {
-        long nonExistentId = TestDataFactory.nonExistentId();
+        // A fixed "non-existent" id can be created by anyone on the public PetStore,
+        // so place an order and delete it to get an id that is known to be gone.
+        long deletedOrderId = placeOrder();
 
-        Response response = ApiClient.DEFAULT.get("/store/order/" + nonExistentId);
+        Response deleteResponse = ApiClient.DEFAULT.delete("/store/order/" + deletedOrderId);
+        AllureHelper.attachResponse("DELETE /store/order/" + deletedOrderId + " (setup)", deleteResponse);
+        ResponseValidator.from(deleteResponse).statusCode(200);
+
+        // Already deleted, so teardown has nothing left to clean up
+        createdOrderIds.remove(Long.valueOf(deletedOrderId));
+
+        Response response = ApiClient.DEFAULT.get("/store/order/" + deletedOrderId);
         AllureHelper.attachResponse("GET /store/order (not found)", response);
 
         ResponseValidator.from(response).statusCode(404);
@@ -126,11 +168,12 @@ public class StoreTests {
 
     // ── DELETE /store/order/{orderId} ─────────────────────────────────────────
 
-    @Test(priority = 10, dependsOnMethods = "placeOrder_happyPath")
+    @Test
     @Story("Delete Order")
     @Severity(SeverityLevel.CRITICAL)
     @Description("DELETE /store/order/{id} for an existing order should return 200.")
     public void deleteOrder_happyPath() {
+        long createdOrderId = placeOrder();
         AllureHelper.parameter("Order ID to delete", createdOrderId);
 
         Response response = ApiClient.DEFAULT.delete("/store/order/" + createdOrderId);
@@ -143,6 +186,8 @@ public class StoreTests {
         // Confirm deletion
         Response verify = ApiClient.DEFAULT.get("/store/order/" + createdOrderId);
         ResponseValidator.from(verify).statusCode(404);
-        createdOrderId = 0;
+
+        // Already deleted, so teardown has nothing left to clean up
+        createdOrderIds.remove(Long.valueOf(createdOrderId));
     }
 }
