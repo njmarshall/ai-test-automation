@@ -136,18 +136,24 @@ public class PetTests {
     @Test
     @Story("Get Pet by ID")
     @Severity(SeverityLevel.CRITICAL)
-    @Description("GET /pet/{id} for a non-existent pet should return 404.")
+    @Description("GET /pet/{id} for a pet that was just deleted should return 404.")
     public void getPetById_notFound() {
-        long nonExistentId = TestDataFactory.nonExistentId();
-        AllureHelper.parameter("Non-existent Pet ID", nonExistentId);
+        // A fixed "non-existent" id can be created by anyone on the public PetStore,
+        // so create a pet and delete it to get an id that is known to be gone.
+        long deletedPetId = createPet("Buddy", "available");
 
-        Response response = ApiClient.DEFAULT.get("/pet/" + nonExistentId);
+        Response deleteResponse = ApiClient.DEFAULT.delete("/pet/" + deletedPetId);
+        AllureHelper.attachResponse("DELETE /pet/" + deletedPetId + " (setup)", deleteResponse);
+        ResponseValidator.from(deleteResponse).statusCode(200);
+
+        // Already deleted, so teardown has nothing left to clean up
+        createdPetIds.remove(Long.valueOf(deletedPetId));
+        AllureHelper.parameter("Deleted Pet ID", deletedPetId);
+
+        Response response = ApiClient.DEFAULT.get("/pet/" + deletedPetId);
         AllureHelper.attachResponse("GET /pet (not found)", response);
 
-        int status = response.getStatusCode();
-        org.testng.Assert.assertTrue(
-                status == 404 || status == 200,
-                "Expected 404 or 200 for non-existent pet, got: " + status);
+        ResponseValidator.from(response).statusCode(404);
     }
 
     @Test
