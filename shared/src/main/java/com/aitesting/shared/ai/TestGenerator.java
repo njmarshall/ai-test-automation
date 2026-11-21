@@ -10,6 +10,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Objects;
+import java.util.regex.Pattern;
 
 /**
  * TestGenerator reads an OpenAPI/Swagger spec and uses an LLM to generate
@@ -34,6 +35,10 @@ public class TestGenerator {
     private static final Logger log = LoggerFactory.getLogger(TestGenerator.class);
 
     static final int MAX_TOKENS = 8192;
+    static final String RAW_RESPONSE_FILE = "llm-raw-response.txt";
+
+    private static final Pattern TEST_ANNOTATION = Pattern.compile("@Test\\b");
+    private static final Pattern JAVA_IDENTIFIER = Pattern.compile("[A-Za-z_$][A-Za-z0-9_$]*");
 
     private final LlmClient client;
     private final Path outputBaseDir;
@@ -55,6 +60,11 @@ public class TestGenerator {
     public TestGenerator(LlmClient client, Path outputBaseDir) {
         this.client = Objects.requireNonNull(client, "client");
         this.outputBaseDir = Objects.requireNonNull(outputBaseDir, "outputBaseDir");
+    }
+
+    /** The package generated classes must declare; matches the folder they are written to. */
+    static String expectedPackage(String projectName) {
+        return "com.aitesting.api.aigenerated." + projectName;
     }
 
     private static Path defaultOutputBaseDir() {
@@ -91,6 +101,13 @@ public class TestGenerator {
                 llmResponse.length(), response.stopReason(),
                 response.inputTokens(), response.outputTokens());
 
+        if ("max_tokens".equals(response.stopReason())) {
+            log.error("Rejected LLM reply: stop_reason=max_tokens (reply was cut off at {} output tokens). "
+                    + "No test classes written; raw response saved for review.", response.outputTokens());
+            writeRawResponse(llmResponse, projectName);
+            return;
+        }
+
         extractAndWriteJavaFiles(llmResponse, projectName);
     }
 
@@ -109,7 +126,7 @@ public class TestGenerator {
             - Use ResponseValidator for assertions: com.aitesting.shared.assertions.ResponseValidator
             - Use TestDataFactory for test data: com.aitesting.shared.dataprovider.TestDataFactory
             - Use AllureHelper for reporting: com.aitesting.shared.reporting.AllureHelper
-            - Package: com.aitesting.api.%s.aigenerated
+            - Package: %s
             - Cover: happy path (200/201), not found (404), bad request (400), unauthorized (401)
             - Cover boundary values for all numeric and string parameters
             - Add @Description and @Severity Allure annotations on each test
@@ -121,7 +138,7 @@ public class TestGenerator {
             
             OpenAPI Specification:
             %s
-            """.formatted(projectName, specContent);
+            """.formatted(expectedPackage(projectName), specContent);
     }
 
     // ── LLM call ──────────────────────────────────────────────────────────────
@@ -138,7 +155,8 @@ public class TestGenerator {
     // ── File writing ──────────────────────────────────────────────────────────
 
     /**
-     * Parses ```java ... ``` blocks from the LLM response and writes each to disk.
+     * Parses ```java ... ``` blocks from the LLM response, checks each one,
+     * and writes the accepted ones to disk.
      */
     private void extractAndWriteJavaFiles(String llmResponse, String projectName) throws IOException {
         String[] parts = llmResponse.split("```java");
@@ -149,15 +167,26 @@ public class TestGenerator {
             return;
         }
 
-        int filesWritten = 0;
+        String expectedPackageLine = "package " + expectedPackage(projectName) + ";";
+        int accepted = 0;
+        int rejected = 0;
         for (int i = 1; i < parts.length; i++) {
             String block = parts[i];
             int end = block.indexOf("```");
-            if (end == -1) continue;
+            if (end == -1) {
+                log.warn("Skipped code block {}: no closing ``` fence", i);
+                rejected++;
+                continue;
+            }
 
             String javaCode = block.substring(0, end).trim();
+            String reason = rejectionReason(javaCode, expectedPackageLine);
+            if (reason != null) {
+                log.warn("Skipped code block {}: {}", i, reason);
+                rejected++;
+                continue;
+            }
             String className = extractClassName(javaCode);
-            if (className == null) continue;
 
             Path outputDir = resolveOutputDir(projectName);
             Files.createDirectories(outputDir);
@@ -165,25 +194,51 @@ public class TestGenerator {
             Path outputFile = outputDir.resolve(className + ".java");
             Files.writeString(outputFile, javaCode);
             log.info("Generated test class written: {}", outputFile);
-            filesWritten++;
+            accepted++;
         }
 
-        log.info("TestGenerator complete — {} file(s) written for project '{}'",
-                filesWritten, projectName);
+        log.info("TestGenerator complete for project '{}' — {} block(s) accepted, {} rejected",
+                projectName, accepted, rejected);
     }
 
-    /** Extracts the public class name from Java source. */
+    /** Returns why a code block must be skipped, or null if it is acceptable. */
+    private String rejectionReason(String javaCode, String expectedPackageLine) {
+        String packageLine = extractPackageLine(javaCode);
+        if (!expectedPackageLine.equals(packageLine)) {
+            return "package line is '" + packageLine + "', expected '" + expectedPackageLine + "'";
+        }
+        if (!TEST_ANNOTATION.matcher(javaCode).find()) {
+            return "no @Test annotation";
+        }
+        if (extractClassName(javaCode) == null) {
+            return "no public class name found";
+        }
+        return null;
+    }
+
+    /** Returns the first line starting with "package ", trimmed, or null. */
+    private String extractPackageLine(String javaSource) {
+        for (String line : javaSource.split("\n")) {
+            line = line.trim();
+            if (line.startsWith("package ")) return line;
+        }
+        return null;
+    }
+
+    /** Extracts the public class name from Java source, or null if none is a valid identifier. */
     private String extractClassName(String javaSource) {
         for (String line : javaSource.split("\n")) {
             line = line.trim();
             if (line.startsWith("public class ") || line.startsWith("public final class ")) {
                 String[] tokens = line.split("\\s+");
                 for (int i = 0; i < tokens.length - 1; i++) {
-                    if (tokens[i].equals("class")) return tokens[i + 1].replaceAll("[{].*", "");
+                    if (tokens[i].equals("class")) {
+                        String name = tokens[i + 1].replaceAll("[{<].*", "");
+                        return JAVA_IDENTIFIER.matcher(name).matches() ? name : null;
+                    }
                 }
             }
         }
-        log.warn("Could not determine class name from code block — skipping");
         return null;
     }
 
@@ -194,6 +249,6 @@ public class TestGenerator {
     private void writeRawResponse(String content, String projectName) throws IOException {
         Path dir = resolveOutputDir(projectName);
         Files.createDirectories(dir);
-        Files.writeString(dir.resolve("llm-raw-response.txt"), content);
+        Files.writeString(dir.resolve(RAW_RESPONSE_FILE), content);
     }
 }

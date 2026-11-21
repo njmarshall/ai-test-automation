@@ -147,3 +147,15 @@ A running log of checks and changes.
 * `grep -rn dependsOnMethods api/src/test/java` finds nothing.
 * Known gap, not changed: in `deleteUser_happyPath` the post-delete GET (`verify`) is never asserted; the next check repeats the assertion on the DELETE response.
 * Fixed later the same day: `deleteUser_happyPath` now asserts `ResponseValidator.from(verify).statusCode(404)` and the duplicate check on the DELETE response is gone. Before the fix, the GET right after delete was logged in 3 runs on its own: 404 (`User not found`) every time, so no retry was added. Result: `./mvnw -q clean verify` passes (shared 29, api 88, 0 failed, 0 skipped) and the test passes alone 3 of 3 times.
+
+### Refactor and fix: AI TestGenerator is unit tested and rejects bad output
+
+* Seam: Added `LlmClient` (`LlmResponse complete(LlmRequest)`), records `LlmRequest(system, user, model, maxTokens)` and `LlmResponse(text, stopReason, inputTokens, outputTokens)`, and `AnthropicLlmClient`. The OkHttp call and the `LLM_API_KEY` check moved out of `TestGenerator` into `AnthropicLlmClient` unchanged (same URL, headers, timeouts, `max_tokens` 8192, no system prompt sent). It now also reads `stop_reason` and `usage.input_tokens` / `usage.output_tokens`. I/O errors are wrapped in `UncheckedIOException` and `TestGenerator` rethrows the `IOException`, so `TestGeneratorRunner` exit codes are unchanged (2 for a missing key, 1 for I/O).
+* Constructors: `TestGenerator()` (uses `new AnthropicLlmClient()` and `BaseConfig.AI_OUTPUT_DIR`, as before), `TestGenerator(LlmClient)`, and `TestGenerator(LlmClient, Path outputBaseDir)` for tests. `TestGeneratorRunner` and the CI `generate-tests` job are unchanged.
+* Package fix: The prompt asked for `com.aitesting.api.<project>.aigenerated`, but files are written to `.../com/aitesting/api/aigenerated/<project>/`. The prompt now asks for `com.aitesting.api.aigenerated.<project>`. The folder is unchanged (CI uploads it). README path corrected to match.
+* Output checks, before anything is written:
+  * `stopReason` `max_tokens`: the whole reply is rejected. Only `llm-raw-response.txt` is written, and the reason is logged at ERROR.
+  * Per code block, skipped with a WARN naming the reason: package line not exactly `package com.aitesting.api.aigenerated.<project>;`, no `@Test` annotation, no public class name (the name must also be a valid Java identifier, so it cannot point outside the folder), or no closing fence.
+  * A final INFO line logs how many blocks were accepted and rejected.
+* Tests: Added `shared/src/test/java/com/aitesting/shared/ai/TestGeneratorTest.java` (JUnit 5, `@TempDir`, a `FakeLlmClient` that returns a scripted reply and records the request). 7 tests: valid reply writes one file with the right name and package; `max_tokens` writes no `.java` file; wrong package skipped; no `@Test` skipped; no code blocks saves `llm-raw-response.txt`; the request contains the spec text and the expected package; two valid blocks write two files. The real Anthropic API is never called.
+* Result: on JDK 17, `./mvnw -q clean verify` passes. Shared 36 run (was 29), 0 failures. API 88 run, 0 failures, 0 skipped.

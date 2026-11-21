@@ -319,7 +319,7 @@ mvn exec:java \
   -Dexec.args="api/src/test/resources/petstore-openapi.json petstore"
 ```
 
-Generated files land in `api/src/test/java/com/aitesting/petstore/api/aigenerated/`.
+Generated files land in `api/src/test/java/com/aitesting/api/aigenerated/<project>/` (package `com.aitesting.api.aigenerated.<project>`).
 
 ---
 
