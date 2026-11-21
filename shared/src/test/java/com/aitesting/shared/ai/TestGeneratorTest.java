@@ -81,6 +81,16 @@ class TestGeneratorTest {
         }
     }
 
+    /** Every .java file anywhere under root, as paths relative to root. */
+    private static List<String> allJavaFiles(Path root) throws IOException {
+        try (Stream<Path> files = Files.walk(root)) {
+            return files.filter(p -> p.toString().endsWith(".java"))
+                    .map(p -> root.relativize(p).toString())
+                    .sorted()
+                    .toList();
+        }
+    }
+
     private FakeLlmClient generate(LlmResponse response) throws IOException {
         FakeLlmClient client = new FakeLlmClient(response);
         new TestGenerator(client, tempDir).generateFromSpecString(SPEC, PROJECT);
@@ -146,6 +156,30 @@ class TestGeneratorTest {
         assertTrue(client.lastRequest.user().contains("Package: " + PACKAGE),
                 "expected package missing from prompt");
         assertEquals(TestGenerator.MAX_TOKENS, client.lastRequest.maxTokens());
+    }
+
+    @Test
+    @DisplayName("a block with no public class name is skipped and no file is written")
+    void noPublicClassName_isSkipped() throws IOException {
+        String code = javaClass(PACKAGE, "PetTests", true).replace("public class", "class");
+        generate(reply(fenced(code)));
+
+        assertEquals(List.of(), allJavaFiles(tempDir));
+    }
+
+    @Test
+    @DisplayName("a block whose class name is not a valid Java identifier is skipped; nothing is written anywhere")
+    void invalidClassName_isSkipped_nothingWrittenOutsideOutputFolder() throws IOException {
+        // Output folder is a sub-folder of @TempDir, so a "../../" escape from
+        // <output>/petstore/ would land in tempDir itself, where we can see it.
+        Path outputBase = tempDir.resolve("out");
+        String code = javaClass(PACKAGE, "../../Escaped", true);
+        FakeLlmClient client = new FakeLlmClient(reply(fenced(code)));
+        new TestGenerator(client, outputBase).generateFromSpecString(SPEC, PROJECT);
+
+        assertEquals(List.of(), allJavaFiles(tempDir));
+        assertFalse(Files.exists(tempDir.resolve("Escaped.java")));
+        assertFalse(Files.exists(tempDir.getParent().resolve("Escaped.java")));
     }
 
     @Test
