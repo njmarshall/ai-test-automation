@@ -7,7 +7,9 @@ import org.junit.jupiter.api.io.TempDir;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Function;
 import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -26,19 +28,25 @@ class TestGeneratorTest {
     @TempDir
     Path tempDir;
 
-    /** Returns a scripted reply and records the request it received. */
+    /** Returns a scripted reply and records every request it received. */
     static final class FakeLlmClient implements LlmClient {
-        private final LlmResponse reply;
+        private final Function<LlmRequest, LlmResponse> replies;
+        final List<LlmRequest> requests = new ArrayList<>();
         LlmRequest lastRequest;
 
         FakeLlmClient(LlmResponse reply) {
-            this.reply = reply;
+            this(request -> reply);
+        }
+
+        FakeLlmClient(Function<LlmRequest, LlmResponse> replies) {
+            this.replies = replies;
         }
 
         @Override
         public LlmResponse complete(LlmRequest request) {
+            requests.add(request);
             this.lastRequest = request;
-            return reply;
+            return replies.apply(request);
         }
     }
 
@@ -246,5 +254,75 @@ class TestGeneratorTest {
                 "ApiClient.DEFAULT.teleport(\"/pet/1\");"))));
 
         assertEquals(List.of(), javaFiles());
+    }
+
+    // ── One class per OpenAPI tag ─────────────────────────────────────────────
+
+    /** Swagger 2.0 spec with three tags; each path string appears only under its own tag. */
+    private static final String TAGGED_SPEC = """
+        {
+          "swagger": "2.0",
+          "info": {"title": "Tagged"},
+          "basePath": "/v2",
+          "tags": [{"name": "pet"}, {"name": "store"}, {"name": "user"}],
+          "paths": {
+            "/pet": {"post": {"tags": ["pet"], "summary": "Add a pet"}},
+            "/pet/{petId}": {"get": {"tags": ["pet"]}, "delete": {"tags": ["pet"]}},
+            "/store/order": {"post": {"tags": ["store"]}},
+            "/store/inventory": {"get": {"tags": ["store"]}},
+            "/user": {"post": {"tags": ["user"]}},
+            "/user/login": {"get": {"tags": ["user"]}}
+          },
+          "definitions": {"Pet": {"type": "object"}}
+        }
+        """;
+
+    private static final List<String> PET_PATHS = List.of("\"/pet\"", "\"/pet/{petId}\"");
+    private static final List<String> STORE_PATHS = List.of("\"/store/order\"", "\"/store/inventory\"");
+    private static final List<String> USER_PATHS = List.of("\"/user\"", "\"/user/login\"");
+
+    @Test
+    @DisplayName("a spec with three tags sends three requests, each with only its own group's paths")
+    void threeTags_threeRequests_eachWithOnlyItsOwnPaths() throws IOException {
+        FakeLlmClient client = new FakeLlmClient(reply("no code"));
+        new TestGenerator(client, tempDir).generateFromSpecString(TAGGED_SPEC, PROJECT);
+
+        assertEquals(3, client.requests.size());
+        List<List<String>> groups = List.of(PET_PATHS, STORE_PATHS, USER_PATHS);
+        List<String> classNames = List.of("PetApiGeneratedTests", "StoreApiGeneratedTests", "UserApiGeneratedTests");
+        for (int i = 0; i < 3; i++) {
+            String prompt = client.requests.get(i).user();
+            for (int g = 0; g < 3; g++) {
+                for (String path : groups.get(g)) {
+                    assertEquals(g == i, prompt.contains(path),
+                            "request " + i + (g == i ? " is missing " : " should not contain ") + path);
+                }
+            }
+            assertTrue(prompt.contains("exactly one class, named " + classNames.get(i)),
+                    "request " + i + " should ask for " + classNames.get(i));
+            assertTrue(prompt.contains("\"definitions\""), "request " + i + " should keep definitions");
+        }
+    }
+
+    @Test
+    @DisplayName("accepted and rejected counts are summed across groups")
+    void countsAreCombinedAcrossGroups() throws IOException {
+        // pet and store get a valid class; user gets no code block
+        FakeLlmClient client = new FakeLlmClient(request -> {
+            String prompt = request.user();
+            if (prompt.contains("named PetApiGeneratedTests")) {
+                return reply(fenced(javaClass(PACKAGE, "PetApiGeneratedTests", true)));
+            }
+            if (prompt.contains("named StoreApiGeneratedTests")) {
+                return reply(fenced(javaClass(PACKAGE, "StoreApiGeneratedTests", true)));
+            }
+            return reply("Sorry, no code.");
+        });
+
+        GenerationResult result = new TestGenerator(client, tempDir).generateFromSpecString(TAGGED_SPEC, PROJECT);
+
+        assertEquals(new GenerationResult(2, 1), result);
+        assertEquals(List.of("PetApiGeneratedTests.java", "StoreApiGeneratedTests.java"), javaFiles());
+        assertTrue(Files.exists(projectDir().resolve("llm-raw-response-user.txt")));
     }
 }

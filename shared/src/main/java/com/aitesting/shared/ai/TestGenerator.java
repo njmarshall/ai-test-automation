@@ -28,6 +28,11 @@ import java.util.regex.Pattern;
  *   4. Parses the LLM response to extract Java source code blocks
  *   5. Writes each class to the ai-generated/ output directory
  *
+ * A JSON spec with paths is split by tag ({@link OpenApiTagGroups}): one
+ * request per tag, each containing only that tag's paths and asking for
+ * exactly one class (e.g. PetApiGeneratedTests). Counts are summed across
+ * groups. Other specs are sent whole in one request.
+ *
  * Usage (from command line runner or main method):
  *   TestGenerator gen = new TestGenerator();
  *   gen.generateFromSpec("api/src/test/resources/petstore-openapi.json", "petstore");
@@ -117,32 +122,68 @@ public class TestGenerator {
      * @return how many code blocks were accepted and rejected
      */
     public GenerationResult generateFromSpecString(String specContent, String projectName) throws IOException {
-        String prompt = buildPrompt(specContent, projectName);
-        log.info("Calling LLM API to generate tests for project: {}", projectName);
+        List<OpenApiTagGroups.Group> groups = OpenApiTagGroups.byFirstTag(specContent);
+        if (groups.isEmpty()) {
+            // Not JSON, or no paths: send the whole spec in one request, as before.
+            log.info("Calling LLM API to generate tests for project: {}", projectName);
+            return generateOnce(buildPrompt(specContent, projectName, null), projectName,
+                    "project '" + projectName + "'", RAW_RESPONSE_FILE);
+        }
 
+        log.info("Spec has {} tag group(s): {}", groups.size(),
+                groups.stream().map(OpenApiTagGroups.Group::tag).toList());
+        GenerationResult total = GenerationResult.NONE;
+        for (OpenApiTagGroups.Group group : groups) {
+            log.info("Calling LLM API for tag '{}' ({} path(s)) — asking for {}",
+                    group.tag(), group.pathCount(), group.className());
+            GenerationResult result = generateOnce(buildPrompt(group.specJson(), projectName, group),
+                    projectName, "tag '" + group.tag() + "'",
+                    "llm-raw-response-" + group.fileSafeTag() + ".txt");
+            total = total.plus(result);
+        }
+        log.info("TestGenerator complete for project '{}' — {} group(s), {} block(s) accepted, {} rejected",
+                projectName, groups.size(), total.accepted(), total.rejected());
+        return total;
+    }
+
+    /** One model request: call, check the reply, write accepted classes. */
+    private GenerationResult generateOnce(String prompt, String projectName, String label, String rawFile)
+            throws IOException {
         LlmResponse response = callLlm(prompt);
         String llmResponse = response.text() == null ? "" : response.text();
-        log.debug("LLM response received ({} chars, stop_reason={}, input_tokens={}, output_tokens={})",
-                llmResponse.length(), response.stopReason(),
+        log.debug("LLM response for {} received ({} chars, stop_reason={}, input_tokens={}, output_tokens={})",
+                label, llmResponse.length(), response.stopReason(),
                 response.inputTokens(), response.outputTokens());
 
         if ("max_tokens".equals(response.stopReason())) {
-            log.error("Rejected LLM reply: stop_reason=max_tokens (reply was cut off at {} output tokens). "
-                    + "No test classes written; raw response saved for review.", response.outputTokens());
-            writeRawResponse(llmResponse, projectName);
+            log.error("Rejected LLM reply for {}: stop_reason=max_tokens (reply was cut off at {} output tokens). "
+                    + "No test classes written; raw response saved for review.", label, response.outputTokens());
+            writeRawResponse(llmResponse, projectName, rawFile);
+            log.info("Result for {}: 0 block(s) accepted, 1 rejected", label);
             return new GenerationResult(0, 1);
         }
 
-        return extractAndWriteJavaFiles(llmResponse, projectName);
+        return extractAndWriteJavaFiles(llmResponse, projectName, label, rawFile);
     }
 
     // ── Prompt engineering ────────────────────────────────────────────────────
 
-    private String buildPrompt(String specContent, String projectName) {
+    /**
+     * @param group the tag group to ask one class for, or null to ask for one class per endpoint group
+     */
+    private String buildPrompt(String specContent, String projectName, OpenApiTagGroups.Group group) {
+        String task = group == null
+                ? "Generate comprehensive Java test classes for the following OpenAPI specification."
+                : ("Generate one comprehensive Java test class for the '%s' endpoints of the following "
+                        + "OpenAPI specification. The specification contains only those endpoints.")
+                        .formatted(group.tag());
+        String classes = group == null
+                ? "Include one class per endpoint group (e.g. PetTests, StoreTests, UserTests)."
+                : "Output exactly one class, named %s, in exactly one ```java block.".formatted(group.className());
         return """
             You are a senior Java automation engineer specialising in API test frameworks.
             
-            Generate comprehensive Java test classes for the following OpenAPI specification.
+            %s
             
             Requirements:
             - Use TestNG 7.x annotations (@Test, @BeforeClass, @AfterClass)
@@ -158,7 +199,7 @@ public class TestGenerator {
             
             Output ONLY valid Java source code blocks.
             Each class must start with: ```java and end with ```
-            Include one class per endpoint group (e.g. PetTests, StoreTests, UserTests).
+            %s
             
             Framework API (public members of the shared classes, read from the code):
             %s
@@ -167,7 +208,8 @@ public class TestGenerator {
             
             OpenAPI Specification:
             %s
-            """.formatted(expectedPackage(projectName), FrameworkApiSummary.build(), API_RULE, specContent);
+            """.formatted(task, expectedPackage(projectName), classes,
+                    FrameworkApiSummary.build(), API_RULE, specContent);
     }
 
     // ── LLM call ──────────────────────────────────────────────────────────────
@@ -187,12 +229,14 @@ public class TestGenerator {
      * Parses ```java ... ``` blocks from the LLM response, checks each one (including that it compiles),
      * and writes the accepted ones to disk.
      */
-    private GenerationResult extractAndWriteJavaFiles(String llmResponse, String projectName) throws IOException {
+    private GenerationResult extractAndWriteJavaFiles(String llmResponse, String projectName,
+                                                      String label, String rawFile) throws IOException {
         String[] parts = llmResponse.split("```java");
 
         if (parts.length < 2) {
-            log.warn("LLM response contained no Java code blocks. Raw response saved for review.");
-            writeRawResponse(llmResponse, projectName);
+            log.warn("LLM response for {} contained no Java code blocks. Raw response saved for review.", label);
+            writeRawResponse(llmResponse, projectName, rawFile);
+            log.info("Result for {}: 0 block(s) accepted, 1 rejected", label);
             return new GenerationResult(0, 1);
         }
 
@@ -203,7 +247,7 @@ public class TestGenerator {
             String block = parts[i];
             int end = block.indexOf("```");
             if (end == -1) {
-                log.warn("Skipped code block {}: no closing ``` fence", i);
+                log.warn("Skipped code block {} for {}: no closing ``` fence", i, label);
                 rejected++;
                 continue;
             }
@@ -211,7 +255,7 @@ public class TestGenerator {
             String javaCode = block.substring(0, end).trim();
             String reason = rejectionReason(javaCode, expectedPackageLine);
             if (reason != null) {
-                log.warn("Skipped code block {}: {}", i, reason);
+                log.warn("Skipped code block {} for {}: {}", i, label, reason);
                 rejected++;
                 continue;
             }
@@ -226,8 +270,7 @@ public class TestGenerator {
             accepted++;
         }
 
-        log.info("TestGenerator complete for project '{}' — {} block(s) accepted, {} rejected",
-                projectName, accepted, rejected);
+        log.info("Result for {}: {} block(s) accepted, {} rejected", label, accepted, rejected);
         return new GenerationResult(accepted, rejected);
     }
 
@@ -284,9 +327,9 @@ public class TestGenerator {
         return outputBaseDir.resolve(projectName);
     }
 
-    private void writeRawResponse(String content, String projectName) throws IOException {
+    private void writeRawResponse(String content, String projectName, String fileName) throws IOException {
         Path dir = resolveOutputDir(projectName);
         Files.createDirectories(dir);
-        Files.writeString(dir.resolve(RAW_RESPONSE_FILE), content);
+        Files.writeString(dir.resolve(fileName), content);
     }
 }

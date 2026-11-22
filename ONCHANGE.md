@@ -188,3 +188,15 @@ First real run (`claude-sonnet-4-6`, live PetStore spec): 0 accepted, 1 rejected
 * New class `FrameworkApiSummary`. `build()` uses reflection to list the public fields and public declared methods (name, parameter types, return type, `static` where it applies) of `ApiClient`, `ResponseValidator`, `TestDataFactory` and `AllureHelper`, sorted by name. The CRTP self type `T` is shown as the class name (`statusCode(int) -> ResponseValidator`), so fluent chains read correctly. It is built from the classes at run time, so it follows code changes without edits.
 * Prompt: adds the summary under "Framework API", then the rule `Use only these methods. Do not invent methods. ResponseValidator is fluent: ResponseValidator.from(response).statusCode(200).hasField(...)`. "Use RestAssured 5.x for HTTP calls" became "Make HTTP calls through ApiClient (it wraps RestAssured 5.x)".
 * Tests: new `FrameworkApiSummaryTest` (the summary contains `static ApiClient DEFAULT`, `get(String) -> Response`, `from(Response) -> static ResponseValidator<?>`, `hasField(String)`, `randomId()`, `step(String, Runnable)` and others; it does not contain `assertStatusCode` or `logStep`). `TestGeneratorTest` checks that the request contains the summary and the rule.
+
+#### 3. One test class per OpenAPI tag
+
+* New class `OpenApiTagGroups`. `byFirstTag(spec)` parses a JSON spec with Jackson and groups the paths by their first tag (the first tag of the first operation that has one; untagged paths go to `default`). Each group spec keeps every other top-level key (info, basePath, definitions, ...) and narrows `paths` and `tags` to the group. Groups keep the order they first appear in.
+* TestGenerator: one request per group, containing only that group's paths, asking for exactly one class named `<Tag>ApiGeneratedTests` (`PetApiGeneratedTests`, `StoreApiGeneratedTests`, `UserApiGeneratedTests`) in one code block. Each group logs `Result for tag '<tag>': <n> block(s) accepted, <m> rejected`, and the returned `GenerationResult` is the sum. A rejected reply for a group is saved as `llm-raw-response-<tag>.txt`, so groups do not overwrite each other. Specs that are not JSON or have no paths are sent whole in one request, as before (`llm-raw-response.txt`).
+* Not changed: `MAX_TOKENS` is still 8192 per request, and the class name the prompt asks for is not enforced.
+* Tests (`TestGeneratorTest`, `FakeLlmClient` now records every request and can reply per request): a spec with tags pet, store and user leads to three requests, each containing its own two paths and none of the other four, asking for its own class name, and keeping `definitions`; replies of valid, valid, no code give `GenerationResult(2, 1)`, two files, and `llm-raw-response-user.txt`.
+* Mutation check: with the group spec keeping all paths, `threeTags_threeRequests_eachWithOnlyItsOwnPaths` failed (`request 0 should not contain "/store/order"`). Restored afterwards.
+
+#### Result
+
+* On JDK 17, `./mvnw -q clean verify` passes. Shared 50 run (was 41), 0 failures. API 88 run, 0 failures, 0 skipped. No test calls the real Anthropic API.
