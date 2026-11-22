@@ -159,3 +159,16 @@ A running log of checks and changes.
   * A final INFO line logs how many blocks were accepted and rejected.
 * Tests: Added `shared/src/test/java/com/aitesting/shared/ai/TestGeneratorTest.java` (JUnit 5, `@TempDir`, a `FakeLlmClient` that returns a scripted reply and records the request). 7 tests: valid reply writes one file with the right name and package; `max_tokens` writes no `.java` file; wrong package skipped; no `@Test` skipped; no code blocks saves `llm-raw-response.txt`; the request contains the spec text and the expected package; two valid blocks write two files. The real Anthropic API is never called.
 * Result: on JDK 17, `./mvnw -q clean verify` passes. Shared 36 run (was 29), 0 failures. API 88 run, 0 failures, 0 skipped.
+
+## 2026.11.21
+
+### Added: AI TestGenerator rejects generated tests that do not compile
+
+* New class: `com.aitesting.shared.ai.JavaCompileCheck`. `errors(className, source)` compiles one source string in memory with `ToolProvider.getSystemJavaCompiler()` (`-proc:none`, class files to a temp folder that is deleted afterwards) and returns the ERROR diagnostics. An empty list means it compiles.
+* Classpath, in order: `surefire.test.class.path` if set; else the URLs of the thread context class loader if it is a `URLClassLoader` (as under `mvn exec:java`); else `java.class.path`. Surefire and exec:java both hide the real project classpath from `java.class.path`. A DEBUG line names the source used.
+* No system compiler (JRE only): the check is skipped with one WARN log and every block is treated as compiling.
+* TestGenerator: after the package, `@Test` and class-name checks pass, each block is compiled. On errors the block is skipped with WARN `does not compile: line <n>: <first diagnostic>` (multi-line javac messages folded onto one line) and counted as rejected. New constructor `TestGenerator(LlmClient, Path, JavaCompileCheck)`; the others use a real `JavaCompileCheck`.
+* Tests (`TestGeneratorTest`, real compile check, no mock): a block using `org.testng.annotations.Test` and `com.aitesting.shared.http.ApiClient` compiles and is written; a block importing `com.aitesting.shared.http.MagicClient` is skipped; a block calling `ApiClient.DEFAULT.teleport(...)` is skipped. Existing fixtures still compile, so none were changed.
+* Mutation check: with `errors()` changed to always return no errors, exactly the two new negative tests failed (`missingImport_isSkipped`, `unknownApiClientMethod_isSkipped`). Restored afterwards.
+* CI: the `generate-tests` job now runs `mvn exec:java` with `-Dexec.classpathScope=compile`, so TestNG (provided scope in shared) is on the classpath the compile check sees. Not run here (it needs `LLM_API_KEY`; the real API was not called).
+* Result: on JDK 17, `./mvnw -q clean verify` passes. Shared 41 run (was 38), 0 failures. API 88 run, 0 failures, 0 skipped.

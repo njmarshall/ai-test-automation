@@ -4,11 +4,16 @@ import com.aitesting.shared.config.BaseConfig;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javax.tools.Diagnostic;
+import javax.tools.JavaFileObject;
+
 import java.io.IOException;
 import java.io.UncheckedIOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.List;
+import java.util.Locale;
 import java.util.Objects;
 import java.util.regex.Pattern;
 
@@ -29,6 +34,9 @@ import java.util.regex.Pattern;
  *
  * Unit tests pass a fake {@link LlmClient} and a temp output folder:
  *   new TestGenerator(fakeClient, tempDir)
+ *
+ * Every accepted block must also compile ({@link JavaCompileCheck}); the
+ * check can be replaced through {@link #TestGenerator(LlmClient, Path, JavaCompileCheck)}.
  */
 public class TestGenerator {
 
@@ -42,6 +50,7 @@ public class TestGenerator {
 
     private final LlmClient client;
     private final Path outputBaseDir;
+    private final JavaCompileCheck compileCheck;
 
     /** Production constructor: real Anthropic client, output folder from {@link BaseConfig#AI_OUTPUT_DIR}. */
     public TestGenerator() {
@@ -58,8 +67,18 @@ public class TestGenerator {
      * @param outputBaseDir folder that holds one sub-folder per project
      */
     public TestGenerator(LlmClient client, Path outputBaseDir) {
+        this(client, outputBaseDir, new JavaCompileCheck());
+    }
+
+    /**
+     * @param client        model client
+     * @param outputBaseDir folder that holds one sub-folder per project
+     * @param compileCheck  compiles each block before it is written
+     */
+    public TestGenerator(LlmClient client, Path outputBaseDir, JavaCompileCheck compileCheck) {
         this.client = Objects.requireNonNull(client, "client");
         this.outputBaseDir = Objects.requireNonNull(outputBaseDir, "outputBaseDir");
+        this.compileCheck = Objects.requireNonNull(compileCheck, "compileCheck");
     }
 
     /** The package generated classes must declare; matches the folder they are written to. */
@@ -155,7 +174,7 @@ public class TestGenerator {
     // ── File writing ──────────────────────────────────────────────────────────
 
     /**
-     * Parses ```java ... ``` blocks from the LLM response, checks each one,
+     * Parses ```java ... ``` blocks from the LLM response, checks each one (including that it compiles),
      * and writes the accepted ones to disk.
      */
     private void extractAndWriteJavaFiles(String llmResponse, String projectName) throws IOException {
@@ -210,8 +229,16 @@ public class TestGenerator {
         if (!TEST_ANNOTATION.matcher(javaCode).find()) {
             return "no @Test annotation";
         }
-        if (extractClassName(javaCode) == null) {
+        String className = extractClassName(javaCode);
+        if (className == null) {
             return "no public class name found";
+        }
+        List<Diagnostic<? extends JavaFileObject>> errors = compileCheck.errors(className, javaCode);
+        if (!errors.isEmpty()) {
+            Diagnostic<? extends JavaFileObject> first = errors.get(0);
+            // javac messages span several lines ("cannot find symbol\n  symbol: ..."); keep them on one log line
+            String message = first.getMessage(Locale.ROOT).strip().replaceAll("\\s*\\R\\s*", "; ");
+            return "does not compile: line " + first.getLineNumber() + ": " + message;
         }
         return null;
     }

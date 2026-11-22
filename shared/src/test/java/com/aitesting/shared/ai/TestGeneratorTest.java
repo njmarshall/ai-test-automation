@@ -191,4 +191,48 @@ class TestGeneratorTest {
 
         assertEquals(List.of("PetTests.java", "StoreTests.java"), javaFiles());
     }
+
+    private static String apiClientClass(String className, String extraImport, String body) {
+        return """
+            package %s;
+
+            import org.testng.annotations.Test;
+            import com.aitesting.shared.http.ApiClient;
+            %s
+
+            public class %s {
+                @Test
+                public void works() {
+                    %s
+                }
+            }
+            """.formatted(PACKAGE, extraImport, className, body);
+    }
+
+    @Test
+    @DisplayName("a block using TestNG @Test and ApiClient compiles and is written")
+    void compilingBlock_isWritten() throws IOException {
+        generate(reply(fenced(apiClientClass("PetTests", "",
+                "ApiClient api = ApiClient.DEFAULT; String url = api.getBaseUrl();"))));
+
+        assertEquals(List.of("PetTests.java"), javaFiles());
+    }
+
+    @Test
+    @DisplayName("a block that imports a class that does not exist is skipped")
+    void missingImport_isSkipped() throws IOException {
+        generate(reply(fenced(apiClientClass("PetTests",
+                "import com.aitesting.shared.http.MagicClient;", "ApiClient api = ApiClient.DEFAULT;"))));
+
+        assertEquals(List.of(), javaFiles());
+    }
+
+    @Test
+    @DisplayName("a block that calls a method ApiClient does not have is skipped")
+    void unknownApiClientMethod_isSkipped() throws IOException {
+        generate(reply(fenced(apiClientClass("PetTests", "",
+                "ApiClient.DEFAULT.teleport(\"/pet/1\");"))));
+
+        assertEquals(List.of(), javaFiles());
+    }
 }

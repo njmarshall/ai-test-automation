@@ -176,6 +176,8 @@ jobs:
       - name: Build shared module
         run: mvn install -pl shared -am -DskipTests --no-transfer-progress
 
+      # classpathScope=compile puts TestNG (provided scope in shared) on the
+      # classpath, so the generator's compile check can resolve org.testng.
       - name: Run AI Test Generator
         env:
           LLM_API_KEY:   ${{ secrets.LLM_API_KEY }}
@@ -184,6 +186,7 @@ jobs:
         run: |
           mvn exec:java \
             -pl shared \
+            -Dexec.classpathScope=compile \
             -Dexec.mainClass="com.aitesting.shared.ai.TestGeneratorRunner" \
             -Dexec.args="https://petstore.swagger.io/v2/swagger.json petstore"
 
