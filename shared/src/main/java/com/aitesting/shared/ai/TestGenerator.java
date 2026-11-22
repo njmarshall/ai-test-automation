@@ -97,11 +97,12 @@ public class TestGenerator {
      *
      * @param specFilePath  path to the OpenAPI JSON/YAML spec on the local filesystem
      * @param projectName   used to name the output package/folder (e.g. "petstore")
+     * @return how many code blocks were accepted and rejected
      */
-    public void generateFromSpec(String specFilePath, String projectName) throws IOException {
+    public GenerationResult generateFromSpec(String specFilePath, String projectName) throws IOException {
         log.info("Reading OpenAPI spec: {}", specFilePath);
         String specContent = Files.readString(Paths.get(specFilePath));
-        generateFromSpecString(specContent, projectName);
+        return generateFromSpecString(specContent, projectName);
     }
 
     /**
@@ -109,8 +110,9 @@ public class TestGenerator {
      *
      * @param specContent  raw OpenAPI JSON or YAML content
      * @param projectName  used to name the output package/folder
+     * @return how many code blocks were accepted and rejected
      */
-    public void generateFromSpecString(String specContent, String projectName) throws IOException {
+    public GenerationResult generateFromSpecString(String specContent, String projectName) throws IOException {
         String prompt = buildPrompt(specContent, projectName);
         log.info("Calling LLM API to generate tests for project: {}", projectName);
 
@@ -124,10 +126,10 @@ public class TestGenerator {
             log.error("Rejected LLM reply: stop_reason=max_tokens (reply was cut off at {} output tokens). "
                     + "No test classes written; raw response saved for review.", response.outputTokens());
             writeRawResponse(llmResponse, projectName);
-            return;
+            return new GenerationResult(0, 1);
         }
 
-        extractAndWriteJavaFiles(llmResponse, projectName);
+        return extractAndWriteJavaFiles(llmResponse, projectName);
     }
 
     // ── Prompt engineering ────────────────────────────────────────────────────
@@ -177,13 +179,13 @@ public class TestGenerator {
      * Parses ```java ... ``` blocks from the LLM response, checks each one (including that it compiles),
      * and writes the accepted ones to disk.
      */
-    private void extractAndWriteJavaFiles(String llmResponse, String projectName) throws IOException {
+    private GenerationResult extractAndWriteJavaFiles(String llmResponse, String projectName) throws IOException {
         String[] parts = llmResponse.split("```java");
 
         if (parts.length < 2) {
             log.warn("LLM response contained no Java code blocks. Raw response saved for review.");
             writeRawResponse(llmResponse, projectName);
-            return;
+            return new GenerationResult(0, 1);
         }
 
         String expectedPackageLine = "package " + expectedPackage(projectName) + ";";
@@ -218,6 +220,7 @@ public class TestGenerator {
 
         log.info("TestGenerator complete for project '{}' — {} block(s) accepted, {} rejected",
                 projectName, accepted, rejected);
+        return new GenerationResult(accepted, rejected);
     }
 
     /** Returns why a code block must be skipped, or null if it is acceptable. */

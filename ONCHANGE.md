@@ -172,3 +172,13 @@ A running log of checks and changes.
 * Mutation check: with `errors()` changed to always return no errors, exactly the two new negative tests failed (`missingImport_isSkipped`, `unknownApiClientMethod_isSkipped`). Restored afterwards.
 * CI: the `generate-tests` job now runs `mvn exec:java` with `-Dexec.classpathScope=compile`, so TestNG (provided scope in shared) is on the classpath the compile check sees. Not run here (it needs `LLM_API_KEY`; the real API was not called).
 * Result: on JDK 17, `./mvnw -q clean verify` passes. Shared 41 run (was 38), 0 failures. API 88 run, 0 failures, 0 skipped.
+
+### Changed: AI TestGenerator after the first real run
+
+First real run (`claude-sonnet-4-6`, live PetStore spec): 0 accepted, 1 rejected. The single reply hit `stop_reason=max_tokens` at 8192 output tokens, so nothing was written, yet the runner still exited 0. The cut-off class also used methods that do not exist (static `ResponseValidator.assertStatusCode`, `AllureHelper.logStep`, `ApiClient.builder()`, `TestDataFactory.generateSmallImageBytes`).
+
+#### 1. Runner exits 3 when nothing is accepted
+
+* `TestGenerator.generateFromSpec` / `generateFromSpecString` now return `GenerationResult(accepted, rejected)`. A whole-reply rejection (`max_tokens`, or no code blocks) counts as 1 rejected.
+* `TestGeneratorRunner.main` calls `run(args, Supplier<TestGenerator>)` and exits with its code. When `accepted == 0` it logs ERROR `No generated tests were accepted` and returns 3. Exit codes 1 (I/O or unexpected) and 2 (configuration, e.g. `LLM_API_KEY` missing) are unchanged. The final INFO line now gives the totals.
+* Tests: new `TestGeneratorRunnerTest` (local temp spec file, `FakeLlmClient`, logback `ListAppender`): no accepted block gives 3 plus the log line; one accepted block gives 0; a configuration error gives 2; a missing spec gives 1.

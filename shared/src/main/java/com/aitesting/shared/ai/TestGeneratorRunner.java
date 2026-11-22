@@ -14,6 +14,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.Duration;
+import java.util.function.Supplier;
 
 /**
  * TestGeneratorRunner is the CLI entry point for AI-powered test generation.
@@ -39,6 +40,9 @@ import java.time.Duration;
  *
  * Environment variables required:
  *   LLM_API_KEY  — your Anthropic (or OpenAI) API key
+ *
+ * Exit codes: 0 at least one test accepted, 1 I/O or unexpected error,
+ * 2 configuration error, 3 no generated test accepted.
  */
 public class TestGeneratorRunner {
 
@@ -49,7 +53,22 @@ public class TestGeneratorRunner {
             "https://petstore.swagger.io/v2/swagger.json";
     private static final String DEFAULT_PROJECT = "petstore";
 
+    /** Exit code when generation ran but no generated test was accepted. */
+    static final int EXIT_NONE_ACCEPTED = 3;
+
     public static void main(String[] args) {
+        System.exit(run(args, TestGenerator::new));
+    }
+
+    /**
+     * Runs the generator and returns the process exit code:
+     * 0 at least one test accepted, 1 I/O or unexpected error,
+     * 2 configuration error (e.g. LLM_API_KEY missing), 3 no generated test accepted.
+     *
+     * @param args             [specSource [projectName]]
+     * @param generatorFactory creates the generator (unit tests pass one with a fake client)
+     */
+    static int run(String[] args, Supplier<TestGenerator> generatorFactory) {
         String specSource;
         String projectName;
 
@@ -75,24 +94,29 @@ public class TestGeneratorRunner {
             String specContent = loadSpec(specSource);
             log.info("Spec loaded ({} chars)", specContent.length());
 
-            TestGenerator generator = new TestGenerator();
-            generator.generateFromSpecString(specContent, projectName);
+            TestGenerator generator = generatorFactory.get();
+            GenerationResult result = generator.generateFromSpecString(specContent, projectName);
 
-            log.info("=== Generation complete ===");
-            System.exit(0);
+            log.info("=== Generation complete: {} accepted, {} rejected ===",
+                    result.accepted(), result.rejected());
+            if (result.accepted() == 0) {
+                log.error("No generated tests were accepted");
+                return EXIT_NONE_ACCEPTED;
+            }
+            return 0;
 
         } catch (IllegalStateException e) {
             log.error("Configuration error: {}", e.getMessage());
             log.error("Make sure LLM_API_KEY is set: export LLM_API_KEY=your_key_here");
-            System.exit(2);
+            return 2;
 
         } catch (IOException e) {
             log.error("I/O error during generation: {}", e.getMessage(), e);
-            System.exit(1);
+            return 1;
 
         } catch (Exception e) {
             log.error("Unexpected error: {}", e.getMessage(), e);
-            System.exit(1);
+            return 1;
         }
     }
 
