@@ -45,6 +45,10 @@ public class TestGenerator {
     static final int MAX_TOKENS = 8192;
     static final String RAW_RESPONSE_FILE = "llm-raw-response.txt";
 
+    /** Tells the model to stay within {@link FrameworkApiSummary}. */
+    static final String API_RULE = "Use only these methods. Do not invent methods. "
+            + "ResponseValidator is fluent: ResponseValidator.from(response).statusCode(200).hasField(...)";
+
     private static final Pattern TEST_ANNOTATION = Pattern.compile("@Test\\b");
     private static final Pattern JAVA_IDENTIFIER = Pattern.compile("[A-Za-z_$][A-Za-z0-9_$]*");
 
@@ -141,9 +145,8 @@ public class TestGenerator {
             Generate comprehensive Java test classes for the following OpenAPI specification.
             
             Requirements:
-            - Use RestAssured 5.x for HTTP calls
             - Use TestNG 7.x annotations (@Test, @BeforeClass, @AfterClass)
-            - Use the shared ApiClient class: com.aitesting.shared.http.ApiClient
+            - Make HTTP calls through com.aitesting.shared.http.ApiClient (it wraps RestAssured 5.x)
             - Use ResponseValidator for assertions: com.aitesting.shared.assertions.ResponseValidator
             - Use TestDataFactory for test data: com.aitesting.shared.dataprovider.TestDataFactory
             - Use AllureHelper for reporting: com.aitesting.shared.reporting.AllureHelper
@@ -157,9 +160,14 @@ public class TestGenerator {
             Each class must start with: ```java and end with ```
             Include one class per endpoint group (e.g. PetTests, StoreTests, UserTests).
             
+            Framework API (public members of the shared classes, read from the code):
+            %s
+            
+            %s
+            
             OpenAPI Specification:
             %s
-            """.formatted(expectedPackage(projectName), specContent);
+            """.formatted(expectedPackage(projectName), FrameworkApiSummary.build(), API_RULE, specContent);
     }
 
     // ── LLM call ──────────────────────────────────────────────────────────────

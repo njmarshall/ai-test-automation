@@ -159,6 +159,18 @@ class TestGeneratorTest {
     }
 
     @Test
+    @DisplayName("the prompt contains the framework API summary and the use-only-these-methods rule")
+    void request_containsFrameworkApiAndRule() throws IOException {
+        FakeLlmClient client = generate(reply("no code"));
+
+        String prompt = client.lastRequest.user();
+        assertTrue(prompt.contains(FrameworkApiSummary.build()), "API summary missing from prompt");
+        assertTrue(prompt.contains("Use only these methods. Do not invent methods. "
+                + "ResponseValidator is fluent: ResponseValidator.from(response).statusCode(200).hasField(...)"),
+                "rule missing from prompt");
+    }
+
+    @Test
     @DisplayName("a block with no public class name is skipped and no file is written")
     void noPublicClassName_isSkipped() throws IOException {
         String code = javaClass(PACKAGE, "PetTests", true).replace("public class", "class");
