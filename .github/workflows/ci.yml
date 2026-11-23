@@ -182,6 +182,7 @@ jobs:
         env:
           LLM_API_KEY:   ${{ secrets.LLM_API_KEY }}
           LLM_MODEL:     "claude-sonnet-4-6"
+          LLM_MAX_TOKENS: ${{ vars.LLM_MAX_TOKENS }}
           AI_OUTPUT_DIR: "api/src/test/java/com/aitesting/api/aigenerated"
         run: |
           mvn exec:java \
