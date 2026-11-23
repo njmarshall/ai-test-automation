@@ -1,0 +1,10 @@
+=== POST /quotes (invalid coverage) ===
+Status: 400
+Time: 5ms
+Content-Type: application/json
+
+Body:
+{
+    "code": 400,
+    "message": "Invalid coverage type: platinum_ultra_plus"
+}
