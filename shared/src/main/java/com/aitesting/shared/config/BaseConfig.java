@@ -59,6 +59,20 @@ public final class BaseConfig {
     public static final String LLM_MODEL =
             EnvConfig.get("LLM_MODEL", "claude-sonnet-4-20250514");
 
+    /**
+     * max_tokens sent with each LLM request (one request per OpenAPI tag).
+     * Empty or blank counts as unset; a value that is not a positive number fails at startup.
+     */
+    public static final int LLM_MAX_TOKENS =
+            EnvConfig.getPositiveIntStrict("LLM_MAX_TOKENS", 16_000);
+
+    /**
+     * Most @Test methods the prompt asks for per generated class. A class over the cap is
+     * still written, with a WARN. Same empty-value and fail-fast rules as LLM_MAX_TOKENS.
+     */
+    public static final int LLM_MAX_TESTS_PER_CLASS =
+            EnvConfig.getPositiveIntStrict("LLM_MAX_TESTS_PER_CLASS", 8);
+
     /** Directory where AI-generated test files are written. */
     public static final String AI_OUTPUT_DIR =
             EnvConfig.get("AI_OUTPUT_DIR", "api/src/test/java/com/aitesting/api/ai-generated");

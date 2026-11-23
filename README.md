@@ -204,6 +204,8 @@ All settings are controlled by environment variables (highest priority) or
 | `LOG_ALL_REQUESTS` | `false` | Log full req/resp to console |
 | `LLM_API_KEY` | *(blank)* | Key for AI test generator |
 | `LLM_MODEL` | `claude-sonnet-4-20250514` | LLM model |
+| `LLM_MAX_TOKENS` | `16000` | `max_tokens` per generator request (one per OpenAPI tag). Blank = default; not a number = fails at startup |
+| `LLM_MAX_TESTS_PER_CLASS` | `8` | Most `@Test` methods the generator asks for per class; a class over the cap is still written, with a WARN |
 | `FHIR_BASE_URL` | `https://hapi.fhir.org/baseR4` | FHIR R4 server URL |
 
 ---

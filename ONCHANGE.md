@@ -200,3 +200,18 @@ First real run (`claude-sonnet-4-6`, live PetStore spec): 0 accepted, 1 rejected
 #### Result
 
 * On JDK 17, `./mvnw -q clean verify` passes. Shared 50 run (was 41), 0 failures. API 88 run, 0 failures, 0 skipped. No test calls the real Anthropic API.
+
+## 2026.11.22
+
+### Changed: AI TestGenerator max tokens is configurable, and tests per class are capped
+
+* `MAX_TOKENS = 8192` is gone. New `BaseConfig.LLM_MAX_TOKENS` (env/property `LLM_MAX_TOKENS`, default 16000) is sent as `max_tokens` on every request. The CI `generate-tests` job passes `${{ vars.LLM_MAX_TOKENS }}` (261493c), which is an empty string when the repo variable is not set, so an empty or blank value counts as unset and gives the default.
+* New `EnvConfig.getPositiveIntStrict(key, default)`: blank or missing gives the default; anything that is not a positive whole number throws `IllegalStateException("<KEY> must be a positive whole number, but was '<value>'")` when `BaseConfig` loads, so the generator stops at startup instead of quietly using the default (as `getInt` does).
+* `TestGeneratorRunner` logs `Using max_tokens=<n>` and `Max tests per class: <n>` once at startup.
+* New `BaseConfig.LLM_MAX_TESTS_PER_CLASS` (default 8, same rules). The prompt gains the requirement `Write at most N @Test methods. Choose the most valuable: one happy path per endpoint first, then the most important negative cases (not found, invalid input). Do not write near-duplicate tests.`
+* An accepted class with more than N `@Test` methods is still written, with WARN `<Class> has <count> @Test methods, more than the cap of <N> (LLM_MAX_TESTS_PER_CLASS); written anyway`. The INFO "written" line now gives the `@Test` count.
+* New constructor `TestGenerator(LlmClient, Path, JavaCompileCheck, int maxTokens, int maxTestsPerClass)`; the others read `BaseConfig`.
+* `LLM_MAX_TOKENS=16000` and `LLM_MAX_TESTS_PER_CLASS=8` added to `config/default.properties` and the README config table.
+* Not changed: the prompt still says "Cover: happy path, 404, 400, 401" and "boundary values for all numeric and string parameters", which pulls against the cap.
+* Tests: new `EnvConfigTest` (empty `LLM_MAX_TOKENS` gives 16000; blank/missing give the default; `" 12000 "` gives 12000; `16k` throws with the message above; 0 and -3 throw). `TestGeneratorTest`: every request carries the configured max tokens (12345); the prompt contains the cap rule with the configured number (5); a class with 4 tests and a cap of 3 is written and logs exactly that WARN; a class at the cap logs no WARN. No test calls the real API.
+* Result: on JDK 17, `./mvnw -q clean verify` passes. Shared 59 run (was 50), 0 failures. API 88 run, 0 failures, 0 skipped.

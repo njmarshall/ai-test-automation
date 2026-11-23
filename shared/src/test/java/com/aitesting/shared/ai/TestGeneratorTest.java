@@ -1,8 +1,14 @@
 package com.aitesting.shared.ai;
 
+import ch.qos.logback.classic.Level;
+import ch.qos.logback.classic.Logger;
+import ch.qos.logback.classic.spi.ILoggingEvent;
+import ch.qos.logback.core.read.ListAppender;
+import com.aitesting.shared.config.BaseConfig;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
+import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -163,7 +169,7 @@ class TestGeneratorTest {
         assertTrue(client.lastRequest.user().contains(SPEC), "spec text missing from prompt");
         assertTrue(client.lastRequest.user().contains("Package: " + PACKAGE),
                 "expected package missing from prompt");
-        assertEquals(TestGenerator.MAX_TOKENS, client.lastRequest.maxTokens());
+        assertEquals(BaseConfig.LLM_MAX_TOKENS, client.lastRequest.maxTokens());
     }
 
     @Test
@@ -324,5 +330,92 @@ class TestGeneratorTest {
         assertEquals(new GenerationResult(2, 1), result);
         assertEquals(List.of("PetApiGeneratedTests.java", "StoreApiGeneratedTests.java"), javaFiles());
         assertTrue(Files.exists(projectDir().resolve("llm-raw-response-user.txt")));
+    }
+
+    // ── Max tokens and tests-per-class cap ────────────────────────────────────
+
+    private TestGenerator generatorWith(FakeLlmClient client, int maxTokens, int maxTestsPerClass) {
+        return new TestGenerator(client, tempDir, new JavaCompileCheck(), maxTokens, maxTestsPerClass);
+    }
+
+    @Test
+    @DisplayName("the request carries the configured max tokens")
+    void request_carriesConfiguredMaxTokens() throws IOException {
+        FakeLlmClient client = new FakeLlmClient(reply("no code"));
+        generatorWith(client, 12_345, 8).generateFromSpecString(TAGGED_SPEC, PROJECT);
+
+        assertEquals(3, client.requests.size());
+        for (LlmRequest request : client.requests) {
+            assertEquals(12_345, request.maxTokens());
+        }
+    }
+
+    @Test
+    @DisplayName("the prompt contains the tests-per-class cap rule with the configured number")
+    void prompt_containsCapNumber() throws IOException {
+        FakeLlmClient client = new FakeLlmClient(reply("no code"));
+        generatorWith(client, 16_000, 5).generateFromSpecString(SPEC, PROJECT);
+
+        String prompt = client.lastRequest.user();
+        assertTrue(prompt.contains("Write at most 5 @Test methods. Choose the most valuable: "
+                + "one happy path per endpoint first, then the most important negative cases "
+                + "(not found, invalid input). Do not write near-duplicate tests."), prompt);
+    }
+
+    private static String classWithTests(String className, int tests) {
+        StringBuilder methods = new StringBuilder();
+        for (int i = 0; i < tests; i++) {
+            methods.append("    @Test\n    public void t").append(i).append("() {}\n");
+        }
+        return """
+            package %s;
+
+            import org.testng.annotations.Test;
+
+            public class %s {
+            %s}
+            """.formatted(PACKAGE, className, methods);
+    }
+
+    @Test
+    @DisplayName("a class over the cap is still written and logs a WARN with the count")
+    void overCap_isWritten_andLogsWarn() throws IOException {
+        Logger generatorLog = (Logger) LoggerFactory.getLogger(TestGenerator.class);
+        ListAppender<ILoggingEvent> logs = new ListAppender<>();
+        logs.start();
+        generatorLog.addAppender(logs);
+        try {
+            FakeLlmClient client = new FakeLlmClient(reply(fenced(classWithTests("PetTests", 4))));
+            GenerationResult result = generatorWith(client, 16_000, 3).generateFromSpecString(SPEC, PROJECT);
+
+            assertEquals(new GenerationResult(1, 0), result);
+            assertEquals(List.of("PetTests.java"), javaFiles());
+            List<String> warns = logs.list.stream()
+                    .filter(e -> e.getLevel() == Level.WARN)
+                    .map(ILoggingEvent::getFormattedMessage)
+                    .toList();
+            assertEquals(List.of("PetTests has 4 @Test methods, more than the cap of 3 "
+                    + "(LLM_MAX_TESTS_PER_CLASS); written anyway"), warns);
+        } finally {
+            generatorLog.detachAppender(logs);
+        }
+    }
+
+    @Test
+    @DisplayName("a class at the cap logs no WARN")
+    void atCap_logsNoWarn() throws IOException {
+        Logger generatorLog = (Logger) LoggerFactory.getLogger(TestGenerator.class);
+        ListAppender<ILoggingEvent> logs = new ListAppender<>();
+        logs.start();
+        generatorLog.addAppender(logs);
+        try {
+            FakeLlmClient client = new FakeLlmClient(reply(fenced(classWithTests("PetTests", 3))));
+            generatorWith(client, 16_000, 3).generateFromSpecString(SPEC, PROJECT);
+
+            assertEquals(List.of("PetTests.java"), javaFiles());
+            assertTrue(logs.list.stream().noneMatch(e -> e.getLevel() == Level.WARN));
+        } finally {
+            generatorLog.detachAppender(logs);
+        }
     }
 }

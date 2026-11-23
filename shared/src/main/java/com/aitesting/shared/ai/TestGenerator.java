@@ -47,7 +47,6 @@ public class TestGenerator {
 
     private static final Logger log = LoggerFactory.getLogger(TestGenerator.class);
 
-    static final int MAX_TOKENS = 8192;
     static final String RAW_RESPONSE_FILE = "llm-raw-response.txt";
 
     /** Tells the model to stay within {@link FrameworkApiSummary}. */
@@ -60,6 +59,8 @@ public class TestGenerator {
     private final LlmClient client;
     private final Path outputBaseDir;
     private final JavaCompileCheck compileCheck;
+    private final int maxTokens;
+    private final int maxTestsPerClass;
 
     /** Production constructor: real Anthropic client, output folder from {@link BaseConfig#AI_OUTPUT_DIR}. */
     public TestGenerator() {
@@ -85,9 +86,34 @@ public class TestGenerator {
      * @param compileCheck  compiles each block before it is written
      */
     public TestGenerator(LlmClient client, Path outputBaseDir, JavaCompileCheck compileCheck) {
+        this(client, outputBaseDir, compileCheck, BaseConfig.LLM_MAX_TOKENS, BaseConfig.LLM_MAX_TESTS_PER_CLASS);
+    }
+
+    /**
+     * @param client           model client
+     * @param outputBaseDir    folder that holds one sub-folder per project
+     * @param compileCheck     compiles each block before it is written
+     * @param maxTokens        max_tokens sent with each request ({@link BaseConfig#LLM_MAX_TOKENS})
+     * @param maxTestsPerClass most @Test methods the prompt asks for per class ({@link BaseConfig#LLM_MAX_TESTS_PER_CLASS})
+     */
+    public TestGenerator(LlmClient client, Path outputBaseDir, JavaCompileCheck compileCheck,
+                         int maxTokens, int maxTestsPerClass) {
         this.client = Objects.requireNonNull(client, "client");
         this.outputBaseDir = Objects.requireNonNull(outputBaseDir, "outputBaseDir");
         this.compileCheck = Objects.requireNonNull(compileCheck, "compileCheck");
+        if (maxTokens <= 0) throw new IllegalArgumentException("maxTokens must be positive: " + maxTokens);
+        if (maxTestsPerClass <= 0) {
+            throw new IllegalArgumentException("maxTestsPerClass must be positive: " + maxTestsPerClass);
+        }
+        this.maxTokens = maxTokens;
+        this.maxTestsPerClass = maxTestsPerClass;
+    }
+
+    /** Prompt rule that caps the number of tests per class. */
+    static String testCapRule(int maxTestsPerClass) {
+        return ("Write at most %d @Test methods. Choose the most valuable: one happy path per endpoint first, "
+                + "then the most important negative cases (not found, invalid input). "
+                + "Do not write near-duplicate tests.").formatted(maxTestsPerClass);
     }
 
     /** The package generated classes must declare; matches the folder they are written to. */
@@ -196,6 +222,7 @@ public class TestGenerator {
             - Cover boundary values for all numeric and string parameters
             - Add @Description and @Severity Allure annotations on each test
             - Add clear Javadoc explaining what each test validates
+            - %s
             
             Output ONLY valid Java source code blocks.
             Each class must start with: ```java and end with ```
@@ -208,14 +235,14 @@ public class TestGenerator {
             
             OpenAPI Specification:
             %s
-            """.formatted(task, expectedPackage(projectName), classes,
+            """.formatted(task, expectedPackage(projectName), testCapRule(maxTestsPerClass), classes,
                     FrameworkApiSummary.build(), API_RULE, specContent);
     }
 
     // ── LLM call ──────────────────────────────────────────────────────────────
 
     private LlmResponse callLlm(String prompt) throws IOException {
-        LlmRequest request = new LlmRequest(null, prompt, BaseConfig.LLM_MODEL, MAX_TOKENS);
+        LlmRequest request = new LlmRequest(null, prompt, BaseConfig.LLM_MODEL, maxTokens);
         try {
             return client.complete(request);
         } catch (UncheckedIOException e) {
@@ -266,7 +293,12 @@ public class TestGenerator {
 
             Path outputFile = outputDir.resolve(className + ".java");
             Files.writeString(outputFile, javaCode);
-            log.info("Generated test class written: {}", outputFile);
+            int testCount = countTestMethods(javaCode);
+            log.info("Generated test class written: {} ({} @Test method(s))", outputFile, testCount);
+            if (testCount > maxTestsPerClass) {
+                log.warn("{} has {} @Test methods, more than the cap of {} (LLM_MAX_TESTS_PER_CLASS); written anyway",
+                        className, testCount, maxTestsPerClass);
+            }
             accepted++;
         }
 
@@ -295,6 +327,11 @@ public class TestGenerator {
             return "does not compile: line " + first.getLineNumber() + ": " + message;
         }
         return null;
+    }
+
+    /** Counts @Test annotations in the source. */
+    static int countTestMethods(String javaSource) {
+        return (int) TEST_ANNOTATION.matcher(javaSource).results().count();
     }
 
     /** Returns the first line starting with "package ", trimmed, or null. */

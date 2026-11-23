@@ -77,6 +77,35 @@ public class EnvConfig {
     }
 
     /**
+     * Returns a positive integer setting. Unlike {@link #getInt}, a bad value is not
+     * silently replaced: an empty or blank value counts as unset and gives the default,
+     * but anything else that is not a positive whole number throws.
+     *
+     * @throws IllegalStateException if the value is set but is not a positive integer
+     */
+    public static int getPositiveIntStrict(String key, int defaultValue) {
+        return parsePositiveInt(key, get(key), defaultValue);
+    }
+
+    /** The parsing rule behind {@link #getPositiveIntStrict}; package-private so it can be unit tested. */
+    static int parsePositiveInt(String key, String rawValue, int defaultValue) {
+        if (rawValue == null || rawValue.isBlank()) return defaultValue;
+        String value = rawValue.trim();
+        int parsed;
+        try {
+            parsed = Integer.parseInt(value);
+        } catch (NumberFormatException e) {
+            throw new IllegalStateException(
+                    key + " must be a positive whole number, but was '" + value + "'");
+        }
+        if (parsed <= 0) {
+            throw new IllegalStateException(
+                    key + " must be a positive whole number, but was '" + value + "'");
+        }
+        return parsed;
+    }
+
+    /**
      * Returns boolean value with a fallback default.
      */
     public static boolean getBoolean(String key, boolean defaultValue) {

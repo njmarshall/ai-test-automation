@@ -89,6 +89,8 @@ public class TestGeneratorRunner {
         log.info("Project name : {}", projectName);
         log.info("LLM model    : {}", BaseConfig.LLM_MODEL);
         log.info("Output dir   : {}", BaseConfig.AI_OUTPUT_DIR);
+        log.info("Using max_tokens={}", BaseConfig.LLM_MAX_TOKENS);
+        log.info("Max tests per class: {}", BaseConfig.LLM_MAX_TESTS_PER_CLASS);
 
         try {
             String specContent = loadSpec(specSource);
