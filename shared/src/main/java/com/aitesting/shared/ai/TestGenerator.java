@@ -16,6 +16,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 /**
  * TestGenerator reads an OpenAPI/Swagger spec and uses an LLM to generate
@@ -52,6 +53,31 @@ public class TestGenerator {
     /** Tells the model to stay within {@link FrameworkApiSummary}. */
     static final String API_RULE = "Use only these methods. Do not invent methods. "
             + "ResponseValidator is fluent: ResponseValidator.from(response).statusCode(200).hasField(...)";
+
+    /** Setup must not hide a failed create behind a fixed id. */
+    static final String SETUP_RULE = "Never fall back to a fixed id when setup fails. Fail in setup instead.";
+
+    /** Live servers are slower than the strict default SLA. */
+    static final String SLA_RULE = "Use BaseConfig.LIVE_API_SLA_MS for live servers: "
+            + "withinSla(BaseConfig.LIVE_API_SLA_MS), import com.aitesting.shared.config.BaseConfig. "
+            + "Do not call withinSla() with no argument.";
+
+    /** Negative tests may only expect codes the spec lists for that operation. */
+    static final String DOCUMENTED_STATUS_RULE = "Only assert a negative status code that the OpenAPI spec "
+            + "documents for that operation. Do not guess.";
+
+    /** From the first run: extract("id") gave an Integer that was cast to long (ClassCastException in setup). */
+    static final String NUMERIC_EXTRACT_RULE = "To read a numeric id use response.jsonPath().getLong(\"id\"). "
+            + "Do not assign ResponseValidator.extract(...) to a long or Long; JSON numbers can come back as Integer.";
+
+    /** From the first run: GET right after DELETE on the live PetStore still returned 200. */
+    static final String READ_AFTER_WRITE_RULE = "Do not assert that a read made right after a create, update "
+            + "or delete already shows the change; the live server may not be consistent yet. "
+            + "Assert on the response of the write itself.";
+
+    /** Rules added after running the first generated tests against the live PetStore, in prompt order. */
+    static final List<String> LIVE_RUN_RULES = List.of(
+            SETUP_RULE, SLA_RULE, DOCUMENTED_STATUS_RULE, NUMERIC_EXTRACT_RULE, READ_AFTER_WRITE_RULE);
 
     private static final Pattern TEST_ANNOTATION = Pattern.compile("@Test\\b");
     private static final Pattern JAVA_IDENTIFIER = Pattern.compile("[A-Za-z_$][A-Za-z0-9_$]*");
@@ -218,11 +244,10 @@ public class TestGenerator {
             - Use TestDataFactory for test data: com.aitesting.shared.dataprovider.TestDataFactory
             - Use AllureHelper for reporting: com.aitesting.shared.reporting.AllureHelper
             - Package: %s
-            - Cover: happy path (200/201), not found (404), bad request (400), unauthorized (401)
-            - Cover boundary values for all numeric and string parameters
             - Add @Description and @Severity Allure annotations on each test
             - Add clear Javadoc explaining what each test validates
             - %s
+            %s
             
             Output ONLY valid Java source code blocks.
             Each class must start with: ```java and end with ```
@@ -235,7 +260,8 @@ public class TestGenerator {
             
             OpenAPI Specification:
             %s
-            """.formatted(task, expectedPackage(projectName), testCapRule(maxTestsPerClass), classes,
+            """.formatted(task, expectedPackage(projectName), testCapRule(maxTestsPerClass),
+                    LIVE_RUN_RULES.stream().map(r -> "- " + r).collect(Collectors.joining("\n")), classes,
                     FrameworkApiSummary.build(), API_RULE, specContent);
     }
 

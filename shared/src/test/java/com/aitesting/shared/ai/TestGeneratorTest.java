@@ -418,4 +418,63 @@ class TestGeneratorTest {
             generatorLog.detachAppender(logs);
         }
     }
+
+    // ── Rules from the first run of the generated tests ───────────────────────
+
+    private String promptFor(String spec) throws IOException {
+        FakeLlmClient client = new FakeLlmClient(reply("no code"));
+        generatorWith(client, 16_000, 8).generateFromSpecString(spec, PROJECT);
+        return client.lastRequest.user();
+    }
+
+    @Test
+    @DisplayName("the prompt forbids falling back to a fixed id when setup fails")
+    void prompt_containsSetupRule() throws IOException {
+        assertTrue(promptFor(SPEC).contains(
+                "Never fall back to a fixed id when setup fails. Fail in setup instead."));
+    }
+
+    @Test
+    @DisplayName("the prompt asks for BaseConfig.LIVE_API_SLA_MS on live servers")
+    void prompt_containsLiveSlaRule() throws IOException {
+        String prompt = promptFor(SPEC);
+        assertTrue(prompt.contains("Use BaseConfig.LIVE_API_SLA_MS for live servers"), prompt);
+        assertTrue(prompt.contains("withinSla(BaseConfig.LIVE_API_SLA_MS)"), prompt);
+    }
+
+    @Test
+    @DisplayName("the prompt only allows negative status codes the spec documents")
+    void prompt_containsDocumentedStatusRule() throws IOException {
+        assertTrue(promptFor(SPEC).contains("Only assert a negative status code that the OpenAPI spec "
+                + "documents for that operation. Do not guess."));
+    }
+
+    @Test
+    @DisplayName("the prompt covers numeric ids and read-after-write, the other first-run failures")
+    void prompt_containsExtractAndReadAfterWriteRules() throws IOException {
+        String prompt = promptFor(SPEC);
+        assertTrue(prompt.contains("response.jsonPath().getLong(\"id\")"), prompt);
+        assertTrue(prompt.contains("Do not assert that a read made right after a create, update or delete "
+                + "already shows the change"), prompt);
+    }
+
+    @Test
+    @DisplayName("the prompt no longer asks for 404/400/401 or boundary values on every parameter")
+    void prompt_dropsCoverEverythingLines() throws IOException {
+        for (String prompt : List.of(promptFor(SPEC), promptFor(TAGGED_SPEC))) {
+            assertFalse(prompt.contains("unauthorized (401)"), "401 line still in prompt");
+            assertFalse(prompt.contains("bad request (400)"), "400 line still in prompt");
+            assertFalse(prompt.contains("Cover boundary values"), "boundary-values line still in prompt");
+            assertFalse(prompt.contains("Cover:"), "Cover: line still in prompt");
+        }
+    }
+
+    @Test
+    @DisplayName("every first-run rule is in the per-tag prompt too")
+    void taggedPrompt_containsAllRules() throws IOException {
+        String prompt = promptFor(TAGGED_SPEC);
+        for (String rule : TestGenerator.LIVE_RUN_RULES) {
+            assertTrue(prompt.contains("- " + rule), "missing rule: " + rule);
+        }
+    }
 }

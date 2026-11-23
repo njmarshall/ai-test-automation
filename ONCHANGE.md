@@ -215,3 +215,19 @@ First real run (`claude-sonnet-4-6`, live PetStore spec): 0 accepted, 1 rejected
 * Not changed: the prompt still says "Cover: happy path, 404, 400, 401" and "boundary values for all numeric and string parameters", which pulls against the cap.
 * Tests: new `EnvConfigTest` (empty `LLM_MAX_TOKENS` gives 16000; blank/missing give the default; `" 12000 "` gives 12000; `16k` throws with the message above; 0 and -3 throw). `TestGeneratorTest`: every request carries the configured max tokens (12345); the prompt contains the cap rule with the configured number (5); a class with 4 tests and a cap of 3 is written and logs exactly that WARN; a class at the cap logs no WARN. No test calls the real API.
 * Result: on JDK 17, `./mvnw -q clean verify` passes. Shared 59 run (was 50), 0 failures. API 88 run, 0 failures, 0 skipped.
+
+### Ran: first AI-generated PetStore tests against the live server
+
+* Command: the pom pins `suiteXmlFiles` to `testng.xml`, so `-Dtest='com.aitesting.api.aigenerated.petstore.*'` is ignored (it ran the normal 88 tests). Used a throwaway suite listing the three generated classes, passed as `-Dtestng.suite=<path>`.
+* Result: 24 tests, 12 passed, 5 failed (one of them Store `setUp`), 9 skipped (8 Store tests plus `tearDown`, skipped because `setUp` failed).
+* Pet 6/8: `testGetPetById_InvalidId` expected 400, got 404; `testFindPetsByStatus_InvalidStatus` expected 400, got 200. The spec documents 400 for both operations, but the live PetStore does not return it.
+* Store 0/8: `setUp` threw `ClassCastException: Integer cannot be cast to Long`. It assigned `ResponseValidator.extract("id")` (generic `<V> V`) to a `long` field; small JSON numbers come back as Integer. The test was wrong.
+* User 6/8: `testLoginUser_InvalidCredentials_BadRequest` (empty password) expected 400, got 200; the spec documents 400, the live server logs anyone in. `testDeleteUser_HappyPath`: DELETE was 2xx, then a GET straight after it expected 404 and got 200, because the live server is not consistent right after a write. The test's assumption was wrong.
+
+### Changed: AI TestGenerator prompt tightened from that run
+
+* Removed `Cover: happy path (200/201), not found (404), bad request (400), unauthorized (401)` and `Cover boundary values for all numeric and string parameters`, which pulled against the tests-per-class cap.
+* Added, as `TestGenerator.LIVE_RUN_RULES`: `Never fall back to a fixed id when setup fails. Fail in setup instead.`; `Use BaseConfig.LIVE_API_SLA_MS for live servers` (with the exact `withinSla(BaseConfig.LIVE_API_SLA_MS)` call and import); `Only assert a negative status code that the OpenAPI spec documents for that operation. Do not guess.`; read numeric ids with `response.jsonPath().getLong("id")`, not `extract(...)` into a long; do not assert that a read right after a write already shows the change.
+* Known gap: 3 of the 5 failures were status codes the spec does document (400) that the live PetStore does not return, so the documented-status rule does not stop them.
+* Tests (`TestGeneratorTest`, fake client): each new rule is in the prompt; the per-tag prompt has every rule; neither prompt has the removed Cover lines.
+* Result: on JDK 17, `./mvnw -q clean verify` passes. Shared 65 run (was 59), 0 failures. API 88 run, 0 failures, 0 skipped.
