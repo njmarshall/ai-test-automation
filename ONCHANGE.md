@@ -231,3 +231,30 @@ First real run (`claude-sonnet-4-6`, live PetStore spec): 0 accepted, 1 rejected
 * Known gap: 3 of the 5 failures were status codes the spec does document (400) that the live PetStore does not return, so the documented-status rule does not stop them.
 * Tests (`TestGeneratorTest`, fake client): each new rule is in the prompt; the per-tag prompt has every rule; neither prompt has the removed Cover lines.
 * Result: on JDK 17, `./mvnw -q clean verify` passes. Shared 65 run (was 59), 0 failures. API 88 run, 0 failures, 0 skipped.
+
+## 2026.11.24
+
+### Ran: AI-generated PetStore tests with the tightened prompt (451ecf1)
+
+* Generate: `LLM_MAX_TOKENS` unset, so the default 16000 was used (logged `Using max_tokens=16000`, `Max tests per class: 8`). Same command as last time: `mvn exec:java -pl shared -Dexec.classpathScope=compile -Dexec.mainClass=com.aitesting.shared.ai.TestGeneratorRunner -Dexec.args="https://petstore.swagger.io/v2/swagger.json petstore"` with `LLM_MODEL=claude-sonnet-4-6`, after `install -pl shared -am -DskipTests`. Result: 3 accepted, 0 rejected, 8 `@Test` methods per class, no cap WARN.
+* Run: throwaway suite listing the three classes, `./mvnw -pl api -am test -Dtestng.suite=<path>`, live PetStore, JDK 17. No Surefire reruns were reported.
+* Result: 24 tests, 18 passed, 6 failed, 0 skipped. All three `@BeforeClass` setups passed.
+* Pet 5/8:
+  * `testFindPetsByStatus_invalidStatus`: expected 400, got 200. Category B (spec documents 400).
+  * `testGetPetById_notFound`: expected 404, got 200. Category A. It uses the fixed `TestDataFactory.nonExistentId()` (999999999), which exists on the public PetStore (a direct GET returns 200). Same bug fixed by hand on 2026.11.19.
+  * `testUpdatePetWithForm_happyPath`: expected 2xx, got 415. Category A. The operation consumes `application/x-www-form-urlencoded`, but the test posts a Map, which `ApiClient` sends as JSON.
+* Store 6/8:
+  * `placeOrder_withEmptyBody_shouldReturn400`: expected 400, got 200. Category B (spec documents 400 Invalid Order).
+  * `getOrderById_withInvalidId_shouldReturn400` (id 0): expected 400, got 404. Category B (spec documents 400 Invalid ID supplied).
+* User 7/8:
+  * `testLoginUser_invalidCredentials_returns400` (empty username and password): expected 400, got 200. Category B, same as last run.
+* Categories: A (test bug) 2, B (live PetStore breaks its own spec) 4, C (timing or flake) 0.
+* Pass rate: 18/24 = 75% (last run 12/24 = 50%). Correct rate, (passed + B) / total: 22/24 = 92% (last run (12 + 3) / 24 = 62.5%; last run's 5 failures were 3 B, 1 A (Store `setUp` ClassCastException, which also caused the 9 skips) and 1 C (read right after delete)).
+
+### Checked: the generated files
+
+* Fixed ids: no setup falls back to a fixed id (every `@BeforeClass` asserts and fails instead). Fixed ids are still used as "not found" ids: `PetApiGeneratedTests.testGetPetById_notFound` and `StoreApiGeneratedTests.deleteOrder_withNonExistentId_shouldReturn404` use `TestDataFactory.nonExistentId()` (999999999); `StoreApiGeneratedTests.getOrderById_withNonExistentId_shouldReturn404` hardcodes `9L` (and computes `nonExistentId()` without using it). The Pet one failed this run; the two Store ones passed but can fail whenever someone creates those ids.
+* More than one status accepted: `StoreApiGeneratedTests.getOrderById_withNonExistentId_shouldReturn404` asserts `status == 404 || status == 400`, then `is4xx()`. `UserApiGeneratedTests.testLogoutUser_happyPath` asserts only `is2xx()` on a GET. `getInventory_*` and `getOrderById_withValidId_*` call `is2xx()` on a GET after `statusCode(200)`, which is redundant, not wider. Non-GET happy paths (POST, PUT, DELETE in all three classes, plus the Pet delete test's and User `setUpUser`'s `>= 200 && < 300` checks) assert 2xx only.
+* Tests with no assertion: none. Every `@Test` method asserts a status. Only the `@AfterClass` cleanups assert nothing, by design.
+* Also seen: the classes share state through `@BeforeClass` fields and use `priority` and `dependsOnMethods` (Pet 2, Store 2 plus `priority` on all 8, User `priority` on all 8). The hand-written classes dropped both on 2026.11.18 to 2026.11.20. The prompt does not forbid them.
+* Generated files: not edited, not committed (`**/aigenerated/` is gitignored).
