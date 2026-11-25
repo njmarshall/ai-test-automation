@@ -1,0 +1,14 @@
+=== GET /store/order/169479 ===
+Status: 200
+Time: 297ms
+Content-Type: application/json
+
+Body:
+{
+    "id": 169479,
+    "petId": 966532,
+    "quantity": 3,
+    "shipDate": "2025-01-01T00:00:00.000+0000",
+    "status": "placed",
+    "complete": false
+}
