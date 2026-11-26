@@ -277,3 +277,32 @@ First real run (`claude-sonnet-4-6`, live PetStore spec): 0 accepted, 1 rejected
 * Tests (`TestGeneratorTest`, fake client, no real API): the prompt contains the four rules (and `taggedPrompt_containsAllRules` covers them through `LIVE_RUN_RULES`); one rejection test per check, each asserting no file was written and the exact WARN line; `s == null || n == 2` is still accepted.
 * Mutation checks, one at a time and restored afterwards: with the `nonExistentId(` check disabled only `nonExistentId_isRejected` failed; with the order check disabled only `orderDependence_isRejected` failed; with the `||` check disabled only `multiStatusAssert_isRejected` failed; with `FORM_PARAMS_RULE` taken out of `LIVE_RUN_RULES` `prompt_containsSecondRunRules` failed.
 * Result: on JDK 17, `./mvnw -q clean verify` passes. Shared 70 run (was 65), 0 failures. API 88 run, 0 failures, 0 skipped.
+
+### Ran: AI-generated PetStore tests with the output checks (3ed8ec7)
+
+* Generate: same command as 2026.11.24 (`install -pl shared -am -DskipTests`, then `mvn exec:java -pl shared -Dexec.classpathScope=compile -Dexec.mainClass=com.aitesting.shared.ai.TestGeneratorRunner -Dexec.args="https://petstore.swagger.io/v2/swagger.json petstore"`, `LLM_MODEL=claude-sonnet-4-6`). One difference: `LLM_MAX_TOKENS=12000` was set in the shell, so it logged `Using max_tokens=12000` (last run 16000). No reply hit `max_tokens`. `Max tests per class: 8`.
+* Generation result: 3 accepted, 0 rejected, 8 `@Test` methods per class, no cap WARN. No class was rejected by the new checks.
+* Run: throwaway suite listing the three classes, `./mvnw -pl api -am test -Dtestng.suite=<path>`, live PetStore, JDK 17. No Surefire reruns were reported.
+* Result: 24 tests, 21 passed, 3 failed, 0 skipped. All `@BeforeClass` setups passed.
+* Pet 8/8. `testUpdatePetWithForm_happyPath` now sends `contentType("application/x-www-form-urlencoded").formParams(...)` and passes (was 415). `testGetPetById_notFound_afterDelete` creates, deletes, then asserts 404, and passes (was the fixed-id failure).
+* Store 6/8:
+  * `testGetOrderByIdInvalidIdReturns400` (id 0): expected 400, got 404. Category B (spec documents 400 Invalid ID supplied). Same as last run.
+  * `testPlaceOrderInvalidBodyReturns400` (quantity -999, status `INVALID_STATUS`): expected 400, got 200. Category B (spec documents 400 Invalid Order). Same as last run.
+* User 7/8:
+  * `testLoginUser_emptyPassword_returns400`: expected 400, got 200. Category B, same as the last two runs.
+* Categories: A (test bug) 0, B (live PetStore breaks its own spec) 3, C (timing or flake) 0.
+* Pass rate: 21/24 = 87.5% (last run 18/24 = 75%, first run 12/24 = 50%). Correct rate, (passed + B) / total: 24/24 = 100% (last run 22/24 = 92%, first run 62.5%).
+
+| Run | Passed | Failed | Skipped | A | B | C | Pass rate | Correct rate |
+|---|---|---|---|---|---|---|---|---|
+| 2026.11.22 | 12 | 5 | 9 | 1 | 3 | 1 | 50% | 62.5% |
+| 2026.11.24 | 18 | 6 | 0 | 2 | 4 | 0 | 75% | 92% |
+| 2026.11.25 | 21 | 3 | 0 | 0 | 3 | 0 | 87.5% | 100% |
+
+### Checked: the generated files
+
+* Fixed ids: none used for not-found. No `nonExistentId()` anywhere. All four not-found tests create their own resource and delete it first: `PetApiGeneratedTests.testGetPetById_notFound_afterDelete` and `UserApiGeneratedTests.testGetUser_afterDelete_returns404` GET after delete; `StoreApiGeneratedTests.testGetOrderByIdNotFoundReturns404` GETs after delete; `testDeleteOrderNotFoundReturns404` deletes twice. The only literal id is `0L` in `testGetOrderByIdInvalidIdReturns400`, which is an invalid-id test, not a not-found test. No setup falls back to a fixed id. Pet's `@BeforeClass` seed pet is used only by its own `@AfterClass` cleanup.
+* More than one status accepted: no `||` between status codes. Every GET asserts one exact code. `is2xx()` appears only on writes (Pet DELETE; Store DELETE; User POST, PUT, DELETE, POST createWithList). Setup steps inside tests check `>= 200 && < 300` (Pet and Store deletes before a not-found check) or `< 300` (User creates and deletes), which is a 2xx-only check on a write.
+* Tests with no assertion: none. All 24 `@Test` methods assert a status. Only the `@BeforeClass` / `@AfterClass` methods in Store and User assert nothing (they only log notes), and Pet's `@AfterClass` cleanup is best effort.
+* Order dependence: no `priority` or `dependsOnMethods` in any class (last run: Pet 2, Store 2 plus `priority` on all 8, User `priority` on all 8). There are no shared test-data fields between tests.
+* Generated files: not edited, not committed (`**/aigenerated/` is gitignored).
