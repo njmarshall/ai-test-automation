@@ -306,3 +306,13 @@ First real run (`claude-sonnet-4-6`, live PetStore spec): 0 accepted, 1 rejected
 * Tests with no assertion: none. All 24 `@Test` methods assert a status. Only the `@BeforeClass` / `@AfterClass` methods in Store and User assert nothing (they only log notes), and Pet's `@AfterClass` cleanup is best effort.
 * Order dependence: no `priority` or `dependsOnMethods` in any class (last run: Pet 2, Store 2 plus `priority` on all 8, User `priority` on all 8). There are no shared test-data fields between tests.
 * Generated files: not edited, not committed (`**/aigenerated/` is gitignored).
+
+## 2026.11.26
+
+### Upgraded: RestAssured 5.4.0 to 6.3.0
+
+* Change: in the root `pom.xml`, `restassured.version` and `json-schema-validator.version` both go from 5.4.0 to 6.3.0, in one commit on `deps/rest-assured-6`. This replaces Dependabot #7 (json-schema-validator) and #8 (rest-assured), which each bumped only one of the two.
+* Resolved: `dependency:tree` shows `rest-assured`, `json-path`, `xml-path`, `rest-assured-common` and `json-schema-validator` all at 6.3.0.
+* Code changes: none. Everything compiled and passed with no fixes, so no RestAssured 6 behavior change affected this project.
+* Result: on JDK 17, `./mvnw -q clean verify` passes. Shared 70 run, 0 failures, 0 skipped. API 88 run, 0 failures, 0 skipped.
+* Live suite (`-Dtestng.suite=src/test/resources/testng-live.xml`, live HAPI FHIR): 15 run, 0 failures, 0 skipped.
