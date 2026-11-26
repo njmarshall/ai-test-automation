@@ -43,6 +43,9 @@ import java.util.stream.Collectors;
  *
  * Every accepted block must also compile ({@link JavaCompileCheck}); the
  * check can be replaced through {@link #TestGenerator(LlmClient, Path, JavaCompileCheck)}.
+ * Blocks that use patterns removed by hand from earlier generated tests are
+ * rejected before compiling ({@link #forbiddenPatternReason(String)}):
+ * nonExistentId(), dependsOnMethods / priority =, and status codes joined by ||.
  */
 public class TestGenerator {
 
@@ -75,9 +78,33 @@ public class TestGenerator {
             + "or delete already shows the change; the live server may not be consistent yet. "
             + "Assert on the response of the write itself.";
 
-    /** Rules added after running the first generated tests against the live PetStore, in prompt order. */
+    /** From the second run: nonExistentId() (999999999) exists on the public PetStore, so GET returned 200. */
+    static final String NOT_FOUND_RULE = "For a not-found test, create the resource, delete it, then GET it "
+            + "and assert 404. Never use TestDataFactory.nonExistentId() or a hardcoded id.";
+
+    /** From the second run: "status == 404 || status == 400" can pass for the wrong reason. */
+    static final String ONE_STATUS_RULE = "Assert exactly one status code per response. "
+            + "Never use || between status codes.";
+
+    /** From the second run: generated classes chained tests with priority and dependsOnMethods. */
+    static final String INDEPENDENT_TESTS_RULE = "Do not use priority or dependsOnMethods. "
+            + "Each test creates its own data.";
+
+    /** From the second run: updatePetWithForm sent a Map as JSON and got 415. */
+    static final String FORM_PARAMS_RULE = "If an operation consumes application/x-www-form-urlencoded, "
+            + "send it with ApiClient.given().contentType(...).formParams(...).";
+
+    /** Rules added after running the generated tests against the live PetStore, in prompt order. */
     static final List<String> LIVE_RUN_RULES = List.of(
-            SETUP_RULE, SLA_RULE, DOCUMENTED_STATUS_RULE, NUMERIC_EXTRACT_RULE, READ_AFTER_WRITE_RULE);
+            SETUP_RULE, SLA_RULE, DOCUMENTED_STATUS_RULE, NUMERIC_EXTRACT_RULE, READ_AFTER_WRITE_RULE,
+            NOT_FOUND_RULE, ONE_STATUS_RULE, INDEPENDENT_TESTS_RULE, FORM_PARAMS_RULE);
+
+    /** Order dependence that the hand-written classes dropped on 2026.11.18 to 2026.11.20. */
+    private static final Pattern ORDER_DEPENDENCE = Pattern.compile("\\bdependsOnMethods\\b|\\bpriority\\s*=");
+
+    /** Two status codes joined by ||, either side: "== 404 ||" or "|| status == 400". */
+    private static final Pattern MULTI_STATUS = Pattern.compile(
+            "[=!]=\\s*[1-5]\\d\\d\\b\\s*\\)?\\s*\\|\\||\\|\\|\\s*\\(?\\s*[\\w.()]+\\s*[=!]=\\s*[1-5]\\d\\d\\b");
 
     private static final Pattern TEST_ANNOTATION = Pattern.compile("@Test\\b");
     private static final Pattern JAVA_IDENTIFIER = Pattern.compile("[A-Za-z_$][A-Za-z0-9_$]*");
@@ -345,12 +372,32 @@ public class TestGenerator {
         if (className == null) {
             return "no public class name found";
         }
+        String patternReason = forbiddenPatternReason(javaCode);
+        if (patternReason != null) {
+            return patternReason;
+        }
         List<Diagnostic<? extends JavaFileObject>> errors = compileCheck.errors(className, javaCode);
         if (!errors.isEmpty()) {
             Diagnostic<? extends JavaFileObject> first = errors.get(0);
             // javac messages span several lines ("cannot find symbol\n  symbol: ..."); keep them on one log line
             String message = first.getMessage(Locale.ROOT).strip().replaceAll("\\s*\\R\\s*", "; ");
             return "does not compile: line " + first.getLineNumber() + ": " + message;
+        }
+        return null;
+    }
+
+    /** Returns why the source uses a pattern we removed by hand from the generated tests, or null. */
+    static String forbiddenPatternReason(String javaSource) {
+        if (javaSource.contains("nonExistentId(")) {
+            return "uses nonExistentId() (a fixed id that may exist on the server)";
+        }
+        var order = ORDER_DEPENDENCE.matcher(javaSource);
+        if (order.find()) {
+            return "uses " + order.group().replaceAll("\\s+", " ") + " (tests must not depend on order)";
+        }
+        var multi = MULTI_STATUS.matcher(javaSource);
+        if (multi.find()) {
+            return "accepts more than one status code ('" + multi.group().strip() + "')";
         }
         return null;
     }

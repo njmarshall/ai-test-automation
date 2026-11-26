@@ -477,4 +477,101 @@ class TestGeneratorTest {
             assertTrue(prompt.contains("- " + rule), "missing rule: " + rule);
         }
     }
+
+    // ── Rules and output checks from the second run (2026.11.24) ──────────────
+
+    @Test
+    @DisplayName("the prompt has the not-found, one-status, independent-tests and form-params rules")
+    void prompt_containsSecondRunRules() throws IOException {
+        String prompt = promptFor(SPEC);
+        assertTrue(prompt.contains("For a not-found test, create the resource, delete it, then GET it and "
+                + "assert 404. Never use TestDataFactory.nonExistentId() or a hardcoded id."), prompt);
+        assertTrue(prompt.contains("Assert exactly one status code per response. "
+                + "Never use || between status codes."), prompt);
+        assertTrue(prompt.contains("Do not use priority or dependsOnMethods. Each test creates its own data."),
+                prompt);
+        assertTrue(prompt.contains("If an operation consumes application/x-www-form-urlencoded, send it with "
+                + "ApiClient.given().contentType(...).formParams(...)."), prompt);
+    }
+
+    /** A compiling class whose single test method has the given body and @Test attributes. */
+    private static String classWith(String testAttributes, String body) {
+        return """
+            package %s;
+
+            import org.testng.annotations.Test;
+            import com.aitesting.shared.dataprovider.TestDataFactory;
+
+            public class PetTests {
+                @Test%s
+                public void works() {
+                    %s
+                }
+            }
+            """.formatted(PACKAGE, testAttributes, body);
+    }
+
+    /** Generates from the block and returns the WARN lines logged. */
+    private List<String> warnsFor(String javaCode) throws IOException {
+        Logger generatorLog = (Logger) LoggerFactory.getLogger(TestGenerator.class);
+        ListAppender<ILoggingEvent> logs = new ListAppender<>();
+        logs.start();
+        generatorLog.addAppender(logs);
+        try {
+            generate(reply(fenced(javaCode)));
+            return logs.list.stream()
+                    .filter(e -> e.getLevel() == Level.WARN)
+                    .map(ILoggingEvent::getFormattedMessage)
+                    .toList();
+        } finally {
+            generatorLog.detachAppender(logs);
+        }
+    }
+
+    @Test
+    @DisplayName("a block that uses nonExistentId() is rejected with the reason logged")
+    void nonExistentId_isRejected() throws IOException {
+        List<String> warns = warnsFor(classWith("", "long id = TestDataFactory.nonExistentId();"));
+
+        assertEquals(List.of(), javaFiles());
+        assertEquals(List.of("Skipped code block 1 for project 'petstore': "
+                + "uses nonExistentId() (a fixed id that may exist on the server)"), warns);
+    }
+
+    @Test
+    @DisplayName("a block that uses dependsOnMethods or priority = is rejected with the reason logged")
+    void orderDependence_isRejected() throws IOException {
+        List<String> dependsWarns = warnsFor(classWith("(dependsOnMethods = \"works\")", ""));
+        assertEquals(List.of(), javaFiles());
+        assertEquals(List.of("Skipped code block 1 for project 'petstore': "
+                + "uses dependsOnMethods (tests must not depend on order)"), dependsWarns);
+
+        List<String> priorityWarns = warnsFor(classWith("(priority  = 2)", ""));
+        assertEquals(List.of(), javaFiles());
+        assertEquals(List.of("Skipped code block 1 for project 'petstore': "
+                + "uses priority = (tests must not depend on order)"), priorityWarns);
+    }
+
+    @Test
+    @DisplayName("a block that joins status comparisons with || is rejected with the reason logged")
+    void multiStatusAssert_isRejected() throws IOException {
+        List<String> warns = warnsFor(classWith("",
+                "int status = 404; if (!(status == 404 || status == 400)) throw new AssertionError();"));
+        assertEquals(List.of(), javaFiles());
+        assertEquals(List.of("Skipped code block 1 for project 'petstore': "
+                + "accepts more than one status code ('== 404 ||')"), warns);
+
+        assertNotNull(TestGenerator.forbiddenPatternReason("ok = 400 == s ||  r.getStatusCode() == 200;"),
+                "|| before the comparison should be caught too");
+    }
+
+    @Test
+    @DisplayName("|| that does not join status codes is accepted")
+    void otherOr_isAccepted() throws IOException {
+        List<String> warns = warnsFor(classWith("",
+                "String s = null; int n = 3; if (s == null || n == 2 || s.isEmpty()) { n = 1; }"));
+
+        assertEquals(List.of("PetTests.java"), javaFiles());
+        assertEquals(List.of(), warns);
+    }
 }

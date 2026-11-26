@@ -258,3 +258,22 @@ First real run (`claude-sonnet-4-6`, live PetStore spec): 0 accepted, 1 rejected
 * Tests with no assertion: none. Every `@Test` method asserts a status. Only the `@AfterClass` cleanups assert nothing, by design.
 * Also seen: the classes share state through `@BeforeClass` fields and use `priority` and `dependsOnMethods` (Pet 2, Store 2 plus `priority` on all 8, User `priority` on all 8). The hand-written classes dropped both on 2026.11.18 to 2026.11.20. The prompt does not forbid them.
 * Generated files: not edited, not committed (`**/aigenerated/` is gitignored).
+
+## 2026.11.25
+
+### Changed: AI TestGenerator rejects order dependence, fixed ids and multi-status asserts
+
+* Four prompt rules added to `TestGenerator.LIVE_RUN_RULES`, from the 2026.11.24 run:
+  * `For a not-found test, create the resource, delete it, then GET it and assert 404. Never use TestDataFactory.nonExistentId() or a hardcoded id.`
+  * `Assert exactly one status code per response. Never use || between status codes.`
+  * `Do not use priority or dependsOnMethods. Each test creates its own data.`
+  * `If an operation consumes application/x-www-form-urlencoded, send it with ApiClient.given().contentType(...).formParams(...).`
+* Output checks: after the package, `@Test` and class-name checks and before compiling, `TestGenerator.forbiddenPatternReason` rejects a block that:
+  * contains `nonExistentId(`: `uses nonExistentId() (a fixed id that may exist on the server)`
+  * matches `\bdependsOnMethods\b` or `\bpriority\s*=`: `uses dependsOnMethods (tests must not depend on order)` / `uses priority = (tests must not depend on order)`
+  * compares a status code next to `||`, on either side (`== 404 ||`, `|| status == 400`, also `!=`): `accepts more than one status code ('<match>')`
+  * The block is skipped and counted as rejected, with WARN `Skipped code block <n> for <label>: <reason>`, like the other checks.
+* Known limits: the checks are plain text. A comment that mentions `nonExistentId(` is rejected too, and a hardcoded not-found id (for example `9L`) is not detected; only the prompt forbids it. Status checks written as `is4xx()` are not counted as multi-status.
+* Tests (`TestGeneratorTest`, fake client, no real API): the prompt contains the four rules (and `taggedPrompt_containsAllRules` covers them through `LIVE_RUN_RULES`); one rejection test per check, each asserting no file was written and the exact WARN line; `s == null || n == 2` is still accepted.
+* Mutation checks, one at a time and restored afterwards: with the `nonExistentId(` check disabled only `nonExistentId_isRejected` failed; with the order check disabled only `orderDependence_isRejected` failed; with the `||` check disabled only `multiStatusAssert_isRejected` failed; with `FORM_PARAMS_RULE` taken out of `LIVE_RUN_RULES` `prompt_containsSecondRunRules` failed.
+* Result: on JDK 17, `./mvnw -q clean verify` passes. Shared 70 run (was 65), 0 failures. API 88 run, 0 failures, 0 skipped.
