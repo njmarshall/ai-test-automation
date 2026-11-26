@@ -1,0 +1,16 @@
+=== GET /Claim (not found) ===
+Status: 404
+Time: 3ms
+Content-Type: application/json
+
+Body:
+{
+    "resourceType": "OperationOutcome",
+    "issue": [
+        {
+            "severity": "error",
+            "code": "not-found",
+            "diagnostics": "Claim not found"
+        }
+    ]
+}

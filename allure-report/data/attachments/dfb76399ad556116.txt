@@ -1,0 +1,9 @@
+=== GET /pet/findByStatus?status=sold ===
+Status: 200
+Time: 286ms
+Content-Type: application/json
+
+Body:
+[
+    
+]

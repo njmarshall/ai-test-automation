@@ -1,0 +1,9 @@
+=== GET /pet/findByStatus?status=pending ===
+Status: 200
+Time: 306ms
+Content-Type: application/json
+
+Body:
+[
+    
+]
