@@ -1,0 +1,24 @@
+=== GET /pet/642617 ===
+Status: 200
+Time: 105ms
+Content-Type: application/json
+
+Body:
+{
+    "id": 642617,
+    "category": {
+        "id": 249262,
+        "name": "Dog"
+    },
+    "name": "Buddy",
+    "photoUrls": [
+        "https://example.com/photos/a94b79c6-1a41-4ffe-8525-42e33bdfa63e"
+    ],
+    "tags": [
+        {
+            "id": 373198,
+            "name": "aut"
+        }
+    ],
+    "status": "available"
+}

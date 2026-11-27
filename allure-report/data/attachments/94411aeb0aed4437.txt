@@ -1,0 +1,11 @@
+=== DELETE /store/order/932121 ===
+Status: 200
+Time: 107ms
+Content-Type: application/json
+
+Body:
+{
+    "code": 200,
+    "type": "unknown",
+    "message": "932121"
+}

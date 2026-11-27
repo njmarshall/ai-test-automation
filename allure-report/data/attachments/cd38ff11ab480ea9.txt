@@ -1,0 +1,16 @@
+=== GET /user/elayneebert ===
+Status: 200
+Time: 90ms
+Content-Type: application/json
+
+Body:
+{
+    "id": 294466,
+    "username": "elayneebert",
+    "firstName": "Elayne",
+    "lastName": "Ebert",
+    "email": "dante.skiles@hotmail.com",
+    "password": "hbu27lgqmgju",
+    "phone": "670.609.5817 x3966",
+    "userStatus": 1
+}
