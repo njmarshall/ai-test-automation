@@ -328,3 +328,19 @@ First real run (`claude-sonnet-4-6`, live PetStore spec): 0 accepted, 1 rejected
 * Report note: with Surefire 3.5.6, the `@Nested` classes of `AsyncApiClientTest` go into one report file. Its console line says "Tests run: 0" and its XML says `tests="27"`, but all 28 cases run and the module total is still 70.
 * CI: the first run of Live FHIR Tests failed to resolve `maven-install-plugin:3.2.0` from Central (no 429 in the log; the artifact is on Central). It passed on one rerun. #12 merged; #10 closed with a comment pointing to #12.
 * Future task: migrate `testng.xml` / `testng-live.xml` to TestNG groups so Surefire 3.6+ can be used, then remove the Dependabot ignore.
+
+### Changed: Dependabot no longer opens major-version PRs (Maven)
+
+* Change: `.github/dependabot.yml` (maven ecosystem) now has an ignore rule for `dependency-name: "*"` with `update-types: ["version-update:semver-major"]`, commented "Major upgrades are planned by hand, one per branch." The Surefire `[3.6.0,)` ignore and the `maven-minor-patch` group are unchanged. GitHub Actions updates are not affected.
+* Closed Dependabot PRs with "Closing: major upgrades are planned by hand. Tracked in the plan.": #16 (WireMock 3), #15 (OkHttp 5), #14 (allure-maven 3), #13 (JUnit 6), #9 (Allure 3). #6 (allure-maven 3.1.0) was already closed, superseded by #14.
+
+### Planned: major upgrades, one per branch
+
+| Upgrade | From | To | Replaces | Notes |
+|---|---|---|---|---|
+| WireMock | `com.github.tomakehurst:wiremock-jre8-standalone` 2.35.2 | 3.x | #16 | 3.x moves to `org.wiremock` coordinates; check stub/server API changes. |
+| OkHttp | `com.squareup.okhttp3:okhttp` 4.12.0 | 5.x | #15 | Check Kotlin stdlib and API changes. |
+| JUnit | `org.junit.jupiter:junit-jupiter` 5.10.2 | 6.x | #13 | Check Surefire 3.5.6 compatibility (see Surefire hold above). |
+| Allure (libraries) | `allure.version` 2.27.0 | 3.x | #9 | Do together with the allure-maven upgrade. |
+| allure-maven plugin | `io.qameta.allure:allure-maven` 2.12.0 | 3.x | #14, #6 | Do together with the Allure libraries upgrade. |
+| Surefire | `maven-surefire-plugin` 3.5.6 | 3.6+ | — | Blocked: migrate `testng.xml` / `testng-live.xml` to TestNG groups first. |

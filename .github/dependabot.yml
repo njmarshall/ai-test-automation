@@ -10,6 +10,9 @@ updates:
       # 3.6+ dropped TestNG suiteXmlFiles; migrate to groups before upgrading.
       - dependency-name: "org.apache.maven.plugins:maven-surefire-plugin"
         versions: ["[3.6.0,)"]
+      # Major upgrades are planned by hand, one per branch.
+      - dependency-name: "*"
+        update-types: ["version-update:semver-major"]
     groups:
       maven-minor-patch:
         update-types:
