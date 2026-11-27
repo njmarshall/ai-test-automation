@@ -316,3 +316,15 @@ First real run (`claude-sonnet-4-6`, live PetStore spec): 0 accepted, 1 rejected
 * Code changes: none. Everything compiled and passed with no fixes, so no RestAssured 6 behavior change affected this project.
 * Result: on JDK 17, `./mvnw -q clean verify` passes. Shared 70 run, 0 failures, 0 skipped. API 88 run, 0 failures, 0 skipped.
 * Live suite (`-Dtestng.suite=src/test/resources/testng-live.xml`, live HAPI FHIR): 15 run, 0 failures, 0 skipped.
+
+### Upgraded: Dependabot maven-minor-patch group (#10), except Surefire
+
+* Change: applied all 14 updates from Dependabot #10 in #12 (branch `deps/maven-minor-patch`): Maven wrapper 3.9.14 to 3.10.2, Playwright 1.44.0 to 1.65.1, Selenium 4.52.0 to 4.54.0, TestNG 7.9.0 to 7.12.0, Mockito 5.11.0 to 5.24.0, Jackson 2.17.0 to 2.23.0, SLF4J 2.0.13 to 2.0.20, Logback 1.5.6 to 1.6.8, Lombok 1.18.32 to 1.18.48, maven-compiler-plugin 3.13.0 to 3.16.0, exec-maven-plugin 3.3.0 to 3.7.0, surefire-testng 3.2.5 to 3.5.6. The one exception: `maven-surefire-plugin` goes from 3.2.5 to 3.5.6 (the latest 3.5.x), not 3.6.1, in `pom.xml`, `api/pom.xml` and `shared/pom.xml`.
+* Why: #10 failed because Surefire 3.6.0+ runs TestNG tests on the JUnit Platform, which can't read TestNG suite XML files. `testng.xml` and `testng-live.xml` depend on `suiteXmlFiles`.
+* Dependabot: `.github/dependabot.yml` now ignores `org.apache.maven.plugins:maven-surefire-plugin` versions `[3.6.0,)`.
+* Result: on JDK 17, `./mvnw -q clean verify` passes. Shared 70 run, 0 failures, 0 skipped. API 88 run, 0 failures, 0 skipped.
+* Live suite (`-Dtestng.suite=src/test/resources/testng-live.xml`): 15 run, 0 failures, 0 skipped.
+* UI spot checks: `PetStoreSeleniumTests#swaggerUI_loads_successfully` (Selenium) and `PetStoreUITests#swaggerUI_loads_successfully` (Playwright) both pass.
+* Report note: with Surefire 3.5.6, the `@Nested` classes of `AsyncApiClientTest` go into one report file. Its console line says "Tests run: 0" and its XML says `tests="27"`, but all 28 cases run and the module total is still 70.
+* CI: the first run of Live FHIR Tests failed to resolve `maven-install-plugin:3.2.0` from Central (no 429 in the log; the artifact is on Central). It passed on one rerun. #12 merged; #10 closed with a comment pointing to #12.
+* Future task: migrate `testng.xml` / `testng-live.xml` to TestNG groups so Surefire 3.6+ can be used, then remove the Dependabot ignore.
