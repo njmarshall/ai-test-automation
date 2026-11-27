@@ -1,0 +1,11 @@
+=== POST /user (setup) ===
+Status: 200
+Time: 356ms
+Content-Type: application/json
+
+Body:
+{
+    "code": 200,
+    "type": "unknown",
+    "message": "782792"
+}
