@@ -6,6 +6,10 @@ updates:
       interval: "weekly"
       day: "monday"
     open-pull-requests-limit: 5
+    ignore:
+      # 3.6+ dropped TestNG suiteXmlFiles; migrate to groups before upgrading.
+      - dependency-name: "org.apache.maven.plugins:maven-surefire-plugin"
+        versions: ["[3.6.0,)"]
     groups:
       maven-minor-patch:
         update-types:
