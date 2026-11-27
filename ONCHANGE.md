@@ -332,7 +332,7 @@ First real run (`claude-sonnet-4-6`, live PetStore spec): 0 accepted, 1 rejected
 ### Changed: Dependabot no longer opens major-version PRs (Maven)
 
 * Change: `.github/dependabot.yml` (maven ecosystem) now has an ignore rule for `dependency-name: "*"` with `update-types: ["version-update:semver-major"]`, commented "Major upgrades are planned by hand, one per branch." The Surefire `[3.6.0,)` ignore and the `maven-minor-patch` group are unchanged. GitHub Actions updates are not affected.
-* Closed Dependabot PRs with "Closing: major upgrades are planned by hand. Tracked in the plan.": #16 (WireMock 3), #15 (OkHttp 5), #14 (allure-maven 3), #13 (JUnit 6), #9 (Allure 3). #6 (allure-maven 3.1.0) was already closed, superseded by #14.
+* Closed Dependabot PRs: #16 (WireMock 3), #15 (OkHttp 5), #14 (allure-maven 3), #13 (JUnit 6), #9 (Allure 3). Dependabot closed all five itself ("no longer being updated by Dependabot") as soon as the ignore rule reached `main`. Each one, plus #6 (allure-maven 3.1.0, closed earlier, superseded by #14), then got the comment "Closing: major upgrades are planned by hand. Tracked in the plan."
 
 ### Planned: major upgrades, one per branch
 
