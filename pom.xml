@@ -26,17 +26,17 @@
 
         <!-- Core versions -->
         <restassured.version>6.3.0</restassured.version>
-        <testng.version>7.9.0</testng.version>
+        <testng.version>7.12.0</testng.version>
         <junit5.version>5.10.2</junit5.version>
-        <mockito.version>5.11.0</mockito.version>
+        <mockito.version>5.24.0</mockito.version>
         <allure.version>2.27.0</allure.version>
-        <jackson.version>2.17.0</jackson.version>
+        <jackson.version>2.23.0</jackson.version>
         <javafaker.version>1.0.2</javafaker.version>
-        <slf4j.version>2.0.13</slf4j.version>
-        <logback.version>1.5.6</logback.version>
+        <slf4j.version>2.0.20</slf4j.version>
+        <logback.version>1.6.8</logback.version>
         <json-schema-validator.version>6.3.0</json-schema-validator.version>
         <okhttp.version>4.12.0</okhttp.version>
-        <lombok.version>1.18.32</lombok.version>
+        <lombok.version>1.18.48</lombok.version>
     </properties>
 
     <!-- Shared dependency management for all child modules -->
@@ -136,7 +136,7 @@
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-compiler-plugin</artifactId>
-                    <version>3.13.0</version>
+                    <version>3.16.0</version>
                     <configuration>
                         <source>${java.version}</source>
                         <target>${java.version}</target>
@@ -145,7 +145,7 @@
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-surefire-plugin</artifactId>
-                    <version>3.2.5</version>
+                    <version>3.5.6</version>
                 </plugin>
                 <plugin>
                     <groupId>io.qameta.allure</groupId>
