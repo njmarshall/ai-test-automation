@@ -1,0 +1,2061 @@
+=== GET /pet/findByStatus?status=available ===
+Status: 200
+Time: 396ms
+Content-Type: application/json
+
+Body:
+[
+    {
+        "id": 2,
+        "category": {
+            "id": 2,
+            "name": "Cats"
+        },
+        "name": "Cat 2",
+        "photoUrls": [
+            "url1",
+            "url2"
+        ],
+        "tags": [
+            {
+                "id": 1,
+                "name": "tag2"
+            },
+            {
+                "id": 2,
+                "name": "tag3"
+            }
+        ],
+        "status": "available"
+    },
+    {
+        "id": 3,
+        "category": {
+            "id": 6,
+            "name": "doggiepic1"
+        },
+        "name": "doggie",
+        "photoUrls": [
+            "string"
+        ],
+        "tags": [
+            {
+                "id": 0,
+                "name": "string"
+            }
+        ],
+        "status": "available"
+    },
+    {
+        "id": 4,
+        "category": {
+            "id": 8,
+            "name": "doggiepic2"
+        },
+        "name": "doggie",
+        "photoUrls": [
+            "string"
+        ],
+        "tags": [
+            {
+                "id": 0,
+                "name": "string"
+            }
+        ],
+        "status": "available"
+    },
+    {
+        "id": 7,
+        "category": {
+            "id": 4,
+            "name": "Lions"
+        },
+        "name": "Lion 1",
+        "photoUrls": [
+            "url1",
+            "url2"
+        ],
+        "tags": [
+            {
+                "id": 1,
+                "name": "tag1"
+            },
+            {
+                "id": 2,
+                "name": "tag2"
+            }
+        ],
+        "status": "available"
+    },
+    {
+        "id": 8,
+        "category": {
+            "id": 4,
+            "name": "Lions"
+        },
+        "name": "Lion 2",
+        "photoUrls": [
+            "url1",
+            "url2"
+        ],
+        "tags": [
+            {
+                "id": 1,
+                "name": "tag2"
+            },
+            {
+                "id": 2,
+                "name": "tag3"
+            }
+        ],
+        "status": "available"
+    },
+    {
+        "id": 99,
+        "category": {
+            "id": 101,
+            "name": "dogz"
+        },
+        "name": "fido",
+        "photoUrls": [
+            "http://fido.jpg"
+        ],
+        "tags": [
+            {
+                "id": 102,
+                "name": "friendly"
+            }
+        ],
+        "status": "available"
+    },
+    {
+        "id": 100,
+        "category": {
+            "id": 101,
+            "name": "dogz"
+        },
+        "name": "fodi",
+        "photoUrls": [
+            "http://fido.jpg"
+        ],
+        "tags": [
+            {
+                "id": 102,
+                "name": "friendly"
+            }
+        ],
+        "status": "available"
+    },
+    {
+        "id": 228,
+        "category": {
+            "id": 825,
+            "name": "dog"
+        },
+        "name": "Kenna",
+        "photoUrls": [
+            
+        ],
+        "tags": [
+            
+        ],
+        "status": "available"
+    },
+    {
+        "id": 1011448465,
+        "category": {
+            "id": 101,
+            "name": "dogz"
+        },
+        "name": "fodi",
+        "photoUrls": [
+            "http://fido.jpg"
+        ],
+        "tags": [
+            {
+                "id": 102,
+                "name": "friendly"
+            }
+        ],
+        "status": "available"
+    },
+    {
+        "id": 1011448466,
+        "category": {
+            "id": 101,
+            "name": "dogz"
+        },
+        "name": "fodi",
+        "photoUrls": [
+            "http://fido.jpg"
+        ],
+        "tags": [
+            {
+                "id": 102,
+                "name": "friendly"
+            }
+        ],
+        "status": "available"
+    },
+    {
+        "id": 1011448467,
+        "category": {
+            "id": 101,
+            "name": "dogz"
+        },
+        "name": "fodi",
+        "photoUrls": [
+            "http://fido.jpg"
+        ],
+        "tags": [
+            {
+                "id": 102,
+                "name": "friendly"
+            }
+        ],
+        "status": "available"
+    },
+    {
+        "id": 1011448468,
+        "category": {
+            "id": 101,
+            "name": "dogz"
+        },
+        "name": "fodi",
+        "photoUrls": [
+            "http://fido.jpg"
+        ],
+        "tags": [
+            {
+                "id": 102,
+                "name": "friendly"
+            }
+        ],
+        "status": "available"
+    },
+    {
+        "id": 1011448471,
+        "category": {
+            "id": 101,
+            "name": "dogz"
+        },
+        "name": "fodi",
+        "photoUrls": [
+            "http://fido.jpg"
+        ],
+        "tags": [
+            {
+                "id": 102,
+                "name": "friendly"
+            }
+        ],
+        "status": "available"
+    },
+    {
+        "id": 1011448480,
+        "category": {
+            "id": 101,
+            "name": "dogz"
+        },
+        "name": "fodi",
+        "photoUrls": [
+            "http://fido.jpg"
+        ],
+        "tags": [
+            {
+                "id": 102,
+                "name": "friendly"
+            }
+        ],
+        "status": "available"
+    },
+    {
+        "id": 33,
+        "category": {
+            "id": 3,
+            "name": "doggiepic2"
+        },
+        "name": "doggie",
+        "photoUrls": [
+            "string"
+        ],
+        "tags": [
+            {
+                "id": 0,
+                "name": "string"
+            }
+        ],
+        "status": "available"
+    },
+    {
+        "id": 1011448481,
+        "category": {
+            "id": 101,
+            "name": "dogz"
+        },
+        "name": "fodi",
+        "photoUrls": [
+            "http://fido.jpg"
+        ],
+        "tags": [
+            {
+                "id": 102,
+                "name": "friendly"
+            }
+        ],
+        "status": "available"
+    },
+    {
+        "id": 1011448482,
+        "category": {
+            "id": 101,
+            "name": "dogz"
+        },
+        "name": "fodi",
+        "photoUrls": [
+            "http://fido.jpg"
+        ],
+        "tags": [
+            {
+                "id": 102,
+                "name": "friendly"
+            }
+        ],
+        "status": "available"
+    },
+    {
+        "id": 1011448483,
+        "category": {
+            "id": 101,
+            "name": "dogz"
+        },
+        "name": "fodi",
+        "photoUrls": [
+            "http://fido.jpg"
+        ],
+        "tags": [
+            {
+                "id": 102,
+                "name": "friendly"
+            }
+        ],
+        "status": "available"
+    },
+    {
+        "id": 1011448485,
+        "category": {
+            "id": 101,
+            "name": "dogz"
+        },
+        "name": "fodi",
+        "photoUrls": [
+            "http://fido.jpg"
+        ],
+        "tags": [
+            {
+                "id": 102,
+                "name": "friendly"
+            }
+        ],
+        "status": "available"
+    },
+    {
+        "id": 1011448495,
+        "category": {
+            "id": 101,
+            "name": "dogz"
+        },
+        "name": "fodi",
+        "photoUrls": [
+            "http://fido.jpg"
+        ],
+        "tags": [
+            {
+                "id": 102,
+                "name": "friendly"
+            }
+        ],
+        "status": "available"
+    },
+    {
+        "id": 1850955359,
+        "category": {
+            "id": 0,
+            "name": "string"
+        },
+        "name": "doggie",
+        "photoUrls": [
+            "string"
+        ],
+        "tags": [
+            {
+                "id": 0,
+                "name": "string"
+            }
+        ],
+        "status": "available"
+    },
+    {
+        "id": 1850955360,
+        "category": {
+            "id": 101,
+            "name": "dogz"
+        },
+        "name": "fodi",
+        "photoUrls": [
+            "http://fido.jpg"
+        ],
+        "tags": [
+            {
+                "id": 102,
+                "name": "friendly"
+            }
+        ],
+        "status": "available"
+    },
+    {
+        "id": 1850955363,
+        "category": {
+            "id": 101,
+            "name": "dogz"
+        },
+        "name": "fodi",
+        "photoUrls": [
+            "http://fido.jpg"
+        ],
+        "tags": [
+            {
+                "id": 102,
+                "name": "friendly"
+            }
+        ],
+        "status": "available"
+    },
+    {
+        "id": 112233,
+        "category": {
+            "id": 30,
+            "name": "Eq-dog"
+        },
+        "name": "Postman",
+        "photoUrls": [
+            "URLLink"
+        ],
+        "tags": [
+            {
+                "id": 10,
+                "name": "Doberman"
+            }
+        ],
+        "status": "available"
+    },
+    {
+        "id": 1850955369,
+        "category": {
+            "id": 101,
+            "name": "dogz"
+        },
+        "name": "fodi",
+        "photoUrls": [
+            "http://fido.jpg"
+        ],
+        "tags": [
+            {
+                "id": 102,
+                "name": "friendly"
+            }
+        ],
+        "status": "available"
+    },
+    {
+        "id": 1850955374,
+        "category": {
+            "id": 101,
+            "name": "dogz"
+        },
+        "name": "fodi",
+        "photoUrls": [
+            "http://fido.jpg"
+        ],
+        "tags": [
+            {
+                "id": 102,
+                "name": "friendly"
+            }
+        ],
+        "status": "available"
+    },
+    {
+        "id": 1850955375,
+        "category": {
+            "id": 101,
+            "name": "dogz"
+        },
+        "name": "fodi",
+        "photoUrls": [
+            "http://fido.jpg"
+        ],
+        "tags": [
+            {
+                "id": 102,
+                "name": "friendly"
+            }
+        ],
+        "status": "available"
+    },
+    {
+        "id": 1850955376,
+        "category": {
+            "id": 101,
+            "name": "dogz"
+        },
+        "name": "fodi",
+        "photoUrls": [
+            "http://fido.jpg"
+        ],
+        "tags": [
+            {
+                "id": 102,
+                "name": "friendly"
+            }
+        ],
+        "status": "available"
+    },
+    {
+        "id": 1850955379,
+        "category": {
+            "id": 101,
+            "name": "dogz"
+        },
+        "name": "fodi",
+        "photoUrls": [
+            "http://fido.jpg"
+        ],
+        "tags": [
+            {
+                "id": 102,
+                "name": "friendly"
+            }
+        ],
+        "status": "available"
+    },
+    {
+        "id": 1850955381,
+        "name": "Javierito",
+        "photoUrls": [
+            
+        ],
+        "tags": [
+            
+        ],
+        "status": "available"
+    },
+    {
+        "id": 1850955386,
+        "category": {
+            "id": 101,
+            "name": "dogz"
+        },
+        "name": "fodi",
+        "photoUrls": [
+            "http://fido.jpg"
+        ],
+        "tags": [
+            {
+                "id": 102,
+                "name": "friendly"
+            }
+        ],
+        "status": "available"
+    },
+    {
+        "id": 1850955388,
+        "category": {
+            "id": 101,
+            "name": "dogz"
+        },
+        "name": "fodi",
+        "photoUrls": [
+            "http://fido.jpg"
+        ],
+        "tags": [
+            {
+                "id": 102,
+                "name": "friendly"
+            }
+        ],
+        "status": "available"
+    },
+    {
+        "id": 1850955396,
+        "category": {
+            "id": 101,
+            "name": "dogz"
+        },
+        "name": "fodi",
+        "photoUrls": [
+            "http://fido.jpg"
+        ],
+        "tags": [
+            {
+                "id": 102,
+                "name": "friendly"
+            }
+        ],
+        "status": "available"
+    },
+    {
+        "id": 1850955398,
+        "category": {
+            "id": 101,
+            "name": "dogz"
+        },
+        "name": "fodi",
+        "photoUrls": [
+            "http://fido.jpg"
+        ],
+        "tags": [
+            {
+                "id": 102,
+                "name": "friendly"
+            }
+        ],
+        "status": "available"
+    },
+    {
+        "id": 1850955401,
+        "category": {
+            "id": 101,
+            "name": "dogz"
+        },
+        "name": "fodi",
+        "photoUrls": [
+            "http://fido.jpg"
+        ],
+        "tags": [
+            {
+                "id": 102,
+                "name": "friendly"
+            }
+        ],
+        "status": "available"
+    },
+    {
+        "id": 1850955402,
+        "category": {
+            "id": 101,
+            "name": "dogz"
+        },
+        "name": "fodi",
+        "photoUrls": [
+            "http://fido.jpg"
+        ],
+        "tags": [
+            {
+                "id": 102,
+                "name": "friendly"
+            }
+        ],
+        "status": "available"
+    },
+    {
+        "id": 1850955403,
+        "category": {
+            "id": 101,
+            "name": "dogz"
+        },
+        "name": "fodi",
+        "photoUrls": [
+            "http://fido.jpg"
+        ],
+        "tags": [
+            {
+                "id": 102,
+                "name": "friendly"
+            }
+        ],
+        "status": "available"
+    },
+    {
+        "id": 1850955406,
+        "category": {
+            "id": 101,
+            "name": "dogz"
+        },
+        "name": "fodi",
+        "photoUrls": [
+            "http://fido.jpg"
+        ],
+        "tags": [
+            {
+                "id": 102,
+                "name": "friendly"
+            }
+        ],
+        "status": "available"
+    },
+    {
+        "id": 1850955407,
+        "category": {
+            "id": 101,
+            "name": "dogz"
+        },
+        "name": "fodi",
+        "photoUrls": [
+            "http://fido.jpg"
+        ],
+        "tags": [
+            {
+                "id": 102,
+                "name": "friendly"
+            }
+        ],
+        "status": "available"
+    },
+    {
+        "id": 1850955412,
+        "category": {
+            "id": 101,
+            "name": "dogz"
+        },
+        "name": "fodi",
+        "photoUrls": [
+            "http://fido.jpg"
+        ],
+        "tags": [
+            {
+                "id": 102,
+                "name": "friendly"
+            }
+        ],
+        "status": "available"
+    },
+    {
+        "id": 1850955415,
+        "category": {
+            "id": 101,
+            "name": "dogz"
+        },
+        "name": "fodi",
+        "photoUrls": [
+            "http://fido.jpg"
+        ],
+        "tags": [
+            {
+                "id": 102,
+                "name": "friendly"
+            }
+        ],
+        "status": "available"
+    },
+    {
+        "id": 12121,
+        "category": {
+            "id": 0,
+            "name": "string"
+        },
+        "name": "TestPetName",
+        "photoUrls": [
+            "string"
+        ],
+        "tags": [
+            {
+                "id": 0,
+                "name": "string"
+            }
+        ],
+        "status": "available"
+    },
+    {
+        "id": 1850955424,
+        "category": {
+            "id": 147,
+            "name": "dog"
+        },
+        "name": "lucky",
+        "photoUrls": [
+            "string"
+        ],
+        "tags": [
+            {
+                "id": 0,
+                "name": "string"
+            }
+        ],
+        "status": "available"
+    },
+    {
+        "id": 1850955430,
+        "category": {
+            "id": 101,
+            "name": "dogz"
+        },
+        "name": "fodi",
+        "photoUrls": [
+            "http://fido.jpg"
+        ],
+        "tags": [
+            {
+                "id": 102,
+                "name": "friendly"
+            }
+        ],
+        "status": "available"
+    },
+    {
+        "id": 1850955431,
+        "category": {
+            "id": 101,
+            "name": "dogz"
+        },
+        "name": "fodi",
+        "photoUrls": [
+            "http://fido.jpg"
+        ],
+        "tags": [
+            {
+                "id": 102,
+                "name": "friendly"
+            }
+        ],
+        "status": "available"
+    },
+    {
+        "id": 1850955439,
+        "category": {
+            "id": 101,
+            "name": "dogz"
+        },
+        "name": "fodi",
+        "photoUrls": [
+            "http://fido.jpg"
+        ],
+        "tags": [
+            {
+                "id": 102,
+                "name": "friendly"
+            }
+        ],
+        "status": "available"
+    },
+    {
+        "id": 1850955440,
+        "category": {
+            "id": 101,
+            "name": "dogz"
+        },
+        "name": "fodi",
+        "photoUrls": [
+            "http://fido.jpg"
+        ],
+        "tags": [
+            {
+                "id": 102,
+                "name": "friendly"
+            }
+        ],
+        "status": "available"
+    },
+    {
+        "id": 1850955448,
+        "category": {
+            "id": 101,
+            "name": "dogz"
+        },
+        "name": "fodi",
+        "photoUrls": [
+            "http://fido.jpg"
+        ],
+        "tags": [
+            {
+                "id": 102,
+                "name": "friendly"
+            }
+        ],
+        "status": "available"
+    },
+    {
+        "id": 1850955451,
+        "category": {
+            "id": 101,
+            "name": "dogz"
+        },
+        "name": "fodi",
+        "photoUrls": [
+            "http://fido.jpg"
+        ],
+        "tags": [
+            {
+                "id": 102,
+                "name": "friendly"
+            }
+        ],
+        "status": "available"
+    },
+    {
+        "id": 1850955452,
+        "category": {
+            "id": 123,
+            "name": "dog"
+        },
+        "name": "lucky",
+        "photoUrls": [
+            "string"
+        ],
+        "tags": [
+            {
+                "id": 0,
+                "name": "string"
+            }
+        ],
+        "status": "available"
+    },
+    {
+        "id": 1850955453,
+        "category": {
+            "id": 101,
+            "name": "dogz"
+        },
+        "name": "fodi",
+        "photoUrls": [
+            "http://fido.jpg"
+        ],
+        "tags": [
+            {
+                "id": 102,
+                "name": "friendly"
+            }
+        ],
+        "status": "available"
+    },
+    {
+        "id": 1850955454,
+        "category": {
+            "id": 0,
+            "name": "string"
+        },
+        "name": "doggie",
+        "photoUrls": [
+            "string"
+        ],
+        "tags": [
+            {
+                "id": 0,
+                "name": "string"
+            }
+        ],
+        "status": "available"
+    },
+    {
+        "id": 1850955455,
+        "category": {
+            "id": 101,
+            "name": "dogz"
+        },
+        "name": "fodi",
+        "photoUrls": [
+            "http://fido.jpg"
+        ],
+        "tags": [
+            {
+                "id": 102,
+                "name": "friendly"
+            }
+        ],
+        "status": "available"
+    },
+    {
+        "id": 1850955457,
+        "category": {
+            "id": 101,
+            "name": "dogz"
+        },
+        "name": "fodi",
+        "photoUrls": [
+            "http://fido.jpg"
+        ],
+        "tags": [
+            {
+                "id": 102,
+                "name": "friendly"
+            }
+        ],
+        "status": "available"
+    },
+    {
+        "id": 1245,
+        "category": {
+            "id": 1245,
+            "name": "xyz"
+        },
+        "name": "xyz",
+        "photoUrls": [
+            "test"
+        ],
+        "tags": [
+            
+        ],
+        "status": "available"
+    },
+    {
+        "id": 123,
+        "name": "Doggy",
+        "photoUrls": [
+            
+        ],
+        "tags": [
+            
+        ],
+        "status": "available"
+    },
+    {
+        "id": 1850955468,
+        "category": {
+            "id": 101,
+            "name": "dogz"
+        },
+        "name": "fodi",
+        "photoUrls": [
+            "http://fido.jpg"
+        ],
+        "tags": [
+            {
+                "id": 102,
+                "name": "friendly"
+            }
+        ],
+        "status": "available"
+    },
+    {
+        "id": 1850955471,
+        "category": {
+            "id": 101,
+            "name": "dogz"
+        },
+        "name": "fodi",
+        "photoUrls": [
+            "http://fido.jpg"
+        ],
+        "tags": [
+            {
+                "id": 102,
+                "name": "friendly"
+            }
+        ],
+        "status": "available"
+    },
+    {
+        "id": 1850955472,
+        "category": {
+            "id": 101,
+            "name": "dogz"
+        },
+        "name": "fodi",
+        "photoUrls": [
+            "http://fido.jpg"
+        ],
+        "tags": [
+            {
+                "id": 102,
+                "name": "friendly"
+            }
+        ],
+        "status": "available"
+    },
+    {
+        "id": 1850955476,
+        "category": {
+            "id": 101,
+            "name": "dogz"
+        },
+        "name": "fodi",
+        "photoUrls": [
+            "http://fido.jpg"
+        ],
+        "tags": [
+            {
+                "id": 102,
+                "name": "friendly"
+            }
+        ],
+        "status": "available"
+    },
+    {
+        "id": 1850955479,
+        "category": {
+            "id": 101,
+            "name": "dogz"
+        },
+        "name": "fodi",
+        "photoUrls": [
+            "http://fido.jpg"
+        ],
+        "tags": [
+            {
+                "id": 102,
+                "name": "friendly"
+            }
+        ],
+        "status": "available"
+    },
+    {
+        "id": 1850955486,
+        "category": {
+            "id": 0,
+            "name": "string"
+        },
+        "name": "fish",
+        "photoUrls": [
+            "string"
+        ],
+        "tags": [
+            {
+                "id": 0,
+                "name": "string"
+            }
+        ],
+        "status": "available"
+    },
+    {
+        "id": 1850955487,
+        "category": {
+            "id": 0,
+            "name": "string"
+        },
+        "name": "fish",
+        "photoUrls": [
+            "string"
+        ],
+        "tags": [
+            {
+                "id": 0,
+                "name": "string"
+            }
+        ],
+        "status": "available"
+    },
+    {
+        "id": 1850955498,
+        "category": {
+            "id": 101,
+            "name": "dogz"
+        },
+        "name": "fodi",
+        "photoUrls": [
+            "http://fido.jpg"
+        ],
+        "tags": [
+            {
+                "id": 102,
+                "name": "friendly"
+            }
+        ],
+        "status": "available"
+    },
+    {
+        "id": 1850955499,
+        "category": {
+            "id": 0,
+            "name": "string"
+        },
+        "name": "doggie",
+        "photoUrls": [
+            "string"
+        ],
+        "status": "available"
+    },
+    {
+        "id": 987654321012,
+        "category": {
+            "id": 4242,
+            "name": "probe-cat"
+        },
+        "name": "probe-pet",
+        "photoUrls": [
+            "https://example.com/probe.png"
+        ],
+        "tags": [
+            {
+                "id": 77,
+                "name": "probe-tag"
+            }
+        ],
+        "status": "available"
+    },
+    {
+        "id": 987654321013,
+        "category": {
+            "id": 101,
+            "name": "dogz"
+        },
+        "name": "fodi",
+        "photoUrls": [
+            "http://fido.jpg"
+        ],
+        "tags": [
+            {
+                "id": 102,
+                "name": "friendly"
+            }
+        ],
+        "status": "available"
+    },
+    {
+        "id": 987654321016,
+        "category": {
+            "id": 0,
+            "name": "string"
+        },
+        "name": "fish",
+        "photoUrls": [
+            "string"
+        ],
+        "tags": [
+            {
+                "id": 0,
+                "name": "string"
+            }
+        ],
+        "status": "available"
+    },
+    {
+        "id": 222330737,
+        "category": {
+            "id": 1132131,
+            "name": "test_category"
+        },
+        "name": "test_pet_for_api_tool",
+        "photoUrls": [
+            "http://example.com/photo.jpg"
+        ],
+        "tags": [
+            {
+                "id": 0,
+                "name": "test_tag"
+            }
+        ],
+        "status": "available"
+    },
+    {
+        "id": 987654321017,
+        "category": {
+            "id": 123,
+            "name": "dog"
+        },
+        "name": "lucky",
+        "photoUrls": [
+            "string"
+        ],
+        "tags": [
+            {
+                "id": 0,
+                "name": "string"
+            }
+        ],
+        "status": "available"
+    },
+    {
+        "id": 987654321021,
+        "category": {
+            "id": 101,
+            "name": "dogz"
+        },
+        "name": "fodi",
+        "photoUrls": [
+            "http://fido.jpg"
+        ],
+        "tags": [
+            {
+                "id": 102,
+                "name": "friendly"
+            }
+        ],
+        "status": "available"
+    },
+    {
+        "id": 999997,
+        "name": "ExternalNonBddDog",
+        "photoUrls": [
+            "https://example.com/dog.jpg"
+        ],
+        "tags": [
+            
+        ],
+        "status": "available"
+    },
+    {
+        "id": 1795753620750,
+        "name": "pwp-pet-1795753620750",
+        "photoUrls": [
+            "https://example.com/pet.png"
+        ],
+        "tags": [
+            
+        ],
+        "status": "available"
+    },
+    {
+        "id": 1795753620751,
+        "category": {
+            "id": 101,
+            "name": "dogz"
+        },
+        "name": "fodi",
+        "photoUrls": [
+            "http://fido.jpg"
+        ],
+        "tags": [
+            {
+                "id": 102,
+                "name": "friendly"
+            }
+        ],
+        "status": "available"
+    },
+    {
+        "id": 1795753620755,
+        "category": {
+            "id": 0,
+            "name": "string"
+        },
+        "name": "fish",
+        "photoUrls": [
+            "string"
+        ],
+        "tags": [
+            {
+                "id": 0,
+                "name": "string"
+            }
+        ],
+        "status": "available"
+    },
+    {
+        "id": 1795753620757,
+        "category": {
+            "id": 101,
+            "name": "dogz"
+        },
+        "name": "fodi",
+        "photoUrls": [
+            "http://fido.jpg"
+        ],
+        "tags": [
+            {
+                "id": 102,
+                "name": "friendly"
+            }
+        ],
+        "status": "available"
+    },
+    {
+        "id": 1795753620762,
+        "category": {
+            "id": 101,
+            "name": "dogz"
+        },
+        "name": "fodi",
+        "photoUrls": [
+            "http://fido.jpg"
+        ],
+        "tags": [
+            {
+                "id": 102,
+                "name": "friendly"
+            }
+        ],
+        "status": "available"
+    },
+    {
+        "id": 42424242,
+        "category": {
+            "id": 0,
+            "name": "string"
+        },
+        "name": "doggie",
+        "photoUrls": [
+            "https://example.com/dog.jpg"
+        ],
+        "tags": [
+            {
+                "id": 0,
+                "name": "string"
+            }
+        ],
+        "status": "available"
+    },
+    {
+        "id": 1795753620764,
+        "category": {
+            "id": 101,
+            "name": "dogz"
+        },
+        "name": "fodi",
+        "photoUrls": [
+            "http://fido.jpg"
+        ],
+        "tags": [
+            {
+                "id": 102,
+                "name": "friendly"
+            }
+        ],
+        "status": "available"
+    },
+    {
+        "id": 1795753620765,
+        "category": {
+            "id": 101,
+            "name": "dogz"
+        },
+        "name": "fodi",
+        "photoUrls": [
+            "http://fido.jpg"
+        ],
+        "tags": [
+            {
+                "id": 102,
+                "name": "friendly"
+            }
+        ],
+        "status": "available"
+    },
+    {
+        "id": 1795753620766,
+        "category": {
+            "id": 101,
+            "name": "dogz"
+        },
+        "name": "fodi",
+        "photoUrls": [
+            "http://fido.jpg"
+        ],
+        "tags": [
+            {
+                "id": 102,
+                "name": "friendly"
+            }
+        ],
+        "status": "available"
+    },
+    {
+        "id": 1795753620767,
+        "category": {
+            "id": 101,
+            "name": "dogz"
+        },
+        "name": "fodi",
+        "photoUrls": [
+            "http://fido.jpg"
+        ],
+        "tags": [
+            {
+                "id": 102,
+                "name": "friendly"
+            }
+        ],
+        "status": "available"
+    },
+    {
+        "id": 1795753620768,
+        "category": {
+            "id": 101,
+            "name": "dogz"
+        },
+        "name": "fodi",
+        "photoUrls": [
+            "http://fido.jpg"
+        ],
+        "tags": [
+            {
+                "id": 102,
+                "name": "friendly"
+            }
+        ],
+        "status": "available"
+    },
+    {
+        "id": 1795753620770,
+        "category": {
+            "id": 0,
+            "name": "string"
+        },
+        "name": "doggie",
+        "photoUrls": [
+            "string"
+        ],
+        "tags": [
+            {
+                "id": 0,
+                "name": "string"
+            }
+        ],
+        "status": "available"
+    },
+    {
+        "id": 1795753620771,
+        "category": {
+            "id": 0,
+            "name": "string"
+        },
+        "name": "doggie",
+        "photoUrls": [
+            "string"
+        ],
+        "tags": [
+            {
+                "id": 0,
+                "name": "string"
+            }
+        ],
+        "status": "available"
+    },
+    {
+        "id": 1795753620774,
+        "name": "Javierito",
+        "photoUrls": [
+            
+        ],
+        "tags": [
+            
+        ],
+        "status": "available"
+    },
+    {
+        "id": 1795753620784,
+        "category": {
+            "id": 0,
+            "name": "string"
+        },
+        "name": "fish",
+        "photoUrls": [
+            "string"
+        ],
+        "tags": [
+            {
+                "id": 0,
+                "name": "string"
+            }
+        ],
+        "status": "available"
+    },
+    {
+        "id": 1795753620809,
+        "category": {
+            "id": 101,
+            "name": "dogz"
+        },
+        "name": "fodi",
+        "photoUrls": [
+            "http://fido.jpg"
+        ],
+        "tags": [
+            {
+                "id": 102,
+                "name": "friendly"
+            }
+        ],
+        "status": "available"
+    },
+    {
+        "id": 1795753620810,
+        "category": {
+            "id": 101,
+            "name": "dogz"
+        },
+        "name": "fodi",
+        "photoUrls": [
+            "http://fido.jpg"
+        ],
+        "tags": [
+            {
+                "id": 102,
+                "name": "friendly"
+            }
+        ],
+        "status": "available"
+    },
+    {
+        "id": 1795753620813,
+        "category": {
+            "id": 101,
+            "name": "dogz"
+        },
+        "name": "fodi",
+        "photoUrls": [
+            "http://fido.jpg"
+        ],
+        "tags": [
+            {
+                "id": 102,
+                "name": "friendly"
+            }
+        ],
+        "status": "available"
+    },
+    {
+        "id": 202,
+        "category": {
+            "id": 202,
+            "name": "swagger2x"
+        },
+        "name": "swagger2x",
+        "photoUrls": [
+            "string"
+        ],
+        "tags": [
+            {
+                "id": 202,
+                "name": "swagger2x"
+            }
+        ],
+        "status": "available"
+    },
+    {
+        "id": 1795753620814,
+        "category": {
+            "id": 101,
+            "name": "dogz"
+        },
+        "name": "fodi",
+        "photoUrls": [
+            "http://fido.jpg"
+        ],
+        "tags": [
+            {
+                "id": 102,
+                "name": "friendly"
+            }
+        ],
+        "status": "available"
+    },
+    {
+        "id": 1795753620815,
+        "category": {
+            "id": 101,
+            "name": "dogz"
+        },
+        "name": "fodi",
+        "photoUrls": [
+            "http://fido.jpg"
+        ],
+        "tags": [
+            {
+                "id": 102,
+                "name": "friendly"
+            }
+        ],
+        "status": "available"
+    },
+    {
+        "id": 2156,
+        "category": {
+            "id": 7488,
+            "name": "doggies"
+        },
+        "name": "doggie",
+        "photoUrls": [
+            "dog",
+            "cat"
+        ],
+        "tags": [
+            {
+                "id": 2855,
+                "name": "dog1"
+            },
+            {
+                "id": 6471,
+                "name": "dog2"
+            }
+        ],
+        "status": "available"
+    },
+    {
+        "id": 1795753620821,
+        "category": {
+            "id": 101,
+            "name": "dogz"
+        },
+        "name": "fodi",
+        "photoUrls": [
+            "http://fido.jpg"
+        ],
+        "tags": [
+            {
+                "id": 102,
+                "name": "friendly"
+            }
+        ],
+        "status": "available"
+    },
+    {
+        "id": 1795754301910,
+        "name": "pwp-pet-1795754301910",
+        "photoUrls": [
+            "https://example.com/pet.png"
+        ],
+        "tags": [
+            
+        ],
+        "status": "available"
+    },
+    {
+        "id": 1795754301918,
+        "category": {
+            "id": 101,
+            "name": "dogz"
+        },
+        "name": "fodi",
+        "photoUrls": [
+            "http://fido.jpg"
+        ],
+        "tags": [
+            {
+                "id": 102,
+                "name": "friendly"
+            }
+        ],
+        "status": "available"
+    },
+    {
+        "id": 101,
+        "name": "",
+        "photoUrls": [
+            "https://example.com/pets/101.jpg"
+        ],
+        "tags": [
+            
+        ],
+        "status": "available"
+    },
+    {
+        "id": 1795754301947,
+        "name": "Mochi",
+        "photoUrls": [
+            "https://store.example.com/pets/doggie.jpg"
+        ],
+        "tags": [
+            
+        ],
+        "status": "available"
+    },
+    {
+        "id": 1795754301948,
+        "name": "true",
+        "photoUrls": [
+            "https://store.example.com/pets/doggie.jpg"
+        ],
+        "tags": [
+            
+        ],
+        "status": "available"
+    },
+    {
+        "id": 1795754301950,
+        "name": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+        "photoUrls": [
+            "https://store.example.com/pets/doggie.jpg"
+        ],
+        "tags": [
+            
+        ],
+        "status": "available"
+    },
+    {
+        "id": 1795754301951,
+        "name": "doggie",
+        "photoUrls": [
+            "https://store.example.com/pets/doggie.jpg"
+        ],
+        "tags": [
+            
+        ],
+        "status": "available"
+    },
+    {
+        "id": 1795754301952,
+        "name": "Milo",
+        "photoUrls": [
+            "https://store.example.com/pets/doggie.jpg"
+        ],
+        "tags": [
+            
+        ],
+        "status": "available"
+    },
+    {
+        "id": 1795754301953,
+        "name": "Milo",
+        "photoUrls": [
+            "https://store.example.com/pets/doggie.jpg"
+        ],
+        "tags": [
+            
+        ],
+        "status": "available"
+    },
+    {
+        "id": 1795754301954,
+        "category": {
+            "id": 101,
+            "name": "dogz"
+        },
+        "name": "fodi",
+        "photoUrls": [
+            "http://fido.jpg"
+        ],
+        "tags": [
+            {
+                "id": 102,
+                "name": "friendly"
+            }
+        ],
+        "status": "available"
+    },
+    {
+        "id": 1795754302005,
+        "name": "Mochi",
+        "photoUrls": [
+            "https://images.example.com/pets/milo.jpg"
+        ],
+        "tags": [
+            
+        ],
+        "status": "available"
+    },
+    {
+        "id": 1795754302006,
+        "name": "123",
+        "photoUrls": [
+            "https://images.example.com/pets/milo.jpg"
+        ],
+        "tags": [
+            
+        ],
+        "status": "available"
+    },
+    {
+        "id": 1795754302008,
+        "name": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+        "photoUrls": [
+            "https://images.example.com/pets/milo.jpg"
+        ],
+        "tags": [
+            
+        ],
+        "status": "available"
+    },
+    {
+        "id": 1795754302009,
+        "name": "Milo",
+        "photoUrls": [
+            "https://images.example.com/pets/milo.jpg"
+        ],
+        "tags": [
+            
+        ],
+        "status": "available"
+    },
+    {
+        "id": 1795754302010,
+        "name": "Milo",
+        "photoUrls": [
+            "https://images.example.com/pets/milo.jpg"
+        ],
+        "tags": [
+            
+        ],
+        "status": "available"
+    },
+    {
+        "id": 1795754302011,
+        "name": "Milo",
+        "photoUrls": [
+            "https://images.example.com/pets/milo.jpg"
+        ],
+        "tags": [
+            
+        ],
+        "status": "available"
+    },
+    {
+        "id": 1795754302015,
+        "category": {
+            "id": 101,
+            "name": "dogz"
+        },
+        "name": "fodi",
+        "photoUrls": [
+            "http://fido.jpg"
+        ],
+        "tags": [
+            {
+                "id": 102,
+                "name": "friendly"
+            }
+        ],
+        "status": "available"
+    },
+    {
+        "id": 1795754302016,
+        "category": {
+            "id": 101,
+            "name": "dogz"
+        },
+        "name": "fodi",
+        "photoUrls": [
+            "http://fido.jpg"
+        ],
+        "tags": [
+            {
+                "id": 102,
+                "name": "friendly"
+            }
+        ],
+        "status": "available"
+    },
+    {
+        "id": 1795754302017,
+        "category": {
+            "id": 101,
+            "name": "dogz"
+        },
+        "name": "fodi",
+        "photoUrls": [
+            "http://fido.jpg"
+        ],
+        "tags": [
+            {
+                "id": 102,
+                "name": "friendly"
+            }
+        ],
+        "status": "available"
+    },
+    {
+        "id": 265822,
+        "category": {
+            "id": 799707,
+            "name": "Reptile"
+        },
+        "name": "Milo",
+        "photoUrls": [
+            "https://example.com/photos/61b239bc-e27a-42c6-b008-7439da83ebd0"
+        ],
+        "tags": [
+            {
+                "id": 396807,
+                "name": "totam"
+            }
+        ],
+        "status": "available"
+    },
+    {
+        "id": 1795754302027,
+        "category": {
+            "id": 101,
+            "name": "dogz"
+        },
+        "name": "fodi",
+        "photoUrls": [
+            "http://fido.jpg"
+        ],
+        "tags": [
+            {
+                "id": 102,
+                "name": "friendly"
+            }
+        ],
+        "status": "available"
+    },
+    {
+        "id": 1795754302037,
+        "category": {
+            "id": 101,
+            "name": "dogz"
+        },
+        "name": "fodi",
+        "photoUrls": [
+            "http://fido.jpg"
+        ],
+        "tags": [
+            {
+                "id": 102,
+                "name": "friendly"
+            }
+        ],
+        "status": "available"
+    },
+    {
+        "id": 1795754302041,
+        "category": {
+            "id": 0,
+            "name": "string"
+        },
+        "name": "doggie",
+        "photoUrls": [
+            "string"
+        ],
+        "tags": [
+            {
+                "id": 0,
+                "name": "string"
+            }
+        ],
+        "status": "available"
+    },
+    {
+        "id": 1795754302051,
+        "category": {
+            "id": 0,
+            "name": "string"
+        },
+        "name": "doggie",
+        "photoUrls": [
+            "string"
+        ],
+        "tags": [
+            {
+                "id": 0,
+                "name": "string"
+            }
+        ],
+        "status": "available"
+    },
+    {
+        "id": 1795754302057,
+        "category": {
+            "id": 101,
+            "name": "dogz"
+        },
+        "name": "fodi",
+        "photoUrls": [
+            "http://fido.jpg"
+        ],
+        "tags": [
+            {
+                "id": 102,
+                "name": "friendly"
+            }
+        ],
+        "status": "available"
+    },
+    {
+        "id": 1795754302060,
+        "category": {
+            "id": 0,
+            "name": "string"
+        },
+        "name": "doggie",
+        "photoUrls": [
+            "string"
+        ],
+        "tags": [
+            {
+                "id": 0,
+                "name": "string"
+            }
+        ],
+        "status": "available"
+    }
+]
