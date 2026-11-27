@@ -35,7 +35,7 @@
         <slf4j.version>2.0.20</slf4j.version>
         <logback.version>1.6.8</logback.version>
         <json-schema-validator.version>6.3.0</json-schema-validator.version>
-        <okhttp.version>4.12.0</okhttp.version>
+        <okhttp.version>5.5.1</okhttp.version>
         <lombok.version>1.18.48</lombok.version>
     </properties>
 
