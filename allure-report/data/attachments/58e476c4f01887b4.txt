@@ -1,0 +1,199 @@
+=== GET /pet/findByStatus?status=pending ===
+Status: 200
+Time: 316ms
+Content-Type: application/json
+
+Body:
+[
+    {
+        "id": 6,
+        "category": {
+            "id": 1,
+            "name": "Dogs"
+        },
+        "name": "Dog 3",
+        "photoUrls": [
+            "url1",
+            "url2"
+        ],
+        "tags": [
+            {
+                "id": 1,
+                "name": "tag3"
+            },
+            {
+                "id": 2,
+                "name": "tag4"
+            }
+        ],
+        "status": "pending"
+    },
+    {
+        "id": 1795752884,
+        "category": {
+            "id": 1795752884,
+            "name": "dog"
+        },
+        "name": "hello kity with form updated",
+        "photoUrls": [
+            "http://foo.bar.com/1",
+            "http://foo.bar.com/2"
+        ],
+        "tags": [
+            {
+                "id": 1795752884,
+                "name": "swagger-codegen-python-pet-tag"
+            }
+        ],
+        "status": "pending"
+    },
+    {
+        "id": 1795752907,
+        "category": {
+            "id": 1795752907,
+            "name": "dog"
+        },
+        "name": "hello kity with form updated",
+        "photoUrls": [
+            "http://foo.bar.com/1",
+            "http://foo.bar.com/2"
+        ],
+        "tags": [
+            {
+                "id": 1795752907,
+                "name": "swagger-codegen-python-pet-tag"
+            }
+        ],
+        "status": "pending"
+    },
+    {
+        "id": 1795753740,
+        "category": {
+            "id": 1795753740,
+            "name": "dog"
+        },
+        "name": "hello kity with form updated",
+        "photoUrls": [
+            "http://foo.bar.com/1",
+            "http://foo.bar.com/2"
+        ],
+        "tags": [
+            {
+                "id": 1795753740,
+                "name": "swagger-codegen-python-pet-tag"
+            }
+        ],
+        "status": "pending"
+    },
+    {
+        "id": 1795753905,
+        "category": {
+            "id": 1795753905,
+            "name": "dog"
+        },
+        "name": "hello kity with form updated",
+        "photoUrls": [
+            "http://foo.bar.com/1",
+            "http://foo.bar.com/2"
+        ],
+        "tags": [
+            {
+                "id": 1795753905,
+                "name": "swagger-codegen-python-pet-tag"
+            }
+        ],
+        "status": "pending"
+    },
+    {
+        "id": 1795754078,
+        "category": {
+            "id": 1795754078,
+            "name": "dog"
+        },
+        "name": "hello kity with form updated",
+        "photoUrls": [
+            "http://foo.bar.com/1",
+            "http://foo.bar.com/2"
+        ],
+        "tags": [
+            {
+                "id": 1795754078,
+                "name": "swagger-codegen-python-pet-tag"
+            }
+        ],
+        "status": "pending"
+    },
+    {
+        "id": 1795754432,
+        "category": {
+            "id": 1795754432,
+            "name": "dog"
+        },
+        "name": "hello kity with form updated",
+        "photoUrls": [
+            "http://foo.bar.com/1",
+            "http://foo.bar.com/2"
+        ],
+        "tags": [
+            {
+                "id": 1795754432,
+                "name": "swagger-codegen-python-pet-tag"
+            }
+        ],
+        "status": "pending"
+    },
+    {
+        "id": 622359,
+        "category": {
+            "id": 566319,
+            "name": "Dog"
+        },
+        "name": "Buddy",
+        "photoUrls": [
+            "https://example.com/photos/9b3c5514-66b3-412a-b672-f6cfd6133042"
+        ],
+        "tags": [
+            {
+                "id": 434762,
+                "name": "velit"
+            }
+        ],
+        "status": "pending"
+    },
+    {
+        "id": 338325,
+        "category": {
+            "id": 180024,
+            "name": "Bird"
+        },
+        "name": "Charlie",
+        "photoUrls": [
+            "https://example.com/photos/762c3a7b-88d6-4e3e-8e08-33b8a1756f6d"
+        ],
+        "tags": [
+            {
+                "id": 526560,
+                "name": "quidem"
+            }
+        ],
+        "status": "pending"
+    },
+    {
+        "id": 711247,
+        "category": {
+            "id": 466271,
+            "name": "Bird"
+        },
+        "name": "Cooper",
+        "photoUrls": [
+            "https://example.com/photos/14976c64-41bc-4e83-a342-0a5113f4da8c"
+        ],
+        "tags": [
+            {
+                "id": 581884,
+                "name": "repellat"
+            }
+        ],
+        "status": "pending"
+    }
+]
