@@ -1,0 +1,24 @@
+=== POST /pet (setup) ===
+Status: 200
+Time: 60ms
+Content-Type: application/json
+
+Body:
+{
+    "id": 97771,
+    "category": {
+        "id": 330535,
+        "name": "Cat"
+    },
+    "name": "Buddy",
+    "photoUrls": [
+        "https://example.com/photos/98ac9665-e895-460f-be07-3a744d2225bd"
+    ],
+    "tags": [
+        {
+            "id": 864000,
+            "name": "quia"
+        }
+    ],
+    "status": "available"
+}
